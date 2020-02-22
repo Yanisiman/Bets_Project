@@ -190,6 +190,11 @@ public class User implements Serializable {
 	public Date getCreationDate() {
 		return creationDate;
 	}
+	
+	@Override
+	public String toString () {
+		return name + familyName + " has been created \n";	
+	}
 
 
 

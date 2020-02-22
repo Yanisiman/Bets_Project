@@ -27,7 +27,8 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-		MainGUI a=new MainGUI();
+		//MainGUI a=new MainGUI();
+		LoginGUI a = new LoginGUI();
 		a.setVisible(true);
 
 
@@ -73,8 +74,8 @@ public class ApplicationLauncher {
 
 			
 		}catch (Exception e) {
-			a.jLabelSelectOption.setText("Error: "+e.toString());
-			a.jLabelSelectOption.setForeground(Color.RED);		
+			//a.jLabelSelectOption.setText("Error: "+e.toString());
+			//a.jLabelSelectOption.setForeground(Color.RED);		
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}
 		//a.pack();

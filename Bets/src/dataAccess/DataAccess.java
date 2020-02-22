@@ -107,6 +107,12 @@ public class DataAccess  {
 			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month,28));
 			
 			User user = new User("Marion", "Bernard", 19 , "zauhdvnfnerjz", "French", "marion.bernard@epita.fr", "MarionBer", "123456789", "04-09-2000");
+			User user2 = new User("Mariusz", "Januszek", 24, "polpol", "Polish", "mariusz.januszek95@gmail.com", "MariuszJan", "987654321", "29-07-1995");
+			
+			System.out.print(user.toString());
+			System.out.print(user2.toString());
+			
+			
 			
 			Question q1;
 			Question q2;
@@ -172,6 +178,7 @@ public class DataAccess  {
 			db.persist(ev20);	
 			
 			db.persist(user);
+			db.persist(user2);
 			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
