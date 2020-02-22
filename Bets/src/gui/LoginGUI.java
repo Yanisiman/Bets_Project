@@ -52,20 +52,16 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
+
 		panel = new JPanel();
 		setContentPane(panel);
 		setSize(800, 650);
 
-
-		
 		self = this;
 		
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 55, 150, 78, 35, 30, 50, 20 };
-		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 0, 35, 0, 67, 0, 35, 20 };
+		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 54, 34, 34, 35, 0, 67, 0, 35, 20 };
 		gbl_panel.columnWeights = new double[] { 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0 };
 		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 1.0 };
 		panel.setLayout(gbl_panel);
@@ -129,8 +125,6 @@ public class LoginGUI extends JFrame {
 				else {
 					textArea.setText("Access denied");
 				}
-
-		
 			}
 		});
 		panel.add(loginBtn, gbc_loginBtn);
@@ -163,6 +157,7 @@ public class LoginGUI extends JFrame {
 				//dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
 				RegisterGUI registerGUI = new RegisterGUI();
+				registerGUI.setBusinessLogic(businessLogic);
 				registerGUI.setVisible(true);
 			}
 		});

@@ -24,14 +24,13 @@ public class BLFacadeImplementation  implements BLFacade {
 
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
-		ConfigXML c=ConfigXML.getInstance();
+		ConfigXML c = ConfigXML.getInstance();
 		
 		if (c.getDataBaseOpenMode().equals("initialize")) {
 			DataAccess dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 			dbManager.initializeDB();
 			dbManager.close();
 			}
-		
 	}
 	
 
@@ -111,6 +110,14 @@ public class BLFacadeImplementation  implements BLFacade {
 	 public void initializeBD(){
 		DataAccess dBManager=new DataAccess();
 		dBManager.initializeDB();
+		dBManager.close();
+	}
+
+
+	@WebMethod
+	public void createUser(User user) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.storeUser(user);
 		dBManager.close();
 	}
 

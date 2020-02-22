@@ -108,11 +108,7 @@ public class DataAccess  {
 			
 			User user = new User("Marion", "Bernard", 19 , "111", "French", "marion.bernard@epita.fr", "MarionBer", "123456789", "04-09-2000");
 			User user2 = new User("Mariusz", "Januszek", 24, "polpol", "Polish", "mariusz.januszek95@gmail.com", "MariuszJan", "987654321", "29-07-1995");
-			
-			System.out.print(user.toString());
-			System.out.print(user2.toString());
-			
-			
+			User yanis = new User("Yanis", "Chaabane", 19, "yayko", "French", "yanis.chaabane", "Yayko", "1232131", "25/04/2000");
 			
 			Question q1;
 			Question q2;
@@ -179,6 +175,7 @@ public class DataAccess  {
 			
 			db.persist(user);
 			db.persist(user2);
+			db.persist(yanis);
 			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -269,7 +266,12 @@ public class DataAccess  {
 			System.out.print("No user");
 			return false;	
 		}
-
+	}
+	
+	public void storeUser(User user) {
+		db.getTransaction().begin();
+		db.persist(user);
+		db.getTransaction().commit();
 	}
 	
 
