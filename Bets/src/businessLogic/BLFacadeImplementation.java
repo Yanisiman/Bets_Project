@@ -92,9 +92,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 	
 	@WebMethod
-	public boolean checkLogin (String primaryKey, String password) {
+	public User checkLogin (String primaryKey, String password) {
 		DataAccess dbManagerAccess = new DataAccess();
-		boolean user = dbManagerAccess.getUser(primaryKey, password);
+		User user = dbManagerAccess.getUser(primaryKey, password);
 		dbManagerAccess.close();
 		return user;
 	}

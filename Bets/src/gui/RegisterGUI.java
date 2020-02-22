@@ -237,7 +237,7 @@ public class RegisterGUI extends JFrame {
 		gbc_registerBtn.gridy = 12;
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				String name = nameField.getText();
 				String familyName = familyNameField.getText();
 				String password = passwordField.getText();
@@ -246,38 +246,39 @@ public class RegisterGUI extends JFrame {
 				String username = usernameField.getText();
 				String creditCard = creditCardField.getText();
 				String birthDate = ageField.getText();
-				
-				if (name.equals("") || familyName.equals("")||
-						password.equals("") || nationality.equals("") ||
-						email.equals("") || username.equals("") ||
-						creditCard.equals("") || birthDate.equals("")) {
+
+				if (name.equals("") || familyName.equals("") || password.equals("") || nationality.equals("")
+						|| email.equals("") || username.equals("") || creditCard.equals("") || birthDate.equals("")) {
 					errorArea.setText("One or more information incorrect");
 					return;
 				}
-				
+
 				SimpleDateFormat format = new SimpleDateFormat("dd'/'MM'/'yyyy", Locale.ENGLISH);
 				try {
 					Date birth = format.parse(birthDate);
 					LocalDate d = LocalDate.of(birth.getYear(), birth.getMonth(), birth.getDay());
 					LocalDate now = LocalDate.now();
-					Period p  = Period.between(d, now);					
+					Period p = Period.between(d, now);
 					String age_string = String.valueOf(p.getYears()).substring(2);
 					int age = Integer.parseInt(age_string);
-					
-					User newUser = new User(name, familyName, age, password, nationality, email, username, creditCard, birthDate);
+
+					User newUser = new User(name, familyName, age, password, nationality, email, username, creditCard,
+							birthDate);
 					businessLogic.createUser(newUser);
-					
+
 					self.setVisible(false);
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI();
+					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(newUser);
+					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
-					
+
 				} catch (DateTimeParseException e) {
 					// TODO: handle exception
 					errorArea.setText("Birth date is incorrect");
 					return;
 				} catch (Exception e) {
 					// TODO: handle exception
-					errorArea.setText("An error occured : " + e.getMessage());;
+					errorArea.setText("An error occured : " + e.getMessage());
+					;
 					return;
 				}
 			}
@@ -294,7 +295,7 @@ public class RegisterGUI extends JFrame {
 		panel.add(errorArea, gbc_errorArea);
 
 	}
-	
+
 	public void setBusinessLogic(BLFacade bl) {
 		businessLogic = bl;
 	}

@@ -43,9 +43,7 @@ public class LoginGUI extends JFrame {
 	private LoginGUI self;
 	private BLFacade businessLogic;
 	private final JTextArea textArea = new JTextArea();
-	
-	
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -58,14 +56,14 @@ public class LoginGUI extends JFrame {
 		setSize(800, 650);
 
 		self = this;
-		
+
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 55, 150, 78, 35, 30, 50, 20 };
 		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 54, 34, 34, 35, 0, 67, 0, 35, 20 };
 		gbl_panel.columnWeights = new double[] { 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0 };
 		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 1.0 };
 		panel.setLayout(gbl_panel);
-		
+
 		betAndRuinLbl.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		GridBagConstraints gbc_betAndRuinLbl = new GridBagConstraints();
 		gbc_betAndRuinLbl.gridwidth = 3;
@@ -73,7 +71,7 @@ public class LoginGUI extends JFrame {
 		gbc_betAndRuinLbl.gridx = 3;
 		gbc_betAndRuinLbl.gridy = 0;
 		panel.add(betAndRuinLbl, gbc_betAndRuinLbl);
-		
+
 		usernameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		GridBagConstraints gbc_usernameLbl = new GridBagConstraints();
 		gbc_usernameLbl.gridwidth = 2;
@@ -81,7 +79,7 @@ public class LoginGUI extends JFrame {
 		gbc_usernameLbl.gridx = 2;
 		gbc_usernameLbl.gridy = 3;
 		panel.add(usernameLbl, gbc_usernameLbl);
-		
+
 		GridBagConstraints gbc_usernameField = new GridBagConstraints();
 		gbc_usernameField.gridwidth = 3;
 		gbc_usernameField.insets = new Insets(0, 0, 5, 5);
@@ -90,7 +88,7 @@ public class LoginGUI extends JFrame {
 		gbc_usernameField.gridy = 3;
 		panel.add(usernameField, gbc_usernameField);
 		usernameField.setColumns(10);
-		
+
 		passwordLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		GridBagConstraints gbc_passwordLbl = new GridBagConstraints();
 		gbc_passwordLbl.gridwidth = 2;
@@ -98,7 +96,7 @@ public class LoginGUI extends JFrame {
 		gbc_passwordLbl.gridx = 2;
 		gbc_passwordLbl.gridy = 4;
 		panel.add(passwordLbl, gbc_passwordLbl);
-		
+
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.gridwidth = 3;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -106,7 +104,7 @@ public class LoginGUI extends JFrame {
 		gbc_passwordField.gridx = 4;
 		gbc_passwordField.gridy = 4;
 		panel.add(passwordField, gbc_passwordField);
-		
+
 		GridBagConstraints gbc_loginBtn = new GridBagConstraints();
 		gbc_loginBtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_loginBtn.insets = new Insets(0, 0, 5, 5);
@@ -116,19 +114,20 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String userString = usernameField.getText();
 				String passwordString = passwordField.getText();
+				User currentUser = businessLogic.checkLogin(userString, passwordString);
 				
-				if(businessLogic.checkLogin(userString, passwordString)) {
+				if (currentUser != null) {
 					self.setVisible(false);
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI();
+					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser);
+					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
-				}
-				else {
+				} else {
 					textArea.setText("Access denied");
 				}
 			}
 		});
 		panel.add(loginBtn, gbc_loginBtn);
-		
+
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridwidth = 3;
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
@@ -137,7 +136,7 @@ public class LoginGUI extends JFrame {
 		gbc_textArea.gridy = 6;
 		textArea.setEditable(false);
 		panel.add(textArea, gbc_textArea);
-		
+
 		noAccountLbl.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		GridBagConstraints gbc_noAccountLbl = new GridBagConstraints();
 		gbc_noAccountLbl.gridwidth = 3;
@@ -145,7 +144,7 @@ public class LoginGUI extends JFrame {
 		gbc_noAccountLbl.gridx = 3;
 		gbc_noAccountLbl.gridy = 7;
 		panel.add(noAccountLbl, gbc_noAccountLbl);
-		
+
 		GridBagConstraints gbc_registerBtn = new GridBagConstraints();
 		gbc_registerBtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_registerBtn.insets = new Insets(0, 0, 5, 5);
@@ -154,14 +153,14 @@ public class LoginGUI extends JFrame {
 		panel.add(registerBtn, gbc_registerBtn);
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
+				// dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
 				RegisterGUI registerGUI = new RegisterGUI();
 				registerGUI.setBusinessLogic(businessLogic);
 				registerGUI.setVisible(true);
 			}
 		});
-		
+
 		GridBagConstraints gbc_spectatorBtn = new GridBagConstraints();
 		gbc_spectatorBtn.gridwidth = 3;
 		gbc_spectatorBtn.fill = GridBagConstraints.HORIZONTAL;
@@ -171,20 +170,21 @@ public class LoginGUI extends JFrame {
 		panel.add(spectatorBtn, gbc_spectatorBtn);
 		spectatorBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
+				// dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
-				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI();
+				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null);
+				findQuestionsGUI.setBusinessLogic(businessLogic);
 				findQuestionsGUI.setVisible(true);
 			}
-		});		
+		});
 	}
-	
-	public void setBusinessLogic (BLFacade business_logic) {
+
+	public void setBusinessLogic(BLFacade business_logic) {
 		businessLogic = business_logic;
 	}
-	
+
 	public JButton getRegisterListener() {
 		return registerBtn;
 	}
-	
+
 }

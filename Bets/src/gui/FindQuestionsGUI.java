@@ -1,28 +1,47 @@
 package gui;
 
-import businessLogic.BLFacade;
-import configuration.UtilDate;
-
-import com.toedter.calendar.JCalendar;
-import domain.Question;
-import domain.Event;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Vector;
 
-import javax.swing.table.AbstractTableModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JCalendar;
+
+import businessLogic.BLFacade;
+import configuration.UtilDate;
+import domain.Bet;
+import domain.Question;
+import domain.User;
+import java.awt.Font;
 
 public class FindQuestionsGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
-	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
-	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
+	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries"));
+	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events"));
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
@@ -32,46 +51,47 @@ public class FindQuestionsGUI extends JFrame {
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 	private JScrollPane scrollPaneQueries = new JScrollPane();
 
-	private JTable tableEvents= new JTable();
+	private JTable tableEvents = new JTable();
 	private JTable tableQueries = new JTable();
 
 	private DefaultTableModel tableModelEvents;
 	private DefaultTableModel tableModelQueries;
 
-	
-	private String[] columnNamesEvents = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("EventN"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Event"), 
+	private String[] columnNamesEvents = new String[] { ResourceBundle.getBundle("Etiquetas").getString("EventN"),
+			ResourceBundle.getBundle("Etiquetas").getString("Event"),
 
 	};
-	private String[] columnNamesQueries = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("QueryN"), 
+	private String[] columnNamesQueries = new String[] { ResourceBundle.getBundle("Etiquetas").getString("QueryN"),
 			ResourceBundle.getBundle("Etiquetas").getString("Query")
 
 	};
 
-	public FindQuestionsGUI()
-	{
-		try
-		{
+	private BLFacade businessLogic;
+	private User currentUser;
+	
+	private JTextField amoutBetField = new JTextField();
+	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
+	private JLabel amountBetLbl = new JLabel();
+	private JButton betBtn = new JButton();
+	private JButton editAccountBtn = new JButton("Account");
+
+	public FindQuestionsGUI(User currentUser) {
+		this.currentUser = currentUser;
+		try {
 			jbInit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
-	private void jbInit() throws Exception
-	{
+	private void jbInit() throws Exception {
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabelQueries.setBounds(138, 248, 406, 14);
+		jLabelQueries.setBounds(138, 221, 406, 14);
 		jLabelEvents.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
@@ -80,100 +100,99 @@ public class FindQuestionsGUI extends JFrame {
 
 		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
 
-		jButtonClose.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
+		jButtonClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				jButton2_actionPerformed(e);
 			}
 		});
 
 		this.getContentPane().add(jButtonClose, null);
 
-
 		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
 
-
 		// Code for JCalendar
-		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
-		{
-			public void propertyChange(PropertyChangeEvent propertychangeevent)
-			{
+		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent propertychangeevent) {
 
-				if (propertychangeevent.getPropertyName().equals("locale"))
-				{
+				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
-				}
-				else if (propertychangeevent.getPropertyName().equals("calendar"))
-				{
+				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
 					calendarMio = (Calendar) propertychangeevent.getNewValue();
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
-					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-
-
+					Date firstDay = UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
 
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
 
-						BLFacade facade=MainGUI.getBusinessLogic();
+						Vector<domain.Event> events = businessLogic.getEvents(firstDay);
 
-						Vector<domain.Event> events=facade.getEvents(firstDay);
-
-						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarMio.getTime()));
-						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarMio.getTime()));
-						for (domain.Event ev:events){
+						if (events.isEmpty())
+							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents") + ": "
+									+ dateformat1.format(calendarMio.getTime()));
+						else
+							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
+									+ dateformat1.format(calendarMio.getTime()));
+						for (domain.Event ev : events) {
 							Vector<Object> row = new Vector<Object>();
 
-							System.out.println("Events "+ev);
+							System.out.println("Events " + ev);
 
 							row.add(ev.getEventNumber());
 							row.add(ev.getDescription());
 							row.add(ev); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
-							tableModelEvents.addRow(row);		
+							tableModelEvents.addRow(row);
 						}
 						tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 						tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
-						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
+						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not
+																												// shown
+																												// in
+																												// JTable
 					} catch (Exception e1) {
 
 						jLabelQueries.setText(e1.getMessage());
 					}
 
 				}
-				//CreateQuestionGUI.paintDaysWithEvents(jCalendar1);
-			} 
+				paintDaysWithEvents(jCalendar1);
+			}
 		});
 
 		this.getContentPane().add(jCalendar1, null);
-		
+
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(138, 274, 406, 116));
+		scrollPaneQueries.setBounds(new Rectangle(138, 236, 406, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i=tableEvents.getSelectedRow();
-				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
-				Vector<Question> queries=ev.getQuestions();
+				int i = tableEvents.getSelectedRow();
+				domain.Event ev = (domain.Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
+				Vector<Question> queries = ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
+				tableModelQueries.setColumnCount(3); // another column added to allocate ev objects
 
 				if (queries.isEmpty())
-					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
-				else 
-					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
+					jLabelQueries.setText(
+							ResourceBundle.getBundle("Etiquetas").getString("NoQueries") + ": " + ev.getDescription());
+				else
+					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent") + " "
+							+ ev.getDescription());
 
-				for (domain.Question q:queries){
+				for (domain.Question q : queries) {
 					Vector<Object> row = new Vector<Object>();
 
 					row.add(q.getQuestionNumber());
 					row.add(q.getQuestion());
-					tableModelQueries.addRow(row);	
+					row.add(q);
+					tableModelQueries.addRow(row);
 				}
 				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+				tableQueries.getColumnModel().removeColumn(tableQueries.getColumnModel().getColumn(2));
 			}
 		});
 
@@ -183,7 +202,6 @@ public class FindQuestionsGUI extends JFrame {
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
-
 
 		scrollPaneQueries.setViewportView(tableQueries);
 		tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
@@ -195,10 +213,107 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
 
+		choiceBetComboBox.setBounds(52, 377, 316, 16);
+		getContentPane().add(choiceBetComboBox);
+		choiceBetComboBox.setVisible(false);
+
+		amoutBetField.setBounds(448, 375, 96, 20);
+		getContentPane().add(amoutBetField);
+		amoutBetField.setColumns(10);
+		amoutBetField.setVisible(false);
+
+		amountBetLbl.setText("Amount :"); //$NON-NLS-1$ //$NON-NLS-2$
+		amountBetLbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		amountBetLbl.setBounds(378, 378, 63, 14);
+		getContentPane().add(amountBetLbl);
+		amountBetLbl.setVisible(false);
+
+		betBtn.setText("Bet");
+		betBtn.setBounds(554, 374, 89, 23);
+		getContentPane().add(betBtn);
+		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		editAccountBtn.setBounds(570, 0, 116, 25);
+		
+		getContentPane().add(editAccountBtn);
+		betBtn.setVisible(false);
+
+		tableQueries.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = tableQueries.getSelectedRow();
+				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
+
+				choiceBetComboBox.setVisible(true);
+				amoutBetField.setVisible(true);
+				betBtn.setVisible(true);
+				amountBetLbl.setVisible(true);
+			}
+		});
+		
+		if (currentUser == null) {
+			editAccountBtn.setVisible(false);
+		}
+		editAccountBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser);
+				userInformationGUI.setVisible(true);				
+			}
+		});
 	}
 
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
 
+	public void setBusinessLogic(BLFacade bl) {
+		businessLogic = bl;
+	}
+
+	public void paintDaysWithEvents(JCalendar jCalendar) {
+		// For each day in current month, it is checked if there are events, and in that
+		// case, the background color for that day is changed.
+
+		Vector<Date> dates = businessLogic.getEventsMonth(jCalendar.getDate());
+
+		Calendar calendar = jCalendar.getCalendar();
+
+		int month = calendar.get(Calendar.MONTH);
+		int today = calendar.get(Calendar.DAY_OF_MONTH);
+
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		int offset = calendar.get(Calendar.DAY_OF_WEEK);
+
+		if (Locale.getDefault().equals(new Locale("es")))
+			offset += 4;
+		else
+			offset += 5;
+
+		for (Date d : dates) {
+
+			calendar.setTime(d);
+			System.out.println(d);
+
+			// Obtain the component of the day in the panel of the DayChooser of the
+			// JCalendar.
+			// The component is located after the decorator buttons of "Sun", "Mon",... or
+			// "Lun", "Mar"...,
+			// the empty days before day 1 of month, and all the days previous to each day.
+			// That number of components is calculated with "offset" and is different in
+			// English and Spanish
+//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
+			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
+			o.setBackground(Color.CYAN);
+		}
+
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.MONTH, month);
+
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
 }

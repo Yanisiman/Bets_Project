@@ -115,7 +115,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
 					//Vector<Event> events=facade.getAllEvents();
-					JFrame a = new CreateQuestionGUI(new Vector<Event>());
+					JFrame a = new CreateQuestionGUI(new Vector<Event>(), null);
 					a.setVisible(true);
 				}
 			});
@@ -134,7 +134,7 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI();
+					JFrame a = new FindQuestionsGUI(null);
 
 					a.setVisible(true);
 				}

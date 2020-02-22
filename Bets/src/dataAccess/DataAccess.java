@@ -108,7 +108,7 @@ public class DataAccess  {
 			
 			User user = new User("Marion", "Bernard", 19 , "111", "French", "marion.bernard@epita.fr", "MarionBer", "123456789", "04-09-2000");
 			User user2 = new User("Mariusz", "Januszek", 24, "polpol", "Polish", "mariusz.januszek95@gmail.com", "MariuszJan", "987654321", "29-07-1995");
-			User yanis = new User("Yanis", "Chaabane", 19, "yayko", "French", "yanis.chaabane", "Yayko", "1232131", "25/04/2000");
+			User yanis = new User("Yanis", "Chaabane", 19, "yayko", "French", "yanis.chaabane@epita.fr", "Yayko", "1232131", "25/04/2000");
 			
 			Question q1;
 			Question q2;
@@ -255,16 +255,16 @@ public class DataAccess  {
 	 	return res;
 	}
 	
-	public boolean getUser (String username, String password) {
+	public User getUser (String username, String password) {
 		try {
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u "
 					+ "WHERE (u.username = \"" + username + "\" OR u.email = \"" + username + "\") AND u.password = \"" + password + "\"", User.class);
-			return q2.getSingleResult() != null;
+			return q2.getSingleResult();
 			
 			
 		} catch (Exception e) {
 			System.out.print("No user");
-			return false;	
+			return null;	
 		}
 	}
 	
