@@ -29,6 +29,9 @@ public class User implements Serializable {
 	private String creditCard;
 	private String birthDate;
 	private Date creationDate;
+	private Vector<UserBet> bets;
+	private int money;
+	private boolean isAdmin;
 	
 	
 	/**
@@ -54,6 +57,45 @@ public class User implements Serializable {
 		this.creditCard = creditCard;
 		this.birthDate = birthDate;
 		this.creationDate = new Date();
+		this.bets = new Vector<UserBet>();
+		this.money = 0;
+		this.isAdmin = false;
+		
+	}
+
+
+	public Vector<UserBet> getBets() {
+		return bets;
+	}
+
+
+	public void setBets(Vector<UserBet> bets) {
+		this.bets = bets;
+	}
+
+
+	public int getMoney() {
+		return money;
+	}
+
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 

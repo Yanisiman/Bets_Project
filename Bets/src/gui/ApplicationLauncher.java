@@ -2,14 +2,19 @@ package gui;
 
 import java.awt.Color;
 import java.net.URL;
+import java.util.Date;
 import java.util.Locale;
+import java.util.Vector;
 
 import javax.swing.UIManager;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
-
+import domain.Event;
+import domain.Question;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
@@ -30,6 +35,8 @@ public class ApplicationLauncher {
 		//MainGUI a=new MainGUI();
 		LoginGUI a = new LoginGUI();
 		a.setVisible(true);
+		
+
 
 
 
@@ -68,7 +75,7 @@ public class ApplicationLauncher {
 			/*if (c.getDataBaseOpenMode().equals("initialize")) 
 				appFacadeInterface.initializeBD();
 				*/
-			MainGUI.setBussinessLogic(appFacadeInterface);
+			a.setBusinessLogic(appFacadeInterface);
 
 		
 

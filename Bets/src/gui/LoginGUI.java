@@ -21,7 +21,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
+import javax.swing.JTextArea;
 
 public class LoginGUI extends JFrame {
 
@@ -36,7 +38,8 @@ public class LoginGUI extends JFrame {
 	private JButton registerBtn = new JButton("Register");
 	private JButton spectatorBtn = new JButton("Go to spectator view");
 	private LoginGUI self;
-	private LoginGUI businessLogic;
+	private BLFacade businessLogic;
+	private final JTextArea textArea = new JTextArea();
 	
 	
 	
@@ -46,6 +49,8 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		
 		panel = new JPanel();
 		setContentPane(panel);
@@ -59,7 +64,7 @@ public class LoginGUI extends JFrame {
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 55, 150, 78, 35, 30, 50, 20 };
 		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 0, 35, 0, 67, 0, 35, 20 };
 		gbl_panel.columnWeights = new double[] { 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0 };
-		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 1.0 };
+		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 1.0 };
 		panel.setLayout(gbl_panel);
 		
 		betAndRuinLbl.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -110,21 +115,31 @@ public class LoginGUI extends JFrame {
 		gbc_loginBtn.gridy = 5;
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*String userString = usernameField.getText();
+				String userString = usernameField.getText();
 				String passwordString = passwordField.getSelectedText();
 				
-				if(businessLogic.isUserExist(userString, passwordString)) {
-						System.out.print("Access ok");
-						loginBtn.setEnabled(false);
+				if(businessLogic.checkLogin(userString, passwordString)) {
+					self.setVisible(false);
+					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI();
+					findQuestionsGUI.setVisible(true);	
 				}
-				else { 
-					System.out.print("Access denied");
-					loginBtn.setEnabled(false);
-				}*/
+				else {
+					textArea.setText("Access denied");
+				}
+
 		
 			}
 		});
 		panel.add(loginBtn, gbc_loginBtn);
+		
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.gridwidth = 3;
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 3;
+		gbc_textArea.gridy = 6;
+		textArea.setEditable(false);
+		panel.add(textArea, gbc_textArea);
 		
 		noAccountLbl.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		GridBagConstraints gbc_noAccountLbl = new GridBagConstraints();
@@ -164,6 +179,10 @@ public class LoginGUI extends JFrame {
 				findQuestionsGUI.setVisible(true);
 			}
 		});		
+	}
+	
+	public void setBusinessLogic (BLFacade business_logic) {
+		businessLogic = business_logic;
 	}
 	
 	public JButton getRegisterListener() {

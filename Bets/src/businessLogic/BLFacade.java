@@ -57,6 +57,8 @@ public interface BLFacade  {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	@WebMethod public void initializeBD();
+	
+	@WebMethod public boolean checkLogin (String primaryKey, String password);
 
 	
 }
