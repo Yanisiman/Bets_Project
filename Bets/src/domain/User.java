@@ -41,12 +41,13 @@ public class User implements Serializable {
 	 * @param creditCard
 	 * @param birthDate
 	 */
-	public User(String name, String familyName, int age, String nationality, String email, String username,
+	public User(String name, String familyName, int age, String password,  String nationality, String email, String username,
 			String creditCard, String birthDate) {
 		super();
 		this.name = name;
 		this.familyName = familyName;
 		this.age = age;
+		this.password = password;
 		this.nationality = nationality;
 		this.email = email;
 		this.username = username;
