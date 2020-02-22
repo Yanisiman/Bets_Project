@@ -1,6 +1,7 @@
 package businessLogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -10,6 +11,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -93,7 +95,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	@WebMethod
 	public boolean checkLogin (String primaryKey, String password) {
 		DataAccess dbManagerAccess = new DataAccess();
-		return dbManagerAccess.getUser(primaryKey, password);
+		boolean user = dbManagerAccess.getUser(primaryKey, password);
+		dbManagerAccess.close();
+		return user;
 	}
 	
 	

@@ -260,9 +260,10 @@ public class DataAccess  {
 	
 	public boolean getUser (String username, String password) {
 		try {
-			TypedQuery<Long> q2 = db.createQuery("SELECT u from User " + "u WHERE u.getUsername() = \"" + username + "\" OR u.getEmail() = \"" +
-					username + "\" AND u.getPassword() = \"" + password + "\"" , Long.class);
-			return q2.getSingleResult() == 1;
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u "
+					+ "WHERE (u.username = \"" + username + "\" OR u.email = \"" + username + "\") AND u.password = \"" + password + "\"", User.class);
+			return q2.getSingleResult() != null;
+			
 			
 		} catch (Exception e) {
 			System.out.print("No user");

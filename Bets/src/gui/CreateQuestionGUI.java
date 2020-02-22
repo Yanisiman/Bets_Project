@@ -41,6 +41,8 @@ public class CreateQuestionGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	
+	private BLFacade businessLogic;
 
 	public CreateQuestionGUI(Vector<domain.Event> v) {
 		try {
@@ -203,13 +205,11 @@ public class CreateQuestionGUI extends JFrame {
 
 */
 	
-	public static void paintDaysWithEvents(JCalendar jCalendar) {
+	public void paintDaysWithEvents(JCalendar jCalendar) {
 		// For each day in current month, it is checked if there are events, and in that
 		// case, the background color for that day is changed.
 
-		BLFacade facade = MainGUI.getBusinessLogic();
-
-		Vector<Date> dates=facade.getEventsMonth(jCalendar.getDate());
+		Vector<Date> dates= businessLogic.getEventsMonth(jCalendar.getDate());
 			
 		Calendar calendar = jCalendar.getCalendar();
 		
@@ -295,5 +295,9 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
+	}
+	
+	public void setBusinessogic(BLFacade bl) {
+		businessLogic = bl;
 	}
 }

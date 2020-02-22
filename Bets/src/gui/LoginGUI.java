@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +24,8 @@ import javax.swing.JTextField;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
+import domain.User;
+
 import javax.swing.JTextArea;
 
 public class LoginGUI extends JFrame {
@@ -116,12 +119,12 @@ public class LoginGUI extends JFrame {
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userString = usernameField.getText();
-				String passwordString = passwordField.getSelectedText();
+				String passwordString = passwordField.getText();
 				
 				if(businessLogic.checkLogin(userString, passwordString)) {
 					self.setVisible(false);
 					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI();
-					findQuestionsGUI.setVisible(true);	
+					findQuestionsGUI.setVisible(true);
 				}
 				else {
 					textArea.setText("Access denied");

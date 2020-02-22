@@ -2,13 +2,11 @@ package businessLogic;
 
 import java.util.Vector;
 import java.util.Date;
-
-
-
-
+import java.util.List;
 
 //import domain.Booking;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;

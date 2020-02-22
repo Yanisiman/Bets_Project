@@ -142,7 +142,7 @@ public class FindQuestionsGUI extends JFrame {
 					}
 
 				}
-				CreateQuestionGUI.paintDaysWithEvents(jCalendar1);
+				//CreateQuestionGUI.paintDaysWithEvents(jCalendar1);
 			} 
 		});
 

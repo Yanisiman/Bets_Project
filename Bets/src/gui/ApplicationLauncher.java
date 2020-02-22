@@ -35,10 +35,6 @@ public class ApplicationLauncher {
 		//MainGUI a=new MainGUI();
 		LoginGUI a = new LoginGUI();
 		a.setVisible(true);
-		
-
-
-
 
 		try {
 			
