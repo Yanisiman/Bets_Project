@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import exceptions.QuestionAlreadyExist;
@@ -18,10 +19,13 @@ import exceptions.QuestionAlreadyExist;
 public class UserBet implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id @GeneratedValue
+	@Id //@GeneratedValue
 	
-	private User user;
 	private int amountBet;
+	
+	@XmlIDREF
+	private User user;
+	@XmlIDREF
 	private Bet bet;
 	
 	public UserBet() {

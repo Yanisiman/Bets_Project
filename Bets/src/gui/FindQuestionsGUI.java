@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
@@ -82,6 +84,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.currentUser = currentUser;
 		self = this;
 		try {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +106,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEvents);
 
 		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
-
+		jButtonClose.setVisible(false);
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButton2_actionPerformed(e);

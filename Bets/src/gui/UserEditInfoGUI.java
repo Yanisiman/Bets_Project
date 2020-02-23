@@ -236,7 +236,7 @@ public class UserEditInfoGUI extends JFrame {
 					}
 				}				
 				
-				if (!oldPasswordField.getText().equals("") && passwordField.getText().equals("")) {
+				if (!oldPasswordField.getText().equals("") && !passwordField.getText().equals("")) {
 					if (oldPasswordField.getText().equals(currentUser.getPassword()))
 						currentUser.setPassword(passwordField.getText());
 					else {
@@ -254,7 +254,7 @@ public class UserEditInfoGUI extends JFrame {
 				
 				businessLogic.updateUser(currentUser);
 				self.setVisible(false);
-				info.refresh();				
+				info.refresh(currentUser);				
 			}
 		});
 		
@@ -269,6 +269,7 @@ public class UserEditInfoGUI extends JFrame {
 				try {
 					int money = Integer.parseInt(moneyField.getText());
 					businessLogic.addMoney(currentUser, money);
+					currentUser.updateMoney(money);
 				} catch (Exception e) {
 					
 				}

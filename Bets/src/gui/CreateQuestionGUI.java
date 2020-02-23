@@ -61,6 +61,7 @@ public class CreateQuestionGUI extends JFrame {
 	public CreateQuestionGUI(Vector<domain.Event> v, User currentUser) {
 		this.currentUser = currentUser;
 		try {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit(v);
 		} catch (Exception e) {
 			e.printStackTrace();

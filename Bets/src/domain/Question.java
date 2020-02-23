@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.Vector;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,6 +22,8 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private String result;  
+	private Vector<Bet> choices;
+	
 	@XmlIDREF
 	private Event event;
 
@@ -34,14 +37,15 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.event = event;
+		this.choices = new Vector<Bet>();
 	}
 	
 	public Question(String query, float betMinimum,  Event event) {
 		super();
 		this.question = query;
 		this.betMinimum=betMinimum;
-
-		//this.event = event;
+		this.event = event;
+		this.choices = new Vector<Bet>();
 	}
 
 	/**
@@ -153,6 +157,24 @@ public class Question implements Serializable {
 
 
 
+
+	/**
+	 * @return the choices
+	 */
+	public Vector<Bet> getChoices() {
+		return choices;
+	}
+
+	/**
+	 * @param choices the choices to set
+	 */
+	public void setChoices(Vector<Bet> choices) {
+		this.choices = choices;
+	}
+	
+	public void addChoices(Bet choice) {
+		choices.add(choice);
+	}
 
 	public String toString(){
 		return questionNumber+";"+question+";"+Float.toString(betMinimum);

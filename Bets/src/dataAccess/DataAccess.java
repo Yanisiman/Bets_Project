@@ -20,6 +20,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -146,7 +147,11 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 
 			}
-
+			
+			Bet b1 = new Bet(q1, "Home");
+			Bet b2 = new Bet(q1, "Draw");
+			Bet b3 = new Bet(q1, "Away");
+			
 			db.persist(q1);
 			db.persist(q2);
 			db.persist(q3);
@@ -178,6 +183,10 @@ public class DataAccess {
 			db.persist(user);
 			db.persist(user2);
 			db.persist(yanis);
+			
+			db.persist(b1);
+			db.persist(b2);
+			db.persist(b3);
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");

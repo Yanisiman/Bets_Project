@@ -16,9 +16,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class User implements Serializable {
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id
-	//@GeneratedValue
-
+	@Id @GeneratedValue
+	private Integer uid;
 	private String name;
 	private String familyName;
 	private int age;

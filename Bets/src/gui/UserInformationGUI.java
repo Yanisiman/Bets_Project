@@ -50,12 +50,14 @@ public class UserInformationGUI extends JFrame {
 	private final JLabel nationalityField = new JLabel("");
 	private final JLabel birthField = new JLabel("");
 	private final JLabel creditCardField = new JLabel("");
+	private final JLabel moneyLbl = new JLabel("Money in account :");
+	private final JLabel moneyField = new JLabel("");
+	private final JButton closeBtn = new JButton("Close");
 
 	private UserInformationGUI self;
 	private BLFacade businessLogic;
 	private User currentUser;
-	private final JLabel moneyLbl = new JLabel("Money in account :");
-	private final JLabel moneyField = new JLabel("");
+	
 
 	/**
 	 * Create the frame.
@@ -235,7 +237,7 @@ public class UserInformationGUI extends JFrame {
 		creditCardField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(creditCardField, gbc_creditCardField);
 
-		refresh();
+		refresh(currentUser);
 
 		GridBagConstraints gbc_deleteAccountBtn = new GridBagConstraints();
 		gbc_deleteAccountBtn.fill = GridBagConstraints.BOTH;
@@ -269,10 +271,22 @@ public class UserInformationGUI extends JFrame {
 		panel.add(moneyField, gbc_moneyField);
 		deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
+		
+		GridBagConstraints gbc_closeBtn = new GridBagConstraints();
+		gbc_closeBtn.insets = new Insets(0, 0, 0, 5);
+		gbc_closeBtn.gridx = 4;
+		gbc_closeBtn.gridy = 14;
+		closeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				self.setVisible(false);
+			}
+		});
+		closeBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		panel.add(closeBtn, gbc_closeBtn);
 
 	}
 
-	public void refresh() {
+	public void refresh(User currentUser) {
 		usernameField.setText(currentUser.getUsername());
 		emailField.setText(currentUser.getEmail());
 

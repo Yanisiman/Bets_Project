@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import exceptions.QuestionAlreadyExist;
@@ -18,15 +19,17 @@ import exceptions.QuestionAlreadyExist;
 public class Bet implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id @GeneratedValue
+	@Id //@GeneratedValue
 	
-	private Question question;
 	private String response;
 	private float odd;
 	
+	@XmlIDREF
+	private Question question;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<UserBet> userBets;
-	
+
 	
 	public Bet() {
 		super();
@@ -41,6 +44,7 @@ public class Bet implements Serializable{
 	public Bet(Question question, String response) {
 		super();
 		this.question = question;
+		this.question.addChoices(this);
 		this.response = response;
 		this.userBets = new Vector<UserBet>();
 		this.odd = 0;
