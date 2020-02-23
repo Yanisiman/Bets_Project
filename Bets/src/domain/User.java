@@ -82,6 +82,10 @@ public class User implements Serializable {
 	public void setMoney(int money) {
 		this.money = money;
 	}
+	
+	public void updateMoney(int money) {
+		this.money += money;
+	}
 
 
 	public boolean isAdmin() {

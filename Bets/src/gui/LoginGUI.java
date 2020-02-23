@@ -40,9 +40,11 @@ public class LoginGUI extends JFrame {
 	private JLabel noAccountLbl = new JLabel("You don't have any account yet ? Let's register !");
 	private JButton registerBtn = new JButton("Register");
 	private JButton spectatorBtn = new JButton("Go to spectator view");
+	private final JTextArea textArea = new JTextArea();
+	
 	private LoginGUI self;
 	private BLFacade businessLogic;
-	private final JTextArea textArea = new JTextArea();
+	
 
 	/**
 	 * Create the frame.

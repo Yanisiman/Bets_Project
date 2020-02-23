@@ -32,7 +32,7 @@ public class UserInformationGUI extends JFrame {
 	private JLabel betAndRuinLbl = new JLabel("BET & RUIN");
 	private JLabel usernameLbl = new JLabel("Username :");
 	private JLabel passwordLbl = new JLabel("Password :");
-	
+
 	private final JLabel registrationLbl = new JLabel("Registration : Enter all your information");
 	private final JLabel emailLbl = new JLabel("Email :");
 	private final JLabel nameLbl = new JLabel("Name :");
@@ -54,6 +54,8 @@ public class UserInformationGUI extends JFrame {
 	private UserInformationGUI self;
 	private BLFacade businessLogic;
 	private User currentUser;
+	private final JLabel moneyLbl = new JLabel("Money in account :");
+	private final JLabel moneyField = new JLabel("");
 
 	/**
 	 * Create the frame.
@@ -70,7 +72,7 @@ public class UserInformationGUI extends JFrame {
 
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 68, 297, 66, 35, 30, 50, 20 };
-		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 36, 35, 49, 43, 0, 35, 64, 20 };
+		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 36, 35, 49, 43, 35, 35, 36, 20 };
 		gbl_panel.columnWeights = new double[] { 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0 };
 		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0,
 				1.0 };
@@ -97,7 +99,7 @@ public class UserInformationGUI extends JFrame {
 		gbc_editButton.gridy = 2;
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UserEditInfoGUI userEditInfoGUI = new UserEditInfoGUI(currentUser,self);
+				UserEditInfoGUI userEditInfoGUI = new UserEditInfoGUI(currentUser, self);
 				userEditInfoGUI.setBusinessLogic(businessLogic);
 				userEditInfoGUI.setVisible(true);
 			}
@@ -233,37 +235,58 @@ public class UserInformationGUI extends JFrame {
 		creditCardField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(creditCardField, gbc_creditCardField);
 
+		refresh();
+
 		GridBagConstraints gbc_deleteAccountBtn = new GridBagConstraints();
 		gbc_deleteAccountBtn.fill = GridBagConstraints.BOTH;
 		gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_deleteAccountBtn.gridx = 4;
-		gbc_deleteAccountBtn.gridy = 12;
+		gbc_deleteAccountBtn.gridy = 13;
 		deleteAccountBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 businessLogic.deleteUser(currentUser);
-				 self.setVisible(false);
-				 LoginGUI loginGUI = new LoginGUI();
-				 loginGUI.setBusinessLogic(businessLogic);
-				 loginGUI.setVisible(true);
+				businessLogic.deleteUser(currentUser);
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setBusinessLogic(businessLogic);
+				loginGUI.setVisible(true);
 			}
 		});
+
+		GridBagConstraints gbc_moneyLbl = new GridBagConstraints();
+		gbc_moneyLbl.anchor = GridBagConstraints.EAST;
+		gbc_moneyLbl.gridwidth = 2;
+		gbc_moneyLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_moneyLbl.gridx = 2;
+		gbc_moneyLbl.gridy = 11;
+		moneyLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		panel.add(moneyLbl, gbc_moneyLbl);
+
+		GridBagConstraints gbc_moneyField = new GridBagConstraints();
+		gbc_moneyField.insets = new Insets(0, 0, 5, 5);
+		gbc_moneyField.gridx = 4;
+		gbc_moneyField.gridy = 11;
+		moneyField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		panel.add(moneyField, gbc_moneyField);
 		deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
-		
+
+	}
+
+	public void refresh() {
 		usernameField.setText(currentUser.getUsername());
 		emailField.setText(currentUser.getEmail());
-		
+
 		String password = "";
 		for (int i = 0; i < currentUser.getPassword().length(); i++) {
 			password += '*';
-		}		
+		}
 		passwordField.setText(password);
-		
+
 		nameField.setText(currentUser.getName());
 		familyNameField.setText(currentUser.getFamilyName());
 		nationalityField.setText(currentUser.getNationality());
 		birthField.setText(currentUser.getBirthDate());
-		
+
 		String credit = "";
 		for (int i = 0; i < currentUser.getCreditCard().length(); i++) {
 			if (i == 0 || i == currentUser.getCreditCard().length() - 1)
@@ -273,11 +296,7 @@ public class UserInformationGUI extends JFrame {
 			}
 		}
 		creditCardField.setText(credit);
-
-	}
-	
-	public void refresh() {
-		System.out.println("UserInformationGUI.refresh()");
+		moneyField.setText(String.valueOf(currentUser.getMoney()));
 	}
 
 	public void setBusinessLogic(BLFacade businessLogic) {

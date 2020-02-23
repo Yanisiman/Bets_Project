@@ -92,14 +92,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return dates;
 	}
-	
-	@WebMethod
-	public User checkLogin (String primaryKey, String password) {
-		DataAccess dbManagerAccess = new DataAccess();
-		User user = dbManagerAccess.getUser(primaryKey, password);
-		dbManagerAccess.close();
-		return user;
-	}
 
 	/**
 	 * This method invokes the data access to initialize the database with some events and questions.
@@ -110,6 +102,21 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager=new DataAccess();
 		dBManager.initializeDB();
 		dBManager.close();
+	}
+    
+    @WebMethod
+	public User checkLogin (String primaryKey, String password) {
+    	if (password.equals("")) {
+    		DataAccess dbManagerAccess = new DataAccess();
+    		User user = dbManagerAccess.getUser(primaryKey);
+    		dbManagerAccess.close();
+    		return user;
+    	}
+    	
+		DataAccess dbManagerAccess = new DataAccess();
+		User user = dbManagerAccess.getUser(primaryKey, password);
+		dbManagerAccess.close();
+		return user;
 	}
 
 
@@ -122,9 +129,11 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public void updateUser() {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		
+		DataAccess dBManager = new DataAccess();
+		dBManager.updateUser(user);
+		dBManager.close();
 	}
 
 
@@ -133,6 +142,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		// TODO Auto-generated method stub
 		DataAccess dBManager = new DataAccess();
 		dBManager.deleteUser(user);
+		dBManager.close();
+	}
+
+	@Override
+	public void addMoney(User user, int money) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.addMoneyUser(user, money);
 		dBManager.close();
 	}
 

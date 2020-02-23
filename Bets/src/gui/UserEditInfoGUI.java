@@ -53,14 +53,15 @@ public class UserEditInfoGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private UserInformationGUI info;
+	private final JButton addMoneyBtn = new JButton("Add");
 
 
 	/**
 	 * Create the frame.
 	 */
-	public UserEditInfoGUI(User currentUser, UserInformationGUI uInfo) {
+	public UserEditInfoGUI(User user, UserInformationGUI uInfo) {
 		
-		this.currentUser = currentUser;
+		currentUser = user;
 		info = uInfo;
 		
 		familyNameField.setColumns(10);
@@ -211,7 +212,6 @@ public class UserEditInfoGUI extends JFrame {
 		panel.add(moneyLbl, gbc_lblNewLabel);
 		
 		GridBagConstraints gbc_moneyField = new GridBagConstraints();
-		gbc_moneyField.gridwidth = 3;
 		gbc_moneyField.insets = new Insets(0, 0, 5, 5);
 		gbc_moneyField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_moneyField.gridx = 4;
@@ -227,11 +227,55 @@ public class UserEditInfoGUI extends JFrame {
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				businessLogic.updateUser();
+				if (!usernameField.getText().equals("")) {
+					if (businessLogic.checkLogin(usernameField.getText(), "") == null)
+						currentUser.setUsername(usernameField.getText());
+					else {
+						errorArea.setText("Username already taken by another user");
+						return;
+					}
+				}				
+				
+				if (!oldPasswordField.getText().equals("") && passwordField.getText().equals("")) {
+					if (oldPasswordField.getText().equals(currentUser.getPassword()))
+						currentUser.setPassword(passwordField.getText());
+					else {
+						errorArea.setText("Old password given is not the good one");
+						return;
+					}
+				}
+						
+				if (!nameField.getText().equals(""))
+					currentUser.setName(nameField.getText());
+				if (!familyNameField.getText().equals(""))
+					currentUser.setFamilyName(familyNameField.getText());
+				if (!creditCardField.getText().equals(""))
+					currentUser.setCreditCard(creditCardField.getText());
+				
+				businessLogic.updateUser(currentUser);
 				self.setVisible(false);
 				info.refresh();				
 			}
 		});
+		
+		GridBagConstraints gbc_addMoneyBtn = new GridBagConstraints();
+		gbc_addMoneyBtn.fill = GridBagConstraints.HORIZONTAL;
+		gbc_addMoneyBtn.gridwidth = 2;
+		gbc_addMoneyBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_addMoneyBtn.gridx = 5;
+		gbc_addMoneyBtn.gridy = 9;
+		addMoneyBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					int money = Integer.parseInt(moneyField.getText());
+					businessLogic.addMoney(currentUser, money);
+				} catch (Exception e) {
+					
+				}
+			}
+		});
+		addMoneyBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		panel.add(addMoneyBtn, gbc_addMoneyBtn);
 		panel.add(registerBtn, gbc_registerBtn);
 
 		GridBagConstraints gbc_errorArea = new GridBagConstraints();

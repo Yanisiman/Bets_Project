@@ -256,3 +256,253 @@ Type domain.User is not enhanced.
 [2020-02-23 00:59:36 #9 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 22:40:53 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 11276@LAPTOP-FG5SJG3N
+
+[2020-02-23 22:40:53 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 22:40:53 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 22:40:54 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 22:44:35 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 2228@LAPTOP-FG5SJG3N
+
+[2020-02-23 22:44:35 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 22:44:35 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 22:44:35 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:20:44 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 12612@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:20:44 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:20:44 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:20:44 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:21:01 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' has been recovered (tr. 7-7)
+
+[2020-02-23 23:21:01 #2 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 3400@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:21:01 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:21:01 #4 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:21:01 #5 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:21:27 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 8672@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:21:27 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:21:27 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:21:27 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:24:39 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 6776@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:24:39 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:24:39 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:24:39 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:25:48 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 15764@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:25:48 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:25:48 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:25:48 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:31:39 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 14632@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:31:39 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:31:39 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:31:39 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:33:41 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 12836@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:33:42 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:33:42 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:33:42 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:35:12 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 5652@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:35:12 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:35:12 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:35:12 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:35:48 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 15364@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:35:48 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:35:48 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:35:48 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:36:31 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 13372@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:36:31 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:36:31 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:36:31 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:37:36 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' has been recovered (tr. 12-13)
+
+[2020-02-23 23:37:36 #2 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 15900@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:37:36 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:37:36 #4 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:37:36 #5 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:38:47 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 7352@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:38:47 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:38:47 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:38:47 #4 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:39:24 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' has been recovered (tr. 15-16)
+
+[2020-02-23 23:39:24 #2 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 11220@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:39:24 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:39:24 #4 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:39:24 #5 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:40:31 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' has been recovered (tr. 18-19)
+
+[2020-02-23 23:40:31 #2 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 6840@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:40:31 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:40:31 #4 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:40:31 #5 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-23 23:41:59 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Bets_Project\Bets\resources\bets.temp' is opened by 15580@LAPTOP-FG5SJG3N
+
+[2020-02-23 23:42:00 #2 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-23 23:42:00 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-23 23:42:00 #4 type] 
+Type domain.User is not enhanced.
+

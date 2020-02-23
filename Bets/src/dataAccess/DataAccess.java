@@ -275,8 +275,7 @@ public class DataAccess {
 	
 	public User getUser(String username) {
 		try {
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username
-					+ "\" OR u.email = \"" + username + "\"", User.class);
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"", User.class);
 			return q2.getSingleResult();
 
 		} catch (Exception e) {
@@ -284,13 +283,16 @@ public class DataAccess {
 		}
 	}
 	
-	public void updateUser() {
-		
+	public void updateUser(User user) {
+		deleteUser(user);
+		db.getTransaction().begin();		
+		db.persist(user);
+		db.getTransaction().commit();
 	}
 	
 	public void deleteUser(User user) {
 		db.getTransaction().begin();		
-		Query q = db.createQuery("DELETE FROM User u WHERE u.username = \"" + user.getUsername() + "\"");
+		Query q = db.createQuery("DELETE FROM User u WHERE u.email = \"" + user.getEmail() + "\"");
 		q.executeUpdate();		
 		db.getTransaction().commit();
 	}
@@ -299,6 +301,19 @@ public class DataAccess {
 		db.getTransaction().begin();
 		db.persist(user);
 		db.getTransaction().commit();
+	}
+	
+	public void addMoneyUser(User u, int money) {
+		try {
+			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"", User.class);
+			User user = q.getSingleResult();
+			
+			db.getTransaction().begin();
+			user.updateMoney(money);
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error to get the user");
+		}
 	}
 
 	public void close() {

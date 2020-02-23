@@ -270,7 +270,6 @@ public class FindQuestionsGUI extends JFrame {
 			editAccountBtn.setVisible(false);
 		}
 		editAccountBtn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser);

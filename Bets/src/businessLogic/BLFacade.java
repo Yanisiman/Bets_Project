@@ -60,9 +60,10 @@ public interface BLFacade  {
 	
 	@WebMethod public void createUser(User user);
 	
-	@WebMethod public void updateUser();
+	@WebMethod public void updateUser(User user);
 	
 	@WebMethod public void deleteUser(User user);
 
+	@WebMethod public void addMoney(User user, int money);
 	
 }
