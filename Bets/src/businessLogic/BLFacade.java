@@ -59,6 +59,10 @@ public interface BLFacade  {
 	@WebMethod public User checkLogin (String primaryKey, String password);
 	
 	@WebMethod public void createUser(User user);
+	
+	@WebMethod public void updateUser();
+	
+	@WebMethod public void deleteUser(User user);
 
 	
 }

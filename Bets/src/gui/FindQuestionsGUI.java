@@ -65,18 +65,22 @@ public class FindQuestionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("Query")
 
 	};
-
-	private BLFacade businessLogic;
-	private User currentUser;
 	
 	private JTextField amoutBetField = new JTextField();
 	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
 	private JLabel amountBetLbl = new JLabel();
 	private JButton betBtn = new JButton();
 	private JButton editAccountBtn = new JButton("Account");
+	private final JButton logoutBtn = new JButton("Log out");
+
+	private BLFacade businessLogic;
+	private User currentUser;
+	private FindQuestionsGUI self;
+	
 
 	public FindQuestionsGUI(User currentUser) {
 		this.currentUser = currentUser;
+		self = this;
 		try {
 			jbInit();
 		} catch (Exception e) {
@@ -232,9 +236,21 @@ public class FindQuestionsGUI extends JFrame {
 		betBtn.setBounds(554, 374, 89, 23);
 		getContentPane().add(betBtn);
 		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		editAccountBtn.setBounds(570, 0, 116, 25);
+		editAccountBtn.setBounds(464, 0, 108, 25);
 		
 		getContentPane().add(editAccountBtn);
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setBusinessLogic(businessLogic);
+				loginGUI.setVisible(true);				
+			}
+		});
+		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		logoutBtn.setBounds(578, 0, 108, 26);
+		
+		getContentPane().add(logoutBtn);
 		betBtn.setVisible(false);
 
 		tableQueries.addMouseListener(new MouseAdapter() {
@@ -258,6 +274,7 @@ public class FindQuestionsGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser);
+				userInformationGUI.setBusinessLogic(businessLogic);
 				userInformationGUI.setVisible(true);				
 			}
 		});

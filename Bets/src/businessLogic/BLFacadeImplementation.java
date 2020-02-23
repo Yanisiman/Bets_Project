@@ -26,11 +26,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		System.out.println("Creating BLFacadeImplementation instance");
 		ConfigXML c = ConfigXML.getInstance();
 		
+		/*
 		if (c.getDataBaseOpenMode().equals("initialize")) {
 			DataAccess dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 			dbManager.initializeDB();
 			dbManager.close();
 			}
+		*/
 	}
 	
 
@@ -98,9 +100,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManagerAccess.close();
 		return user;
 	}
-	
-	
-	
 
 	/**
 	 * This method invokes the data access to initialize the database with some events and questions.
@@ -118,6 +117,22 @@ public class BLFacadeImplementation  implements BLFacade {
 	public void createUser(User user) {
 		DataAccess dBManager = new DataAccess();
 		dBManager.storeUser(user);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void updateUser() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteUser(User user) {
+		// TODO Auto-generated method stub
+		DataAccess dBManager = new DataAccess();
+		dBManager.deleteUser(user);
 		dBManager.close();
 	}
 

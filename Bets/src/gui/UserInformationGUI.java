@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.omg.PortableServer.CurrentOperations;
 
+import businessLogic.BLFacade;
 import domain.User;
 
 import javax.swing.JTextArea;
@@ -31,7 +32,7 @@ public class UserInformationGUI extends JFrame {
 	private JLabel betAndRuinLbl = new JLabel("BET & RUIN");
 	private JLabel usernameLbl = new JLabel("Username :");
 	private JLabel passwordLbl = new JLabel("Password :");
-	private UserInformationGUI self;
+	
 	private final JLabel registrationLbl = new JLabel("Registration : Enter all your information");
 	private final JLabel emailLbl = new JLabel("Email :");
 	private final JLabel nameLbl = new JLabel("Name :");
@@ -50,13 +51,15 @@ public class UserInformationGUI extends JFrame {
 	private final JLabel birthField = new JLabel("");
 	private final JLabel creditCardField = new JLabel("");
 
+	private UserInformationGUI self;
+	private BLFacade businessLogic;
 	private User currentUser;
 
 	/**
 	 * Create the frame.
 	 */
-	public UserInformationGUI(User currentUser) {
-		this.currentUser = currentUser;
+	public UserInformationGUI(User user) {
+		currentUser = user;
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -92,6 +95,13 @@ public class UserInformationGUI extends JFrame {
 		gbc_editButton.insets = new Insets(0, 0, 5, 5);
 		gbc_editButton.gridx = 4;
 		gbc_editButton.gridy = 2;
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UserEditInfoGUI userEditInfoGUI = new UserEditInfoGUI(currentUser,self);
+				userEditInfoGUI.setBusinessLogic(businessLogic);
+				userEditInfoGUI.setVisible(true);
+			}
+		});
 		editButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(editButton, gbc_editButton);
 
@@ -228,6 +238,15 @@ public class UserInformationGUI extends JFrame {
 		gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_deleteAccountBtn.gridx = 4;
 		gbc_deleteAccountBtn.gridy = 12;
+		deleteAccountBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 businessLogic.deleteUser(currentUser);
+				 self.setVisible(false);
+				 LoginGUI loginGUI = new LoginGUI();
+				 loginGUI.setBusinessLogic(businessLogic);
+				 loginGUI.setVisible(true);
+			}
+		});
 		deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
 		
@@ -258,7 +277,11 @@ public class UserInformationGUI extends JFrame {
 	}
 	
 	public void refresh() {
-		
+		System.out.println("UserInformationGUI.refresh()");
+	}
+
+	public void setBusinessLogic(BLFacade businessLogic) {
+		this.businessLogic = businessLogic;
 	}
 
 }
