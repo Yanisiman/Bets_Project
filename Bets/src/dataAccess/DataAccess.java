@@ -9,11 +9,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -25,7 +22,6 @@ import domain.Event;
 import domain.Question;
 import domain.User;
 import domain.UserBet;
-import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -86,8 +82,8 @@ public class DataAccess {
 			if (month == 12) {
 				month = 0;
 				year += 1;
-			}
-
+			}		
+			
 			Event ev1 = new Event(1, "Atlético-Athletic", UtilDate.newDate(year, month, 17));
 			Event ev2 = new Event(2, "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", UtilDate.newDate(year, month, 17));
@@ -189,6 +185,30 @@ public class DataAccess {
 			db.persist(b2);
 			db.persist(b3);
 
+			
+			Date date = new Date();
+			date.setMinutes(date.getMinutes() + 1);
+			
+			Event e = new Event(35,"THIS IS A TEST", date);
+			Question q = e.addQuestion("Who will win the match?", 1);
+			Question q11 = e.addQuestion("Who will score first?", 2);
+			
+			
+			Bet b4 = new Bet(q, "Home");
+			Bet b5 = new Bet(q, "Draw");
+			Bet b6 = new Bet(q11, "Away");
+			
+			UserBet userBet = new UserBet(user2, 10, b4);
+			q.setResult(b4);
+			
+			db.persist(e);
+			db.persist(q);
+			db.persist(q11);
+			db.persist(b4);
+			db.persist(b5);
+			db.persist(b6);
+			db.persist(userBet);
+			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		} catch (Exception e) {

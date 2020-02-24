@@ -102,7 +102,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelQueries.setBounds(138, 221, 406, 14);
-		jLabelEvents.setBounds(295, 19, 259, 16);
+		jLabelEvents.setBounds(292, 34, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
@@ -123,7 +123,8 @@ public class FindQuestionsGUI extends JFrame {
 		// Code for JCalendar
 		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-
+				tableModelQueries.setDataVector(null, columnNamesQueries);
+				jLabelQueries.setText("");
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -131,7 +132,7 @@ public class FindQuestionsGUI extends JFrame {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-
+					
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
@@ -144,6 +145,7 @@ public class FindQuestionsGUI extends JFrame {
 						else
 							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
 									+ dateformat1.format(calendarMio.getTime()));
+						
 						for (domain.Event ev : events) {
 							Vector<Object> row = new Vector<Object>();
 

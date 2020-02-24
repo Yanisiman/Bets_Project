@@ -125,6 +125,7 @@ public class LoginGUI extends JFrame {
 					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
 				} else {
+					textArea.setVisible(true);
 					textArea.setText("Access denied");
 				}
 			}
@@ -138,6 +139,7 @@ public class LoginGUI extends JFrame {
 		gbc_textArea.gridx = 3;
 		gbc_textArea.gridy = 6;
 		textArea.setEditable(false);
+		textArea.setVisible(false);
 		panel.add(textArea, gbc_textArea);
 
 		noAccountLbl.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
@@ -156,7 +158,6 @@ public class LoginGUI extends JFrame {
 		panel.add(registerBtn, gbc_registerBtn);
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
 				RegisterGUI registerGUI = new RegisterGUI();
 				registerGUI.setBusinessLogic(businessLogic);
@@ -173,7 +174,6 @@ public class LoginGUI extends JFrame {
 		panel.add(spectatorBtn, gbc_spectatorBtn);
 		spectatorBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
 				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null,businessLogic);
 				findQuestionsGUI.setBusinessLogic(businessLogic);
