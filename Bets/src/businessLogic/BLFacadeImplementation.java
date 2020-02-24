@@ -1,7 +1,6 @@
 package businessLogic;
 
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -10,9 +9,10 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Bet;
+import domain.Event;
 import domain.Question;
 import domain.User;
-import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -127,16 +127,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 	}
 
-
-	@Override
-	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		DataAccess dBManager = new DataAccess();
-		dBManager.updateUser(user);
-		dBManager.close();
-	}
-
-
 	@Override
 	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
@@ -150,6 +140,24 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
 		dBManager.addMoneyUser(user, money);
 		dBManager.close();
+	}
+
+
+	@Override
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money) {
+		DataAccess dBManager = new DataAccess();
+		User user = dBManager.updateUser(email, username, password, name, familyName, creditCard, money);
+		dBManager.close();
+		return user;
+	}
+
+
+	@Override
+	public User userBet(User u, int amount, Bet bet) {
+		DataAccess dBManager = new DataAccess();
+		User user = dBManager.userBet(u, amount, bet);
+		dBManager.close();
+		return user;
 	}
 
 }

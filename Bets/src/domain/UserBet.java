@@ -43,7 +43,8 @@ public class UserBet implements Serializable{
 		this.amountBet = amountBet;
 		this.bet = bet;
 		
-		this.user.getBets().add(this);
+		this.user.addUserBet(this);
+		this.bet.addUserBet(this);
 	}
 	
 	/**

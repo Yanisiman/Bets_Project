@@ -7,6 +7,7 @@ import java.util.List;
 //import domain.Booking;
 import domain.Question;
 import domain.User;
+import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -60,10 +61,12 @@ public interface BLFacade  {
 	
 	@WebMethod public void createUser(User user);
 	
-	@WebMethod public void updateUser(User user);
+	@WebMethod public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money);
 	
 	@WebMethod public void deleteUser(User user);
 
 	@WebMethod public void addMoney(User user, int money);
+	
+	@WebMethod public User userBet(User user, int amount, Bet bet);
 	
 }

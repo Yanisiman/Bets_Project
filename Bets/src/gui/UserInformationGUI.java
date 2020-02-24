@@ -55,6 +55,7 @@ public class UserInformationGUI extends JFrame {
 	private final JButton closeBtn = new JButton("Close");
 
 	private UserInformationGUI self;
+	private FindQuestionsGUI mainWindow;
 	private BLFacade businessLogic;
 	private User currentUser;
 	
@@ -62,8 +63,9 @@ public class UserInformationGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserInformationGUI(User user) {
+	public UserInformationGUI(User user, FindQuestionsGUI fq) {
 		currentUser = user;
+		mainWindow = fq;
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -279,6 +281,7 @@ public class UserInformationGUI extends JFrame {
 		closeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
+				mainWindow.setCurrentUser(currentUser);
 			}
 		});
 		closeBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));

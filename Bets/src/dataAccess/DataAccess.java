@@ -24,6 +24,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -292,11 +293,25 @@ public class DataAccess {
 		}
 	}
 	
-	public void updateUser(User user) {
-		deleteUser(user);
-		db.getTransaction().begin();		
-		db.persist(user);
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money) {
+		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
+		User user = q.getSingleResult();
+		db.getTransaction().begin();
+		
+		if (!username.equals(""))
+			user.setUsername(username);
+		if (!password.equals(""))
+			user.setPassword(password);
+		if (!name.equals(""))
+			user.setName(name);
+		if (!familyName.equals(""))
+			user.setFamilyName(familyName);
+		if (!creditCard.equals(""))
+			user.setCreditCard(creditCard);
+		user.setMoney(money);
+		
 		db.getTransaction().commit();
+		return user;
 	}
 	
 	public void deleteUser(User user) {
@@ -322,6 +337,26 @@ public class DataAccess {
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println("Error to get the user");
+		}
+	}
+	
+	public User userBet(User u, int amount, Bet bet) {
+		try {
+			
+			TypedQuery<Bet> q = db.createQuery("SELECT b from Bet b WHERE b.betID = " + bet.getBetID(), Bet.class);
+			Bet b = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
+			User user = q2.getSingleResult();
+			
+			db.getTransaction().begin();
+			UserBet userBet = new UserBet(user, amount, b);
+			db.persist(userBet);
+			db.getTransaction().commit();
+			
+			return user;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

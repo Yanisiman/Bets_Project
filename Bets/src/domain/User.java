@@ -71,6 +71,10 @@ public class User implements Serializable {
 	public void setBets(Vector<UserBet> bets) {
 		this.bets = bets;
 	}
+	
+	public void addUserBet(UserBet userBet) {
+		this.bets.add(userBet);
+	}
 
 
 	public int getMoney() {

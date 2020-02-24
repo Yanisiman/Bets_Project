@@ -228,31 +228,21 @@ public class UserEditInfoGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (!usernameField.getText().equals("")) {
-					if (businessLogic.checkLogin(usernameField.getText(), "") == null)
-						currentUser.setUsername(usernameField.getText());
-					else {
+					if (businessLogic.checkLogin(usernameField.getText(), "") != null) {
 						errorArea.setText("Username already taken by another user");
 						return;
 					}
 				}				
 				
 				if (!oldPasswordField.getText().equals("") && !passwordField.getText().equals("")) {
-					if (oldPasswordField.getText().equals(currentUser.getPassword()))
-						currentUser.setPassword(passwordField.getText());
-					else {
+					if (!oldPasswordField.getText().equals(currentUser.getPassword())){
 						errorArea.setText("Old password given is not the good one");
 						return;
 					}
 				}
-						
-				if (!nameField.getText().equals(""))
-					currentUser.setName(nameField.getText());
-				if (!familyNameField.getText().equals(""))
-					currentUser.setFamilyName(familyNameField.getText());
-				if (!creditCardField.getText().equals(""))
-					currentUser.setCreditCard(creditCardField.getText());
 				
-				businessLogic.updateUser(currentUser);
+				currentUser = businessLogic.updateUser(currentUser.getEmail(), usernameField.getText(), passwordField.getText(),
+						nameField.getText(), familyNameField.getText(), creditCardField.getText(), currentUser.getMoney());
 				self.setVisible(false);
 				info.refresh(currentUser);				
 			}
