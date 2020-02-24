@@ -267,7 +267,7 @@ public class RegisterGUI extends JFrame {
 					businessLogic.createUser(newUser);
 
 					self.setVisible(false);
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(newUser);
+					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(newUser,businessLogic);
 					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
 

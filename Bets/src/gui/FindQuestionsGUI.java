@@ -80,8 +80,9 @@ public class FindQuestionsGUI extends JFrame {
 	private FindQuestionsGUI self;
 	
 
-	public FindQuestionsGUI(User currentUser) {
+	public FindQuestionsGUI(User currentUser, BLFacade bl) {
 		this.currentUser = currentUser;
+		businessLogic = bl;
 		self = this;
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -271,6 +272,7 @@ public class FindQuestionsGUI extends JFrame {
 		
 		if (currentUser == null) {
 			editAccountBtn.setVisible(false);
+			logoutBtn.setVisible(false);
 		}
 		editAccountBtn.addActionListener(new ActionListener() {
 			@Override
