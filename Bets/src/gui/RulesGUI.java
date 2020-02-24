@@ -34,8 +34,10 @@ public class RulesGUI extends JFrame {
 	 * 
 	 */
 	public RulesGUI() {
+		setResizable(false);
 		
 		frame = this;
+		setSize(800, 650);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 549, 412);
@@ -44,9 +46,9 @@ public class RulesGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{56, 143, 99, 64, 184, 0};
-		gbl_contentPane.rowHeights = new int[]{16, 0, 16, 16, 16, 16, 16, 16, 16, 0, 16, 16, 47, 39, 0};
+		gbl_contentPane.rowHeights = new int[]{16, 0, 16, 16, 16, 16, 16, 16, 16, 0, 16, 16, 47, 39, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel rules = new JLabel("GENERAL RULES");
@@ -152,25 +154,16 @@ public class RulesGUI extends JFrame {
 		gbc_lblNewLabel_9.gridy = 9;
 		contentPane.add(lblNewLabel_9, gbc_lblNewLabel_9);
 		
-		JButton btnNewButton = new JButton("Next");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
-				frame.setEnabled(false);
-				findQuestionsGUI.setBusinessLogic(businessLogic);
-				findQuestionsGUI.setVisible(true);
-			}
-		});
-		btnNewButton.setEnabled(false);
+		JButton btnNewButton2 = new JButton("Next");
 		
 		JCheckBox checkBox = new JCheckBox("I agree with the general rules");
 		checkBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (checkBox.isSelected()) {
-					btnNewButton.setEnabled(true);
+					btnNewButton2.setEnabled(true);
 				}
 				else {
-					btnNewButton.setEnabled(false);
+					btnNewButton2.setEnabled(false);
 				}
 					
 			}
@@ -184,12 +177,40 @@ public class RulesGUI extends JFrame {
 		gbc_checkBox.gridy = 12;
 		contentPane.add(checkBox, gbc_checkBox);
 		
+		
+		btnNewButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
+				frame.setEnabled(false);
+				findQuestionsGUI.setBusinessLogic(businessLogic);
+				findQuestionsGUI.setVisible(true);
+			}
+		});
+		
+		JButton btnNewButton_1 = new JButton("Return");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				RegisterGUI registerGUI = new RegisterGUI();
+				registerGUI.setVisible(true);
+				registerGUI.setBusinessLogic(businessLogic);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.gridwidth = 2;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.gridx = 0;
+		gbc_btnNewButton_1.gridy = 14;
+		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
+		btnNewButton2.setEnabled(false);
+		
 
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 13;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbc_btnNewButton2 = new GridBagConstraints();
+		gbc_btnNewButton2.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton2.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton2.gridx = 4;
+		gbc_btnNewButton2.gridy = 14;
+		contentPane.add(btnNewButton2, gbc_btnNewButton2);
 	}
 	
 	public void setBusinessLogic(BLFacade business_logic) {
