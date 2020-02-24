@@ -78,10 +78,12 @@ public class FindQuestionsGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
+
 	
 
-	public FindQuestionsGUI(User currentUser) {
+	public FindQuestionsGUI(User currentUser, BLFacade businessLogic) {
 		this.currentUser = currentUser;
+		this.businessLogic = businessLogic;
 		self = this;
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

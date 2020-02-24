@@ -3,10 +3,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/objectdb.jar"/>
 	<classpathentry kind="lib" path="libs/jcalendar-1.4.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/libs/javax.jws-api-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/libs/javax.xml.bind.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/libs/javax.xml.ws-3.0-prelude.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/libs/jaxws-api-2.1-1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/Marion_brnrd/javax.jws-api-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/Marion_brnrd/javax.xml.bind.jar"/>
+	<classpathentry kind="lib" path="/Users/Marion_brnrd/javax.xml.ws-3.0-prelude.jar"/>
+	<classpathentry kind="lib" path="/Users/Marion_brnrd/jaxws-api-2.1-1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
