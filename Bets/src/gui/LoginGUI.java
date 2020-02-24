@@ -120,7 +120,8 @@ public class LoginGUI extends JFrame {
 				
 				if (currentUser != null) {
 					self.setVisible(false);
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser, businessLogic);
+
+					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser,businessLogic);
 					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
 				} else {
@@ -174,7 +175,7 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// dispatchEvent(new WindowEvent(self, WindowEvent.WINDOW_CLOSING));
 				self.setVisible(false);
-				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null , businessLogic);
+				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null,businessLogic);
 				findQuestionsGUI.setBusinessLogic(businessLogic);
 				findQuestionsGUI.setVisible(true);
 			}

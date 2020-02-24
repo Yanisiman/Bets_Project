@@ -268,6 +268,7 @@ public class RegisterGUI extends JFrame {
 					businessLogic.createUser(newUser);
 
 					self.setVisible(false);
+
 					RulesGUI rulesGUI = new RulesGUI();
 					rulesGUI.setBusinessLogic(businessLogic);
 					rulesGUI.setVisible(true);

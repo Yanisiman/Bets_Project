@@ -134,7 +134,7 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI(null);
+					JFrame a = new FindQuestionsGUI(null,null);
 
 					a.setVisible(true);
 				}
