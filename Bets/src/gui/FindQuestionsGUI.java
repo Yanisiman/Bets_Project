@@ -79,6 +79,7 @@ public class FindQuestionsGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
+
 	
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl) {

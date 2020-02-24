@@ -19,8 +19,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-//import org.omg.PortableServer.CurrentOperations;
-
 import businessLogic.BLFacade;
 import domain.User;
 

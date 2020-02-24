@@ -120,6 +120,7 @@ public class LoginGUI extends JFrame {
 				
 				if (currentUser != null) {
 					self.setVisible(false);
+
 					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser,businessLogic);
 					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
