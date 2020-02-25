@@ -19,9 +19,11 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
+/*
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+*/
 import java.awt.GridBagLayout;
 
 public class DeleteUser extends JFrame {

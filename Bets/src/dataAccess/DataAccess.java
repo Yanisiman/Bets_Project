@@ -22,10 +22,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
-<<<<<<< HEAD
-=======
 import domain.UserBet;
->>>>>>> 592cbda0208c3af8e811d39c031e092745ea8752
 import exceptions.QuestionAlreadyExist;
 
 /**

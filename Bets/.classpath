@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/javax.jws-api-1.1.jar"/>
 	<classpathentry kind="lib" path="libs/javax.xml.bind.jar"/>
 	<classpathentry kind="lib" path="libs/javax.xml.ws-3.0-prelude.jar"/>
 	<classpathentry kind="lib" path="libs/jaxws-api-2.1-1.jar"/>
 	<classpathentry kind="lib" path="libs/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="libs/objectdb.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
