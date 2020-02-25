@@ -58,17 +58,19 @@ public class CreateQuestionGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 
-	public CreateQuestionGUI(Vector<domain.Event> v, User currentUser) {
+	public CreateQuestionGUI (User currentUser, BLFacade businessLogic) {
 		this.currentUser = currentUser;
+		this.businessLogic = businessLogic;
+	
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			jbInit(v);
+			jbInit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void jbInit(Vector<domain.Event> v) throws Exception {
+	private void jbInit() throws Exception {
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
@@ -104,7 +106,7 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		// jLabelMsg.setSize(new Dimension(305, 20));
 
-		jLabelError.setBounds(new Rectangle(175, 240, 305, 20));
+		jLabelError.setBounds(new Rectangle(172, 244, 305, 20));
 		jLabelError.setForeground(Color.red);
 
 		this.getContentPane().add(jLabelMsg, null);
@@ -125,6 +127,18 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
+		
+		JButton deleteUserBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		deleteUserBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { ////////////////////////////TUUUUUUUUUUUUUUUUUUUUUU
+				
+				DeleteUser deleteUser = new DeleteUser(businessLogic);
+				deleteUser.setVisible(true);
+				
+			}
+		});
+		deleteUserBtn.setBounds(437, 277, 130, 28);
+		getContentPane().add(deleteUserBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
@@ -255,6 +269,7 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
+		System.exit(0); //Close the process
 	}
 
 	public void setBusinessogic(BLFacade bl) {

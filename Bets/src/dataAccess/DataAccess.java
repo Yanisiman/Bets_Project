@@ -9,22 +9,19 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Admin;
 import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
-import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -116,6 +113,8 @@ public class DataAccess {
 					"MariuszJan", "987654321", "29-07-1995");
 			User yanis = new User("Yanis", "Chaabane", 19, "yayko", "French", "yanis.chaabane@epita.fr", "Yayko",
 					"1232131", "25/04/2000");
+			Admin admin = new Admin("Mariusz", "Januszek", 24, "admin", "Polish", "mariusz.januszek955@gmail.com",
+					"admin", "987654321", "29-07-1995");
 
 			Question q1;
 			Question q2;
@@ -183,6 +182,7 @@ public class DataAccess {
 			db.persist(user);
 			db.persist(user2);
 			db.persist(yanis);
+			db.persist(admin);
 			
 			db.persist(b1);
 			db.persist(b2);
@@ -328,6 +328,11 @@ public class DataAccess {
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");
+	}
+	public List<User> getUsers(){
+		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
+		return a.getResultList();
+		
 	}
 
 }

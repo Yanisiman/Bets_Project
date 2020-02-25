@@ -152,5 +152,16 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 	}
 
+
+	@Override
+	public List<User> displayUsers() {
+		DataAccess dBManager = new DataAccess();
+		List<User> userList = dBManager.getUsers();
+		dBManager.close();
+		return userList;
+		
+		
+	}
+
 }
 

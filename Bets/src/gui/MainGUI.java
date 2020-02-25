@@ -115,7 +115,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
 					//Vector<Event> events=facade.getAllEvents();
-					JFrame a = new CreateQuestionGUI(new Vector<Event>(), null);
+					JFrame a = new CreateQuestionGUI(null, null);
 					a.setVisible(true);
 				}
 			});

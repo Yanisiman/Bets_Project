@@ -269,6 +269,9 @@ public class UserInformationGUI extends JFrame {
 		gbc_moneyField.gridy = 11;
 		moneyField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(moneyField, gbc_moneyField);
+				
+			
+		
 		deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
 		

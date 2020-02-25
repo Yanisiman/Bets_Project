@@ -66,4 +66,6 @@ public interface BLFacade  {
 
 	@WebMethod public void addMoney(User user, int money);
 	
+	public List<User> displayUsers();
+	
 }

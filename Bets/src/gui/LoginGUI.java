@@ -120,9 +120,16 @@ public class LoginGUI extends JFrame {
 				
 				if (currentUser != null) {
 					self.setVisible(false);
+					if(currentUser.isAdmin()) {
+						CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(currentUser,businessLogic);
+						createQuestionGUI.setVisible(true);
+						
+						
+					}else {
 					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser,businessLogic);
 					findQuestionsGUI.setBusinessLogic(businessLogic);
 					findQuestionsGUI.setVisible(true);
+					}
 				} else {
 					textArea.setText("Access denied");
 				}
