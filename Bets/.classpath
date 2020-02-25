@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libs/objectdb.jar"/>
+	<classpathentry kind="lib" path="libs/javax.jws-api-1.1.jar"/>
+	<classpathentry kind="lib" path="libs/javax.xml.bind.jar"/>
+	<classpathentry kind="lib" path="libs/javax.xml.ws-3.0-prelude.jar"/>
+	<classpathentry kind="lib" path="libs/jaxws-api-2.1-1.jar"/>
 	<classpathentry kind="lib" path="libs/jcalendar-1.4.jar"/>
-<<<<<<< HEAD
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/mariu/Desktop/Java library/javax.jws-api-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mariu/Desktop/Java library/javax.xml.bind.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mariu/Desktop/Java library/javax.xml.ws-3.0-prelude.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mariu/Desktop/Java library/jaxws-api-2.1-1.jar"/>
-	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
-=======
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/Bets_Project/Bets/libs/javax.jws-api-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/Bets_Project/Bets/libs/javax.xml.bind.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/Bets_Project/Bets/libs/javax.xml.ws-3.0-prelude.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Yanis/Desktop/Yanis/Espagne/Cours/Software Engineering/Bets_Project/Bets/libs/jaxws-api-2.1-1.jar"/>
->>>>>>> 592cbda0208c3af8e811d39c031e092745ea8752
+	<classpathentry kind="lib" path="libs/objectdb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
