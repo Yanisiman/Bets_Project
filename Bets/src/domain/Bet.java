@@ -19,7 +19,8 @@ import exceptions.QuestionAlreadyExist;
 public class Bet implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id //@GeneratedValue
+	@Id @GeneratedValue
+	private Integer betID;
 	
 	private String response;
 	private float odd;
@@ -91,6 +92,10 @@ public class Bet implements Serializable{
 	public void setUserBets(Vector<UserBet> userBets) {
 		this.userBets = userBets;
 	}
+	
+	public void addUserBet(UserBet userBet) {
+		this.userBets.add(userBet);
+	}
 
 	/**
 	 * @return the odd
@@ -104,6 +109,25 @@ public class Bet implements Serializable{
 	 */
 	public void setOdd(float odd) {
 		this.odd = odd;
+	}
+	
+	/**
+	 * @return the betID
+	 */
+	public Integer getBetID() {
+		return betID;
+	}
+
+	/**
+	 * @param betID the betID to set
+	 */
+	public void setBetID(Integer betID) {
+		this.betID = betID;
+	}
+
+	@Override
+	public String toString() {
+		return response + "| odd : " + odd;
 	}
 
 }

@@ -3,13 +3,12 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
@@ -19,6 +18,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -34,9 +34,10 @@ import com.toedter.calendar.JCalendar;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Bet;
+import domain.Event;
 import domain.Question;
 import domain.User;
-import java.awt.Font;
+import domain.UserBet;
 
 public class FindQuestionsGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -68,7 +69,7 @@ public class FindQuestionsGUI extends JFrame {
 
 	};
 	
-	private JTextField amoutBetField = new JTextField();
+	private JTextField amountBetField = new JTextField();
 	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
 	private JLabel amountBetLbl = new JLabel();
 	private JButton betBtn = new JButton();
@@ -78,6 +79,7 @@ public class FindQuestionsGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
+
 	
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl) {
@@ -100,7 +102,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelQueries.setBounds(138, 221, 406, 14);
-		jLabelEvents.setBounds(295, 19, 259, 16);
+		jLabelEvents.setBounds(292, 34, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
@@ -121,7 +123,8 @@ public class FindQuestionsGUI extends JFrame {
 		// Code for JCalendar
 		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-
+				tableModelQueries.setDataVector(null, columnNamesQueries);
+				jLabelQueries.setText("");
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -129,7 +132,7 @@ public class FindQuestionsGUI extends JFrame {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-
+					
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
@@ -142,6 +145,7 @@ public class FindQuestionsGUI extends JFrame {
 						else
 							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
 									+ dateformat1.format(calendarMio.getTime()));
+						
 						for (domain.Event ev : events) {
 							Vector<Object> row = new Vector<Object>();
 
@@ -177,7 +181,7 @@ public class FindQuestionsGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = tableEvents.getSelectedRow();
-				domain.Event ev = (domain.Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
+				Event ev = (Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
@@ -190,7 +194,7 @@ public class FindQuestionsGUI extends JFrame {
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent") + " "
 							+ ev.getDescription());
 
-				for (domain.Question q : queries) {
+				for (Question q : queries) {
 					Vector<Object> row = new Vector<Object>();
 
 					row.add(q.getQuestionNumber());
@@ -225,16 +229,29 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(choiceBetComboBox);
 		choiceBetComboBox.setVisible(false);
 
-		amoutBetField.setBounds(448, 375, 96, 20);
-		getContentPane().add(amoutBetField);
-		amoutBetField.setColumns(10);
-		amoutBetField.setVisible(false);
+		amountBetField.setBounds(448, 375, 96, 20);
+		getContentPane().add(amountBetField);
+		amountBetField.setColumns(10);
+		amountBetField.setVisible(false);
 
 		amountBetLbl.setText("Amount :"); //$NON-NLS-1$ //$NON-NLS-2$
 		amountBetLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		amountBetLbl.setBounds(378, 378, 63, 14);
 		getContentPane().add(amountBetLbl);
 		amountBetLbl.setVisible(false);
+		betBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (amountBetField.getText().equals(""))
+					return;
+				try {
+					int amount = Integer.parseInt(amountBetField.getText());
+					Bet bet = (Bet) choiceBetComboBox.getSelectedItem();
+					businessLogic.userBet(currentUser,amount,bet);
+				} catch (Exception e) {
+					return;
+				}
+			}
+		});
 
 		betBtn.setText("Bet");
 		betBtn.setBounds(554, 374, 89, 23);
@@ -260,11 +277,19 @@ public class FindQuestionsGUI extends JFrame {
 		tableQueries.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if (currentUser == null)
+					return;
+				
 				int i = tableQueries.getSelectedRow();
 				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
-
+				
+				Bet[] bets = new Bet[q.getChoices().size()];
+				q.getChoices().toArray(bets);
+				
+				choiceBetComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+				
 				choiceBetComboBox.setVisible(true);
-				amoutBetField.setVisible(true);
+				amountBetField.setVisible(true);
 				betBtn.setVisible(true);
 				amountBetLbl.setVisible(true);
 			}
@@ -277,7 +302,7 @@ public class FindQuestionsGUI extends JFrame {
 		editAccountBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser);
+				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser, self);
 				userInformationGUI.setBusinessLogic(businessLogic);
 				userInformationGUI.setVisible(true);				
 			}

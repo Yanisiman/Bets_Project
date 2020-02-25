@@ -3,6 +3,8 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.persistence.*;
@@ -28,14 +30,6 @@ public class Event implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Question> questions = new Vector<Question>();
 
-	public Vector<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(Vector<Question> questions) {
-		this.questions = questions;
-	}
-
 	public Event() {
 		super();
 	}
@@ -44,6 +38,33 @@ public class Event implements Serializable {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
+		
+		// NEED TO REMOVE THIS FROM EVENT CLASS BECAUSE WILL NOT UPDATE DB (HAVE TO PUT WHENEVER AN ADMIN CREATE A EVENT)
+		Timer timer = new Timer();
+		TimerTask timerTask = new TimerTask() {
+			
+			@Override
+			public void run() {
+				System.out.println("Event Closed\n\n\n\n\n");
+				for (Question q: questions) {
+					for (Bet b: q.getChoices()) {
+						for (UserBet userBet: b.getUserBets()) {
+							if (q.getResult().equals(b)) {
+								userBet.getUser().updateMoney(10);
+								System.out.println("EVENT CLOSED update +10");
+								System.out.println(userBet.getUser().getMoney());
+							}
+							else {
+								userBet.getUser().updateMoney(-10);
+								System.out.println("EVENT CLOSED update -10");
+								System.out.println(userBet.getUser().getMoney());
+							}
+						}
+					}
+				}
+			}
+		};		
+		timer.schedule(timerTask, eventDate);
 	}
 
 	public Event(String description, Date eventDate) {
@@ -92,6 +113,15 @@ public class Event implements Serializable {
 		questions.add(q);
 		return q;
 	}
+	
+	public Vector<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Vector<Question> questions) {
+		this.questions = questions;
+	}
+
 
 	/**
 	 * This method checks if the question already exists for that event

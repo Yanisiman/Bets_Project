@@ -21,7 +21,9 @@ public class Question implements Serializable {
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
-	private String result;  
+	private Bet result;  
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Bet> choices;
 	
 	@XmlIDREF
@@ -117,7 +119,7 @@ public class Question implements Serializable {
 	 * 
 	 * @return the the query result
 	 */
-	public String getResult() {
+	public Bet getResult() {
 		return result;
 	}
 
@@ -129,7 +131,7 @@ public class Question implements Serializable {
 	 * @param result of the query to be setted
 	 */
 	
-	public void setResult(String result) {
+	public void setResult(Bet result) {
 		this.result = result;
 	}
 

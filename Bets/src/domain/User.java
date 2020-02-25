@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.omg.CORBA.FREE_MEM;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class User implements Serializable {
@@ -27,10 +29,12 @@ public class User implements Serializable {
 	private String username;
 	private String creditCard;
 	private String birthDate;
-	private Date creationDate;
-	private Vector<UserBet> bets;
+	private Date creationDate;	
 	private int money;
 	private boolean isAdmin;
+	
+	private Vector<UserBet> bets;
+	private Vector<User> friends;
 	
 	
 	/**
@@ -56,10 +60,12 @@ public class User implements Serializable {
 		this.creditCard = creditCard;
 		this.birthDate = birthDate;
 		this.creationDate = new Date();
-		this.bets = new Vector<UserBet>();
+		
 		this.money = 0;
 		this.isAdmin = false;
 		
+		this.bets = new Vector<UserBet>();
+		this.friends = new Vector<User>();		
 	}
 
 
@@ -70,6 +76,10 @@ public class User implements Serializable {
 
 	public void setBets(Vector<UserBet> bets) {
 		this.bets = bets;
+	}
+	
+	public void addUserBet(UserBet userBet) {
+		this.bets.add(userBet);
 	}
 
 
@@ -236,9 +246,23 @@ public class User implements Serializable {
 		return creationDate;
 	}
 	
+	public Vector<User> getFriends() {
+		return friends;
+	}
+
+
+	public void setFriends(Vector<User> friends) {
+		this.friends = friends;
+	}
+	
+	public void addFriend(User user) {
+		friends.add(user);
+	}
+
+
 	@Override
-	public String toString () {
-		return name + familyName + " has been created \n";	
+	public String toString() {
+		return username;	
 	}
 
 

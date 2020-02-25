@@ -51,6 +51,7 @@ public class RegisterGUI extends JFrame {
 
 	private RegisterGUI self;
 	private BLFacade businessLogic;
+	private User user;
 
 	/**
 	 * Create the frame.
@@ -267,9 +268,11 @@ public class RegisterGUI extends JFrame {
 					businessLogic.createUser(newUser);
 
 					self.setVisible(false);
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(newUser,businessLogic);
-					findQuestionsGUI.setBusinessLogic(businessLogic);
-					findQuestionsGUI.setVisible(true);
+
+					RulesGUI rulesGUI = new RulesGUI();
+					rulesGUI.setBusinessLogic(businessLogic);
+					rulesGUI.setVisible(true);
+					rulesGUI.setUser(newUser);
 
 				} catch (DateTimeParseException e) {
 					// TODO: handle exception
@@ -299,5 +302,7 @@ public class RegisterGUI extends JFrame {
 	public void setBusinessLogic(BLFacade bl) {
 		businessLogic = bl;
 	}
+	
+
 
 }

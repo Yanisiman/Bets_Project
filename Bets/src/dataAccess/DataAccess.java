@@ -22,6 +22,10 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+<<<<<<< HEAD
+=======
+import domain.UserBet;
+>>>>>>> 592cbda0208c3af8e811d39c031e092745ea8752
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -82,8 +86,8 @@ public class DataAccess {
 			if (month == 12) {
 				month = 0;
 				year += 1;
-			}
-
+			}		
+			
 			Event ev1 = new Event(1, "Atlético-Athletic", UtilDate.newDate(year, month, 17));
 			Event ev2 = new Event(2, "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", UtilDate.newDate(year, month, 17));
@@ -188,6 +192,30 @@ public class DataAccess {
 			db.persist(b2);
 			db.persist(b3);
 
+			
+			Date date = new Date();
+			date.setMinutes(date.getMinutes() + 1);
+			
+			Event e = new Event(35,"THIS IS A TEST", date);
+			Question q = e.addQuestion("Who will win the match?", 1);
+			Question q11 = e.addQuestion("Who will score first?", 2);
+			
+			
+			Bet b4 = new Bet(q, "Home");
+			Bet b5 = new Bet(q, "Draw");
+			Bet b6 = new Bet(q11, "Away");
+			
+			UserBet userBet = new UserBet(user2, 10, b4);
+			q.setResult(b4);
+			
+			db.persist(e);
+			db.persist(q);
+			db.persist(q11);
+			db.persist(b4);
+			db.persist(b5);
+			db.persist(b6);
+			db.persist(userBet);
+			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		} catch (Exception e) {
@@ -292,11 +320,25 @@ public class DataAccess {
 		}
 	}
 	
-	public void updateUser(User user) {
-		deleteUser(user);
-		db.getTransaction().begin();		
-		db.persist(user);
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money) {
+		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
+		User user = q.getSingleResult();
+		db.getTransaction().begin();
+		
+		if (!username.equals(""))
+			user.setUsername(username);
+		if (!password.equals(""))
+			user.setPassword(password);
+		if (!name.equals(""))
+			user.setName(name);
+		if (!familyName.equals(""))
+			user.setFamilyName(familyName);
+		if (!creditCard.equals(""))
+			user.setCreditCard(creditCard);
+		user.setMoney(money);
+		
 		db.getTransaction().commit();
+		return user;
 	}
 	
 	public void deleteUser(User user) {
@@ -322,6 +364,26 @@ public class DataAccess {
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println("Error to get the user");
+		}
+	}
+	
+	public User userBet(User u, int amount, Bet bet) {
+		try {
+			
+			TypedQuery<Bet> q = db.createQuery("SELECT b from Bet b WHERE b.betID = " + bet.getBetID(), Bet.class);
+			Bet b = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
+			User user = q2.getSingleResult();
+			
+			db.getTransaction().begin();
+			UserBet userBet = new UserBet(user, amount, b);
+			db.persist(userBet);
+			db.getTransaction().commit();
+			
+			return user;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 
