@@ -68,7 +68,7 @@ public class FindQuestionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("Query")
 
 	};
-	
+
 	private JTextField amountBetField = new JTextField();
 	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
 	private JLabel amountBetLbl = new JLabel();
@@ -79,8 +79,8 @@ public class FindQuestionsGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
-
-	
+	private final JButton registerBtn = new JButton(
+			ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl) {
 		this.currentUser = currentUser;
@@ -89,6 +89,12 @@ public class FindQuestionsGUI extends JFrame {
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
+			if (currentUser == null) {
+				registerBtn.setVisible(true);
+			} else {
+				registerBtn.setVisible(false);
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +138,7 @@ public class FindQuestionsGUI extends JFrame {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-					
+
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
@@ -145,7 +151,7 @@ public class FindQuestionsGUI extends JFrame {
 						else
 							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
 									+ dateformat1.format(calendarMio.getTime()));
-						
+
 						for (domain.Event ev : events) {
 							Vector<Object> row = new Vector<Object>();
 
@@ -246,7 +252,7 @@ public class FindQuestionsGUI extends JFrame {
 				try {
 					int amount = Integer.parseInt(amountBetField.getText());
 					Bet bet = (Bet) choiceBetComboBox.getSelectedItem();
-					businessLogic.userBet(currentUser,amount,bet);
+					businessLogic.userBet(currentUser, amount, bet);
 				} catch (Exception e) {
 					return;
 				}
@@ -258,20 +264,32 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(betBtn);
 		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		editAccountBtn.setBounds(464, 0, 108, 25);
-		
+
 		getContentPane().add(editAccountBtn);
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
 				LoginGUI loginGUI = new LoginGUI();
 				loginGUI.setBusinessLogic(businessLogic);
-				loginGUI.setVisible(true);				
+				loginGUI.setVisible(true);
 			}
 		});
 		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		logoutBtn.setBounds(578, 0, 108, 26);
-		
+
 		getContentPane().add(logoutBtn);
+		registerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				self.setVisible(false);
+				RegisterGUI registerGui = new RegisterGUI();
+				registerGui.setBusinessLogic(businessLogic);
+				registerGui.setVisible(true);
+			}
+		});
+		registerBtn.setBounds(40, 415, 97, 25);
+
+		getContentPane().add(registerBtn);
 		betBtn.setVisible(false);
 
 		tableQueries.addMouseListener(new MouseAdapter() {
@@ -279,22 +297,22 @@ public class FindQuestionsGUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (currentUser == null)
 					return;
-				
+
 				int i = tableQueries.getSelectedRow();
 				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
-				
+
 				Bet[] bets = new Bet[q.getChoices().size()];
 				q.getChoices().toArray(bets);
-				
+
 				choiceBetComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
-				
+
 				choiceBetComboBox.setVisible(true);
 				amountBetField.setVisible(true);
 				betBtn.setVisible(true);
 				amountBetLbl.setVisible(true);
 			}
 		});
-		
+
 		if (currentUser == null) {
 			editAccountBtn.setVisible(false);
 			logoutBtn.setVisible(false);
@@ -304,7 +322,7 @@ public class FindQuestionsGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser, self);
 				userInformationGUI.setBusinessLogic(businessLogic);
-				userInformationGUI.setVisible(true);				
+				userInformationGUI.setVisible(true);
 			}
 		});
 	}
