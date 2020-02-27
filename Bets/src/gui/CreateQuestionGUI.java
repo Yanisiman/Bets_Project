@@ -31,6 +31,7 @@ import domain.Event;
 import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import java.awt.Font;
 
 public class CreateQuestionGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -128,9 +129,9 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
 		
-		JButton deleteUserBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton deleteUserBtn = new JButton("Delete user"); 
 		deleteUserBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) { ////////////////////////////TUUUUUUUUUUUUUUUUUUUUUU
+			public void actionPerformed(ActionEvent arg0) { 
 				
 				DeleteUser deleteUser = new DeleteUser(businessLogic);
 				deleteUser.setVisible(true);

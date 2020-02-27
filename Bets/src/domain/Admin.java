@@ -9,19 +9,10 @@ import javax.persistence.Entity;
 @Entity
 public class Admin extends User {
 	
-	
-	
-
 	public Admin(String name, String familyName, int age, String password, String nationality, String email, String username,
 			String creditCard, String birthDate) {
 		super(name, familyName, age, password, nationality, email, username, creditCard, birthDate);
-		
-		
 		setAdmin(true);
-		
-		
-		
-	
 	}
 	
 	public Admin addAdmin(User user) {
@@ -29,10 +20,7 @@ public class Admin extends User {
 				user.getEmail(), user.getUsername(), user.getCreditCard(), user.getBirthDate());
 	}
 	
-	
-	
-	
-	
+
 	public void accessUserAccount() {
 		
 	}

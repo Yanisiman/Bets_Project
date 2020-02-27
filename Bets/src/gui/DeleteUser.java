@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.objectdb.o.SLV.U;
+
 import businessLogic.BLFacade;
 import domain.User;
 
@@ -28,40 +30,22 @@ import java.awt.GridBagLayout;
 
 public class DeleteUser extends JFrame {
 
-	private BLFacade businessLogic;
-
-	public DeleteUser(BLFacade businessLogic) throws HeadlessException {
-	this();	
-		this.businessLogic = businessLogic;
-		businessLogic.displayUsers().stream().forEach(user -> System.out.println(user.toString()));
-		userList.setListData(new Vector(businessLogic.displayUsers()));
-	}
-
 	private JPanel contentPane;
 	private JList<User> userList;
 	private JButton deleteUserbtn;
+	private BLFacade businessLogic;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DeleteUser frame = new DeleteUser();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public DeleteUser(BLFacade businessLogic) throws HeadlessException {
+		this();	
+		this.businessLogic = businessLogic;
+		businessLogic.displayUsers().stream().forEach(user -> System.out.println(user.toString()));
+		userList.setListData(new Vector<User>(businessLogic.displayUsers()));
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public DeleteUser() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,13 +58,13 @@ public class DeleteUser extends JFrame {
 				User user = userList.getSelectedValue();
 				
 				businessLogic.deleteUser(user);
-				userList.setListData(new Vector(businessLogic.displayUsers()));
+				userList.setListData(new Vector<User>(businessLogic.displayUsers()));
 		
 			}
 		});
 		contentPane.add(deleteUserbtn, BorderLayout.SOUTH);
 		
-		 userList = new JList();
+		userList = new JList<User>();
 		contentPane.add(userList, BorderLayout.CENTER);
 		
 		
