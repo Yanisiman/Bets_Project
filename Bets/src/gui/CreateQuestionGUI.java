@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
@@ -27,11 +29,14 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Bet;
 import domain.Event;
+import domain.Question;
 import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class CreateQuestionGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -55,9 +60,16 @@ public class CreateQuestionGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	
+	private final JLabel betsLbl = new JLabel("Bets");
+	private final JLabel newBetLbl = new JLabel("New bet");
+	private JTextField newBetField;
+	private final JLabel oddLbl = new JLabel("Odd");
+	private final JTextField oddField = new JTextField();
 
 	private BLFacade businessLogic;
-	private User currentUser;
+	private User currentUser;	
+	
 
 	public CreateQuestionGUI (User currentUser, BLFacade businessLogic) {
 		this.currentUser = currentUser;
@@ -74,29 +86,32 @@ public class CreateQuestionGUI extends JFrame {
 	private void jbInit() throws Exception {
 
 		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(604, 370));
+		this.setSize(new Dimension(700, 600));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 
 		jComboBoxEvents.setModel(modelEvents);
 		jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
 		jLabelListOfEvents.setBounds(new Rectangle(290, 18, 277, 20));
-		jLabelQuery.setBounds(new Rectangle(25, 211, 75, 20));
-		jTextFieldQuery.setBounds(new Rectangle(100, 211, 429, 20));
-		jLabelMinBet.setBounds(new Rectangle(25, 243, 75, 20));
-		jTextFieldPrice.setBounds(new Rectangle(100, 243, 60, 20));
+		jLabelQuery.setBounds(new Rectangle(25, 254, 90, 20));
+		jTextFieldQuery.setBounds(new Rectangle(115, 254, 350, 20));
+		jLabelMinBet.setBounds(new Rectangle(480, 254, 75, 20));
+		jTextFieldPrice.setBounds(new Rectangle(555, 254, 60, 20));
 
 		jCalendar.setBounds(new Rectangle(40, 50, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
-		jButtonCreate.setBounds(new Rectangle(100, 275, 130, 30));
+		jButtonCreate.setBounds(new Rectangle(223, 285, 130, 30));
 		jButtonCreate.setEnabled(false);
+		
+		oddField.setBounds(555, 366, 60, 20);
+		oddField.setColumns(10);
 
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonCreate_actionPerformed(e);
 			}
 		});
-		jButtonClose.setBounds(new Rectangle(275, 275, 130, 30));
+		jButtonClose.setBounds(new Rectangle(185, 484, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonClose_actionPerformed(e);
@@ -138,8 +153,47 @@ public class CreateQuestionGUI extends JFrame {
 				
 			}
 		});
-		deleteUserBtn.setBounds(437, 277, 130, 28);
+		deleteUserBtn.setBounds(347, 486, 130, 28);
 		getContentPane().add(deleteUserBtn);
+		
+		JButton createEventBtn = new JButton("Create Event"); 
+		createEventBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		createEventBtn.setBounds(548, 46, 128, 20);
+		getContentPane().add(createEventBtn);
+		
+		JComboBox<Question> questionComboBox = new JComboBox<Question>();
+		questionComboBox.setBounds(115, 223, 350, 20);
+		getContentPane().add(questionComboBox);
+		
+		JLabel questionLbl = new JLabel("Questions");
+		questionLbl.setBounds(new Rectangle(40, 332, 75, 20));
+		questionLbl.setBounds(40, 223, 75, 20);
+		getContentPane().add(questionLbl);
+		
+		JComboBox<Bet> betsComboBox = new JComboBox<Bet>();
+		betsComboBox.setBounds(115, 332, 350, 20);
+		getContentPane().add(betsComboBox);
+		betsLbl.setBounds(55, 332, 60, 23);
+		
+		getContentPane().add(betsLbl);
+		newBetLbl.setBounds(49, 366, 66, 20);
+		
+		getContentPane().add(newBetLbl);
+		
+		newBetField = new JTextField();
+		newBetField.setBounds(115, 366, 350, 19);
+		getContentPane().add(newBetField);
+		newBetField.setColumns(10);
+		oddLbl.setBounds(480, 366, 75, 17);
+		
+		getContentPane().add(oddLbl);
+		
+		getContentPane().add(oddField);
+		
+		JButton newBetBtn = new JButton("New bet");
+		newBetBtn.setEnabled(false);
+		newBetBtn.setBounds(223, 396, 130, 30);
+		getContentPane().add(newBetBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
@@ -165,6 +219,9 @@ public class CreateQuestionGUI extends JFrame {
 									+ dateformat1.format(calendarMio.getTime()));
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
+						
+						
+						
 
 						for (domain.Event ev : events)
 							modelEvents.addElement(ev);
@@ -184,6 +241,58 @@ public class CreateQuestionGUI extends JFrame {
 				paintDaysWithEvents(jCalendar);
 			}
 		});
+		
+		jComboBoxEvents.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if ((e.getStateChange() == ItemEvent.SELECTED)) {
+					Event event = (Event) jComboBoxEvents.getSelectedItem();
+					System.out.println("Event ---> " + event);
+					questionComboBox.removeAll();
+					
+					int size = event.getQuestions().size();
+					if (size == 0) {
+						return;
+					}
+					
+					Question questions[] = new Question[size];
+					event.getQuestions().toArray(questions);
+					
+					questionComboBox.setModel(new DefaultComboBoxModel<Question>(questions));
+					
+					Question question = questions[0];
+					
+					System.out.println("Question --> " + question);				
+					betsComboBox.removeAll();
+					
+					Bet bets[] = new Bet[question.getChoices().size()];
+					question.getChoices().toArray(bets);
+					
+					System.out.println(question.getChoices());
+					
+					betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+				}
+			}
+		});;
+		
+		questionComboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				System.out.println("Question --> " + question);				
+				betsComboBox.removeAll();
+				
+				Bet bets[] = new Bet[question.getChoices().size()];
+				question.getChoices().toArray(bets);
+				
+				System.out.println(question.getChoices());
+				
+				betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+			}
+		});
+		
 	}
 
 	public void paintDaysWithEvents(JCalendar jCalendar) {
