@@ -173,7 +173,11 @@ public class CreateQuestionGUI extends JFrame {
 				String description = newEventField.getText();
 				
 				try {
+					
 					businessLogic.createEvent(description, eventDate);
+					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
+					updateEvents(eventDate, dateformat1);
+					
 				} catch (EventFinished e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -264,31 +268,7 @@ public class CreateQuestionGUI extends JFrame {
 					
 					eventDate = firstDay;
 
-					try {
-						Vector<domain.Event> events = businessLogic.getEvents(firstDay);
-
-						if (events.isEmpty())
-							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
-									+ ": " + dateformat1.format(calendarMio.getTime()));
-						else
-							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
-									+ dateformat1.format(calendarMio.getTime()));
-						jComboBoxEvents.removeAllItems();
-						System.out.println("Events " + events);
-
-						for (domain.Event ev : events)
-							modelEvents.addElement(ev);
-						jComboBoxEvents.repaint();
-
-						if (events.size() == 0)
-							jButtonCreate.setEnabled(false);
-						else
-							jButtonCreate.setEnabled(true);
-
-					} catch (Exception e1) {
-
-						jLabelError.setText(e1.getMessage());
-					}
+					updateEvents(firstDay, dateformat1);
 
 				}
 				paintDaysWithEvents(jCalendar);
@@ -434,6 +414,34 @@ public class CreateQuestionGUI extends JFrame {
 
 			e1.printStackTrace();
 
+		}
+	}
+	
+	private void updateEvents(Date firstDay, DateFormat dateformat1) {
+		try {
+			Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+
+			if (events.isEmpty())
+				jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
+						+ ": " + dateformat1.format(calendarMio.getTime()));
+			else
+				jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
+						+ dateformat1.format(calendarMio.getTime()));
+			jComboBoxEvents.removeAllItems();
+			System.out.println("Events " + events);
+
+			for (domain.Event ev : events)
+				modelEvents.addElement(ev);
+			jComboBoxEvents.repaint();
+
+			if (events.size() == 0)
+				jButtonCreate.setEnabled(false);
+			else
+				jButtonCreate.setEnabled(true);
+
+		} catch (Exception e1) {
+
+			jLabelError.setText(e1.getMessage());
 		}
 	}
 

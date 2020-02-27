@@ -1958,3 +1958,59 @@ Type domain.Admin is not enhanced.
 [2020-02-27 17:41:22 #18 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 17:50:43 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Project\Bets_Project\Bets\resources\bets.temp' is opened by 13976@LAPTOP-FG5SJG3N
+
+[2020-02-27 17:50:43 #2 type.registry] 
+New type domain.Question
+
+[2020-02-27 17:50:43 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 17:50:43 #4 type.registry] 
+New type domain.Event
+
+[2020-02-27 17:50:43 #5 type.registry] 
+New type domain.Bet
+
+[2020-02-27 17:50:43 #6 type.registry] 
+New type java.util.Vector<domain.Bet>
+
+[2020-02-27 17:50:43 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 17:50:43 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 17:50:43 #9 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 17:50:43 #10 type.registry] 
+New type domain.UserBet
+
+[2020-02-27 17:50:43 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-02-27 17:50:43 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-02-27 17:50:43 #13 type.registry] 
+New type domain.User
+
+[2020-02-27 17:50:43 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 17:50:43 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-02-27 17:50:43 #16 type.registry] 
+New type domain.Admin
+
+[2020-02-27 17:50:43 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-02-27 17:50:43 #18 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
