@@ -65,7 +65,7 @@ public class UserInformationGUI extends JFrame {
 		currentUser = user;
 		mainWindow = fq;
 		setTitle("Bet & Ruin");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		panel = new JPanel();
 		setContentPane(panel);

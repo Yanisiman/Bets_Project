@@ -15,6 +15,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javax.jdo.listener.CreateLifecycleListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -57,10 +58,14 @@ public class CreateQuestionGUI extends JFrame {
 
 	private BLFacade businessLogic;
 	private User currentUser;
+	private CreateQuestionGUI self; 
+	private final JButton accountBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnSettings.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	
 
 	public CreateQuestionGUI (User currentUser, BLFacade businessLogic) {
 		this.currentUser = currentUser;
 		this.businessLogic = businessLogic;
+		this.self = this;
 	
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,6 +144,31 @@ public class CreateQuestionGUI extends JFrame {
 		});
 		deleteUserBtn.setBounds(437, 277, 130, 28);
 		getContentPane().add(deleteUserBtn);
+		
+		JButton btnLogOut = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnLogOut.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setBusinessLogic(businessLogic);
+				loginGUI.setVisible(true);
+			}
+		});
+		btnLogOut.setBounds(489, 0, 97, 25);
+		getContentPane().add(btnLogOut);
+		accountBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UserInformationGUI adminInformationGUI = new UserInformationGUI(currentUser,null);
+				adminInformationGUI.setBusinessLogic(businessLogic);
+				adminInformationGUI.setVisible(true);	
+				
+			
+			}
+		});
+		accountBtn.setBounds(389, 0, 97, 25);
+		
+		getContentPane().add(accountBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
