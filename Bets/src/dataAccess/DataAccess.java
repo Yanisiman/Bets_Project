@@ -148,9 +148,9 @@ public class DataAccess {
 
 			}
 			
-			Bet b1 = new Bet(q1, "Home");
-			Bet b2 = new Bet(q1, "Draw");
-			Bet b3 = new Bet(q1, "Away");
+			Bet b1 = new Bet(q1, "Home", 0);
+			Bet b2 = new Bet(q1, "Draw", 0);
+			Bet b3 = new Bet(q1, "Away", 0);
 			
 			db.persist(q1);
 			db.persist(q2);
@@ -198,9 +198,9 @@ public class DataAccess {
 			Question q11 = e.addQuestion("Who will score first?", 2);
 			
 			
-			Bet b4 = new Bet(q, "Home");
-			Bet b5 = new Bet(q, "Draw");
-			Bet b6 = new Bet(q11, "Away");
+			Bet b4 = new Bet(q, "Home", 0);
+			Bet b5 = new Bet(q, "Draw", 0);
+			Bet b6 = new Bet(q11, "Away", 0);
 			
 			UserBet userBet = new UserBet(user2, 10, b4);
 			q.setResult(b4);
@@ -388,10 +388,35 @@ public class DataAccess {
 		db.close();
 		System.out.println("DataBase closed");
 	}
+	
 	public List<User> getUsers(){
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
 		return a.getResultList();
 		
+	}
+	
+	public Event createEvent(String description, Date eventDate) {
+		db.getTransaction().begin();
+		Event event = new Event(description, eventDate);
+		db.persist(event);
+		db.getTransaction().commit();
+		return event;
+	}
+	
+	public Bet addBet(Question question, String response, float odd) {
+		TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+		Question quest = q.getSingleResult();
+		
+		if (quest == null) {
+			System.out.println("DIDNT FIND " + question);
+			return null;
+		}			
+		
+		db.getTransaction().begin();
+		Bet bet = new Bet(quest, response, odd);
+		db.persist(bet);
+		db.getTransaction().commit();
+		return bet;
 	}
 
 }

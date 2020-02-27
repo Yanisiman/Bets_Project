@@ -71,4 +71,8 @@ public interface BLFacade  {
 
 	@WebMethod public User userBet(User user, int amount, Bet bet);
 	
+	@WebMethod public Event createEvent(String description, Date eventDate) throws EventFinished;
+	
+	@WebMethod public Bet addBet(Question question, String response, float odd);
+	
 }

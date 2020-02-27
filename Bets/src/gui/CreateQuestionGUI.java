@@ -61,11 +61,24 @@ public class CreateQuestionGUI extends JFrame {
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 	
+	private JButton deleteUserBtn = new JButton("Delete user"); 
+	
 	private final JLabel betsLbl = new JLabel("Bets");
 	private final JLabel newBetLbl = new JLabel("New bet");
-	private JTextField newBetField;
+	private JTextField newBetField =  new JTextField();
 	private final JLabel oddLbl = new JLabel("Odd");
 	private final JTextField oddField = new JTextField();
+	
+	private JButton newBetBtn = new JButton("New bet");
+	private JComboBox<Bet> betsComboBox = new JComboBox<Bet>();
+	private JLabel questionLbl = new JLabel("Questions");
+	private JComboBox<Question> questionComboBox = new JComboBox<Question>();
+	private JButton createEventBtn = new JButton("Create Event");
+	
+	private JLabel newEventLbl = new JLabel("New Event :");
+	private JTextField newEventField = new JTextField();
+	
+	private Date eventDate = new Date(); 
 
 	private BLFacade businessLogic;
 	private User currentUser;	
@@ -144,7 +157,7 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
 		
-		JButton deleteUserBtn = new JButton("Delete user"); 
+		
 		deleteUserBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { 
 				
@@ -155,22 +168,34 @@ public class CreateQuestionGUI extends JFrame {
 		});
 		deleteUserBtn.setBounds(347, 486, 130, 28);
 		getContentPane().add(deleteUserBtn);
+		createEventBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String description = newEventField.getText();
+				
+				try {
+					businessLogic.createEvent(description, eventDate);
+				} catch (EventFinished e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		
-		JButton createEventBtn = new JButton("Create Event"); 
+		 
 		createEventBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		createEventBtn.setBounds(548, 46, 128, 20);
+		createEventBtn.setBounds(397, 133, 128, 20);
 		getContentPane().add(createEventBtn);
 		
-		JComboBox<Question> questionComboBox = new JComboBox<Question>();
+		
 		questionComboBox.setBounds(115, 223, 350, 20);
 		getContentPane().add(questionComboBox);
 		
-		JLabel questionLbl = new JLabel("Questions");
 		questionLbl.setBounds(new Rectangle(40, 332, 75, 20));
 		questionLbl.setBounds(40, 223, 75, 20);
 		getContentPane().add(questionLbl);
 		
-		JComboBox<Bet> betsComboBox = new JComboBox<Bet>();
+		
 		betsComboBox.setBounds(115, 332, 350, 20);
 		getContentPane().add(betsComboBox);
 		betsLbl.setBounds(55, 332, 60, 23);
@@ -180,7 +205,7 @@ public class CreateQuestionGUI extends JFrame {
 		
 		getContentPane().add(newBetLbl);
 		
-		newBetField = new JTextField();
+		
 		newBetField.setBounds(115, 366, 350, 19);
 		getContentPane().add(newBetField);
 		newBetField.setColumns(10);
@@ -190,16 +215,45 @@ public class CreateQuestionGUI extends JFrame {
 		
 		getContentPane().add(oddField);
 		
-		JButton newBetBtn = new JButton("New bet");
-		newBetBtn.setEnabled(false);
+		newBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				
+				if (question == null)
+					return;
+				
+				String betString = newBetField.getText();
+				
+				try {
+					float odd = Float.parseFloat(oddField.getText());
+					
+					Bet bet = businessLogic.addBet(question, betString, odd);
+					betsComboBox.addItem(bet);
+					betsComboBox.repaint();
+					
+				} catch (Exception e2) {
+					return;
+				}	
+			}
+		});
+		//newBetBtn.setEnabled(false);
 		newBetBtn.setBounds(223, 396, 130, 30);
 		getContentPane().add(newBetBtn);
+		
+		newEventLbl.setBounds(275, 100, 78, 20);
+		getContentPane().add(newEventLbl);
+		
+		newEventField.setBounds(356, 100, 224, 20);
+		getContentPane().add(newEventField);
+		newEventField.setColumns(10);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
 //				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 //					public void propertyChange(PropertyChangeEvent propertychangeevent) {
+				questionComboBox.removeAll();
+				betsComboBox.removeAll();
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -207,6 +261,8 @@ public class CreateQuestionGUI extends JFrame {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					jCalendar.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+					
+					eventDate = firstDay;
 
 					try {
 						Vector<domain.Event> events = businessLogic.getEvents(firstDay);
@@ -219,9 +275,6 @@ public class CreateQuestionGUI extends JFrame {
 									+ dateformat1.format(calendarMio.getTime()));
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
-						
-						
-						
 
 						for (domain.Event ev : events)
 							modelEvents.addElement(ev);
@@ -253,8 +306,11 @@ public class CreateQuestionGUI extends JFrame {
 					
 					int size = event.getQuestions().size();
 					if (size == 0) {
+						//newBetBtn.setEnabled(false);
 						return;
 					}
+					
+					newBetBtn.setEnabled(true);
 					
 					Question questions[] = new Question[size];
 					event.getQuestions().toArray(questions);
@@ -357,9 +413,13 @@ public class CreateQuestionGUI extends JFrame {
 
 					// Obtain the business logic from a StartWindow class (local or remote)
 
-					businessLogic.createQuestion(event, inputQuery, inputPrice);
+					Question question = businessLogic.createQuestion(event, inputQuery, inputPrice);
 
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCreated"));
+					
+					questionComboBox.addItem(question);
+					questionComboBox.repaint();
+					newBetBtn.setVisible(true);
 				}
 			} else
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorQuery"));

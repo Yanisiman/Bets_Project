@@ -42,13 +42,13 @@ public class Bet implements Serializable{
 	 * @param userBets
 	 * @param odd
 	 */
-	public Bet(Question question, String response) {
+	public Bet(Question question, String response, float odd) {
 		super();
 		this.question = question;
 		this.question.addChoices(this);
 		this.response = response;
 		this.userBets = new Vector<UserBet>();
-		this.odd = 0;
+		this.odd = odd;
 	}
 
 	/**
