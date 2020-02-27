@@ -24,13 +24,13 @@ public class ApplicationLauncher {
 
 		ConfigXML c=ConfigXML.getInstance();
 	
+		
 		System.out.println(c.getLocale());
 		
 		Locale.setDefault(new Locale(c.getLocale()));
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-		//MainGUI a=new MainGUI();
 		LoginGUI a = new LoginGUI();
 		a.setVisible(true);
 
@@ -79,7 +79,6 @@ public class ApplicationLauncher {
 			//a.jLabelSelectOption.setForeground(Color.RED);		
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}
-		//a.pack();
 
 
 	}

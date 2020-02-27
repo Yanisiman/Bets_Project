@@ -59,7 +59,7 @@ public class BLFacadeImplementation  implements BLFacade {
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
 		
-		 qry=dBManager.createQuestion(event,question,betMinimum);		
+		qry=dBManager.createQuestion(event,question,betMinimum);		
 
 		dBManager.close();
 		
@@ -169,6 +169,31 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return userList;	
 		
+	}
+
+
+	@Override
+	public Event createEvent(String description, Date eventDate) throws EventFinished {
+		DataAccess dBManager=new DataAccess();
+		Event event = null;
+		
+		if(new Date().compareTo(eventDate)>0)
+			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+				
+		event = dBManager.createEvent(description, eventDate);
+
+		dBManager.close();
+		
+		return event;
+	}
+
+
+	@Override
+	public Bet addBet(Question question, String response, float odd) {
+		DataAccess dBManager = new DataAccess();
+		Bet bet = dBManager.addBet(question, response, odd);
+		dBManager.close();
+		return bet;
 	}
 
 }
