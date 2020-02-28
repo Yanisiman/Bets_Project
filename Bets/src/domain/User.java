@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import org.omg.CORBA.FREE_MEM;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity

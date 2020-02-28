@@ -56,18 +56,15 @@ public class FindQuestionsGUI extends JFrame {
 
 	private JTable tableEvents = new JTable();
 	private JTable tableQueries = new JTable();
-
-	private DefaultTableModel tableModelEvents;
-	private DefaultTableModel tableModelQueries;
-
+	
 	private String[] columnNamesEvents = new String[] { ResourceBundle.getBundle("Etiquetas").getString("EventN"),
-			ResourceBundle.getBundle("Etiquetas").getString("Event"),
-
-	};
+			ResourceBundle.getBundle("Etiquetas").getString("Event"),};
 	private String[] columnNamesQueries = new String[] { ResourceBundle.getBundle("Etiquetas").getString("QueryN"),
-			ResourceBundle.getBundle("Etiquetas").getString("Query")
+			ResourceBundle.getBundle("Etiquetas").getString("Query")};
 
-	};
+	private DefaultTableModel tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
+	private DefaultTableModel tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
+
 
 	private JTextField amountBetField = new JTextField();
 	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
@@ -190,7 +187,6 @@ public class FindQuestionsGUI extends JFrame {
 				Event ev = (Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions();
 
-				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(3); // another column added to allocate ev objects
 
 				if (queries.isEmpty())
@@ -215,14 +211,12 @@ public class FindQuestionsGUI extends JFrame {
 		});
 
 		scrollPaneEvents.setViewportView(tableEvents);
-		tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
 
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
 
 		scrollPaneQueries.setViewportView(tableQueries);
-		tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
