@@ -3,6 +3,7 @@ package dataAccess;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -116,7 +117,7 @@ public class DataAccess {
 					"1232131", "25/04/2000");
 			Admin admin = new Admin("Mariusz", "Januszek", 24, "admin", "Polish", "mariusz.januszek955@gmail.com",
 					"admin", "987654321", "29-07-1995");
-
+			
 			Question q1;
 			Question q2;
 			Question q3;
@@ -188,6 +189,8 @@ public class DataAccess {
 			db.persist(b1);
 			db.persist(b2);
 			db.persist(b3);
+			
+			yanis.addFriend(user2);
 
 			
 			Date date = new Date();
@@ -417,6 +420,69 @@ public class DataAccess {
 		db.persist(bet);
 		db.getTransaction().commit();
 		return bet;
+	}
+	
+	public void removeEvent(Event e) {
+		db.getTransaction().begin();		
+		
+		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+		
+		for (Question question: e.getQuestions()) {
+			removeQuestion(question);
+			
+			for (Bet b: question.getChoices()) {
+				removeBet(b);
+			}
+		}
+
+	}
+	
+	public void removeQuestion(Question question) {
+		db.getTransaction().begin();		
+		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+		
+		for (Bet b: question.getChoices()) {
+			removeBet(b);
+		}
+	}
+	
+	public void removeBet(Bet b) {
+		db.getTransaction().begin();		
+		Query q = db.createQuery("DELETE FROM Bet e WHERE e.betID = " + b.getBetID());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+	}
+	
+	public Vector<User> getFriends(User user){
+		try {
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getFriends());
+			return u.getFriends();
+
+		} catch (Exception e) {
+			System.out.println("Error with friends");
+			return null;
+		}
+	}
+	
+	public Vector<UserBet> getUserBet(User user){
+		try {
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getBets());
+			return u.getBets();
+
+		} catch (Exception e) {
+			System.out.println("Error with userBets");
+			return null;
+		}
 	}
 
 }

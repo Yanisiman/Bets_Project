@@ -80,6 +80,10 @@ public class CreateQuestionGUI extends JFrame {
 	private JTextField newEventField = new JTextField();
 
 	private final JButton accountBtn = new JButton("Account");
+	
+	private JButton removeQuestionBtn = new JButton("Remove");
+	private JButton removeBetBtn = new JButton("Remove");
+	private JButton removeEventBtn = new JButton("Remove");
 
 	private Date eventDate = new Date();
 
@@ -108,7 +112,7 @@ public class CreateQuestionGUI extends JFrame {
 
 		jComboBoxEvents.setModel(modelEvents);
 		jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
-		jLabelListOfEvents.setBounds(new Rectangle(290, 18, 277, 20));
+		jLabelListOfEvents.setBounds(new Rectangle(275, 21, 277, 20));
 		jLabelQuery.setBounds(new Rectangle(25, 254, 90, 20));
 		jTextFieldQuery.setBounds(new Rectangle(115, 254, 350, 20));
 		jLabelMinBet.setBounds(new Rectangle(480, 254, 75, 20));
@@ -128,7 +132,7 @@ public class CreateQuestionGUI extends JFrame {
 				jButtonCreate_actionPerformed(e);
 			}
 		});
-		jButtonClose.setBounds(new Rectangle(185, 484, 130, 30));
+		jButtonClose.setBounds(new Rectangle(264, 501, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonClose_actionPerformed(e);
@@ -169,7 +173,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		deleteUserBtn.setBounds(347, 486, 130, 28);
+		deleteUserBtn.setBounds(375, -2, 111, 28);
 		getContentPane().add(deleteUserBtn);
 
 		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -181,7 +185,7 @@ public class CreateQuestionGUI extends JFrame {
 				loginGUI.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(489, 0, 97, 25);
+		btnLogOut.setBounds(589, 0, 97, 25);
 		getContentPane().add(btnLogOut);
 		accountBtn.addActionListener(new ActionListener() {
 			@Override
@@ -192,7 +196,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		accountBtn.setBounds(389, 0, 97, 25);
+		accountBtn.setBounds(489, 0, 97, 25);
 
 		getContentPane().add(accountBtn);
 
@@ -274,6 +278,39 @@ public class CreateQuestionGUI extends JFrame {
 		newEventField.setBounds(356, 100, 224, 20);
 		getContentPane().add(newEventField);
 		newEventField.setColumns(10);
+		removeQuestionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				if (question == null)
+					return;
+				businessLogic.removeQuestion(question);
+			}
+		});
+		
+		removeQuestionBtn.setBounds(491, 220, 89, 23);
+		getContentPane().add(removeQuestionBtn);
+		removeBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bet bet = (Bet) betsComboBox.getSelectedItem();
+				if (bet == null)
+					return;
+				businessLogic.removeBet(bet);
+			}
+		});
+		
+		removeBetBtn.setBounds(491, 331, 89, 23);
+		getContentPane().add(removeBetBtn);
+		removeEventBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Event event = (Event) jComboBoxEvents.getSelectedItem();
+				if (event == null)
+					return;
+				businessLogic.removeEvent(event);
+			}
+		});
+		
+		removeEventBtn.setBounds(535, 46, 89, 23);
+		getContentPane().add(removeEventBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {

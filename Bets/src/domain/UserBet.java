@@ -88,5 +88,12 @@ public class UserBet implements Serializable{
 	public void setBet(Bet bet) {
 		this.bet = bet;
 	}
+	
+	@Override
+	public String toString() {
+		Question q = bet.getQuestion();
+		Event e = q.getEvent();
+		return  e + " : \n\t" +  q +  " : \n\t" + bet + " -> " + amountBet + "€";
+	}
 
 }

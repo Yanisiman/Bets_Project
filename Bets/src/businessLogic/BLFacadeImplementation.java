@@ -14,6 +14,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -195,6 +196,49 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return bet;
 	}
+
+
+	@Override
+	public void removeEvent(Event event) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeEvent(event);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeQuestion(Question question) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeQuestion(question);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeBet(Bet bet) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeBet(bet);
+		dBManager.close();
+	}
+
+
+	@Override
+	public Vector<User> getFriends(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<User> friends = dBManager.getFriends(user);
+		dBManager.close();
+		return friends;
+	}
+
+
+	@Override
+	public Vector<UserBet> getUserBets(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<UserBet> bets = dBManager.getUserBet(user);
+		dBManager.close();
+		return bets;
+	}
+
 
 }
 

@@ -181,7 +181,7 @@ public class RulesGUI extends JFrame {
 		btnNewButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
-				frame.setEnabled(false);
+				frame.setVisible(false);
 				findQuestionsGUI.setBusinessLogic(businessLogic);
 				findQuestionsGUI.setVisible(true);
 			}

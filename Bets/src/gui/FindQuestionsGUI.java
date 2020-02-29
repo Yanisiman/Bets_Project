@@ -320,6 +320,7 @@ public class FindQuestionsGUI extends JFrame {
 		editAccountBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser, self);
 				userInformationGUI.setBusinessLogic(businessLogic);
 				userInformationGUI.setVisible(true);

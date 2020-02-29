@@ -79,6 +79,7 @@ public class DeleteUser extends JFrame {
 		gbc_userList.gridx = 0;
 		gbc_userList.gridy = 0;
 		contentPane.add(userList, gbc_userList);
+		
 		GridBagConstraints gbc_deleteUserbtn = new GridBagConstraints();
 		gbc_deleteUserbtn.gridwidth = 2;
 		gbc_deleteUserbtn.anchor = GridBagConstraints.NORTH;

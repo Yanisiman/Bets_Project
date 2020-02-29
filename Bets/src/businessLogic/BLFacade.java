@@ -7,6 +7,7 @@ import java.util.List;
 //import domain.Booking;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
@@ -74,5 +75,15 @@ public interface BLFacade  {
 	@WebMethod public Event createEvent(String description, Date eventDate) throws EventFinished;
 	
 	@WebMethod public Bet addBet(Question question, String response, float odd);
+	
+	@WebMethod public void removeEvent(Event event);
+	
+	@WebMethod public void removeQuestion(Question question);
+	
+	@WebMethod public void removeBet(Bet bet);
+	
+	@WebMethod public Vector<User> getFriends(User user);
+	
+	@WebMethod public Vector<UserBet> getUserBets(User user);
 	
 }

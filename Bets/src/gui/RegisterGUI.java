@@ -281,7 +281,6 @@ public class RegisterGUI extends JFrame {
 				} catch (Exception e) {
 					// TODO: handle exception
 					errorArea.setText("An error occured : " + e.getMessage());
-					;
 					return;
 				}
 			}
