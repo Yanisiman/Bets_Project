@@ -30,7 +30,7 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -71,7 +71,7 @@ public class CreateQuestionGUI extends JFrame {
 	private final JTextField oddField = new JTextField();
 
 	private JButton newBetBtn = new JButton("New bet");
-	private JComboBox<Bet> betsComboBox = new JComboBox<Bet>();
+	private JComboBox<BetChoice> betsComboBox = new JComboBox<BetChoice>();
 	private JLabel questionLbl = new JLabel("Questions");
 	private JComboBox<Question> questionComboBox = new JComboBox<Question>();
 	private JButton createEventBtn = new JButton("Create Event");
@@ -80,6 +80,10 @@ public class CreateQuestionGUI extends JFrame {
 	private JTextField newEventField = new JTextField();
 
 	private final JButton accountBtn = new JButton("Account");
+	
+	private JButton removeQuestionBtn = new JButton("Remove");
+	private JButton removeBetBtn = new JButton("Remove");
+	private JButton removeEventBtn = new JButton("Remove");
 
 	private Date eventDate = new Date();
 
@@ -108,7 +112,7 @@ public class CreateQuestionGUI extends JFrame {
 
 		jComboBoxEvents.setModel(modelEvents);
 		jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
-		jLabelListOfEvents.setBounds(new Rectangle(290, 18, 277, 20));
+		jLabelListOfEvents.setBounds(new Rectangle(275, 21, 277, 20));
 		jLabelQuery.setBounds(new Rectangle(25, 254, 90, 20));
 		jTextFieldQuery.setBounds(new Rectangle(115, 254, 350, 20));
 		jLabelMinBet.setBounds(new Rectangle(480, 254, 75, 20));
@@ -128,7 +132,7 @@ public class CreateQuestionGUI extends JFrame {
 				jButtonCreate_actionPerformed(e);
 			}
 		});
-		jButtonClose.setBounds(new Rectangle(185, 484, 130, 30));
+		jButtonClose.setBounds(new Rectangle(264, 501, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonClose_actionPerformed(e);
@@ -169,7 +173,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		deleteUserBtn.setBounds(347, 486, 130, 28);
+		deleteUserBtn.setBounds(375, -2, 111, 28);
 		getContentPane().add(deleteUserBtn);
 
 		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -181,7 +185,7 @@ public class CreateQuestionGUI extends JFrame {
 				loginGUI.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(489, 0, 97, 25);
+		btnLogOut.setBounds(589, 0, 97, 25);
 		getContentPane().add(btnLogOut);
 		accountBtn.addActionListener(new ActionListener() {
 			@Override
@@ -192,7 +196,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		accountBtn.setBounds(389, 0, 97, 25);
+		accountBtn.setBounds(489, 0, 97, 25);
 
 		getContentPane().add(accountBtn);
 
@@ -255,7 +259,7 @@ public class CreateQuestionGUI extends JFrame {
 				try {
 					float odd = Float.parseFloat(oddField.getText());
 
-					Bet bet = businessLogic.addBet(question, betString, odd);
+					BetChoice bet = businessLogic.addBetChoice(question, betString, odd);
 					betsComboBox.addItem(bet);
 					betsComboBox.repaint();
 
@@ -274,6 +278,39 @@ public class CreateQuestionGUI extends JFrame {
 		newEventField.setBounds(356, 100, 224, 20);
 		getContentPane().add(newEventField);
 		newEventField.setColumns(10);
+		removeQuestionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				if (question == null)
+					return;
+				businessLogic.removeQuestion(question);
+			}
+		});
+		
+		removeQuestionBtn.setBounds(491, 220, 89, 23);
+		getContentPane().add(removeQuestionBtn);
+		removeBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
+				if (bet == null)
+					return;
+				businessLogic.removeBetChoice(bet);
+			}
+		});
+		
+		removeBetBtn.setBounds(491, 331, 89, 23);
+		getContentPane().add(removeBetBtn);
+		removeEventBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Event event = (Event) jComboBoxEvents.getSelectedItem();
+				if (event == null)
+					return;
+				businessLogic.removeEvent(event);
+			}
+		});
+		
+		removeEventBtn.setBounds(535, 46, 89, 23);
+		getContentPane().add(removeEventBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
@@ -326,12 +363,12 @@ public class CreateQuestionGUI extends JFrame {
 					System.out.println("Question --> " + question);
 					betsComboBox.removeAll();
 
-					Bet bets[] = new Bet[question.getChoices().size()];
+					BetChoice bets[] = new BetChoice[question.getChoices().size()];
 					question.getChoices().toArray(bets);
 
 					System.out.println(question.getChoices());
 
-					betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 				}
 			}
 		});
@@ -345,12 +382,12 @@ public class CreateQuestionGUI extends JFrame {
 				System.out.println("Question --> " + question);
 				betsComboBox.removeAll();
 
-				Bet bets[] = new Bet[question.getChoices().size()];
+				BetChoice bets[] = new BetChoice[question.getChoices().size()];
 				question.getChoices().toArray(bets);
 
 				System.out.println(question.getChoices());
 
-				betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 			}
 		});
 

@@ -10,10 +10,11 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -154,7 +155,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public User userBet(User u, int amount, Bet bet) {
+	public User userBet(User u, int amount, BetChoice bet) {
 		DataAccess dBManager = new DataAccess();
 		User user = dBManager.userBet(u, amount, bet);
 		dBManager.close();
@@ -189,12 +190,55 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public Bet addBet(Question question, String response, float odd) {
+	public BetChoice addBetChoice(Question question, String response, float odd) {
 		DataAccess dBManager = new DataAccess();
-		Bet bet = dBManager.addBet(question, response, odd);
+		BetChoice bet = dBManager.addBet(question, response, odd);
 		dBManager.close();
 		return bet;
 	}
+
+
+	@Override
+	public void removeEvent(Event event) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeEvent(event);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeQuestion(Question question) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeQuestion(question);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeBetChoice(BetChoice bet) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeBet(bet);
+		dBManager.close();
+	}
+
+
+	@Override
+	public Vector<User> getFriends(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<User> friends = dBManager.getFriends(user);
+		dBManager.close();
+		return friends;
+	}
+
+
+	@Override
+	public Vector<UserBet> getUserBets(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<UserBet> bets = dBManager.getUserBet(user);
+		dBManager.close();
+		return bets;
+	}
+
 
 }
 

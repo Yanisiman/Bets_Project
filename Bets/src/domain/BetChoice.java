@@ -16,11 +16,11 @@ import exceptions.QuestionAlreadyExist;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Bet implements Serializable{
+public class BetChoice implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
-	private Integer betID;
+	private Integer choiceNumber;
 	
 	private String response;
 	private float odd;
@@ -32,7 +32,7 @@ public class Bet implements Serializable{
 	private Vector<UserBet> userBets;
 
 	
-	public Bet() {
+	public BetChoice() {
 		super();
 	}
 
@@ -42,10 +42,10 @@ public class Bet implements Serializable{
 	 * @param userBets
 	 * @param odd
 	 */
-	public Bet(Question question, String response, float odd) {
+	public BetChoice(Question question, String response, float odd) {
 		super();
 		this.question = question;
-		this.question.addChoices(this);
+		this.question.addChoice(this);
 		this.response = response;
 		this.userBets = new Vector<UserBet>();
 		this.odd = odd;
@@ -114,15 +114,15 @@ public class Bet implements Serializable{
 	/**
 	 * @return the betID
 	 */
-	public Integer getBetID() {
-		return betID;
+	public Integer getChoiceNumber() {
+		return choiceNumber;
 	}
 
 	/**
 	 * @param betID the betID to set
 	 */
-	public void setBetID(Integer betID) {
-		this.betID = betID;
+	public void setBetID(Integer choiceNumber) {
+		this.choiceNumber = choiceNumber;
 	}
 
 	@Override
