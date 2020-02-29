@@ -10,7 +10,7 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -155,7 +155,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public User userBet(User u, int amount, Bet bet) {
+	public User userBet(User u, int amount, BetChoice bet) {
 		DataAccess dBManager = new DataAccess();
 		User user = dBManager.userBet(u, amount, bet);
 		dBManager.close();
@@ -190,9 +190,9 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public Bet addBet(Question question, String response, float odd) {
+	public BetChoice addBetChoice(Question question, String response, float odd) {
 		DataAccess dBManager = new DataAccess();
-		Bet bet = dBManager.addBet(question, response, odd);
+		BetChoice bet = dBManager.addBet(question, response, odd);
 		dBManager.close();
 		return bet;
 	}
@@ -215,7 +215,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public void removeBet(Bet bet) {
+	public void removeBetChoice(BetChoice bet) {
 		DataAccess dBManager = new DataAccess();
 		dBManager.removeBet(bet);
 		dBManager.close();

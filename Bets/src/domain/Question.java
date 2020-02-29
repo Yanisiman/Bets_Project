@@ -21,10 +21,10 @@ public class Question implements Serializable {
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
-	private Bet result;  
+	private BetChoice result;  
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Vector<Bet> choices;
+	private Vector<BetChoice> choices;
 	
 	@XmlIDREF
 	private Event event;
@@ -39,7 +39,7 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.event = event;
-		this.choices = new Vector<Bet>();
+		this.choices = new Vector<BetChoice>();
 	}
 	
 	public Question(String query, float betMinimum,  Event event) {
@@ -47,7 +47,7 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.event = event;
-		this.choices = new Vector<Bet>();
+		this.choices = new Vector<BetChoice>();
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Question implements Serializable {
 	 * 
 	 * @return the the query result
 	 */
-	public Bet getResult() {
+	public BetChoice getResult() {
 		return result;
 	}
 
@@ -131,7 +131,7 @@ public class Question implements Serializable {
 	 * @param result of the query to be setted
 	 */
 	
-	public void setResult(Bet result) {
+	public void setResult(BetChoice result) {
 		this.result = result;
 	}
 
@@ -163,23 +163,23 @@ public class Question implements Serializable {
 	/**
 	 * @return the choices
 	 */
-	public Vector<Bet> getChoices() {
+	public Vector<BetChoice> getChoices() {
 		return choices;
 	}
 
 	/**
 	 * @param choices the choices to set
 	 */
-	public void setChoices(Vector<Bet> choices) {
+	public void setChoices(Vector<BetChoice> choices) {
 		this.choices = choices;
 	}
 	
-	public void addChoices(Bet choice) {
+	public void addChoice(BetChoice choice) {
 		choices.add(choice);
 	}
 
 	public String toString(){
-		return questionNumber+" ; "+question+" ; Min bet : "+Float.toString(betMinimum) + " ";
+		return questionNumber+" ; "+ question + " ; Min bet : "+Float.toString(betMinimum) + " ";
 	}
 
 

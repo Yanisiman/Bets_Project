@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Admin;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -149,9 +149,9 @@ public class DataAccess {
 
 			}
 			
-			Bet b1 = new Bet(q1, "Home", 0);
-			Bet b2 = new Bet(q1, "Draw", 0);
-			Bet b3 = new Bet(q1, "Away", 0);
+			BetChoice b1 = new BetChoice(q1, "Home", 0);
+			BetChoice b2 = new BetChoice(q1, "Draw", 0);
+			BetChoice b3 = new BetChoice(q1, "Away", 0);
 			
 			db.persist(q1);
 			db.persist(q2);
@@ -201,9 +201,9 @@ public class DataAccess {
 			Question q11 = e.addQuestion("Who will score first?", 2);
 			
 			
-			Bet b4 = new Bet(q, "Home", 0);
-			Bet b5 = new Bet(q, "Draw", 0);
-			Bet b6 = new Bet(q11, "Away", 0);
+			BetChoice b4 = new BetChoice(q, "Home", 0);
+			BetChoice b5 = new BetChoice(q, "Draw", 0);
+			BetChoice b6 = new BetChoice(q11, "Away", 0);
 			
 			UserBet userBet = new UserBet(user2, 10, b4);
 			q.setResult(b4);
@@ -367,11 +367,11 @@ public class DataAccess {
 		}
 	}
 	
-	public User userBet(User u, int amount, Bet bet) {
+	public User userBet(User u, int amount, BetChoice bet) {
 		try {
 			
-			TypedQuery<Bet> q = db.createQuery("SELECT b from Bet b WHERE b.betID = " + bet.getBetID(), Bet.class);
-			Bet b = q.getSingleResult();
+			TypedQuery<BetChoice> q = db.createQuery("SELECT b from Bet b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q.getSingleResult();
 			
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
 			User user = q2.getSingleResult();
@@ -406,7 +406,7 @@ public class DataAccess {
 		return event;
 	}
 	
-	public Bet addBet(Question question, String response, float odd) {
+	public BetChoice addBet(Question question, String response, float odd) {
 		TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
 		Question quest = q.getSingleResult();
 		
@@ -416,7 +416,7 @@ public class DataAccess {
 		}			
 		
 		db.getTransaction().begin();
-		Bet bet = new Bet(quest, response, odd);
+		BetChoice bet = new BetChoice(quest, response, odd);
 		db.persist(bet);
 		db.getTransaction().commit();
 		return bet;
@@ -432,7 +432,7 @@ public class DataAccess {
 		for (Question question: e.getQuestions()) {
 			removeQuestion(question);
 			
-			for (Bet b: question.getChoices()) {
+			for (BetChoice b: question.getChoices()) {
 				removeBet(b);
 			}
 		}
@@ -445,14 +445,14 @@ public class DataAccess {
 		q.executeUpdate();		
 		db.getTransaction().commit();
 		
-		for (Bet b: question.getChoices()) {
+		for (BetChoice b: question.getChoices()) {
 			removeBet(b);
 		}
 	}
 	
-	public void removeBet(Bet b) {
+	public void removeBet(BetChoice b) {
 		db.getTransaction().begin();		
-		Query q = db.createQuery("DELETE FROM Bet e WHERE e.betID = " + b.getBetID());
+		Query q = db.createQuery("DELETE FROM Bet e WHERE e.choiceNumber = " + b.getChoiceNumber());
 		q.executeUpdate();		
 		db.getTransaction().commit();
 	}

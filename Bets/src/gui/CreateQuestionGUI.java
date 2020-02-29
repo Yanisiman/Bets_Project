@@ -30,7 +30,7 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -71,7 +71,7 @@ public class CreateQuestionGUI extends JFrame {
 	private final JTextField oddField = new JTextField();
 
 	private JButton newBetBtn = new JButton("New bet");
-	private JComboBox<Bet> betsComboBox = new JComboBox<Bet>();
+	private JComboBox<BetChoice> betsComboBox = new JComboBox<BetChoice>();
 	private JLabel questionLbl = new JLabel("Questions");
 	private JComboBox<Question> questionComboBox = new JComboBox<Question>();
 	private JButton createEventBtn = new JButton("Create Event");
@@ -259,7 +259,7 @@ public class CreateQuestionGUI extends JFrame {
 				try {
 					float odd = Float.parseFloat(oddField.getText());
 
-					Bet bet = businessLogic.addBet(question, betString, odd);
+					BetChoice bet = businessLogic.addBetChoice(question, betString, odd);
 					betsComboBox.addItem(bet);
 					betsComboBox.repaint();
 
@@ -291,10 +291,10 @@ public class CreateQuestionGUI extends JFrame {
 		getContentPane().add(removeQuestionBtn);
 		removeBetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Bet bet = (Bet) betsComboBox.getSelectedItem();
+				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
 				if (bet == null)
 					return;
-				businessLogic.removeBet(bet);
+				businessLogic.removeBetChoice(bet);
 			}
 		});
 		
@@ -363,12 +363,12 @@ public class CreateQuestionGUI extends JFrame {
 					System.out.println("Question --> " + question);
 					betsComboBox.removeAll();
 
-					Bet bets[] = new Bet[question.getChoices().size()];
+					BetChoice bets[] = new BetChoice[question.getChoices().size()];
 					question.getChoices().toArray(bets);
 
 					System.out.println(question.getChoices());
 
-					betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 				}
 			}
 		});
@@ -382,12 +382,12 @@ public class CreateQuestionGUI extends JFrame {
 				System.out.println("Question --> " + question);
 				betsComboBox.removeAll();
 
-				Bet bets[] = new Bet[question.getChoices().size()];
+				BetChoice bets[] = new BetChoice[question.getChoices().size()];
 				question.getChoices().toArray(bets);
 
 				System.out.println(question.getChoices());
 
-				betsComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 			}
 		});
 

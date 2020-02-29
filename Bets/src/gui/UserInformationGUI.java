@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
-import domain.Bet;
+import domain.BetChoice;
 import domain.User;
 import domain.UserBet;
 

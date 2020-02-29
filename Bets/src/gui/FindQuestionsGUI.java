@@ -33,7 +33,7 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -70,7 +70,7 @@ public class FindQuestionsGUI extends JFrame {
 	};
 
 	private JTextField amountBetField = new JTextField();
-	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
+	private JComboBox<BetChoice> choiceBetComboBox = new JComboBox<BetChoice>();
 	private JLabel amountBetLbl = new JLabel();
 	private JButton betBtn = new JButton();
 	private JButton editAccountBtn = new JButton("Account");
@@ -251,7 +251,7 @@ public class FindQuestionsGUI extends JFrame {
 					return;
 				try {
 					int amount = Integer.parseInt(amountBetField.getText());
-					Bet bet = (Bet) choiceBetComboBox.getSelectedItem();
+					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
 					businessLogic.userBet(currentUser, amount, bet);
 				} catch (Exception e) {
 					return;
@@ -301,10 +301,10 @@ public class FindQuestionsGUI extends JFrame {
 				int i = tableQueries.getSelectedRow();
 				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
 
-				Bet[] bets = new Bet[q.getChoices().size()];
+				BetChoice[] bets = new BetChoice[q.getChoices().size()];
 				q.getChoices().toArray(bets);
 
-				choiceBetComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
+				choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 
 				choiceBetComboBox.setVisible(true);
 				amountBetField.setVisible(true);

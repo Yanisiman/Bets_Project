@@ -38,38 +38,13 @@ public class Event implements Serializable {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
-		
-		// NEED TO REMOVE THIS FROM EVENT CLASS BECAUSE WILL NOT UPDATE DB (HAVE TO PUT WHENEVER AN ADMIN CREATE A EVENT)
-		Timer timer = new Timer();
-		TimerTask timerTask = new TimerTask() {
-			
-			@Override
-			public void run() {
-				System.out.println("Event Closed\n\n\n\n\n");
-				for (Question q: questions) {
-					for (Bet b: q.getChoices()) {
-						for (UserBet userBet: b.getUserBets()) {
-							if (q.getResult().equals(b)) {
-								userBet.getUser().updateMoney(10);
-								System.out.println("EVENT CLOSED update +10");
-								System.out.println(userBet.getUser().getMoney());
-							}
-							else {
-								userBet.getUser().updateMoney(-10);
-								System.out.println("EVENT CLOSED update -10");
-								System.out.println(userBet.getUser().getMoney());
-							}
-						}
-					}
-				}
-			}
-		};		
-		timer.schedule(timerTask, eventDate);
+		timer();
 	}
 
 	public Event(String description, Date eventDate) {
 		this.description = description;
 		this.eventDate = eventDate;
+		timer();
 	}
 
 	public Integer getEventNumber() {
@@ -120,6 +95,30 @@ public class Event implements Serializable {
 
 	public void setQuestions(Vector<Question> questions) {
 		this.questions = questions;
+	}
+	
+	private void timer() {
+		Timer timer = new Timer();
+		TimerTask timerTask = new TimerTask() {
+			
+			@Override
+			public void run() {
+				System.out.println("Event Closed");
+				for (Question q: questions) {
+					for (BetChoice b: q.getChoices()) {
+						for (UserBet userBet: b.getUserBets()) {
+							if (q.getResult().equals(b)) {
+								userBet.getUser().updateMoney(10);
+							}
+							else {
+								userBet.getUser().updateMoney(-10);
+							}
+						}
+					}
+				}
+			}
+		};		
+		timer.schedule(timerTask, eventDate);
 	}
 
 
