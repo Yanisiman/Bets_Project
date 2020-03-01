@@ -267,19 +267,18 @@ public class RegisterGUI extends JFrame {
 					User newUser = new User(name, familyName, age, password, nationality, email, username, creditCard,
 							birthDate);
 					
-					if(businessLogic.checkLogin(name, "") != null || businessLogic.emailExist(email)) {
+					if(businessLogic.checkLogin(username, "") != null || businessLogic.emailExist(email)) {
 						errorArea.setText("The username or the email already exists");
 						return;
 					}
-					else {			
-						businessLogic.createUser(newUser);
-
+					else {
 						self.setVisible(false);
 
 						RulesGUI rulesGUI = new RulesGUI();
+						rulesGUI.setUser(newUser);
 						rulesGUI.setBusinessLogic(businessLogic);
 						rulesGUI.setVisible(true);
-						rulesGUI.setUser(newUser);
+						
 					}
 					
 

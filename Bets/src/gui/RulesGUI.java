@@ -180,6 +180,7 @@ public class RulesGUI extends JFrame {
 		
 		btnNewButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				businessLogic.createUser(user);
 				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
 				frame.setVisible(false);
 				findQuestionsGUI.setBusinessLogic(businessLogic);
