@@ -86,4 +86,6 @@ public interface BLFacade  {
 	
 	@WebMethod public Vector<UserBet> getUserBets(User user);
 	
+	@WebMethod public boolean emailExist(String email);
 }
+

@@ -238,7 +238,19 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return bets;
 	}
-
+	
+	@Override
+	public boolean emailExist(String email) {
+		DataAccess dBManager = new DataAccess();
+		List<User> users = dBManager.getUsers();
+		
+		for(User user : users) {
+			if(user.getEmail() == email)
+				return true;
+		}
+		
+		return false;
+	}
 
 }
 

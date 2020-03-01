@@ -263,16 +263,25 @@ public class RegisterGUI extends JFrame {
 					String age_string = String.valueOf(p.getYears()).substring(2);
 					int age = Integer.parseInt(age_string);
 
+
 					User newUser = new User(name, familyName, age, password, nationality, email, username, creditCard,
 							birthDate);
-					businessLogic.createUser(newUser);
+					
+					if(businessLogic.checkLogin(name, "") != null || businessLogic.emailExist(email)) {
+						errorArea.setText("The username or the email already exists");
+						return;
+					}
+					else {			
+						businessLogic.createUser(newUser);
 
-					self.setVisible(false);
+						self.setVisible(false);
 
-					RulesGUI rulesGUI = new RulesGUI();
-					rulesGUI.setBusinessLogic(businessLogic);
-					rulesGUI.setVisible(true);
-					rulesGUI.setUser(newUser);
+						RulesGUI rulesGUI = new RulesGUI();
+						rulesGUI.setBusinessLogic(businessLogic);
+						rulesGUI.setVisible(true);
+						rulesGUI.setUser(newUser);
+					}
+					
 
 				} catch (DateTimeParseException e) {
 					// TODO: handle exception
@@ -282,7 +291,8 @@ public class RegisterGUI extends JFrame {
 					// TODO: handle exception
 					errorArea.setText("An error occured : " + e.getMessage());
 					return;
-				}
+				} 
+			
 			}
 		});
 		panel.add(registerBtn, gbc_registerBtn);

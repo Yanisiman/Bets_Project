@@ -395,8 +395,8 @@ public class DataAccess {
 	public List<User> getUsers(){
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
 		return a.getResultList();
-		
 	}
+	
 	
 	public Event createEvent(String description, Date eventDate) {
 		db.getTransaction().begin();

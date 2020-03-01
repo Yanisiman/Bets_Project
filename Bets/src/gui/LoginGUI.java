@@ -52,12 +52,16 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 
 		panel = new JPanel();
 		setContentPane(panel);
 		setSize(800, 650);
 
 		self = this;
+		
+		
 
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 55, 150, 78, 35, 30, 50, 20 };
@@ -114,6 +118,7 @@ public class LoginGUI extends JFrame {
 		gbc_loginBtn.gridy = 5;
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String userString = usernameField.getText();
 				String passwordString = passwordField.getText();
 				User currentUser = businessLogic.checkLogin(userString, passwordString);
