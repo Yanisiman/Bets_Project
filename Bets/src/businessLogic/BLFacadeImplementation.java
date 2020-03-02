@@ -253,5 +253,29 @@ public class BLFacadeImplementation  implements BLFacade {
 		return false;
 	}
 
+
+	@Override
+	public void removeUserBet(UserBet bet) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeUserBet(bet);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeFriend(User user, User friend) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeFriend(user, friend);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void addFriend(User user, String friend) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.addFriend(user, friend);
+		dBManager.close();
+	}
+
 }
 

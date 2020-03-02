@@ -96,6 +96,10 @@ public class BetChoice implements Serializable{
 	public void addUserBet(UserBet userBet) {
 		this.userBets.add(userBet);
 	}
+	
+	public void removeUserBet(UserBet bet) {
+		userBets.remove(bet);
+	}
 
 	/**
 	 * @return the odd

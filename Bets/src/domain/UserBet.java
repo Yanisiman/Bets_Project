@@ -19,8 +19,8 @@ import exceptions.QuestionAlreadyExist;
 public class UserBet implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id //@GeneratedValue
-	
+	@Id @GeneratedValue
+	private Integer userBetNumber;
 	private int amountBet;
 	
 	@XmlIDREF
@@ -87,6 +87,20 @@ public class UserBet implements Serializable{
 	 */
 	public void setBet(BetChoice bet) {
 		this.betChoice = bet;
+	}
+	
+	/**
+	 * @return the userBetNumber
+	 */
+	public Integer getUserBetNumber() {
+		return userBetNumber;
+	}
+
+	/**
+	 * @param userBetNumber the userBetNumber to set
+	 */
+	public void setUserBetNumber(Integer userBetNumber) {
+		this.userBetNumber = userBetNumber;
 	}
 	
 	@Override

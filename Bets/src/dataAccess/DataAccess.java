@@ -370,7 +370,7 @@ public class DataAccess {
 	public User userBet(User u, int amount, BetChoice bet) {
 		try {
 			
-			TypedQuery<BetChoice> q = db.createQuery("SELECT b from Bet b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			TypedQuery<BetChoice> q = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
 			BetChoice b = q.getSingleResult();
 			
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
@@ -452,7 +452,7 @@ public class DataAccess {
 	
 	public void removeBet(BetChoice b) {
 		db.getTransaction().begin();		
-		Query q = db.createQuery("DELETE FROM Bet e WHERE e.choiceNumber = " + b.getChoiceNumber());
+		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
 		q.executeUpdate();		
 		db.getTransaction().commit();
 	}
@@ -482,6 +482,68 @@ public class DataAccess {
 		} catch (Exception e) {
 			System.out.println("Error with userBets");
 			return null;
+		}
+	}
+	
+	public void removeUserBet(UserBet bet) {
+		try {
+			db.getTransaction().begin();	
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + bet.getUser().getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<BetChoice> q2 = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getBet().getChoiceNumber(), BetChoice.class);
+			BetChoice b = q2.getSingleResult();
+			
+			TypedQuery<UserBet> q4 = db.createQuery("SELECT b from UserBet b WHERE b.userBetNumber = " + bet.getUserBetNumber(), UserBet.class);
+			UserBet c = q4.getSingleResult();
+			
+			Query q3 = db.createQuery("DELETE FROM UserBet e WHERE e.userBetNumber = " + bet.getUserBetNumber());
+			q3.executeUpdate();
+			
+			u.removeUserBet(c);
+			b.removeUserBet(c);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void addFriend(User user, String friend) {
+		try {
+			db.getTransaction().begin();
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend + "\"", User.class);
+			User f = q2.getSingleResult();
+			
+			if (!f.isAdmin() && !u.getFriends().contains(f))
+				u.addFriend(f);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public void removeFriend(User user, User friend) {
+		try {
+			db.getTransaction().begin();
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend.getUsername() + "\"", User.class);
+			User f = q2.getSingleResult();
+			
+			u.removeFriend(f);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 

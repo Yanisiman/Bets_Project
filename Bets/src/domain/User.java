@@ -80,6 +80,10 @@ public class User implements Serializable {
 	public void addUserBet(UserBet userBet) {
 		this.bets.add(userBet);
 	}
+	
+	public void removeUserBet(UserBet bet) {
+		bets.remove(bet);
+	}
 
 
 	public int getMoney() {
@@ -256,6 +260,10 @@ public class User implements Serializable {
 	
 	public void addFriend(User user) {
 		friends.add(user);
+	}
+	
+	public void removeFriend(User friend) {
+		friends.remove(friend);
 	}
 
 
