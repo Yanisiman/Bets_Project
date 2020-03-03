@@ -138,7 +138,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@Override
-	public void addMoney(User user, int money) {
+	public void addMoney(User user, float money) {
 		DataAccess dBManager = new DataAccess();
 		dBManager.addMoneyUser(user, money);
 		dBManager.close();
@@ -146,7 +146,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money) {
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money) {
 		DataAccess dBManager = new DataAccess();
 		User user = dBManager.updateUser(email, username, password, name, familyName, creditCard, money);
 		dBManager.close();
@@ -195,6 +195,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		BetChoice bet = dBManager.addBet(question, response, odd);
 		dBManager.close();
 		return bet;
+	}
+	
+	@Override
+	public Event getEvent(Event event) {
+		DataAccess dBManager = new DataAccess();
+		Event e = dBManager.getEvent(event);
+		dBManager.close();
+		return e;
 	}
 
 
@@ -276,6 +284,17 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.addFriend(user, friend);
 		dBManager.close();
 	}
+
+
+	@Override
+	public void setResult(Question question, BetChoice choice) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.setResult(question, choice);
+		dBManager.close();
+	}
+
+
+	
 
 }
 

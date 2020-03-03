@@ -1,22 +1,23 @@
 package gui;
 
-import java.awt.Color;
 import java.net.URL;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Vector;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.UIManager;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import configuration.ConfigXML;
-import domain.Event;
-import domain.Question;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
+import configuration.ConfigXML;
+import domain.BetChoice;
+import domain.Event;
+import domain.Question;
+import domain.User;
+import domain.UserBet;
 
 public class ApplicationLauncher {
 	
@@ -70,9 +71,7 @@ public class ApplicationLauncher {
 			/*if (c.getDataBaseOpenMode().equals("initialize")) 
 				appFacadeInterface.initializeBD();
 				*/
-			a.setBusinessLogic(appFacadeInterface);
-
-		
+			a.setBusinessLogic(appFacadeInterface);	
 
 			
 		}catch (Exception e) {

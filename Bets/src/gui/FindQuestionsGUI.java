@@ -246,6 +246,8 @@ public class FindQuestionsGUI extends JFrame {
 				try {
 					int amount = Integer.parseInt(amountBetField.getText());
 					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
+					if (currentUser.getMoney() < amount)
+						return;
 					businessLogic.userBet(currentUser, amount, bet);
 				} catch (Exception e) {
 					return;

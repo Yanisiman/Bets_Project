@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import businessLogic.BLFacade;
 import exceptions.QuestionAlreadyExist;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,18 +34,16 @@ public class Event implements Serializable {
 	public Event() {
 		super();
 	}
-
+	
 	public Event(Integer eventNumber, String description, Date eventDate) {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
-		timer();
 	}
 
 	public Event(String description, Date eventDate) {
 		this.description = description;
 		this.eventDate = eventDate;
-		timer();
 	}
 
 	public Integer getEventNumber() {
@@ -74,7 +73,7 @@ public class Event implements Serializable {
 	public String toString() {
 		return eventNumber + ";" + description;
 	}
-
+	
 	/**
 	 * This method creates a bet with a question, minimum bet ammount and percentual
 	 * profit
@@ -95,30 +94,6 @@ public class Event implements Serializable {
 
 	public void setQuestions(Vector<Question> questions) {
 		this.questions = questions;
-	}
-	
-	private void timer() {
-		Timer timer = new Timer();
-		TimerTask timerTask = new TimerTask() {
-			
-			@Override
-			public void run() {
-				System.out.println("Event Closed");
-				for (Question q: questions) {
-					for (BetChoice b: q.getChoices()) {
-						for (UserBet userBet: b.getUserBets()) {
-							if (q.getResult().equals(b)) {
-								userBet.getUser().updateMoney(10);
-							}
-							else {
-								userBet.getUser().updateMoney(-10);
-							}
-						}
-					}
-				}
-			}
-		};		
-		timer.schedule(timerTask, eventDate);
 	}
 
 

@@ -15,6 +15,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.jdo.listener.CreateLifecycleListener;
@@ -34,6 +36,7 @@ import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import java.awt.Font;
@@ -67,7 +70,7 @@ public class CreateQuestionGUI extends JFrame {
 	private final JLabel betsLbl = new JLabel("Bets");
 	private final JLabel newBetLbl = new JLabel("New bet");
 	private JTextField newBetField = new JTextField();
-	private final JLabel oddLbl = new JLabel("Odd");
+	private final JLabel oddLbl = new JLabel("Odds");
 	private final JTextField oddField = new JTextField();
 
 	private JButton newBetBtn = new JButton("New bet");
@@ -205,8 +208,34 @@ public class CreateQuestionGUI extends JFrame {
 				String description = newEventField.getText();
 
 				try {
+					Date date = new Date();
+					date.setMinutes(date.getMinutes() + 1);
 
-					businessLogic.createEvent(description, eventDate);
+					Event event = businessLogic.createEvent(description, eventDate);
+					
+					Timer timer = new Timer();
+					TimerTask timerTask = new TimerTask() {
+						
+						@Override
+						public void run() {
+							System.out.println("Event Closed");
+							Event e = businessLogic.getEvent(event);
+							for (Question q: e.getQuestions()) {
+								for (BetChoice b: q.getChoices()) {
+									float odds = b.getOdds();
+									for (UserBet userBet: b.getUserBets()) {
+										int amount = userBet.getAmountBet();
+										if (q.getResult().equals(b)) {		
+											System.out.println(userBet.getUser() + " Wins " + odds * amount + " " + userBet.getBet());
+											businessLogic.addMoney(userBet.getUser(), amount * odds);
+										}
+									}
+								}
+							}
+						}
+					};		
+					timer.schedule(timerTask, date);
+				
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					updateEvents(eventDate, dateformat1);
 
@@ -311,6 +340,22 @@ public class CreateQuestionGUI extends JFrame {
 		
 		removeEventBtn.setBounds(535, 46, 89, 23);
 		getContentPane().add(removeEventBtn);
+		
+		JButton resultBetBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		resultBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
+				if (bet == null)
+					return;
+				Question question = (Question) questionComboBox.getSelectedItem();
+				if (question == null)
+					return;
+				
+				businessLogic.setResult(question, bet);
+			}
+		});
+		resultBetBtn.setBounds(589, 331, 89, 23);
+		getContentPane().add(resultBetBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {

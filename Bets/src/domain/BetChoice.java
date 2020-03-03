@@ -23,7 +23,7 @@ public class BetChoice implements Serializable{
 	private Integer choiceNumber;
 	
 	private String response;
-	private float odd;
+	private float odds;
 	
 	@XmlIDREF
 	private Question question;
@@ -48,7 +48,7 @@ public class BetChoice implements Serializable{
 		this.question.addChoice(this);
 		this.response = response;
 		this.userBets = new Vector<UserBet>();
-		this.odd = odd;
+		this.odds = odd;
 	}
 
 	/**
@@ -104,15 +104,15 @@ public class BetChoice implements Serializable{
 	/**
 	 * @return the odd
 	 */
-	public float getOdd() {
-		return odd;
+	public float getOdds() {
+		return odds;
 	}
 
 	/**
 	 * @param odd the odd to set
 	 */
-	public void setOdd(float odd) {
-		this.odd = odd;
+	public void setOdds(float odd) {
+		this.odds = odd;
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class BetChoice implements Serializable{
 
 	@Override
 	public String toString() {
-		return response + "| odd : " + odd;
+		return response + "| odd : " + odds;
 	}
 
 }

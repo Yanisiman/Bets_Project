@@ -62,11 +62,11 @@ public interface BLFacade  {
 	
 	@WebMethod public void createUser(User user);
 	
-	@WebMethod public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money);
+	@WebMethod public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money);
 	
 	@WebMethod public void deleteUser(User user);
 
-	@WebMethod public void addMoney(User user, int money);
+	@WebMethod public void addMoney(User user, float money);
 	
 	@WebMethod public List<User> displayUsers();
 
@@ -75,6 +75,8 @@ public interface BLFacade  {
 	@WebMethod public Event createEvent(String description, Date eventDate) throws EventFinished;
 	
 	@WebMethod public BetChoice addBetChoice(Question question, String response, float odd);
+	
+	@WebMethod public Event getEvent(Event event);
 	
 	@WebMethod public void removeEvent(Event event);
 	
@@ -93,5 +95,7 @@ public interface BLFacade  {
 	@WebMethod public void removeFriend(User user, User friend);
 	
 	@WebMethod public void addFriend(User user, String friend);
+	
+	@WebMethod public void setResult(Question question, BetChoice choice);
 }
 

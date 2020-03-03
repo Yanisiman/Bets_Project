@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.persistence.EntityManager;
@@ -16,6 +18,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import businessLogic.BLFacade;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Admin;
@@ -149,9 +152,11 @@ public class DataAccess {
 
 			}
 			
-			BetChoice b1 = new BetChoice(q1, "Home", 0);
-			BetChoice b2 = new BetChoice(q1, "Draw", 0);
-			BetChoice b3 = new BetChoice(q1, "Away", 0);
+			BetChoice b1 = new BetChoice(q1, "Home", 1.2f);
+			BetChoice b2 = new BetChoice(q1, "Draw", 2);
+			BetChoice b3 = new BetChoice(q1, "Away", 1.8f);
+			
+			q1.setResult(b1);
 			
 			db.persist(q1);
 			db.persist(q2);
@@ -198,14 +203,13 @@ public class DataAccess {
 			
 			Event e = new Event(35,"THIS IS A TEST", date);
 			Question q = e.addQuestion("Who will win the match?", 1);
-			Question q11 = e.addQuestion("Who will score first?", 2);
+			Question q11 = e.addQuestion("Who will score first?", 2);			
 			
+			BetChoice b4 = new BetChoice(q, "Home", 1.7f);
+			BetChoice b5 = new BetChoice(q, "Draw", 1);
+			BetChoice b6 = new BetChoice(q11, "Away", 2f);
 			
-			BetChoice b4 = new BetChoice(q, "Home", 0);
-			BetChoice b5 = new BetChoice(q, "Draw", 0);
-			BetChoice b6 = new BetChoice(q11, "Away", 0);
-			
-			UserBet userBet = new UserBet(user2, 10, b4);
+			UserBet userBet = new UserBet(yanis, 10, b4);
 			q.setResult(b4);
 			
 			db.persist(e);
@@ -217,6 +221,7 @@ public class DataAccess {
 			db.persist(userBet);
 			
 			db.getTransaction().commit();
+			
 			System.out.println("Db initialized");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -320,7 +325,7 @@ public class DataAccess {
 		}
 	}
 	
-	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, int money) {
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money) {
 		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
 		User user = q.getSingleResult();
 		db.getTransaction().begin();
@@ -354,7 +359,7 @@ public class DataAccess {
 		db.getTransaction().commit();
 	}
 	
-	public void addMoneyUser(User u, int money) {
+	public void addMoneyUser(User u, float money) {
 		try {
 			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"", User.class);
 			User user = q.getSingleResult();
@@ -381,6 +386,8 @@ public class DataAccess {
 			db.persist(userBet);
 			db.getTransaction().commit();
 			
+			addMoneyUser(user, -amount);
+			
 			return user;
 		} catch (Exception e) {
 			return null;
@@ -401,12 +408,13 @@ public class DataAccess {
 	public Event createEvent(String description, Date eventDate) {
 		db.getTransaction().begin();
 		Event event = new Event(description, eventDate);
+		
 		db.persist(event);
 		db.getTransaction().commit();
 		return event;
 	}
 	
-	public BetChoice addBet(Question question, String response, float odd) {
+	public BetChoice addBet(Question question, String response, float odds) {
 		TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
 		Question quest = q.getSingleResult();
 		
@@ -416,10 +424,19 @@ public class DataAccess {
 		}			
 		
 		db.getTransaction().begin();
-		BetChoice bet = new BetChoice(quest, response, odd);
+		BetChoice bet = new BetChoice(quest, response, odds);
 		db.persist(bet);
 		db.getTransaction().commit();
 		return bet;
+	}
+	
+	public Event getEvent(Event event) {
+		try {
+			TypedQuery<Event> q = db.createQuery("SELECT e from Event e WHERE e.eventNumber = " + event.getEventNumber(), Event.class);
+			return q.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public void removeEvent(Event e) {
@@ -540,6 +557,24 @@ public class DataAccess {
 			User f = q2.getSingleResult();
 			
 			u.removeFriend(f);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public void setResult(Question question, BetChoice choice) {
+		try {
+			db.getTransaction().begin();
+			
+			TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+			Question quest = q.getSingleResult();
+			
+			TypedQuery<BetChoice> q2 = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + choice.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q2.getSingleResult();
+			
+			quest.setResult(b);
 			
 			db.getTransaction().commit();
 		} catch (Exception e) {

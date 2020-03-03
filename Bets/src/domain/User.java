@@ -29,7 +29,7 @@ public class User implements Serializable {
 	private String creditCard;
 	private String birthDate;
 	private Date creationDate;	
-	private int money;
+	private float money;
 	private boolean isAdmin;
 	
 	private Vector<UserBet> bets;
@@ -86,16 +86,16 @@ public class User implements Serializable {
 	}
 
 
-	public int getMoney() {
+	public float getMoney() {
 		return money;
 	}
 
 
-	public void setMoney(int money) {
+	public void setMoney(float money) {
 		this.money = money;
 	}
 	
-	public void updateMoney(int money) {
+	public void updateMoney(float money) {
 		this.money += money;
 	}
 
