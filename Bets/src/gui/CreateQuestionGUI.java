@@ -208,8 +208,6 @@ public class CreateQuestionGUI extends JFrame {
 				String description = newEventField.getText();
 
 				try {
-					Date date = new Date();
-					date.setMinutes(date.getMinutes() + 1);
 
 					Event event = businessLogic.createEvent(description, eventDate);
 					
@@ -234,7 +232,7 @@ public class CreateQuestionGUI extends JFrame {
 							}
 						}
 					};		
-					timer.schedule(timerTask, date);
+					timer.schedule(timerTask, eventDate);
 				
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					updateEvents(eventDate, dateformat1);
@@ -352,6 +350,8 @@ public class CreateQuestionGUI extends JFrame {
 					return;
 				
 				businessLogic.setResult(question, bet);
+				User admin = businessLogic.checkLogin("admin", "");
+				businessLogic.userBet(admin, 10, bet);
 			}
 		});
 		resultBetBtn.setBounds(589, 331, 89, 23);
