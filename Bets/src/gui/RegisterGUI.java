@@ -12,6 +12,8 @@ import java.time.Period;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -250,10 +252,35 @@ public class RegisterGUI extends JFrame {
 
 				if (name.equals("") || familyName.equals("") || password.equals("") || nationality.equals("")
 						|| email.equals("") || username.equals("") || creditCard.equals("") || birthDate.equals("")) {
-					errorArea.setText("One or more information incorrect");
+					errorArea.setText("One or more information missing");
 					return;
 				}
-
+				
+				Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
+			    if (!EMAIL_REGEX.matcher(email).matches()) {
+			    	errorArea.setText("Invalid email");
+			    	return;
+			    }
+			    
+			    String regex = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
+			            "(?<mastercard>5[1-5][0-9]{14})|" +
+			            "(?<discover>6(?:011|5[0-9]{2})[0-9]{12})|" +
+			            "(?<amex>3[47][0-9]{13})|" +
+			            "(?<diners>3(?:0[0-5]|[68][0-9])?[0-9]{11})|" +
+			            "(?<jcb>(?:2131|1800|35[0-9]{3})[0-9]{11}))$";
+			     
+			    Pattern pattern = Pattern.compile(regex);
+		        //Strip all hyphens
+			    String card = creditCard;
+		        card = card.replaceAll("-", "");
+		     
+		        //Match the card
+		        Matcher matcher = pattern.matcher(card);
+		        if (!matcher.matches()) {
+		        	errorArea.setText("Invalid credit card");
+		        	return;
+		        }
+		     
 				SimpleDateFormat format = new SimpleDateFormat("dd'/'MM'/'yyyy", Locale.ENGLISH);
 				try {
 					Date birth = format.parse(birthDate);
