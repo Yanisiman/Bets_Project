@@ -387,6 +387,7 @@ public class DataAccess {
 			db.getTransaction().commit();
 			
 			addMoneyUser(user, -amount);
+			updateOdds(b);
 			
 			return user;
 		} catch (Exception e) {
@@ -579,6 +580,31 @@ public class DataAccess {
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
+		}
+	}
+	
+	private void updateOdds(BetChoice bet) {
+		try {
+			TypedQuery<BetChoice> q = db.createQuery("SELECT b FROM BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q.getSingleResult();
+			
+			db.getTransaction().begin();
+			float users = b.getUserBets().size();
+			bet.setOdds(1 + 1 / users);
+			db.getTransaction().commit();			
+			
+		} catch (Exception e) {
+			return;
+		}
+
+	}
+	
+	public Question getQuestion(Question question) {
+		try {
+			TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+			return q.getSingleResult();
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

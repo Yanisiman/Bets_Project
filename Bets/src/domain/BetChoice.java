@@ -24,6 +24,7 @@ public class BetChoice implements Serializable{
 	
 	private String response;
 	private float odds;
+	private float totalAmount;
 	
 	@XmlIDREF
 	private Question question;
@@ -126,6 +127,32 @@ public class BetChoice implements Serializable{
 	 * @param betID the betID to set
 	 */
 	public void setBetID(Integer choiceNumber) {
+		this.choiceNumber = choiceNumber;
+	}
+
+	/**
+	 * @return the totalAmount
+	 */
+	public float getTotalAmount() {
+		return totalAmount;
+	}
+
+	/**
+	 * @param totalAmount the totalAmount to set
+	 */
+	public void setTotalAmount(float totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	
+	public void addTotalAmount(float amount) {
+		this.totalAmount += amount;
+	}
+
+
+	/**
+	 * @param choiceNumber the choiceNumber to set
+	 */
+	public void setChoiceNumber(Integer choiceNumber) {
 		this.choiceNumber = choiceNumber;
 	}
 

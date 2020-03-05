@@ -22,6 +22,7 @@ public class UserBet implements Serializable{
 	@Id @GeneratedValue
 	private Integer userBetNumber;
 	private int amountBet;
+	private float odds;
 	
 	@XmlIDREF
 	private User user;
@@ -42,9 +43,11 @@ public class UserBet implements Serializable{
 		this.user = user;
 		this.amountBet = amountBet;
 		this.betChoice = bet;
+		this.odds = bet.getOdds();
 		
 		this.user.addUserBet(this);
 		this.betChoice.addUserBet(this);
+		this.betChoice.addTotalAmount(amountBet);
 	}
 	
 	/**
@@ -103,6 +106,20 @@ public class UserBet implements Serializable{
 		this.userBetNumber = userBetNumber;
 	}
 	
+	/**
+	 * @return the odds
+	 */
+	public float getOdds() {
+		return odds;
+	}
+
+	/**
+	 * @param odds the odds to set
+	 */
+	public void setOdds(float odds) {
+		this.odds = odds;
+	}
+
 	@Override
 	public String toString() {
 		Question q = betChoice.getQuestion();

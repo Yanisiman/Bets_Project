@@ -80,6 +80,8 @@ public interface BLFacade  {
 	
 	@WebMethod public void removeEvent(Event event);
 	
+	@WebMethod public Question getQuestion(Question question);
+	
 	@WebMethod public void removeQuestion(Question question);
 	
 	@WebMethod public void removeBetChoice(BetChoice bet);

@@ -128,6 +128,16 @@ public class FindQuestionsGUI extends JFrame {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 				jLabelQueries.setText("");
+				
+				choiceBetComboBox.setVisible(false);
+				amountBetField.setVisible(false);
+				betBtn.setVisible(false);
+				amountBetLbl.setVisible(false);
+				
+				tableModelQueries.setDataVector(null, columnNamesQueries);
+				tableQueries.removeAll();
+				tableQueries.repaint();
+				
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -183,6 +193,16 @@ public class FindQuestionsGUI extends JFrame {
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				choiceBetComboBox.setVisible(false);
+				amountBetField.setVisible(false);
+				betBtn.setVisible(false);
+				amountBetLbl.setVisible(false);
+				
+				tableModelQueries.setDataVector(null, columnNamesQueries);
+				tableQueries.removeAll();
+				tableQueries.repaint();
+				
 				int i = tableEvents.getSelectedRow();
 				Event ev = (Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions();
@@ -249,6 +269,7 @@ public class FindQuestionsGUI extends JFrame {
 					if (currentUser.getMoney() < amount)
 						return;
 					businessLogic.userBet(currentUser, amount, bet);
+					displayBetChoices();
 				} catch (Exception e) {
 					return;
 				}
@@ -291,21 +312,7 @@ public class FindQuestionsGUI extends JFrame {
 		tableQueries.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (currentUser == null)
-					return;
-
-				int i = tableQueries.getSelectedRow();
-				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
-
-				BetChoice[] bets = new BetChoice[q.getChoices().size()];
-				q.getChoices().toArray(bets);
-
-				choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
-
-				choiceBetComboBox.setVisible(true);
-				amountBetField.setVisible(true);
-				betBtn.setVisible(true);
-				amountBetLbl.setVisible(true);
+				displayBetChoices();
 			}
 		});
 
@@ -376,5 +383,23 @@ public class FindQuestionsGUI extends JFrame {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+	}
+	
+	private void displayBetChoices() {
+		if (currentUser == null)
+			return;
+
+		int i = tableQueries.getSelectedRow();
+		Question q = businessLogic.getQuestion((Question) tableModelQueries.getValueAt(i, 2)); // obtain ev object
+
+		BetChoice[] bets = new BetChoice[q.getChoices().size()];
+		q.getChoices().toArray(bets);
+
+		choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+
+		choiceBetComboBox.setVisible(true);
+		amountBetField.setVisible(true);
+		betBtn.setVisible(true);
+		amountBetLbl.setVisible(true);
 	}
 }

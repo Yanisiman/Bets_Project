@@ -220,10 +220,10 @@ public class CreateQuestionGUI extends JFrame {
 							Event e = businessLogic.getEvent(event);
 							for (Question q: e.getQuestions()) {
 								for (BetChoice b: q.getChoices()) {
-									float odds = b.getOdds();
 									for (UserBet userBet: b.getUserBets()) {
-										int amount = userBet.getAmountBet();
 										if (q.getResult().equals(b)) {		
+											int amount = userBet.getAmountBet();
+											float odds = userBet.getOdds();
 											System.out.println(userBet.getUser() + " Wins " + odds * amount + " " + userBet.getBet());
 											businessLogic.addMoney(userBet.getUser(), amount * odds);
 										}

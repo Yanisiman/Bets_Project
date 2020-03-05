@@ -294,6 +294,15 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 
+	@Override
+	public Question getQuestion(Question question) {
+		DataAccess dBManager = new DataAccess();
+		Question q = dBManager.getQuestion(question);
+		dBManager.close();
+		return q;
+	}
+
+
 	
 
 }
