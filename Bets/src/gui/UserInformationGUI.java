@@ -31,6 +31,11 @@ import domain.UserBet;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.JSeparator;
+import java.awt.Color;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 public class UserInformationGUI extends JFrame {
 
@@ -72,11 +77,19 @@ public class UserInformationGUI extends JFrame {
 	private final JComboBox<UserBet> betsComboBox = new JComboBox<>();
 	private final JComboBox<User> friendComboBox = new JComboBox<User>();
 	private final JButton removeFriendBtn = new JButton("Remove friend");
+	private final JLabel favoriteSportsLbl = new JLabel("Favorite sports");
+	private final JComboBox sportsComboBox = new JComboBox();
+	private final JTextField sportField = new JTextField();
+	private final JLabel sportLbl = new JLabel("New favorite sport");
+	private final JButton sportBtn = new JButton("Add");
+	private final JLabel budgetLbl = new JLabel("Budget :");
+	private final JLabel budgetField = new JLabel("");
 
 	/**
 	 * Create the frame.
 	 */
 	public UserInformationGUI(User user, FindQuestionsGUI fq) {
+		sportField.setColumns(10);
 		addFriendField.setColumns(10);
 		currentUser = user;
 		mainWindow = fq;
@@ -89,10 +102,10 @@ public class UserInformationGUI extends JFrame {
 		self = this;
 
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 57, 20, 50, 80, 0, 68, 194, 91, 50, 30, 50, 45 };
-		gbl_panel.rowHeights = new int[] { 20, 35, 0, 0, 35, 35, 35, 35, 36, 35, 49, 43, 35, 35, 20 };
-		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.5, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.5, 0.5, 1.0 };
-		gbl_panel.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.5, 0.5, 0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.5,
+		gbl_panel.columnWidths = new int[] { 87, 20, 50, 80, 72, 194, 52, 91, 50, 78 };
+		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 36, 35, 49, 43, 35, 36, 20 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.5, 1.0, 0.0, 1.0, 0.0, 1.0, 0.5, 0.0 };
+		gbl_panel.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.5, 0.5, 0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0,
 				1.0 };
 		panel.setLayout(gbl_panel);
 
@@ -105,10 +118,9 @@ public class UserInformationGUI extends JFrame {
 		panel.add(betAndRuinLbl, gbc_betAndRuinLbl);
 
 		GridBagConstraints gbc_deleteAccountBtn = new GridBagConstraints();
-		gbc_deleteAccountBtn.gridwidth = 2;
 		gbc_deleteAccountBtn.fill = GridBagConstraints.BOTH;
-		gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 0);
-		gbc_deleteAccountBtn.gridx = 10;
+		gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_deleteAccountBtn.gridx = 8;
 		gbc_deleteAccountBtn.gridy = 0;
 		deleteAccountBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -132,11 +144,11 @@ public class UserInformationGUI extends JFrame {
 		panel.add(registrationLbl, gbc_registrationLbl);
 
 		GridBagConstraints gbc_editButton = new GridBagConstraints();
-		gbc_editButton.gridwidth = 5;
+		gbc_editButton.gridwidth = 3;
 		gbc_editButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_editButton.insets = new Insets(0, 0, 5, 5);
 		gbc_editButton.gridx = 1;
-		gbc_editButton.gridy = 3;
+		gbc_editButton.gridy = 2;
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserEditInfoGUI userEditInfoGUI = new UserEditInfoGUI(currentUser, self);
@@ -146,44 +158,56 @@ public class UserInformationGUI extends JFrame {
 		});
 		editButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(editButton, gbc_editButton);
+		
+		GridBagConstraints gbc_favoriteSportsLbl = new GridBagConstraints();
+		gbc_favoriteSportsLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_favoriteSportsLbl.gridx = 5;
+		gbc_favoriteSportsLbl.gridy = 2;
+		favoriteSportsLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel.add(favoriteSportsLbl, gbc_favoriteSportsLbl);
 
 		GridBagConstraints gbc_friendsLbl = new GridBagConstraints();
-		gbc_friendsLbl.gridwidth = 4;
+		gbc_friendsLbl.gridwidth = 2;
 		gbc_friendsLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_friendsLbl.gridx = 7;
-		gbc_friendsLbl.gridy = 3;
+		gbc_friendsLbl.gridy = 2;
 		friendsLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel.add(friendsLbl, gbc_friendsLbl);
 
 		usernameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		GridBagConstraints gbc_usernameLbl = new GridBagConstraints();
 		gbc_usernameLbl.anchor = GridBagConstraints.EAST;
-		gbc_usernameLbl.gridwidth = 2;
 		gbc_usernameLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_usernameLbl.gridx = 1;
-		gbc_usernameLbl.gridy = 4;
+		gbc_usernameLbl.gridy = 3;
 		panel.add(usernameLbl, gbc_usernameLbl);
 
 		GridBagConstraints gbc_usernameField = new GridBagConstraints();
-		gbc_usernameField.gridwidth = 3;
+		gbc_usernameField.gridwidth = 2;
 		gbc_usernameField.insets = new Insets(0, 0, 5, 5);
-		gbc_usernameField.gridx = 3;
-		gbc_usernameField.gridy = 4;
+		gbc_usernameField.gridx = 2;
+		gbc_usernameField.gridy = 3;
 		usernameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(usernameField, gbc_usernameField);
+		
+		GridBagConstraints gbc_sportsComboBox = new GridBagConstraints();
+		gbc_sportsComboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_sportsComboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_sportsComboBox.gridx = 5;
+		gbc_sportsComboBox.gridy = 3;
+		panel.add(sportsComboBox, gbc_sportsComboBox);
 
 		GridBagConstraints gbc_addFriendField = new GridBagConstraints();
-		gbc_addFriendField.gridwidth = 3;
 		gbc_addFriendField.insets = new Insets(0, 0, 5, 5);
 		gbc_addFriendField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_addFriendField.gridx = 7;
-		gbc_addFriendField.gridy = 4;
+		gbc_addFriendField.gridy = 3;
 		panel.add(addFriendField, gbc_addFriendField);
 
 		GridBagConstraints gbc_addFriendBtn = new GridBagConstraints();
 		gbc_addFriendBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_addFriendBtn.gridx = 10;
-		gbc_addFriendBtn.gridy = 4;
+		gbc_addFriendBtn.gridx = 8;
+		gbc_addFriendBtn.gridy = 3;
 		addFriendBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (addFriendField.getText().equals(""))
@@ -199,51 +223,49 @@ public class UserInformationGUI extends JFrame {
 
 		GridBagConstraints gbc_emailLbl = new GridBagConstraints();
 		gbc_emailLbl.anchor = GridBagConstraints.EAST;
-		gbc_emailLbl.gridwidth = 2;
 		gbc_emailLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_emailLbl.gridx = 1;
-		gbc_emailLbl.gridy = 5;
+		gbc_emailLbl.gridy = 4;
 		emailLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(emailLbl, gbc_emailLbl);
 
 		GridBagConstraints gbc_emailField = new GridBagConstraints();
-		gbc_emailField.gridwidth = 3;
+		gbc_emailField.gridwidth = 2;
 		gbc_emailField.insets = new Insets(0, 0, 5, 5);
-		gbc_emailField.gridx = 3;
-		gbc_emailField.gridy = 5;
+		gbc_emailField.gridx = 2;
+		gbc_emailField.gridy = 4;
 		emailField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(emailField, gbc_emailField);
 
 		GridBagConstraints gbc_friendComboBox = new GridBagConstraints();
-		gbc_friendComboBox.gridwidth = 4;
+		gbc_friendComboBox.gridwidth = 2;
 		gbc_friendComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_friendComboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_friendComboBox.gridx = 7;
-		gbc_friendComboBox.gridy = 5;
+		gbc_friendComboBox.gridy = 4;
 		panel.add(friendComboBox, gbc_friendComboBox);
 
 		passwordLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		GridBagConstraints gbc_passwordLbl = new GridBagConstraints();
 		gbc_passwordLbl.anchor = GridBagConstraints.EAST;
-		gbc_passwordLbl.gridwidth = 2;
 		gbc_passwordLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordLbl.gridx = 1;
-		gbc_passwordLbl.gridy = 6;
+		gbc_passwordLbl.gridy = 5;
 		panel.add(passwordLbl, gbc_passwordLbl);
 
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.gridwidth = 3;
+		gbc_passwordField.gridwidth = 2;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordField.gridx = 3;
-		gbc_passwordField.gridy = 6;
+		gbc_passwordField.gridx = 2;
+		gbc_passwordField.gridy = 5;
 		passwordField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(passwordField, gbc_passwordField);
 
 		GridBagConstraints gbc_removeFriendBtn = new GridBagConstraints();
-		gbc_removeFriendBtn.gridwidth = 4;
+		gbc_removeFriendBtn.gridwidth = 2;
 		gbc_removeFriendBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_removeFriendBtn.gridx = 7;
-		gbc_removeFriendBtn.gridy = 6;
+		gbc_removeFriendBtn.gridy = 5;
 		removeFriendBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				User friend = (User) friendComboBox.getSelectedItem();
@@ -255,114 +277,129 @@ public class UserInformationGUI extends JFrame {
 				friendComboBox.repaint();
 			}
 		});
+		
+		GridBagConstraints gbc_sportLbl = new GridBagConstraints();
+		gbc_sportLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_sportLbl.gridx = 5;
+		gbc_sportLbl.gridy = 5;
+		sportLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel.add(sportLbl, gbc_sportLbl);
 		panel.add(removeFriendBtn, gbc_removeFriendBtn);
 
 		GridBagConstraints gbc_nameLbl = new GridBagConstraints();
 		gbc_nameLbl.anchor = GridBagConstraints.EAST;
-		gbc_nameLbl.gridwidth = 2;
 		gbc_nameLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_nameLbl.gridx = 1;
-		gbc_nameLbl.gridy = 7;
+		gbc_nameLbl.gridy = 6;
 		nameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nameLbl, gbc_nameLbl);
 
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
-		gbc_nameField.gridwidth = 3;
+		gbc_nameField.gridwidth = 2;
 		gbc_nameField.insets = new Insets(0, 0, 5, 5);
-		gbc_nameField.gridx = 3;
-		gbc_nameField.gridy = 7;
+		gbc_nameField.gridx = 2;
+		gbc_nameField.gridy = 6;
 		nameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nameField, gbc_nameField);
+		
+		GridBagConstraints gbc_sportField = new GridBagConstraints();
+		gbc_sportField.insets = new Insets(0, 0, 5, 5);
+		gbc_sportField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_sportField.gridx = 5;
+		gbc_sportField.gridy = 6;
+		panel.add(sportField, gbc_sportField);
 
 		GridBagConstraints gbc_familyNameLbl = new GridBagConstraints();
 		gbc_familyNameLbl.anchor = GridBagConstraints.EAST;
-		gbc_familyNameLbl.gridwidth = 2;
 		gbc_familyNameLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_familyNameLbl.gridx = 1;
-		gbc_familyNameLbl.gridy = 8;
+		gbc_familyNameLbl.gridy = 7;
 		familyNameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(familyNameLbl, gbc_familyNameLbl);
 
 		GridBagConstraints gbc_familyNameField = new GridBagConstraints();
-		gbc_familyNameField.gridwidth = 3;
+		gbc_familyNameField.gridwidth = 2;
 		gbc_familyNameField.insets = new Insets(0, 0, 5, 5);
-		gbc_familyNameField.gridx = 3;
-		gbc_familyNameField.gridy = 8;
+		gbc_familyNameField.gridx = 2;
+		gbc_familyNameField.gridy = 7;
 		familyNameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(familyNameField, gbc_familyNameField);
+		
+		GridBagConstraints gbc_sportBtn = new GridBagConstraints();
+		gbc_sportBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_sportBtn.gridx = 5;
+		gbc_sportBtn.gridy = 7;
+		panel.add(sportBtn, gbc_sportBtn);
 
 		GridBagConstraints gbc_nationalityLbl = new GridBagConstraints();
 		gbc_nationalityLbl.anchor = GridBagConstraints.EAST;
-		gbc_nationalityLbl.gridwidth = 2;
 		gbc_nationalityLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_nationalityLbl.gridx = 1;
-		gbc_nationalityLbl.gridy = 9;
+		gbc_nationalityLbl.gridy = 8;
 		nationalityLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nationalityLbl, gbc_nationalityLbl);
 
 		GridBagConstraints gbc_nationalityField = new GridBagConstraints();
-		gbc_nationalityField.gridwidth = 3;
+		gbc_nationalityField.gridwidth = 2;
 		gbc_nationalityField.insets = new Insets(0, 0, 5, 5);
-		gbc_nationalityField.gridx = 3;
-		gbc_nationalityField.gridy = 9;
+		gbc_nationalityField.gridx = 2;
+		gbc_nationalityField.gridy = 8;
 		nationalityField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nationalityField, gbc_nationalityField);
 
 		GridBagConstraints gbc_betsLbl = new GridBagConstraints();
-		gbc_betsLbl.gridwidth = 4;
+		gbc_betsLbl.gridwidth = 2;
 		gbc_betsLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_betsLbl.gridx = 7;
-		gbc_betsLbl.gridy = 9;
+		gbc_betsLbl.gridy = 8;
 		betsLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel.add(betsLbl, gbc_betsLbl);
 
 		GridBagConstraints gbc_ageLbl = new GridBagConstraints();
 		gbc_ageLbl.anchor = GridBagConstraints.EAST;
-		gbc_ageLbl.gridwidth = 2;
 		gbc_ageLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_ageLbl.gridx = 1;
-		gbc_ageLbl.gridy = 10;
+		gbc_ageLbl.gridy = 9;
 		ageLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(ageLbl, gbc_ageLbl);
 
 		GridBagConstraints gbc_birthField = new GridBagConstraints();
-		gbc_birthField.gridwidth = 3;
+		gbc_birthField.gridwidth = 2;
 		gbc_birthField.insets = new Insets(0, 0, 5, 5);
-		gbc_birthField.gridx = 3;
-		gbc_birthField.gridy = 10;
+		gbc_birthField.gridx = 2;
+		gbc_birthField.gridy = 9;
 		birthField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(birthField, gbc_birthField);
 
 		GridBagConstraints gbc_betsComboBox = new GridBagConstraints();
-		gbc_betsComboBox.gridwidth = 4;
+		gbc_betsComboBox.gridwidth = 2;
 		gbc_betsComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_betsComboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_betsComboBox.gridx = 7;
-		gbc_betsComboBox.gridy = 10;
+		gbc_betsComboBox.gridy = 9;
 		panel.add(betsComboBox, gbc_betsComboBox);
 
 		GridBagConstraints gbc_creditCardLbl = new GridBagConstraints();
 		gbc_creditCardLbl.anchor = GridBagConstraints.EAST;
-		gbc_creditCardLbl.gridwidth = 2;
 		gbc_creditCardLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_creditCardLbl.gridx = 1;
-		gbc_creditCardLbl.gridy = 11;
+		gbc_creditCardLbl.gridy = 10;
 		creditCardLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(creditCardLbl, gbc_creditCardLbl);
 
 		GridBagConstraints gbc_creditCardField = new GridBagConstraints();
-		gbc_creditCardField.gridwidth = 3;
+		gbc_creditCardField.gridwidth = 2;
 		gbc_creditCardField.insets = new Insets(0, 0, 5, 5);
-		gbc_creditCardField.gridx = 3;
-		gbc_creditCardField.gridy = 11;
+		gbc_creditCardField.gridx = 2;
+		gbc_creditCardField.gridy = 10;
 		creditCardField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(creditCardField, gbc_creditCardField);
 
 		GridBagConstraints gbc_removeBetBtn = new GridBagConstraints();
-		gbc_removeBetBtn.gridwidth = 4;
+		gbc_removeBetBtn.gridwidth = 2;
 		gbc_removeBetBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_removeBetBtn.gridx = 7;
-		gbc_removeBetBtn.gridy = 11;
+		gbc_removeBetBtn.gridy = 10;
 		removeBetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserBet bet = (UserBet) betsComboBox.getSelectedItem();
@@ -380,18 +417,17 @@ public class UserInformationGUI extends JFrame {
 
 		GridBagConstraints gbc_moneyLbl = new GridBagConstraints();
 		gbc_moneyLbl.anchor = GridBagConstraints.EAST;
-		gbc_moneyLbl.gridwidth = 2;
 		gbc_moneyLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_moneyLbl.gridx = 1;
-		gbc_moneyLbl.gridy = 12;
+		gbc_moneyLbl.gridy = 11;
 		moneyLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(moneyLbl, gbc_moneyLbl);
 
 		GridBagConstraints gbc_moneyField = new GridBagConstraints();
-		gbc_moneyField.gridwidth = 3;
+		gbc_moneyField.gridwidth = 2;
 		gbc_moneyField.insets = new Insets(0, 0, 5, 5);
-		gbc_moneyField.gridx = 3;
-		gbc_moneyField.gridy = 12;
+		gbc_moneyField.gridx = 2;
+		gbc_moneyField.gridy = 11;
 		moneyField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(moneyField, gbc_moneyField);
 
@@ -400,13 +436,28 @@ public class UserInformationGUI extends JFrame {
 		gbc_closeBtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_closeBtn.insets = new Insets(0, 0, 0, 5);
 		gbc_closeBtn.gridx = 3;
-		gbc_closeBtn.gridy = 14;
+		gbc_closeBtn.gridy = 13;
 		closeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
 				mainWindow.setCurrentUser(currentUser);
 			}
 		});
+		
+		GridBagConstraints gbc_budgetLbl = new GridBagConstraints();
+		gbc_budgetLbl.anchor = GridBagConstraints.EAST;
+		gbc_budgetLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetLbl.gridx = 1;
+		gbc_budgetLbl.gridy = 12;
+		budgetLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		panel.add(budgetLbl, gbc_budgetLbl);
+		
+		GridBagConstraints gbc_budgetField = new GridBagConstraints();
+		gbc_budgetField.gridwidth = 2;
+		gbc_budgetField.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetField.gridx = 2;
+		gbc_budgetField.gridy = 12;
+		panel.add(budgetField, gbc_budgetField);
 		closeBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		panel.add(closeBtn, gbc_closeBtn);
 

@@ -54,12 +54,15 @@ public class UserEditInfoGUI extends JFrame {
 	private User currentUser;
 	private UserInformationGUI info;
 	private final JButton addMoneyBtn = new JButton("Add");
+	private final JTextField budgetField = new JTextField();
+	private final JLabel budgetLbl = new JLabel("Budget :");
 
 
 	/**
 	 * Create the frame.
 	 */
 	public UserEditInfoGUI(User user, UserInformationGUI uInfo) {
+		budgetField.setColumns(10);
 		
 		currentUser = user;
 		info = uInfo;
@@ -201,15 +204,7 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_creditCardField.gridx = 4;
 		gbc_creditCardField.gridy = 8;
 		panel.add(creditCardField, gbc_creditCardField);
-
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel.gridwidth = 2;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 9;
-		moneyLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		panel.add(moneyLbl, gbc_lblNewLabel);
+		
 		
 		GridBagConstraints gbc_moneyField = new GridBagConstraints();
 		gbc_moneyField.insets = new Insets(0, 0, 5, 5);
@@ -267,6 +262,23 @@ public class UserEditInfoGUI extends JFrame {
 		});
 		addMoneyBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		panel.add(addMoneyBtn, gbc_addMoneyBtn);
+		
+		GridBagConstraints gbc_budgetLbl = new GridBagConstraints();
+		gbc_budgetLbl.gridwidth = 2;
+		gbc_budgetLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetLbl.anchor = GridBagConstraints.EAST;
+		gbc_budgetLbl.gridx = 2;
+		gbc_budgetLbl.gridy = 10;
+		budgetLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		panel.add(budgetLbl, gbc_budgetLbl);
+		
+		
+		GridBagConstraints gbc_budgetField = new GridBagConstraints();
+		gbc_budgetField.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_budgetField.gridx = 4;
+		gbc_budgetField.gridy = 10;
+		panel.add(budgetField, gbc_budgetField);
 		panel.add(registerBtn, gbc_registerBtn);
 
 		GridBagConstraints gbc_errorArea = new GridBagConstraints();

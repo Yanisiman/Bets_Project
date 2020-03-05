@@ -30,6 +30,7 @@ public class User implements Serializable {
 	private String birthDate;
 	private Date creationDate;	
 	private float money;
+	private float budget;
 	private boolean isAdmin;
 	
 	private Vector<UserBet> bets;
@@ -264,6 +265,38 @@ public class User implements Serializable {
 	
 	public void removeFriend(User friend) {
 		friends.remove(friend);
+	}
+
+
+	/**
+	 * @return the uid
+	 */
+	public Integer getUid() {
+		return uid;
+	}
+
+
+	/**
+	 * @param uid the uid to set
+	 */
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+
+	/**
+	 * @return the budget
+	 */
+	public float getBudget() {
+		return budget;
+	}
+
+
+	/**
+	 * @param budget the budget to set
+	 */
+	public void setBudget(float budget) {
+		this.budget = budget;
 	}
 
 
