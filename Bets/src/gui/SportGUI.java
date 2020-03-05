@@ -39,7 +39,6 @@ public class SportGUI extends JFrame {
 	 *
 	 */
 	
-	
 	public SportGUI() {
 		
 		self = this;

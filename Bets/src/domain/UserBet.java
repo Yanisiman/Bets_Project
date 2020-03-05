@@ -19,14 +19,14 @@ import exceptions.QuestionAlreadyExist;
 public class UserBet implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id //@GeneratedValue
-	
+	@Id @GeneratedValue
+	private Integer userBetNumber;
 	private int amountBet;
 	
 	@XmlIDREF
 	private User user;
 	@XmlIDREF
-	private Bet bet;
+	private BetChoice betChoice;
 	
 	public UserBet() {
 		super();
@@ -37,14 +37,14 @@ public class UserBet implements Serializable{
 	 * @param amountBet
 	 * @param bet
 	 */
-	public UserBet(User user, int amountBet, Bet bet) {
+	public UserBet(User user, int amountBet, BetChoice bet) {
 		super();
 		this.user = user;
 		this.amountBet = amountBet;
-		this.bet = bet;
+		this.betChoice = bet;
 		
 		this.user.addUserBet(this);
-		this.bet.addUserBet(this);
+		this.betChoice.addUserBet(this);
 	}
 	
 	/**
@@ -78,15 +78,36 @@ public class UserBet implements Serializable{
 	/**
 	 * @return the bet
 	 */
-	public Bet getBet() {
-		return bet;
+	public BetChoice getBet() {
+		return betChoice;
 	}
 
 	/**
 	 * @param bet the bet to set
 	 */
-	public void setBet(Bet bet) {
-		this.bet = bet;
+	public void setBet(BetChoice bet) {
+		this.betChoice = bet;
+	}
+	
+	/**
+	 * @return the userBetNumber
+	 */
+	public Integer getUserBetNumber() {
+		return userBetNumber;
+	}
+
+	/**
+	 * @param userBetNumber the userBetNumber to set
+	 */
+	public void setUserBetNumber(Integer userBetNumber) {
+		this.userBetNumber = userBetNumber;
+	}
+	
+	@Override
+	public String toString() {
+		Question q = betChoice.getQuestion();
+		Event e = q.getEvent();
+		return  e + " : \n\t" +  q +  " : \n\t" + betChoice + " -> " + amountBet + "€";
 	}
 
 }

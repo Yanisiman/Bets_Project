@@ -3,6 +3,7 @@ package dataAccess;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -18,7 +19,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Admin;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -116,7 +117,7 @@ public class DataAccess {
 					"1232131", "25/04/2000");
 			Admin admin = new Admin("Mariusz", "Januszek", 24, "admin", "Polish", "mariusz.januszek955@gmail.com",
 					"admin", "987654321", "29-07-1995");
-
+			
 			Question q1;
 			Question q2;
 			Question q3;
@@ -148,9 +149,9 @@ public class DataAccess {
 
 			}
 			
-			Bet b1 = new Bet(q1, "Home");
-			Bet b2 = new Bet(q1, "Draw");
-			Bet b3 = new Bet(q1, "Away");
+			BetChoice b1 = new BetChoice(q1, "Home", 0);
+			BetChoice b2 = new BetChoice(q1, "Draw", 0);
+			BetChoice b3 = new BetChoice(q1, "Away", 0);
 			
 			db.persist(q1);
 			db.persist(q2);
@@ -188,6 +189,8 @@ public class DataAccess {
 			db.persist(b1);
 			db.persist(b2);
 			db.persist(b3);
+			
+			yanis.addFriend(user2);
 
 			
 			Date date = new Date();
@@ -198,9 +201,9 @@ public class DataAccess {
 			Question q11 = e.addQuestion("Who will score first?", 2);
 			
 			
-			Bet b4 = new Bet(q, "Home");
-			Bet b5 = new Bet(q, "Draw");
-			Bet b6 = new Bet(q11, "Away");
+			BetChoice b4 = new BetChoice(q, "Home", 0);
+			BetChoice b5 = new BetChoice(q, "Draw", 0);
+			BetChoice b6 = new BetChoice(q11, "Away", 0);
 			
 			UserBet userBet = new UserBet(user2, 10, b4);
 			q.setResult(b4);
@@ -364,11 +367,11 @@ public class DataAccess {
 		}
 	}
 	
-	public User userBet(User u, int amount, Bet bet) {
+	public User userBet(User u, int amount, BetChoice bet) {
 		try {
 			
-			TypedQuery<Bet> q = db.createQuery("SELECT b from Bet b WHERE b.betID = " + bet.getBetID(), Bet.class);
-			Bet b = q.getSingleResult();
+			TypedQuery<BetChoice> q = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q.getSingleResult();
 			
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
 			User user = q2.getSingleResult();
@@ -388,10 +391,160 @@ public class DataAccess {
 		db.close();
 		System.out.println("DataBase closed");
 	}
+	
 	public List<User> getUsers(){
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
 		return a.getResultList();
+	}
+	
+	
+	public Event createEvent(String description, Date eventDate) {
+		db.getTransaction().begin();
+		Event event = new Event(description, eventDate);
+		db.persist(event);
+		db.getTransaction().commit();
+		return event;
+	}
+	
+	public BetChoice addBet(Question question, String response, float odd) {
+		TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+		Question quest = q.getSingleResult();
 		
+		if (quest == null) {
+			System.out.println("DIDNT FIND " + question);
+			return null;
+		}			
+		
+		db.getTransaction().begin();
+		BetChoice bet = new BetChoice(quest, response, odd);
+		db.persist(bet);
+		db.getTransaction().commit();
+		return bet;
+	}
+	
+	public void removeEvent(Event e) {
+		db.getTransaction().begin();		
+		
+		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+		
+		for (Question question: e.getQuestions()) {
+			removeQuestion(question);
+			
+			for (BetChoice b: question.getChoices()) {
+				removeBet(b);
+			}
+		}
+
+	}
+	
+	public void removeQuestion(Question question) {
+		db.getTransaction().begin();		
+		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+		
+		for (BetChoice b: question.getChoices()) {
+			removeBet(b);
+		}
+	}
+	
+	public void removeBet(BetChoice b) {
+		db.getTransaction().begin();		
+		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
+		q.executeUpdate();		
+		db.getTransaction().commit();
+	}
+	
+	public Vector<User> getFriends(User user){
+		try {
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getFriends());
+			return u.getFriends();
+
+		} catch (Exception e) {
+			System.out.println("Error with friends");
+			return null;
+		}
+	}
+	
+	public Vector<UserBet> getUserBet(User user){
+		try {
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getBets());
+			return u.getBets();
+
+		} catch (Exception e) {
+			System.out.println("Error with userBets");
+			return null;
+		}
+	}
+	
+	public void removeUserBet(UserBet bet) {
+		try {
+			db.getTransaction().begin();	
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + bet.getUser().getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<BetChoice> q2 = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getBet().getChoiceNumber(), BetChoice.class);
+			BetChoice b = q2.getSingleResult();
+			
+			TypedQuery<UserBet> q4 = db.createQuery("SELECT b from UserBet b WHERE b.userBetNumber = " + bet.getUserBetNumber(), UserBet.class);
+			UserBet c = q4.getSingleResult();
+			
+			Query q3 = db.createQuery("DELETE FROM UserBet e WHERE e.userBetNumber = " + bet.getUserBetNumber());
+			q3.executeUpdate();
+			
+			u.removeUserBet(c);
+			b.removeUserBet(c);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void addFriend(User user, String friend) {
+		try {
+			db.getTransaction().begin();
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend + "\"", User.class);
+			User f = q2.getSingleResult();
+			
+			if (!f.isAdmin() && !u.getFriends().contains(f))
+				u.addFriend(f);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public void removeFriend(User user, User friend) {
+		try {
+			db.getTransaction().begin();
+			
+			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend.getUsername() + "\"", User.class);
+			User f = q2.getSingleResult();
+			
+			u.removeFriend(f);
+			
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }

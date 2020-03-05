@@ -10,10 +10,11 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -59,7 +60,7 @@ public class BLFacadeImplementation  implements BLFacade {
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
 		
-		 qry=dBManager.createQuestion(event,question,betMinimum);		
+		qry=dBManager.createQuestion(event,question,betMinimum);		
 
 		dBManager.close();
 		
@@ -154,7 +155,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public User userBet(User u, int amount, Bet bet) {
+	public User userBet(User u, int amount, BetChoice bet) {
 		DataAccess dBManager = new DataAccess();
 		User user = dBManager.userBet(u, amount, bet);
 		dBManager.close();
@@ -169,6 +170,111 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return userList;	
 		
+	}
+
+
+	@Override
+	public Event createEvent(String description, Date eventDate) throws EventFinished {
+		DataAccess dBManager=new DataAccess();
+		Event event = null;
+		
+		if(new Date().compareTo(eventDate)>0)
+			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+				
+		event = dBManager.createEvent(description, eventDate);
+
+		dBManager.close();
+		
+		return event;
+	}
+
+
+	@Override
+	public BetChoice addBetChoice(Question question, String response, float odd) {
+		DataAccess dBManager = new DataAccess();
+		BetChoice bet = dBManager.addBet(question, response, odd);
+		dBManager.close();
+		return bet;
+	}
+
+
+	@Override
+	public void removeEvent(Event event) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeEvent(event);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeQuestion(Question question) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeQuestion(question);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeBetChoice(BetChoice bet) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeBet(bet);
+		dBManager.close();
+	}
+
+
+	@Override
+	public Vector<User> getFriends(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<User> friends = dBManager.getFriends(user);
+		dBManager.close();
+		return friends;
+	}
+
+
+	@Override
+	public Vector<UserBet> getUserBets(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<UserBet> bets = dBManager.getUserBet(user);
+		dBManager.close();
+		return bets;
+	}
+	
+	@Override
+	public boolean emailExist(String email) {
+		DataAccess dBManager = new DataAccess();
+		List<User> users = dBManager.getUsers();
+		dBManager.close();
+		
+		for(User user : users) {
+			if(user.getEmail().equals(email))
+				return true;
+		}
+		
+		return false;
+	}
+
+
+	@Override
+	public void removeUserBet(UserBet bet) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeUserBet(bet);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void removeFriend(User user, User friend) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeFriend(user, friend);
+		dBManager.close();
+	}
+
+
+	@Override
+	public void addFriend(User user, String friend) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.addFriend(user, friend);
+		dBManager.close();
 	}
 
 }

@@ -33,7 +33,7 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Bet;
+import domain.BetChoice;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -56,21 +56,18 @@ public class FindQuestionsGUI extends JFrame {
 
 	private JTable tableEvents = new JTable();
 	private JTable tableQueries = new JTable();
-
-	private DefaultTableModel tableModelEvents;
-	private DefaultTableModel tableModelQueries;
-
-	private String[] columnNamesEvents = new String[] { ResourceBundle.getBundle("Etiquetas").getString("EventN"),
-			ResourceBundle.getBundle("Etiquetas").getString("Event"),
-
-	};
-	private String[] columnNamesQueries = new String[] { ResourceBundle.getBundle("Etiquetas").getString("QueryN"),
-			ResourceBundle.getBundle("Etiquetas").getString("Query")
-
-	};
 	
+	private String[] columnNamesEvents = new String[] { ResourceBundle.getBundle("Etiquetas").getString("EventN"),
+			ResourceBundle.getBundle("Etiquetas").getString("Event"),};
+	private String[] columnNamesQueries = new String[] { ResourceBundle.getBundle("Etiquetas").getString("QueryN"),
+			ResourceBundle.getBundle("Etiquetas").getString("Query")};
+
+	private DefaultTableModel tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
+	private DefaultTableModel tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
+
+
 	private JTextField amountBetField = new JTextField();
-	private JComboBox<Bet> choiceBetComboBox = new JComboBox<Bet>();
+	private JComboBox<BetChoice> choiceBetComboBox = new JComboBox<BetChoice>();
 	private JLabel amountBetLbl = new JLabel();
 	private JButton betBtn = new JButton();
 	private JButton editAccountBtn = new JButton("Account");
@@ -79,8 +76,8 @@ public class FindQuestionsGUI extends JFrame {
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
-
-	
+	private final JButton registerBtn = new JButton(
+			ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl) {
 		this.currentUser = currentUser;
@@ -89,6 +86,12 @@ public class FindQuestionsGUI extends JFrame {
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
+			if (currentUser == null) {
+				registerBtn.setVisible(true);
+			} else {
+				registerBtn.setVisible(false);
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +135,7 @@ public class FindQuestionsGUI extends JFrame {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-					
+
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
@@ -145,7 +148,7 @@ public class FindQuestionsGUI extends JFrame {
 						else
 							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
 									+ dateformat1.format(calendarMio.getTime()));
-						
+
 						for (domain.Event ev : events) {
 							Vector<Object> row = new Vector<Object>();
 
@@ -184,7 +187,6 @@ public class FindQuestionsGUI extends JFrame {
 				Event ev = (Event) tableModelEvents.getValueAt(i, 2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions();
 
-				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(3); // another column added to allocate ev objects
 
 				if (queries.isEmpty())
@@ -209,14 +211,12 @@ public class FindQuestionsGUI extends JFrame {
 		});
 
 		scrollPaneEvents.setViewportView(tableEvents);
-		tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
 
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
 
 		scrollPaneQueries.setViewportView(tableQueries);
-		tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
@@ -245,8 +245,8 @@ public class FindQuestionsGUI extends JFrame {
 					return;
 				try {
 					int amount = Integer.parseInt(amountBetField.getText());
-					Bet bet = (Bet) choiceBetComboBox.getSelectedItem();
-					businessLogic.userBet(currentUser,amount,bet);
+					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
+					businessLogic.userBet(currentUser, amount, bet);
 				} catch (Exception e) {
 					return;
 				}
@@ -258,20 +258,32 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(betBtn);
 		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		editAccountBtn.setBounds(464, 0, 108, 25);
-		
+
 		getContentPane().add(editAccountBtn);
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
 				LoginGUI loginGUI = new LoginGUI();
 				loginGUI.setBusinessLogic(businessLogic);
-				loginGUI.setVisible(true);				
+				loginGUI.setVisible(true);
 			}
 		});
 		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		logoutBtn.setBounds(578, 0, 108, 26);
-		
+
 		getContentPane().add(logoutBtn);
+		registerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				self.setVisible(false);
+				RegisterGUI registerGui = new RegisterGUI();
+				registerGui.setBusinessLogic(businessLogic);
+				registerGui.setVisible(true);
+			}
+		});
+		registerBtn.setBounds(40, 415, 97, 25);
+
+		getContentPane().add(registerBtn);
 		betBtn.setVisible(false);
 
 		tableQueries.addMouseListener(new MouseAdapter() {
@@ -279,22 +291,22 @@ public class FindQuestionsGUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (currentUser == null)
 					return;
-				
+
 				int i = tableQueries.getSelectedRow();
 				Question q = (Question) tableModelQueries.getValueAt(i, 2); // obtain ev object
-				
-				Bet[] bets = new Bet[q.getChoices().size()];
+
+				BetChoice[] bets = new BetChoice[q.getChoices().size()];
 				q.getChoices().toArray(bets);
-				
-				choiceBetComboBox.setModel(new DefaultComboBoxModel<Bet>(bets));
-				
+
+				choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+
 				choiceBetComboBox.setVisible(true);
 				amountBetField.setVisible(true);
 				betBtn.setVisible(true);
 				amountBetLbl.setVisible(true);
 			}
 		});
-		
+
 		if (currentUser == null) {
 			editAccountBtn.setVisible(false);
 			logoutBtn.setVisible(false);
@@ -302,9 +314,10 @@ public class FindQuestionsGUI extends JFrame {
 		editAccountBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser, self);
 				userInformationGUI.setBusinessLogic(businessLogic);
-				userInformationGUI.setVisible(true);				
+				userInformationGUI.setVisible(true);
 			}
 		});
 	}

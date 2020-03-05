@@ -68,7 +68,7 @@ public class UserEditInfoGUI extends JFrame {
 		nameField.setColumns(10);
 		moneyField.setColumns(10);
 		setTitle("Bet & Ruin");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JPanel();
 		setContentPane(panel);

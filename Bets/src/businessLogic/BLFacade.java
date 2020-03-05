@@ -7,7 +7,8 @@ import java.util.List;
 //import domain.Booking;
 import domain.Question;
 import domain.User;
-import domain.Bet;
+import domain.UserBet;
+import domain.BetChoice;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -69,6 +70,28 @@ public interface BLFacade  {
 	
 	@WebMethod public List<User> displayUsers();
 
-	@WebMethod public User userBet(User user, int amount, Bet bet);
+	@WebMethod public User userBet(User user, int amount, BetChoice bet);
 	
+	@WebMethod public Event createEvent(String description, Date eventDate) throws EventFinished;
+	
+	@WebMethod public BetChoice addBetChoice(Question question, String response, float odd);
+	
+	@WebMethod public void removeEvent(Event event);
+	
+	@WebMethod public void removeQuestion(Question question);
+	
+	@WebMethod public void removeBetChoice(BetChoice bet);
+	
+	@WebMethod public Vector<User> getFriends(User user);
+	
+	@WebMethod public Vector<UserBet> getUserBets(User user);
+	
+	@WebMethod public boolean emailExist(String email);
+	
+	@WebMethod public void removeUserBet(UserBet bet);
+	
+	@WebMethod public void removeFriend(User user, User friend);
+	
+	@WebMethod public void addFriend(User user, String friend);
 }
+

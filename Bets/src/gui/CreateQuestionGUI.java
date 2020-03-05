@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
@@ -15,6 +17,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javax.jdo.listener.CreateLifecycleListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,10 +30,14 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.BetChoice;
 import domain.Event;
+import domain.Question;
 import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class CreateQuestionGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -55,13 +62,40 @@ public class CreateQuestionGUI extends JFrame {
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 
+	private JButton deleteUserBtn = new JButton("Delete user");
+
+	private final JLabel betsLbl = new JLabel("Bets");
+	private final JLabel newBetLbl = new JLabel("New bet");
+	private JTextField newBetField = new JTextField();
+	private final JLabel oddLbl = new JLabel("Odd");
+	private final JTextField oddField = new JTextField();
+
+	private JButton newBetBtn = new JButton("New bet");
+	private JComboBox<BetChoice> betsComboBox = new JComboBox<BetChoice>();
+	private JLabel questionLbl = new JLabel("Questions");
+	private JComboBox<Question> questionComboBox = new JComboBox<Question>();
+	private JButton createEventBtn = new JButton("Create Event");
+
+	private JLabel newEventLbl = new JLabel("New Event :");
+	private JTextField newEventField = new JTextField();
+
+	private final JButton accountBtn = new JButton("Account");
+	
+	private JButton removeQuestionBtn = new JButton("Remove");
+	private JButton removeBetBtn = new JButton("Remove");
+	private JButton removeEventBtn = new JButton("Remove");
+
+	private Date eventDate = new Date();
+
 	private BLFacade businessLogic;
 	private User currentUser;
+	private CreateQuestionGUI self;
 
-	public CreateQuestionGUI (User currentUser, BLFacade businessLogic) {
+	public CreateQuestionGUI(User currentUser, BLFacade businessLogic) {
 		this.currentUser = currentUser;
 		this.businessLogic = businessLogic;
-	
+		this.self = this;
+
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
@@ -73,29 +107,32 @@ public class CreateQuestionGUI extends JFrame {
 	private void jbInit() throws Exception {
 
 		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(604, 370));
+		this.setSize(new Dimension(700, 600));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 
 		jComboBoxEvents.setModel(modelEvents);
 		jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
-		jLabelListOfEvents.setBounds(new Rectangle(290, 18, 277, 20));
-		jLabelQuery.setBounds(new Rectangle(25, 211, 75, 20));
-		jTextFieldQuery.setBounds(new Rectangle(100, 211, 429, 20));
-		jLabelMinBet.setBounds(new Rectangle(25, 243, 75, 20));
-		jTextFieldPrice.setBounds(new Rectangle(100, 243, 60, 20));
+		jLabelListOfEvents.setBounds(new Rectangle(275, 21, 277, 20));
+		jLabelQuery.setBounds(new Rectangle(25, 254, 90, 20));
+		jTextFieldQuery.setBounds(new Rectangle(115, 254, 350, 20));
+		jLabelMinBet.setBounds(new Rectangle(480, 254, 75, 20));
+		jTextFieldPrice.setBounds(new Rectangle(555, 254, 60, 20));
 
 		jCalendar.setBounds(new Rectangle(40, 50, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
-		jButtonCreate.setBounds(new Rectangle(100, 275, 130, 30));
+		jButtonCreate.setBounds(new Rectangle(223, 285, 130, 30));
 		jButtonCreate.setEnabled(false);
+
+		oddField.setBounds(555, 366, 60, 20);
+		oddField.setColumns(10);
 
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonCreate_actionPerformed(e);
 			}
 		});
-		jButtonClose.setBounds(new Rectangle(275, 275, 130, 30));
+		jButtonClose.setBounds(new Rectangle(264, 501, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonClose_actionPerformed(e);
@@ -127,24 +164,161 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
-		
-		JButton deleteUserBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+
 		deleteUserBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) { ////////////////////////////TUUUUUUUUUUUUUUUUUUUUUU
-				
+			public void actionPerformed(ActionEvent arg0) {
+
 				DeleteUser deleteUser = new DeleteUser(businessLogic);
 				deleteUser.setVisible(true);
-				
+
 			}
 		});
-		deleteUserBtn.setBounds(437, 277, 130, 28);
+		deleteUserBtn.setBounds(375, -2, 111, 28);
 		getContentPane().add(deleteUserBtn);
+
+		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setBusinessLogic(businessLogic);
+				loginGUI.setVisible(true);
+			}
+		});
+		btnLogOut.setBounds(589, 0, 97, 25);
+		getContentPane().add(btnLogOut);
+		accountBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UserInformationGUI adminInformationGUI = new UserInformationGUI(currentUser, null);
+				adminInformationGUI.setBusinessLogic(businessLogic);
+				adminInformationGUI.setVisible(true);
+
+			}
+		});
+		accountBtn.setBounds(489, 0, 97, 25);
+
+		getContentPane().add(accountBtn);
+
+		createEventBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String description = newEventField.getText();
+
+				try {
+
+					businessLogic.createEvent(description, eventDate);
+					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
+					updateEvents(eventDate, dateformat1);
+
+				} catch (EventFinished e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		createEventBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		createEventBtn.setBounds(397, 133, 128, 20);
+		getContentPane().add(createEventBtn);
+
+		questionComboBox.setBounds(115, 223, 350, 20);
+		getContentPane().add(questionComboBox);
+
+		questionLbl.setBounds(new Rectangle(40, 332, 75, 20));
+		questionLbl.setBounds(40, 223, 75, 20);
+		getContentPane().add(questionLbl);
+
+		betsComboBox.setBounds(115, 332, 350, 20);
+		getContentPane().add(betsComboBox);
+		betsLbl.setBounds(55, 332, 60, 23);
+
+		getContentPane().add(betsLbl);
+		newBetLbl.setBounds(49, 366, 66, 20);
+
+		getContentPane().add(newBetLbl);
+
+		newBetField.setBounds(115, 366, 350, 19);
+		getContentPane().add(newBetField);
+		newBetField.setColumns(10);
+		oddLbl.setBounds(480, 366, 75, 17);
+
+		getContentPane().add(oddLbl);
+
+		getContentPane().add(oddField);
+
+		newBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+
+				if (question == null)
+					return;
+
+				String betString = newBetField.getText();
+
+				try {
+					float odd = Float.parseFloat(oddField.getText());
+
+					BetChoice bet = businessLogic.addBetChoice(question, betString, odd);
+					betsComboBox.addItem(bet);
+					betsComboBox.repaint();
+
+				} catch (Exception e2) {
+					return;
+				}
+			}
+		});
+		// newBetBtn.setEnabled(false);
+		newBetBtn.setBounds(223, 396, 130, 30);
+		getContentPane().add(newBetBtn);
+
+		newEventLbl.setBounds(275, 100, 78, 20);
+		getContentPane().add(newEventLbl);
+
+		newEventField.setBounds(356, 100, 224, 20);
+		getContentPane().add(newEventField);
+		newEventField.setColumns(10);
+		removeQuestionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				if (question == null)
+					return;
+				businessLogic.removeQuestion(question);
+			}
+		});
+		
+		removeQuestionBtn.setBounds(491, 220, 89, 23);
+		getContentPane().add(removeQuestionBtn);
+		removeBetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
+				if (bet == null)
+					return;
+				businessLogic.removeBetChoice(bet);
+			}
+		});
+		
+		removeBetBtn.setBounds(491, 331, 89, 23);
+		getContentPane().add(removeBetBtn);
+		removeEventBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Event event = (Event) jComboBoxEvents.getSelectedItem();
+				if (event == null)
+					return;
+				businessLogic.removeEvent(event);
+			}
+		});
+		
+		removeEventBtn.setBounds(535, 46, 89, 23);
+		getContentPane().add(removeEventBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
 //				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 //					public void propertyChange(PropertyChangeEvent propertychangeevent) {
+				questionComboBox.removeAll();
+				betsComboBox.removeAll();
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -153,36 +327,70 @@ public class CreateQuestionGUI extends JFrame {
 					jCalendar.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 
-					try {
-						Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+					eventDate = firstDay;
 
-						if (events.isEmpty())
-							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
-									+ ": " + dateformat1.format(calendarMio.getTime()));
-						else
-							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
-									+ dateformat1.format(calendarMio.getTime()));
-						jComboBoxEvents.removeAllItems();
-						System.out.println("Events " + events);
-
-						for (domain.Event ev : events)
-							modelEvents.addElement(ev);
-						jComboBoxEvents.repaint();
-
-						if (events.size() == 0)
-							jButtonCreate.setEnabled(false);
-						else
-							jButtonCreate.setEnabled(true);
-
-					} catch (Exception e1) {
-
-						jLabelError.setText(e1.getMessage());
-					}
+					updateEvents(firstDay, dateformat1);
 
 				}
 				paintDaysWithEvents(jCalendar);
 			}
 		});
+
+		jComboBoxEvents.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if ((e.getStateChange() == ItemEvent.SELECTED)) {
+					Event event = (Event) jComboBoxEvents.getSelectedItem();
+					System.out.println("Event ---> " + event);
+					questionComboBox.removeAll();
+
+					int size = event.getQuestions().size();
+					if (size == 0) {
+						// newBetBtn.setEnabled(false);
+						return;
+					}
+
+					newBetBtn.setEnabled(true);
+
+					Question questions[] = new Question[size];
+					event.getQuestions().toArray(questions);
+
+					questionComboBox.setModel(new DefaultComboBoxModel<Question>(questions));
+
+					Question question = questions[0];
+
+					System.out.println("Question --> " + question);
+					betsComboBox.removeAll();
+
+					BetChoice bets[] = new BetChoice[question.getChoices().size()];
+					question.getChoices().toArray(bets);
+
+					System.out.println(question.getChoices());
+
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+				}
+			}
+		});
+		;
+
+		questionComboBox.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				Question question = (Question) questionComboBox.getSelectedItem();
+				System.out.println("Question --> " + question);
+				betsComboBox.removeAll();
+
+				BetChoice bets[] = new BetChoice[question.getChoices().size()];
+				question.getChoices().toArray(bets);
+
+				System.out.println(question.getChoices());
+
+				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+			}
+		});
+
 	}
 
 	public void paintDaysWithEvents(JCalendar jCalendar) {
@@ -247,9 +455,13 @@ public class CreateQuestionGUI extends JFrame {
 
 					// Obtain the business logic from a StartWindow class (local or remote)
 
-					businessLogic.createQuestion(event, inputQuery, inputPrice);
+					Question question = businessLogic.createQuestion(event, inputQuery, inputPrice);
 
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCreated"));
+
+					questionComboBox.addItem(question);
+					questionComboBox.repaint();
+					newBetBtn.setVisible(true);
 				}
 			} else
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorQuery"));
@@ -267,9 +479,37 @@ public class CreateQuestionGUI extends JFrame {
 		}
 	}
 
+	private void updateEvents(Date firstDay, DateFormat dateformat1) {
+		try {
+			Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+
+			if (events.isEmpty())
+				jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents") + ": "
+						+ dateformat1.format(calendarMio.getTime()));
+			else
+				jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
+						+ dateformat1.format(calendarMio.getTime()));
+			jComboBoxEvents.removeAllItems();
+			System.out.println("Events " + events);
+
+			for (domain.Event ev : events)
+				modelEvents.addElement(ev);
+			jComboBoxEvents.repaint();
+
+			if (events.size() == 0)
+				jButtonCreate.setEnabled(false);
+			else
+				jButtonCreate.setEnabled(true);
+
+		} catch (Exception e1) {
+
+			jLabelError.setText(e1.getMessage());
+		}
+	}
+
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
-		System.exit(0); //Close the process
+		System.exit(0); // Close the process
 	}
 
 	public void setBusinessogic(BLFacade bl) {
