@@ -122,12 +122,20 @@ public class LoginGUI extends JFrame {
 					self.setVisible(false);
 
 					if(currentUser.isAdmin()) {
-						CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(currentUser,businessLogic);
-						createQuestionGUI.setVisible(true);
+						SportGUI sportGUI = new SportGUI();
+						sportGUI.setVisible(true);
+						sportGUI.setBusinessLogic(businessLogic);
+						sportGUI.setUser(currentUser);
+						//CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(currentUser,businessLogic);
+						//createQuestionGUI.setVisible(true);
 					} else {
-					FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser,businessLogic);
-					findQuestionsGUI.setBusinessLogic(businessLogic);
-					findQuestionsGUI.setVisible(true);
+						SportGUI sportGUI = new SportGUI();
+						sportGUI.setVisible(true);
+						sportGUI.setBusinessLogic(businessLogic);
+						sportGUI.setUser(currentUser);
+					//FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(currentUser,businessLogic);
+					//findQuestionsGUI.setBusinessLogic(businessLogic);
+					//findQuestionsGUI.setVisible(true);
 					}
 					
 				} else {
@@ -181,9 +189,13 @@ public class LoginGUI extends JFrame {
 		spectatorBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
-				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null,businessLogic);
-				findQuestionsGUI.setBusinessLogic(businessLogic);
-				findQuestionsGUI.setVisible(true);
+				SportGUI sportGUI = new SportGUI();
+				sportGUI.setBusinessLogic(businessLogic);
+				sportGUI.setUser(null);
+				sportGUI.setVisible(true);
+				//FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(null,businessLogic);
+				//findQuestionsGUI.setBusinessLogic(businessLogic);
+				//findQuestionsGUI.setVisible(true);
 			}
 		});
 	}

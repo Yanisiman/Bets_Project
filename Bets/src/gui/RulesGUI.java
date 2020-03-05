@@ -180,10 +180,14 @@ public class RulesGUI extends JFrame {
 		
 		btnNewButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
+				SportGUI sportGUI = new SportGUI();
+				//FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
 				frame.setEnabled(false);
-				findQuestionsGUI.setBusinessLogic(businessLogic);
-				findQuestionsGUI.setVisible(true);
+				//findQuestionsGUI.setBusinessLogic(businessLogic);
+				//findQuestionsGUI.setVisible(true);
+				sportGUI.setBusinessLogic(businessLogic);
+				sportGUI.setUser(user);
+				sportGUI.setVisible(true);
 			}
 		});
 		
