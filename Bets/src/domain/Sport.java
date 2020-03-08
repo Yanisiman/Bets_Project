@@ -18,10 +18,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Sport {
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id @GeneratedValue
+	@Id 
 	private String sportName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Vector<Event> sportEvent = new Vector<Event>();
 	
 
@@ -53,5 +53,9 @@ public class Sport {
 
 	public void setSportEvent(Vector<Event> sportEvent) {
 		this.sportEvent = sportEvent;
+	}
+	
+	public void addEvent(Event event) {
+		sportEvent.add(event);
 	}
 }

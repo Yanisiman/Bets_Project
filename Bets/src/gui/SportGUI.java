@@ -8,20 +8,33 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Event;
+import domain.Sport;
 import domain.User;
+import domain.UserBet;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
 
 public class SportGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = new JPanel();
 	private JLabel lblNewLabel_1 = new JLabel("SELECT A SPORT :");
 	private JPanel contentPane;
@@ -29,31 +42,29 @@ public class SportGUI extends JFrame {
 	private JButton nextButton = new JButton("NEXT");
 	private JButton addButton = new JButton("ADD");
 	private JTextArea textArea = new JTextArea();
-	private JComboBox comboBox = new JComboBox();
+	private JComboBox <String> comboBox = new JComboBox();
+	private final JButton removeButton = new JButton("REMOVE");
 	private JTextField textField = new JTextField();
 	private BLFacade businessLogic;
 	private User user;
 	private SportGUI self;
-	/**
-	 * Create the frame.
-	 *
-	 */
+	private boolean b;
 	
-	public SportGUI() {
+
+	
+	public SportGUI(BLFacade businessLogic, User user) {
 		
 		self = this;
+		this.businessLogic = businessLogic;
+		this.user = user;
 		
-		/*if(!user.isAdmin()) {
-			newSportLabel.setVisible(false);
-			textField.setVisible(false);
-			addButton.setVisible(false);
+		
+		List<Sport> allSport = businessLogic.getAllSport();
+		for(Sport s : allSport) {
+			comboBox.addItem(s.getSportName());
 		}
-		else {
-			newSportLabel.setVisible(true);
-			textField.setVisible(true);
-			addButton.setVisible(true);
-		}*/
 		
+
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 559, 368);
@@ -65,9 +76,9 @@ public class SportGUI extends JFrame {
 		
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
@@ -95,15 +106,43 @@ public class SportGUI extends JFrame {
 		gbc_nextButton.gridx = 9;
 		gbc_nextButton.gridy = 8;
 		panel.add(nextButton, gbc_nextButton);
+		nextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBox.getSelectedIndex() == -1) {
+					textArea.setText("Choose a sport");
+				}
+				
+			}
+		});
 		
+		GridBagConstraints gbc_removeButton = new GridBagConstraints();
+		gbc_removeButton.insets = new Insets(0, 0, 5, 5);
+		gbc_removeButton.gridx = 11;
+		gbc_removeButton.gridy = 8;
+		removeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sportString = comboBox.getSelectedItem().toString();
+				Vector<Event> events = null;
+				if(comboBox.getSelectedIndex() == -1)
+					textArea.setText("Select a sport to delete");
+				else {
+					events = businessLogic.getEvents(sportString);
+					businessLogic.removeSport(sportString);
+					comboBox.removeItem(sportString);
+					textArea.setText("" +sportString + " removed");
+					
+				}
+			}
+		});
+				panel.add(removeButton, gbc_removeButton);
 		
-		textArea.setEditable(false);
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridwidth = 8;
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
 		gbc_textArea.gridx = 6;
 		gbc_textArea.gridy = 9;
+		textArea.setEditable(false);
 		panel.add(textArea, gbc_textArea);
 		
 		
@@ -130,8 +169,33 @@ public class SportGUI extends JFrame {
 		gbc_addButton.insets = new Insets(0, 0, 0, 5);
 		gbc_addButton.gridx = 16;
 		gbc_addButton.gridy = 11;
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String newSport = textField.getText();
+				if(newSport.isEmpty() == false) {
+					boolean b = businessLogic.alreadyExist(newSport);
+					if(b == false) {
+						Sport sport = new Sport(newSport);
+						businessLogic.addSport(sport);
+						comboBox.addItem(sport.getSportName());
+						textArea.setText("" + newSport + " is a new sport");
+					}
+					else {
+						textArea.setText("" + newSport + " already exists");
+					}
+				}
+				else {
+					textArea.setText("Write a sport");
+				}
+			}
+		});
 		panel.add(addButton, gbc_addButton);
+		
+		
+
 	}
+	
+	
 	
 	public void setBusinessLogic(BLFacade business_logic) {
 		businessLogic = business_logic;
@@ -139,6 +203,16 @@ public class SportGUI extends JFrame {
 	
 	public void setUser (User user) {
 		this.user = user;
+	}
+	
+	public void setB (boolean b) {
+		this.b = b;
+		if(b == false) {
+			newSportLabel.setVisible(false);
+			textField.setVisible(false);
+			addButton.setVisible(false);
+			removeButton.setVisible(false);
+		}
 	}
 
 }
