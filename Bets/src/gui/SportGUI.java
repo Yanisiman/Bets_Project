@@ -111,6 +111,22 @@ public class SportGUI extends JFrame {
 				if(comboBox.getSelectedIndex() == -1) {
 					textArea.setText("Choose a sport");
 				}
+				else {
+					if(b == false) {
+						FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
+						findQuestionsGUI.setBusinessLogic(businessLogic); //To change
+						findQuestionsGUI.setCurrentUser(user);
+						self.setVisible(false);
+						findQuestionsGUI.setVisible(true);
+					}
+					else {
+						CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(user, businessLogic); //To change 
+						createQuestionGUI.setBusinessogic(businessLogic);
+						createQuestionGUI.setCurrentUser(user);
+						self.setVisible(false);
+						createQuestionGUI.setVisible(true);
+					}
+				}
 				
 			}
 		});
