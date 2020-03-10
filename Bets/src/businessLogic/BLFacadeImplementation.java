@@ -75,7 +75,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of events
 	 */
     @WebMethod	
-	public Vector<Event> getEvents(Date date)  {
+	public Vector<Event> getEvents(Date date)  { 
 		DataAccess dbManager=new DataAccess();
 		Vector<Event>  events=dbManager.getEvents(date);
 		dbManager.close();
@@ -367,6 +367,26 @@ public class BLFacadeImplementation  implements BLFacade {
 		Vector<Sport> sports = dBManager.getUserPreferences(user);
 		dBManager.close();
 		return sports;
+	}
+	
+	@Override
+	public Sport getSport(String sportName) {
+		DataAccess dBManager = new DataAccess();
+		Sport sport = dBManager.getUniqueSport(sportName);
+		dBManager.close();
+		return sport;
+	}
+	
+	@Override
+	public Vector<Event> getSportEvents(Date date, Sport sport){
+		Vector<Event> events = getEvents(date);
+		Vector<Event> sportEvents = sport.getSportEvent();
+		Vector <Event> finalEvents = new Vector<Event>();
+		for(Event e: sportEvents) {
+			if(events.contains(e))
+				finalEvents.add(e);
+		}
+		return finalEvents;
 	}
 }
 

@@ -100,6 +100,7 @@ public class DataAccess {
 			Event ev8 = new Event(8, "Girona-Leganés", UtilDate.newDate(year, month, 17));
 			Event ev9 = new Event(9, "Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
 			Event ev10 = new Event(10, "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
+			Event ev21 = new Event(21, "Digital Step Stone", UtilDate.newDate(year, month, 17));
 
 			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, month, 1));
 			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
@@ -107,13 +108,16 @@ public class DataAccess {
 			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
 			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, month, 1));
 			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
+			Event ev22 = new Event(22, "Digital Step Stone", UtilDate.newDate(year, month, 1));
 
 			Event ev17 = new Event(17, "Málaga-Valencia", UtilDate.newDate(year, month, 28));
 			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month, 28));
+			Event ev23 = new Event(23, "Digital Step Stone", UtilDate.newDate(year, month, 28));
 			
 			Sport sport = new Sport("Football");
+			Sport sport2 = new Sport("Dance");
 			
 			
 			
@@ -133,6 +137,7 @@ public class DataAccess {
 			Question q4;
 			Question q5;
 			Question q6;
+			Question q7;
 
 			if (Locale.getDefault().equals(new Locale("es"))) {
 				q1 = ev1.addQuestion("¿Quién ganará el partido?", 1);
@@ -141,6 +146,7 @@ public class DataAccess {
 				q4 = ev11.addQuestion("¿Cuántos goles se marcarán?", 2);
 				q5 = ev17.addQuestion("¿Quién ganará el partido?", 1);
 				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
+				q7 = ev21.addQuestion("Qué equipo ganará la competencia?", 4);
 			} else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
 				q2 = ev1.addQuestion("Who will score first?", 2);
@@ -148,6 +154,9 @@ public class DataAccess {
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
 				q5 = ev17.addQuestion("Who will win the match?", 1);
 				q6 = ev17.addQuestion("Will there be goals in the first half?", 2);
+				q7 = ev21.addQuestion("Which team will win the competition", 4);
+				
+				
 			} else {
 				q1 = ev1.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q2 = ev1.addQuestion("Zeinek sartuko du lehenengo gola?", 2);
@@ -155,6 +164,7 @@ public class DataAccess {
 				q4 = ev11.addQuestion("Zenbat gol sartuko dira?", 2);
 				q5 = ev17.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
+				q7 = ev21.addQuestion("Zein taldek irabaziko du lehiaketa?", 4);
 
 			}
 			
@@ -170,6 +180,7 @@ public class DataAccess {
 			db.persist(q4);
 			db.persist(q5);
 			db.persist(q6);
+			db.persist(q7);
 
 			db.persist(ev1);
 			db.persist(ev2);
@@ -191,6 +202,9 @@ public class DataAccess {
 			db.persist(ev18);
 			db.persist(ev19);
 			db.persist(ev20);
+			db.persist(ev21);
+			db.persist(ev22);
+			db.persist(ev23);
 
 			db.persist(user);
 			db.persist(user2);
@@ -202,10 +216,32 @@ public class DataAccess {
 			db.persist(b3);
 			
 			db.persist(sport);
+			db.persist(sport2);
 			
 			yanis.addFriend(user2);
 			
 			sport.addEvent(ev1);
+			sport.addEvent(ev2);
+			sport.addEvent(ev3);
+			sport.addEvent(ev4);
+			sport.addEvent(ev5);
+			sport.addEvent(ev6);
+			sport.addEvent(ev7);
+			sport.addEvent(ev8);
+			sport.addEvent(ev10);
+			sport.addEvent(ev11);
+			sport.addEvent(ev12);
+			sport.addEvent(ev13);
+			sport.addEvent(ev14);
+			sport.addEvent(ev15);
+			sport.addEvent(ev16);
+			sport.addEvent(ev17);
+			sport.addEvent(ev18);
+			sport.addEvent(ev19);
+			sport.addEvent(ev20);
+			sport2.addEvent(ev21);
+			sport2.addEvent(ev22);
+			sport2.addEvent(ev23);
 			
 			
 			
@@ -650,6 +686,7 @@ public class DataAccess {
 		db.getTransaction().commit();	
 	}
 	
+
 	public User addSportUser(Sport sport, User user) {
 		try {
 			TypedQuery<Sport> q = db.createQuery("SELECT s FROM Sport s WHERE s.sportNumber = "  + sport.getSportNumber(), Sport.class);
@@ -681,6 +718,12 @@ public class DataAccess {
 			System.out.println("Error with userBets");
 			return null;
 		}
+	}
+	
+	public Sport getUniqueSport (String sportName) {
+		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"", Sport.class);
+		Sport sports = query.getSingleResult();
+		return sports;
 	}
 
 }

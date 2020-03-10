@@ -35,6 +35,7 @@ import configuration.UtilDate;
 import domain.BetChoice;
 import domain.Event;
 import domain.Question;
+import domain.Sport;
 import domain.User;
 import domain.UserBet;
 import exceptions.EventFinished;
@@ -90,13 +91,15 @@ public class CreateQuestionGUI extends JFrame {
 
 	private Date eventDate = new Date();
 
+	private Sport sport;
 	private BLFacade businessLogic;
 	private User currentUser;
 	private CreateQuestionGUI self;
 
-	public CreateQuestionGUI(User currentUser, BLFacade businessLogic) {
+	public CreateQuestionGUI(User currentUser, BLFacade businessLogic, Sport sport) {
 		this.currentUser = currentUser;
 		this.businessLogic = businessLogic;
+		this.sport = sport;
 		this.self = this;
 
 		try {
@@ -528,7 +531,8 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void updateEvents(Date firstDay, DateFormat dateformat1) {
 		try {
-			Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+			//Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+			Vector<domain.Event> events = businessLogic.getSportEvents(firstDay, sport);
 
 			if (events.isEmpty())
 				jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents") + ": "
@@ -565,5 +569,9 @@ public class CreateQuestionGUI extends JFrame {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+	}
+	
+	public void setSport(Sport sport) {
+		this.sport = sport;
 	}
 }
