@@ -43,19 +43,18 @@ public class UserEditInfoGUI extends JFrame {
 	private final JLabel creditCardLbl = new JLabel("Credit card :");
 	private final JTextField creditCardField = new JTextField();
 
-	private final JButton registerBtn = new JButton("Edit");
+	private final JButton editBtn = new JButton("Edit");
 	private final JTextArea errorArea = new JTextArea();
 
 	private final JTextField moneyField = new JTextField();
-	private final JLabel moneyLbl = new JLabel("Add money :");
 
 	private UserEditInfoGUI self;
 	private BLFacade businessLogic;
 	private User currentUser;
 	private UserInformationGUI info;
-	private final JButton addMoneyBtn = new JButton("Add");
 	private final JTextField budgetField = new JTextField();
 	private final JLabel budgetLbl = new JLabel("Budget :");
+	private final JLabel addMoneyLbl = new JLabel("Add Money :");
 
 
 	/**
@@ -75,20 +74,19 @@ public class UserEditInfoGUI extends JFrame {
 
 		panel = new JPanel();
 		setContentPane(panel);
-		setSize(800, 650);
+		setSize(600, 650);
 		self = this;
 
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 20, 50, 80, 68, 297, 66, 35, 30, 50, 20 };
+		gbl_panel.columnWidths = new int[] { 0, 55, 89, 297, 53, 43, 50 };
 		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 36, 35, 49, 43, 0, 35, 64, 20 };
-		gbl_panel.columnWeights = new double[] { 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5 };
 		gbl_panel.rowWeights = new double[] { 1.0, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0,
 				1.0 };
 		panel.setLayout(gbl_panel);
 
 		betAndRuinLbl.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		GridBagConstraints gbc_betAndRuinLbl = new GridBagConstraints();
-		gbc_betAndRuinLbl.gridwidth = 3;
 		gbc_betAndRuinLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_betAndRuinLbl.gridx = 3;
 		gbc_betAndRuinLbl.gridy = 0;
@@ -96,7 +94,7 @@ public class UserEditInfoGUI extends JFrame {
 
 		GridBagConstraints gbc_registrationLbl = new GridBagConstraints();
 		gbc_registrationLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_registrationLbl.gridx = 4;
+		gbc_registrationLbl.gridx = 3;
 		gbc_registrationLbl.gridy = 1;
 		registrationLbl.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(registrationLbl, gbc_registrationLbl);
@@ -106,15 +104,15 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_usernameLbl.anchor = GridBagConstraints.EAST;
 		gbc_usernameLbl.gridwidth = 2;
 		gbc_usernameLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_usernameLbl.gridx = 2;
+		gbc_usernameLbl.gridx = 1;
 		gbc_usernameLbl.gridy = 3;
 		panel.add(usernameLbl, gbc_usernameLbl);
 
 		GridBagConstraints gbc_usernameField = new GridBagConstraints();
-		gbc_usernameField.gridwidth = 3;
+		gbc_usernameField.gridwidth = 2;
 		gbc_usernameField.insets = new Insets(0, 0, 5, 5);
 		gbc_usernameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_usernameField.gridx = 4;
+		gbc_usernameField.gridx = 3;
 		gbc_usernameField.gridy = 3;
 		panel.add(usernameField, gbc_usernameField);
 		usernameField.setColumns(10);
@@ -123,16 +121,16 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_oldPasswordLbl.gridwidth = 2;
 		gbc_oldPasswordLbl.anchor = GridBagConstraints.EAST;
 		gbc_oldPasswordLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_oldPasswordLbl.gridx = 2;
+		gbc_oldPasswordLbl.gridx = 1;
 		gbc_oldPasswordLbl.gridy = 4;
 		oldPasswordLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(oldPasswordLbl, gbc_oldPasswordLbl);
 
 		GridBagConstraints gbc_oldPasswordField = new GridBagConstraints();
-		gbc_oldPasswordField.gridwidth = 3;
+		gbc_oldPasswordField.gridwidth = 2;
 		gbc_oldPasswordField.insets = new Insets(0, 0, 5, 5);
 		gbc_oldPasswordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_oldPasswordField.gridx = 4;
+		gbc_oldPasswordField.gridx = 3;
 		gbc_oldPasswordField.gridy = 4;
 		panel.add(oldPasswordField, gbc_oldPasswordField);
 
@@ -141,15 +139,15 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_passwordLbl.anchor = GridBagConstraints.EAST;
 		gbc_passwordLbl.gridwidth = 2;
 		gbc_passwordLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordLbl.gridx = 2;
+		gbc_passwordLbl.gridx = 1;
 		gbc_passwordLbl.gridy = 5;
 		panel.add(passwordLbl, gbc_passwordLbl);
 
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.gridwidth = 3;
+		gbc_passwordField.gridwidth = 2;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 4;
+		gbc_passwordField.gridx = 3;
 		gbc_passwordField.gridy = 5;
 		panel.add(passwordField, gbc_passwordField);
 
@@ -157,16 +155,16 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_nameLbl.anchor = GridBagConstraints.EAST;
 		gbc_nameLbl.gridwidth = 2;
 		gbc_nameLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_nameLbl.gridx = 2;
+		gbc_nameLbl.gridx = 1;
 		gbc_nameLbl.gridy = 6;
 		nameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nameLbl, gbc_nameLbl);
 
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
-		gbc_nameField.gridwidth = 3;
+		gbc_nameField.gridwidth = 2;
 		gbc_nameField.insets = new Insets(0, 0, 5, 5);
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nameField.gridx = 4;
+		gbc_nameField.gridx = 3;
 		gbc_nameField.gridy = 6;
 		panel.add(nameField, gbc_nameField);
 
@@ -174,16 +172,16 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_familyNameLbl.anchor = GridBagConstraints.EAST;
 		gbc_familyNameLbl.gridwidth = 2;
 		gbc_familyNameLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_familyNameLbl.gridx = 2;
+		gbc_familyNameLbl.gridx = 1;
 		gbc_familyNameLbl.gridy = 7;
 		familyNameLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(familyNameLbl, gbc_familyNameLbl);
 
 		GridBagConstraints gbc_familyNameField = new GridBagConstraints();
-		gbc_familyNameField.gridwidth = 3;
+		gbc_familyNameField.gridwidth = 2;
 		gbc_familyNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_familyNameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_familyNameField.gridx = 4;
+		gbc_familyNameField.gridx = 3;
 		gbc_familyNameField.gridy = 7;
 		panel.add(familyNameField, gbc_familyNameField);
 
@@ -191,35 +189,44 @@ public class UserEditInfoGUI extends JFrame {
 		gbc_creditCardLbl.gridwidth = 2;
 		gbc_creditCardLbl.anchor = GridBagConstraints.EAST;
 		gbc_creditCardLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_creditCardLbl.gridx = 2;
+		gbc_creditCardLbl.gridx = 1;
 		gbc_creditCardLbl.gridy = 8;
 		creditCardLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(creditCardLbl, gbc_creditCardLbl);
 		creditCardField.setColumns(10);
 
 		GridBagConstraints gbc_creditCardField = new GridBagConstraints();
-		gbc_creditCardField.gridwidth = 3;
+		gbc_creditCardField.gridwidth = 2;
 		gbc_creditCardField.insets = new Insets(0, 0, 5, 5);
 		gbc_creditCardField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_creditCardField.gridx = 4;
+		gbc_creditCardField.gridx = 3;
 		gbc_creditCardField.gridy = 8;
 		panel.add(creditCardField, gbc_creditCardField);
 		
+		GridBagConstraints gbc_addMoneyLbl = new GridBagConstraints();
+		gbc_addMoneyLbl.gridwidth = 2;
+		gbc_addMoneyLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_addMoneyLbl.anchor = GridBagConstraints.EAST;
+		gbc_addMoneyLbl.gridx = 1;
+		gbc_addMoneyLbl.gridy = 9;
+		addMoneyLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel.add(addMoneyLbl, gbc_addMoneyLbl);
+		
 		
 		GridBagConstraints gbc_moneyField = new GridBagConstraints();
+		gbc_moneyField.gridwidth = 2;
 		gbc_moneyField.insets = new Insets(0, 0, 5, 5);
 		gbc_moneyField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_moneyField.gridx = 4;
+		gbc_moneyField.gridx = 3;
 		gbc_moneyField.gridy = 9;
 		panel.add(moneyField, gbc_moneyField);
 
-		GridBagConstraints gbc_registerBtn = new GridBagConstraints();
-		gbc_registerBtn.gridwidth = 4;
-		gbc_registerBtn.fill = GridBagConstraints.BOTH;
-		gbc_registerBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_registerBtn.gridx = 3;
-		gbc_registerBtn.gridy = 11;
-		registerBtn.addActionListener(new ActionListener() {
+		GridBagConstraints gbc_editBtn = new GridBagConstraints();
+		gbc_editBtn.fill = GridBagConstraints.BOTH;
+		gbc_editBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_editBtn.gridx = 3;
+		gbc_editBtn.gridy = 11;
+		editBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (!usernameField.getText().equals("")) {
@@ -236,56 +243,56 @@ public class UserEditInfoGUI extends JFrame {
 					}
 				}
 				
+				if (!moneyField.getText().equals("")) {
+					try {
+						int money = Integer.parseInt(moneyField.getText());
+						businessLogic.addMoney(currentUser, money);
+						currentUser.updateMoney(money);
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+				}
+				
+				int budget = 0;
+				if (!budgetField.getText().equals("")) {
+					try {
+						budget = Integer.parseInt(budgetField.getText());
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+				}
+				
 				currentUser = businessLogic.updateUser(currentUser.getEmail(), usernameField.getText(), passwordField.getText(),
-						nameField.getText(), familyNameField.getText(), creditCardField.getText(), currentUser.getMoney());
+						nameField.getText(), familyNameField.getText(), creditCardField.getText(), currentUser.getMoney(), budget);
 				self.setVisible(false);
 				info.refresh(currentUser);				
 			}
 		});
 		
-		GridBagConstraints gbc_addMoneyBtn = new GridBagConstraints();
-		gbc_addMoneyBtn.fill = GridBagConstraints.HORIZONTAL;
-		gbc_addMoneyBtn.gridwidth = 2;
-		gbc_addMoneyBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_addMoneyBtn.gridx = 5;
-		gbc_addMoneyBtn.gridy = 9;
-		addMoneyBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					int money = Integer.parseInt(moneyField.getText());
-					businessLogic.addMoney(currentUser, money);
-					currentUser.updateMoney(money);
-				} catch (Exception e) {
-					
-				}
-			}
-		});
-		addMoneyBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		panel.add(addMoneyBtn, gbc_addMoneyBtn);
-		
 		GridBagConstraints gbc_budgetLbl = new GridBagConstraints();
 		gbc_budgetLbl.gridwidth = 2;
 		gbc_budgetLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_budgetLbl.anchor = GridBagConstraints.EAST;
-		gbc_budgetLbl.gridx = 2;
+		gbc_budgetLbl.gridx = 1;
 		gbc_budgetLbl.gridy = 10;
 		budgetLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(budgetLbl, gbc_budgetLbl);
 		
 		
 		GridBagConstraints gbc_budgetField = new GridBagConstraints();
+		gbc_budgetField.gridwidth = 2;
 		gbc_budgetField.insets = new Insets(0, 0, 5, 5);
 		gbc_budgetField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_budgetField.gridx = 4;
+		gbc_budgetField.gridx = 3;
 		gbc_budgetField.gridy = 10;
 		panel.add(budgetField, gbc_budgetField);
-		panel.add(registerBtn, gbc_registerBtn);
+		panel.add(editBtn, gbc_editBtn);
 
 		GridBagConstraints gbc_errorArea = new GridBagConstraints();
 		gbc_errorArea.gridwidth = 4;
 		gbc_errorArea.insets = new Insets(0, 0, 5, 5);
 		gbc_errorArea.fill = GridBagConstraints.BOTH;
-		gbc_errorArea.gridx = 3;
+		gbc_errorArea.gridx = 2;
 		gbc_errorArea.gridy = 13;
 		errorArea.setEditable(false);
 		panel.add(errorArea, gbc_errorArea);

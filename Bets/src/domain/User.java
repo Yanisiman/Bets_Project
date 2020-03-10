@@ -29,12 +29,15 @@ public class User implements Serializable {
 	private String creditCard;
 	private String birthDate;
 	private Date creationDate;	
+	private boolean isAdmin;
+	
 	private float money;
 	private float budget;
-	private boolean isAdmin;
+	private float moneySpentPerMonth;	
 	
 	private Vector<UserBet> bets;
 	private Vector<User> friends;
+	private Vector<Sport> preferences;
 	
 	
 	/**
@@ -62,10 +65,13 @@ public class User implements Serializable {
 		this.creationDate = new Date();
 		
 		this.money = 0;
+		this.budget = 0;
+		this.moneySpentPerMonth = 0;
 		this.isAdmin = false;
 		
 		this.bets = new Vector<UserBet>();
 		this.friends = new Vector<User>();		
+		this.preferences = new Vector<Sport>();
 	}
 
 
@@ -297,6 +303,46 @@ public class User implements Serializable {
 	 */
 	public void setBudget(float budget) {
 		this.budget = budget;
+	}
+
+
+	/**
+	 * @return the moneySpentPerMonth
+	 */
+	public float getMoneySpentPerMonth() {
+		return moneySpentPerMonth;
+	}
+
+
+	/**
+	 * @param moneySpentPerMonth the moneySpentPerMonth to set
+	 */
+	public void setMoneySpentPerMonth(float moneySpentPerMonth) {
+		this.moneySpentPerMonth = moneySpentPerMonth;
+	}
+	
+	public void addMoneySpentPerMont(float money) {
+		this.moneySpentPerMonth += money;
+	}
+
+
+	/**
+	 * @return the preferences
+	 */
+	public Vector<Sport> getPreferences() {
+		return preferences;
+	}
+
+
+	/**
+	 * @param preferences the preferences to set
+	 */
+	public void setPreferences(Vector<Sport> preferences) {
+		this.preferences = preferences;
+	}
+	
+	public void addPreference(Sport sport) {
+		this.preferences.add(sport);
 	}
 
 

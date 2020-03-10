@@ -195,6 +195,8 @@ public class CreateQuestionGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				UserInformationGUI adminInformationGUI = new UserInformationGUI(currentUser, null);
 				adminInformationGUI.setBusinessLogic(businessLogic);
+				adminInformationGUI.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				adminInformationGUI.setUndecorated(true);
 				adminInformationGUI.setVisible(true);
 
 			}

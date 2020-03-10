@@ -63,7 +63,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void createUser(User user);
 	
-	@WebMethod public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money);
+	@WebMethod public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money, float budget);
 	
 	@WebMethod public void deleteUser(User user);
 
@@ -110,5 +110,8 @@ public interface BLFacade  {
 	@WebMethod 	public void addSport(Sport sport);
 	
 	@WebMethod 	public void removeSport (String sportName);
+	
+	@WebMethod public User addUserSport(Sport sport, User user);
+	
+	@WebMethod public Vector<Sport> getUserPreferences(User user);
 }
-

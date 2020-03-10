@@ -42,7 +42,7 @@ public class SportGUI extends JFrame {
 	private JButton nextButton = new JButton("NEXT");
 	private JButton addButton = new JButton("ADD");
 	private JTextArea textArea = new JTextArea();
-	private JComboBox <String> comboBox = new JComboBox();
+	private JComboBox <String> comboBox = new JComboBox<String>();
 	private final JButton removeButton = new JButton("REMOVE");
 	private JTextField textField = new JTextField();
 	private BLFacade businessLogic;
@@ -63,8 +63,6 @@ public class SportGUI extends JFrame {
 		for(Sport s : allSport) {
 			comboBox.addItem(s.getSportName());
 		}
-		
-
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 559, 368);

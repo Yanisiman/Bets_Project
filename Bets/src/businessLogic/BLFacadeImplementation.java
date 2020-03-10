@@ -147,9 +147,9 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money) {
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money, float budget) {
 		DataAccess dBManager = new DataAccess();
-		User user = dBManager.updateUser(email, username, password, name, familyName, creditCard, money);
+		User user = dBManager.updateUser(email, username, password, name, familyName, creditCard, money, budget);
 		dBManager.close();
 		return user;
 	}
@@ -349,6 +349,24 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 		dBManager.close();
 		return events;
+	}
+
+
+	@Override
+	public User addUserSport(Sport sport, User user) {
+		DataAccess dBManager = new DataAccess();
+		User u = dBManager.addSportUser(sport, user);
+		dBManager.close();
+		return u;
+	}
+
+
+	@Override
+	public Vector<Sport> getUserPreferences(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<Sport> sports = dBManager.getUserPreferences(user);
+		dBManager.close();
+		return sports;
 	}
 }
 

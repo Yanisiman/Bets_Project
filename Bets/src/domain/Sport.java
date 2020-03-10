@@ -19,6 +19,8 @@ public class Sport {
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id 
+	@GeneratedValue
+	private Integer sportNumber;
 	private String sportName;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -57,5 +59,26 @@ public class Sport {
 	
 	public void addEvent(Event event) {
 		sportEvent.add(event);
+	}
+
+
+	/**
+	 * @return the sportNumber
+	 */
+	public Integer getSportNumber() {
+		return sportNumber;
+	}
+
+
+	/**
+	 * @param sportNumber the sportNumber to set
+	 */
+	public void setSportNumber(Integer sportNumber) {
+		this.sportNumber = sportNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return sportName;
 	}
 }

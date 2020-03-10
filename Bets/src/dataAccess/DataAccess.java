@@ -339,7 +339,7 @@ public class DataAccess {
 		}
 	}
 	
-	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money) {
+	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money, float budget) {
 		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
 		User user = q.getSingleResult();
 		db.getTransaction().begin();
@@ -355,6 +355,7 @@ public class DataAccess {
 		if (!creditCard.equals(""))
 			user.setCreditCard(creditCard);
 		user.setMoney(money);
+		user.setBudget(budget);
 		
 		db.getTransaction().commit();
 		return user;
@@ -398,9 +399,12 @@ public class DataAccess {
 			db.getTransaction().begin();
 			UserBet userBet = new UserBet(user, amount, b);
 			db.persist(userBet);
-			db.getTransaction().commit();
 			
-			addMoneyUser(user, -amount);
+			user.updateMoney(-amount);
+			user.addMoneySpentPerMont(amount);
+			
+			db.getTransaction().commit();		
+			
 			updateOdds(b);
 			
 			return user;
@@ -623,7 +627,7 @@ public class DataAccess {
 		}
 	}
 	
-	public List<Sport> getSport (){
+	public List<Sport> getSport(){
 			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
 			List<Sport> sports = query.getResultList();
 			for (Sport c: sports) {
@@ -644,6 +648,39 @@ public class DataAccess {
 		Sport sport2 = q1.getSingleResult();
 		db.remove(sport2);
 		db.getTransaction().commit();	
+	}
+	
+	public User addSportUser(Sport sport, User user) {
+		try {
+			TypedQuery<Sport> q = db.createQuery("SELECT s FROM Sport s WHERE s.sportNumber = "  + sport.getSportNumber(), Sport.class);
+			Sport s = q.getSingleResult();
+			
+			TypedQuery<User> q2 = db.createQuery("SELECT u FROM User u WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			
+			db.getTransaction().begin();
+			u.addPreference(s);
+			db.getTransaction().commit();
+			
+			return u;
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	
+	}
+	
+	public Vector<Sport> getUserPreferences(User user){
+		try {	
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getPreferences());
+			return u.getPreferences();
+		} catch (Exception e) {
+			System.out.println("Error with userBets");
+			return null;
+		}
 	}
 
 }

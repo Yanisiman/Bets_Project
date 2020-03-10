@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -45,8 +46,6 @@ public class FindQuestionsGUI extends JFrame {
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries"));
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events"));
-
-	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
@@ -72,12 +71,14 @@ public class FindQuestionsGUI extends JFrame {
 	private JButton betBtn = new JButton();
 	private JButton editAccountBtn = new JButton("Account");
 	private final JButton logoutBtn = new JButton("Log out");
+	private JTextArea textArea = new JTextArea();
+	
+	private boolean confirmationBet = false;
 
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
-	private final JButton registerBtn = new JButton(
-			ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton registerBtn = new JButton("Register");
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl) {
 		this.currentUser = currentUser;
@@ -110,16 +111,6 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
-
-		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
-		jButtonClose.setVisible(false);
-		jButtonClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jButton2_actionPerformed(e);
-			}
-		});
-
-		this.getContentPane().add(jButtonClose, null);
 
 		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
 
@@ -254,22 +245,38 @@ public class FindQuestionsGUI extends JFrame {
 		amountBetField.setColumns(10);
 		amountBetField.setVisible(false);
 
-		amountBetLbl.setText("Amount :"); //$NON-NLS-1$ //$NON-NLS-2$
+		amountBetLbl.setText("Amount :");
 		amountBetLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		amountBetLbl.setBounds(378, 378, 63, 14);
 		getContentPane().add(amountBetLbl);
 		amountBetLbl.setVisible(false);
 		betBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				textArea.setVisible(false);
 				if (amountBetField.getText().equals(""))
+				{
+					confirmationBet = false;
 					return;
+				}
 				try {
+					currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
 					int amount = Integer.parseInt(amountBetField.getText());
 					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
 					if (currentUser.getMoney() < amount)
 						return;
-					businessLogic.userBet(currentUser, amount, bet);
-					displayBetChoices();
+					if (currentUser.getMoneySpentPerMonth() + amount > currentUser.getBudget())
+					{
+						textArea.setVisible(true);
+						textArea.setText("Are you sure you want to bet ? You already bet more than your budget allows you");
+						confirmationBet = true;
+						return;
+					}
+					if (!confirmationBet) {
+						currentUser = businessLogic.userBet(currentUser, amount, bet);
+						displayBetChoices();
+						confirmationBet = false;
+					}
+					
 				} catch (Exception e) {
 					return;
 				}
@@ -326,13 +333,18 @@ public class FindQuestionsGUI extends JFrame {
 				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
 				UserInformationGUI userInformationGUI = new UserInformationGUI(currentUser, self);
 				userInformationGUI.setBusinessLogic(businessLogic);
+				userInformationGUI.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				userInformationGUI.setUndecorated(true);
 				userInformationGUI.setVisible(true);
 			}
 		});
-	}
-
-	private void jButton2_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
+		
+		textArea.setBounds(147, 415, 406, 25);
+		textArea.setText("");
+		textArea.setEnabled(false);
+		textArea.setEditable(false);
+		textArea.setVisible(false);
+		getContentPane().add(textArea);
 	}
 
 	public void setBusinessLogic(BLFacade bl) {
