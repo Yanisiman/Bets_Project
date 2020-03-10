@@ -74,6 +74,7 @@ public class FindQuestionsGUI extends JFrame {
 	private JButton editAccountBtn = new JButton("Account");
 	private final JButton logoutBtn = new JButton("Log out");
 	private JTextArea textArea = new JTextArea();
+	private JLabel moneyField = new JLabel("Money :");
 	
 	private boolean confirmationBet = false;
 
@@ -85,9 +86,9 @@ public class FindQuestionsGUI extends JFrame {
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl, Sport sport) {
 		this.currentUser = currentUser;
-		businessLogic = bl;
+		this.businessLogic = bl;
 		this.sport = sport;
-		self = this;
+		this.self = this;
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
@@ -186,6 +187,9 @@ public class FindQuestionsGUI extends JFrame {
 
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
 		scrollPaneQueries.setBounds(new Rectangle(138, 236, 406, 116));
+		
+		tableEvents.setDefaultEditor(Object.class, null);
+		tableQueries.setDefaultEditor(Object.class, null);
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
@@ -269,19 +273,22 @@ public class FindQuestionsGUI extends JFrame {
 					int amount = Integer.parseInt(amountBetField.getText());
 					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
 					if (currentUser.getMoney() < amount)
+					{
+						textArea.setVisible(true);
+						textArea.setText("You don't have enough money to bet. You can money to your account in your edit profile tab");
 						return;
-					if (currentUser.getMoneySpentPerMonth() + amount > currentUser.getBudget())
+					}
+					if (currentUser.getMoneySpentPerMonth() + amount > currentUser.getBudget() && !confirmationBet)
 					{
 						textArea.setVisible(true);
 						textArea.setText("Are you sure you want to bet ? You already bet more than your budget allows you");
 						confirmationBet = true;
 						return;
 					}
-					if (!confirmationBet) {
-						currentUser = businessLogic.userBet(currentUser, amount, bet);
-						displayBetChoices();
-						confirmationBet = false;
-					}
+					currentUser = businessLogic.userBet(currentUser, amount, bet);
+					moneyField.setText("Money : " + currentUser.getMoney() + " €");
+					displayBetChoices();
+					confirmationBet = false;
 					
 				} catch (Exception e) {
 					return;
@@ -351,6 +358,10 @@ public class FindQuestionsGUI extends JFrame {
 		textArea.setEditable(false);
 		textArea.setVisible(false);
 		getContentPane().add(textArea);
+		
+		moneyField.setText("Money : " + currentUser.getMoney() + " €");
+		moneyField.setBounds(357, 0, 103, 23);
+		getContentPane().add(moneyField);
 	}
 
 	public void setBusinessLogic(BLFacade bl) {
@@ -401,6 +412,7 @@ public class FindQuestionsGUI extends JFrame {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+		moneyField.setText("Money : " + currentUser.getMoney() + " €");
 	}
 	
 

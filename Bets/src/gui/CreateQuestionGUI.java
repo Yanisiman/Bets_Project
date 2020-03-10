@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,8 @@ import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -18,8 +21,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
+import java.util.zip.DataFormatException;
 
-import javax.jdo.listener.CreateLifecycleListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,8 +43,6 @@ import domain.User;
 import domain.UserBet;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 
 public class CreateQuestionGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -84,10 +85,13 @@ public class CreateQuestionGUI extends JFrame {
 	private JTextField newEventField = new JTextField();
 
 	private final JButton accountBtn = new JButton("Account");
-	
+
 	private JButton removeQuestionBtn = new JButton("Remove");
 	private JButton removeBetBtn = new JButton("Remove");
 	private JButton removeEventBtn = new JButton("Remove");
+
+	private JLabel eventTimeLbl = new JLabel("Time :");
+	private JTextField eventTimeField = new JTextField();
 
 	private Date eventDate = new Date();
 
@@ -145,12 +149,10 @@ public class CreateQuestionGUI extends JFrame {
 			}
 		});
 
-		jLabelMsg.setBounds(new Rectangle(275, 182, 305, 20));
-		jLabelMsg.setForeground(Color.red);
+		jLabelMsg.setBounds(new Rectangle(183, 461, 305, 20));
 		// jLabelMsg.setSize(new Dimension(305, 20));
 
 		jLabelError.setBounds(new Rectangle(172, 244, 305, 20));
-		jLabelError.setForeground(Color.red);
 
 		this.getContentPane().add(jLabelMsg, null);
 		this.getContentPane().add(jLabelError, null);
@@ -170,6 +172,12 @@ public class CreateQuestionGUI extends JFrame {
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
+
+		eventTimeLbl.setBounds(275, 131, 75, 20);
+		getContentPane().add(eventTimeLbl);
+
+		eventTimeField.setBounds(356, 131, 224, 20);
+		getContentPane().add(eventTimeField);
 
 		deleteUserBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -198,7 +206,7 @@ public class CreateQuestionGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				UserInformationGUI adminInformationGUI = new UserInformationGUI(currentUser, null);
 				adminInformationGUI.setBusinessLogic(businessLogic);
-				adminInformationGUI.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				adminInformationGUI.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				adminInformationGUI.setUndecorated(true);
 				adminInformationGUI.setVisible(true);
 
@@ -212,52 +220,78 @@ public class CreateQuestionGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String description = newEventField.getText();
 
-				try {
+				String time = eventTimeField.getText();
+				if (time.equals("")) {
+					return;
+				}
 
-					Event event = businessLogic.createEvent(description, eventDate);
-					
+				SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
+
+				try {
+					Date t = parser.parse(time);
+					Date ev = eventDate;
+
+					ev.setHours(t.getHours());
+					ev.setMinutes(t.getMinutes());
+
+					Event event = businessLogic.createEvent(description, ev);
+
 					Timer timer = new Timer();
 					TimerTask timerTask = new TimerTask() {
-						
+
 						@Override
 						public void run() {
 							System.out.println("Event Closed");
 							Event e = businessLogic.getEvent(event);
-							for (Question q: e.getQuestions()) {
-								for (BetChoice b: q.getChoices()) {
-									for (UserBet userBet: b.getUserBets()) {
-										if (q.getResult().equals(b)) {		
+							for (Question q : e.getQuestions()) {
+								for (BetChoice b : q.getChoices()) {
+									for (UserBet userBet : b.getUserBets()) {
+										if (q.getResult().equals(b)) {
 											int amount = userBet.getAmountBet();
 											float odds = userBet.getOdds();
-											System.out.println(userBet.getUser() + " Wins " + odds * amount + " " + userBet.getBet());
+											System.out.println(userBet.getUser() + " Wins " + odds * amount + " "
+													+ userBet.getBet());
 											businessLogic.addMoney(userBet.getUser(), amount * odds);
+										}
+										switch (userBet.getUser().getBets().size()) {
+										case 5:
+											businessLogic.addMoney(userBet.getUser(), 10);
+											break;
+										case 10:
+											businessLogic.addMoney(userBet.getUser(), 20);
+											break;
+										default:
+											break;
 										}
 									}
 								}
 							}
 						}
-					};		
-					timer.schedule(timerTask, eventDate);
-				
+					};
+					timer.schedule(timerTask, ev);
+
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					updateEvents(eventDate, dateformat1);
 
 				} catch (EventFinished e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
 				}
 
 			}
 		});
 
 		createEventBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		createEventBtn.setBounds(397, 133, 128, 20);
+		createEventBtn.setBounds(394, 162, 128, 20);
 		getContentPane().add(createEventBtn);
 
 		questionComboBox.setBounds(115, 223, 350, 20);
 		getContentPane().add(questionComboBox);
 
-		questionLbl.setBounds(new Rectangle(40, 332, 75, 20));
+		questionLbl.setBounds(new Rectangle(40, 336, 75, 20));
 		questionLbl.setBounds(40, 223, 75, 20);
 		getContentPane().add(questionLbl);
 
@@ -318,7 +352,7 @@ public class CreateQuestionGUI extends JFrame {
 				businessLogic.removeQuestion(question);
 			}
 		});
-		
+
 		removeQuestionBtn.setBounds(491, 220, 89, 23);
 		getContentPane().add(removeQuestionBtn);
 		removeBetBtn.addActionListener(new ActionListener() {
@@ -329,7 +363,7 @@ public class CreateQuestionGUI extends JFrame {
 				businessLogic.removeBetChoice(bet);
 			}
 		});
-		
+
 		removeBetBtn.setBounds(491, 331, 89, 23);
 		getContentPane().add(removeBetBtn);
 		removeEventBtn.addActionListener(new ActionListener() {
@@ -340,11 +374,12 @@ public class CreateQuestionGUI extends JFrame {
 				businessLogic.removeEvent(event);
 			}
 		});
-		
+
 		removeEventBtn.setBounds(535, 46, 89, 23);
 		getContentPane().add(removeEventBtn);
-		
-		JButton resultBetBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+
+		JButton resultBetBtn = new JButton(
+				ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		resultBetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
@@ -353,7 +388,7 @@ public class CreateQuestionGUI extends JFrame {
 				Question question = (Question) questionComboBox.getSelectedItem();
 				if (question == null)
 					return;
-				
+
 				businessLogic.setResult(question, bet);
 				User admin = businessLogic.checkLogin("admin", "");
 				businessLogic.userBet(admin, 10, bet);
@@ -365,15 +400,16 @@ public class CreateQuestionGUI extends JFrame {
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-//				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-//					public void propertyChange(PropertyChangeEvent propertychangeevent) {
-				questionComboBox.removeAll();
-				betsComboBox.removeAll();
+
+				questionComboBox.setModel(new DefaultComboBoxModel<Question>());
+				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>());
+				DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
+
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
 					calendarMio = (Calendar) propertychangeevent.getNewValue();
-					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
+					
 					jCalendar.setCalendar(calendarMio);
 					Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 
@@ -381,6 +417,13 @@ public class CreateQuestionGUI extends JFrame {
 
 					updateEvents(firstDay, dateformat1);
 
+				}
+				else if (propertychangeevent.getPropertyName().equals("day")) {
+					int day = (int) propertychangeevent.getNewValue();
+					Date d = eventDate;
+					d.setDate(day);
+					
+					updateEvents(d, dateformat1);
 				}
 				paintDaysWithEvents(jCalendar);
 			}
@@ -391,9 +434,14 @@ public class CreateQuestionGUI extends JFrame {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if ((e.getStateChange() == ItemEvent.SELECTED)) {
+					questionComboBox.setModel(new DefaultComboBoxModel<Question>());
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>());
+
 					Event event = (Event) jComboBoxEvents.getSelectedItem();
+					if (event == null)
+						return;
+
 					System.out.println("Event ---> " + event);
-					questionComboBox.removeAll();
 
 					int size = event.getQuestions().size();
 					if (size == 0) {
@@ -412,6 +460,7 @@ public class CreateQuestionGUI extends JFrame {
 
 					System.out.println("Question --> " + question);
 					betsComboBox.removeAll();
+					betsComboBox.repaint();
 
 					BetChoice bets[] = new BetChoice[question.getChoices().size()];
 					question.getChoices().toArray(bets);
@@ -428,16 +477,21 @@ public class CreateQuestionGUI extends JFrame {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				Question question = (Question) questionComboBox.getSelectedItem();
-				System.out.println("Question --> " + question);
-				betsComboBox.removeAll();
+				if ((e.getStateChange() == ItemEvent.SELECTED)) {
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>());
 
-				BetChoice bets[] = new BetChoice[question.getChoices().size()];
-				question.getChoices().toArray(bets);
+					Question question = (Question) questionComboBox.getSelectedItem();
+					if (question == null)
+						return;
+					System.out.println("Question --> " + question);
 
-				System.out.println(question.getChoices());
+					BetChoice bets[] = new BetChoice[question.getChoices().size()];
+					question.getChoices().toArray(bets);
 
-				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+					System.out.println(question.getChoices());
+
+					betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
+				}
 			}
 		});
 
@@ -531,7 +585,7 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void updateEvents(Date firstDay, DateFormat dateformat1) {
 		try {
-			//Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+			// Vector<domain.Event> events = businessLogic.getEvents(firstDay);
 			Vector<domain.Event> events = businessLogic.getSportEvents(firstDay, sport);
 
 			if (events.isEmpty())
@@ -553,7 +607,7 @@ public class CreateQuestionGUI extends JFrame {
 				jButtonCreate.setEnabled(true);
 
 		} catch (Exception e1) {
-
+			e1.printStackTrace();
 			jLabelError.setText(e1.getMessage());
 		}
 	}
@@ -570,7 +624,7 @@ public class CreateQuestionGUI extends JFrame {
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-	
+
 	public void setSport(Sport sport) {
 		this.sport = sport;
 	}

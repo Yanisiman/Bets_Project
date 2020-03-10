@@ -3,13 +3,10 @@ package dataAccess;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.persistence.EntityManager;
@@ -18,7 +15,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import businessLogic.BLFacade;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Admin;
@@ -321,9 +317,21 @@ public class DataAccess {
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1", Event.class);
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.setTime(date);
+		
 		for (Event ev : events) {
 			System.out.println(ev.toString());
-			res.add(ev);
+			
+			Calendar cal2 = Calendar.getInstance();
+			
+			cal2.setTime(ev.getEventDate());
+			boolean sameDay = cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+			                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+			
+			if (sameDay)
+				res.add(ev);
 		}
 		return res;
 	}
