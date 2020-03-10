@@ -104,5 +104,9 @@ public interface BLFacade  {
 	@WebMethod 	public void addSport(Sport sport);
 	
 	@WebMethod 	public void removeSport (String sportName);
+	
+	@WebMethod public Sport getSport(String sportName);
+	
+	@WebMethod public Vector<Event> getSportEvents(Date date, Sport sport);
 }
 

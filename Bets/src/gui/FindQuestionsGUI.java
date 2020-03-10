@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.security.DomainCombiner;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,6 +37,7 @@ import configuration.UtilDate;
 import domain.BetChoice;
 import domain.Event;
 import domain.Question;
+import domain.Sport;
 import domain.User;
 import domain.UserBet;
 
@@ -73,15 +75,17 @@ public class FindQuestionsGUI extends JFrame {
 	private JButton editAccountBtn = new JButton("Account");
 	private final JButton logoutBtn = new JButton("Log out");
 
+	private Sport sport;
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
 	private final JButton registerBtn = new JButton(
 			ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public FindQuestionsGUI(User currentUser, BLFacade bl) {
+	public FindQuestionsGUI(User currentUser, BLFacade bl, Sport sport) {
 		this.currentUser = currentUser;
 		businessLogic = bl;
+		this.sport = sport;
 		self = this;
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,7 +144,9 @@ public class FindQuestionsGUI extends JFrame {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
 
-						Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+						//Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+						Vector<domain.Event> events = businessLogic.getSportEvents(firstDay, sport);
+
 
 						if (events.isEmpty())
 							jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents") + ": "
@@ -374,5 +380,9 @@ public class FindQuestionsGUI extends JFrame {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+	}
+	
+	public void setSport(Sport sport) {
+		this.sport = sport;
 	}
 }

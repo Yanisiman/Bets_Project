@@ -49,6 +49,8 @@ public class SportGUI extends JFrame {
 	private User user;
 	private SportGUI self;
 	private boolean b;
+	private int n = 0;
+	private String string = "";
 	
 
 	
@@ -112,19 +114,26 @@ public class SportGUI extends JFrame {
 					textArea.setText("Choose a sport");
 				}
 				else {
+					String sportname = comboBox.getSelectedItem().toString();
+					Sport sport = businessLogic.getSport(sportname);
+					
 					if(b == false) {
-						FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic);
-						findQuestionsGUI.setBusinessLogic(businessLogic); //To change
+						FindQuestionsGUI findQuestionsGUI = new FindQuestionsGUI(user, businessLogic, sport );
+						findQuestionsGUI.setBusinessLogic(businessLogic); 
+						findQuestionsGUI.setSport(sport);
 						findQuestionsGUI.setCurrentUser(user);
 						self.setVisible(false);
 						findQuestionsGUI.setVisible(true);
+						System.out.print("User/Spectator selects the sport " + sportname);
 					}
 					else {
-						CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(user, businessLogic); //To change 
+						CreateQuestionGUI createQuestionGUI = new CreateQuestionGUI(user, businessLogic, sport); 
+						createQuestionGUI.setSport(sport);
 						createQuestionGUI.setBusinessogic(businessLogic);
 						createQuestionGUI.setCurrentUser(user);
 						self.setVisible(false);
 						createQuestionGUI.setVisible(true);
+						System.out.print("Admin selects the sport " + sportname);
 					}
 				}
 				
@@ -138,14 +147,24 @@ public class SportGUI extends JFrame {
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String sportString = comboBox.getSelectedItem().toString();
-				Vector<Event> events = null;
+				
 				if(comboBox.getSelectedIndex() == -1)
 					textArea.setText("Select a sport to delete");
 				else {
-					events = businessLogic.getEvents(sportString);
-					businessLogic.removeSport(sportString);
-					comboBox.removeItem(sportString);
-					textArea.setText("" +sportString + " removed");
+					if(n == 1 && string.equals(sportString)) {
+						businessLogic.removeSport(sportString);
+						comboBox.removeItem(sportString);
+						textArea.setText("" +sportString + " removed");
+						string = "";
+						n = 0;
+					}
+					else {
+						if(n== 1 && string.equals(sportString) == false)
+							n = 0;
+						textArea.setText("Are you sure to remove " + sportString + " ? The events related to it will be also removed.");
+						string = sportString;
+						n = 1;
+					}
 					
 				}
 			}
@@ -153,10 +172,10 @@ public class SportGUI extends JFrame {
 				panel.add(removeButton, gbc_removeButton);
 		
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.gridwidth = 8;
+		gbc_textArea.gridwidth = 16;
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 6;
+		gbc_textArea.gridx = 2;
 		gbc_textArea.gridy = 9;
 		textArea.setEditable(false);
 		panel.add(textArea, gbc_textArea);
@@ -188,6 +207,7 @@ public class SportGUI extends JFrame {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String newSport = textField.getText();
+				
 				if(newSport.isEmpty() == false) {
 					boolean b = businessLogic.alreadyExist(newSport);
 					if(b == false) {
