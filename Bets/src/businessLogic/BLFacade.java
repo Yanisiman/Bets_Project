@@ -6,6 +6,7 @@ import java.util.List;
 
 //import domain.Booking;
 import domain.Question;
+import domain.Sport;
 import domain.User;
 import domain.UserBet;
 import domain.BetChoice;
@@ -99,5 +100,15 @@ public interface BLFacade  {
 	@WebMethod public void addFriend(User user, String friend);
 	
 	@WebMethod public void setResult(Question question, BetChoice choice);
+
+	@WebMethod public List<Sport> getAllSport();
+	
+	@WebMethod 	public boolean alreadyExist(String sport);
+	
+	@WebMethod public Vector<Event> getEvents (String sportname);
+	
+	@WebMethod 	public void addSport(Sport sport);
+	
+	@WebMethod 	public void removeSport (String sportName);
 }
 

@@ -13,6 +13,7 @@ import dataAccess.DataAccess;
 import domain.BetChoice;
 import domain.Event;
 import domain.Question;
+import domain.Sport;
 import domain.User;
 import domain.UserBet;
 import exceptions.EventFinished;
@@ -284,6 +285,31 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.addFriend(user, friend);
 		dBManager.close();
 	}
+	
+	@Override
+	public List<Sport> getAllSport(){
+		DataAccess dBManager = new DataAccess();
+		List<Sport> sports = dBManager.getSport();	
+		dBManager.close();
+		return sports;
+	}
+	
+	@Override
+	public boolean alreadyExist(String sport) {
+		List<Sport> sports = getAllSport();
+		for(Sport s: sports) {
+			if(s.getSportName().equals(sport))
+				return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void addSport(Sport sport) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.addSport(sport);
+		dBManager.close();
+	}
 
 
 	@Override
@@ -302,8 +328,27 @@ public class BLFacadeImplementation  implements BLFacade {
 		return q;
 	}
 
-
+	@Override
+	public void removeSport (String sportName) {
+		DataAccess dBManager = new DataAccess();
+		dBManager.removeSport(sportName);
+		dBManager.close();
+	}
 	
-
+	@Override 
+	public Vector<Event> getEvents (String sportname){
+		DataAccess dBManager = new DataAccess();
+		List<Sport> sports = dBManager.getSport();
+		Vector<Event> events = null;		
+		for(Sport s: sports)
+		{
+			if (s.getSportName().equals(sportname)) {
+				events = s.getSportEvent();
+				break;
+			}
+		}
+		dBManager.close();
+		return events;
+	}
 }
 

@@ -25,6 +25,7 @@ import domain.Admin;
 import domain.BetChoice;
 import domain.Event;
 import domain.Question;
+import domain.Sport;
 import domain.User;
 import domain.UserBet;
 import exceptions.QuestionAlreadyExist;
@@ -111,6 +112,11 @@ public class DataAccess {
 			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month, 28));
+			
+			Sport sport = new Sport("Football");
+			
+			
+			
 
 			User user = new User("Marion", "Bernard", 19, "111", "French", "marion.bernard@epita.fr", "MarionBer",
 					"123456789", "04-09-2000");
@@ -195,7 +201,15 @@ public class DataAccess {
 			db.persist(b2);
 			db.persist(b3);
 			
+			db.persist(sport);
+			
 			yanis.addFriend(user2);
+			
+			sport.addEvent(ev1);
+			
+			
+			
+			
 
 			
 			Date date = new Date();
@@ -565,6 +579,7 @@ public class DataAccess {
 		}
 	}
 	
+
 	public void setResult(Question question, BetChoice choice) {
 		try {
 			db.getTransaction().begin();
@@ -606,6 +621,29 @@ public class DataAccess {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<Sport> getSport (){
+			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
+			List<Sport> sports = query.getResultList();
+			for (Sport c: sports) {
+				System.out.println(c + " is a sport.");
+			}
+			return sports;
+	}
+	
+	public void addSport(Sport sport) {
+		db.getTransaction().begin();
+		db.persist(sport);
+		db.getTransaction().commit();	
+	}
+	
+	public void removeSport(String sport) {
+		db.getTransaction().begin();	
+		TypedQuery<Sport> q1 = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName =  \"" + sport + "\"", Sport.class);
+		Sport sport2 = q1.getSingleResult();
+		db.remove(sport2);
+		db.getTransaction().commit();	
 	}
 
 }
