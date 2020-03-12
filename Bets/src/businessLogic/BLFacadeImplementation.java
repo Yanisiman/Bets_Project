@@ -12,6 +12,7 @@ import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.BetChoice;
 import domain.Event;
+import domain.Message;
 import domain.Question;
 import domain.Sport;
 import domain.User;
@@ -387,6 +388,42 @@ public class BLFacadeImplementation  implements BLFacade {
 				finalEvents.add(e);
 		}
 		return finalEvents;
+	}
+
+
+	@Override
+	public Vector<Message> getAllMessages() {
+		DataAccess dBManager = new DataAccess();
+		Vector<Message> messages = new Vector<Message>(dBManager.getAllMessages());
+		dBManager.close();
+		return messages;
+	}
+
+
+	@Override
+	public Message createMessage(User user, String message) {
+		DataAccess dBManager = new DataAccess();
+		Message m = dBManager.createMessage(user, message);
+		dBManager.close();
+		return m;
+	}
+
+
+	@Override
+	public Vector<Message> getMessagesOfUser(User user) {
+		DataAccess dBManager = new DataAccess();
+		Vector<Message> messages = new Vector<Message>(dBManager.getMessagesOfUser(user));
+		dBManager.close();
+		return messages;
+	}
+
+
+	@Override
+	public User getUserOfMessage(Message message) {
+		DataAccess dBManager = new DataAccess();
+		User user = dBManager.getUserOfMessage(message);
+		dBManager.close();
+		return user;
 	}
 }
 

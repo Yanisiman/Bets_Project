@@ -140,7 +140,7 @@ public class SportGUI extends JFrame {
 					if(n == 1 && string.equals(sportString)) {
 						businessLogic.removeSport(sportString);
 						comboBox.removeItem(sportString);
-						textArea.setText("" +sportString + " removed");
+						textArea.setText("" + sportString + " removed");
 						string = "";
 						n = 0;
 					}

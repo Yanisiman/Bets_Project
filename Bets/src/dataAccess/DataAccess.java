@@ -20,6 +20,7 @@ import configuration.UtilDate;
 import domain.Admin;
 import domain.BetChoice;
 import domain.Event;
+import domain.Message;
 import domain.Question;
 import domain.Sport;
 import domain.User;
@@ -755,6 +756,51 @@ public class DataAccess {
 			return sports;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Message createMessage(User user, String message) {
+		db.getTransaction().begin();
+		Message m = new Message(user, message);
+		db.persist(m);
+		db.getTransaction().commit();
+		return m;
+	}
+	
+	public void deleteMessage(Message message) {
+		db.getTransaction().begin();
+		Query q = db.createQuery("DELETE FROM Message m WHERE m.messageNumber = " + message.getMessageNumber());
+		q.executeUpdate();
+		db.getTransaction().commit();
+	}
+	
+	public List<Message> getAllMessages(){
+		try {
+			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
+			List<Message> messages = q.getResultList();
+			return messages;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<Message> getMessagesOfUser(User user){
+		try {
+			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m WHERE m.user.uid = " + user.getUid(), Message.class);
+			List<Message> messages = q.getResultList();
+			return messages;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public User getUserOfMessage(Message message) {
+		try {
+			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
+			Message m = q.getSingleResult();
+			return m.getUser();
+		} catch (Exception e) {
 			return null;
 		}
 	}

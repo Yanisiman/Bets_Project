@@ -75,6 +75,7 @@ public class FindQuestionsGUI extends JFrame {
 	private final JButton logoutBtn = new JButton("Log out");
 	private JTextArea textArea = new JTextArea();
 	private JLabel moneyField = new JLabel("Money :");
+	private JButton forumBtn = new JButton("Forum");
 
 	private Sport sport;
 	private BLFacade businessLogic;
@@ -109,7 +110,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelQueries.setBounds(138, 221, 406, 14);
-		jLabelEvents.setBounds(292, 34, 259, 16);
+		jLabelEvents.setBounds(297, 44, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
@@ -183,7 +184,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(jCalendar1, null);
 
-		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
+		scrollPaneEvents.setBounds(new Rectangle(297, 60, 346, 150));
 		scrollPaneQueries.setBounds(new Rectangle(138, 236, 406, 116));
 		
 		tableEvents.setDefaultEditor(Object.class, null);
@@ -356,8 +357,21 @@ public class FindQuestionsGUI extends JFrame {
 		textArea.setVisible(false);
 		getContentPane().add(textArea);
 
-		moneyField.setBounds(357, 0, 103, 23);
+		moneyField.setBounds(263, 2, 103, 23);
 		getContentPane().add(moneyField);
+		
+		
+		forumBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
+				ForumGUI forum = new ForumGUI(businessLogic, currentUser);
+				forum.setVisible(true);
+			}
+		});
+		
+		forumBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		forumBtn.setBounds(367, 1, 87, 25);
+		getContentPane().add(forumBtn);
 	}
 
 	public void setBusinessLogic(BLFacade bl) {

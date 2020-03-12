@@ -11,6 +11,8 @@ import domain.User;
 import domain.UserBet;
 import domain.BetChoice;
 import domain.Event;
+import domain.Forum;
+import domain.Message;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -118,5 +120,13 @@ public interface BLFacade  {
 	@WebMethod public Sport getSport(String sportName);
 	
 	@WebMethod public Vector<Event> getSportEvents(Date date, Sport sport);
+	
+	@WebMethod public Vector<Message> getAllMessages();
+	
+	@WebMethod public Message createMessage(User user, String message);
+	
+	@WebMethod public Vector<Message> getMessagesOfUser(User user);
+	
+	@WebMethod public User getUserOfMessage(Message message);
 
 }

@@ -35,10 +35,14 @@ public class User implements Serializable {
 	private float budget;
 	private float moneySpentPerMonth;	
 	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<UserBet> bets;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<User> friends;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Sport> preferences;
-	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Vector<Message> messagesForum;
 	
 	/**
 	 * @param name
@@ -72,6 +76,7 @@ public class User implements Serializable {
 		this.bets = new Vector<UserBet>();
 		this.friends = new Vector<User>();		
 		this.preferences = new Vector<Sport>();
+		this.messagesForum = new Vector<Message>();
 	}
 
 
@@ -343,6 +348,26 @@ public class User implements Serializable {
 	
 	public void addPreference(Sport sport) {
 		this.preferences.add(sport);
+	}
+
+
+	/**
+	 * @return the messagesForum
+	 */
+	public Vector<Message> getMessagesForum() {
+		return messagesForum;
+	}
+
+
+	/**
+	 * @param messagesForum the messagesForum to set
+	 */
+	public void setMessagesForum(Vector<Message> messagesForum) {
+		this.messagesForum = messagesForum;
+	}
+	
+	public void addMessage(Message message) {
+		this.messagesForum.add(message);
 	}
 
 
