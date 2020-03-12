@@ -84,8 +84,8 @@ public class DataAccess {
 			if (month == 12) {
 				month = 0;
 				year += 1;
-			}		
-			
+			}
+
 			Event ev1 = new Event(1, "Atlético-Athletic", UtilDate.newDate(year, month, 17));
 			Event ev2 = new Event(2, "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", UtilDate.newDate(year, month, 17));
@@ -98,25 +98,22 @@ public class DataAccess {
 			Event ev10 = new Event(10, "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
 			Event ev21 = new Event(21, "Digital Step Stone", UtilDate.newDate(year, month, 17));
 
-			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, month, 1));
-			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
-			Event ev13 = new Event(13, "Getafe-Celta", UtilDate.newDate(year, month, 1));
-			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
-			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, month, 1));
-			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
-			Event ev22 = new Event(22, "Digital Step Stone", UtilDate.newDate(year, month, 1));
+			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, month, 2));
+			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, month, 2));
+			Event ev13 = new Event(13, "Getafe-Celta", UtilDate.newDate(year, month, 2));
+			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, month, 2));
+			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, month, 2));
+			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 2));
+			Event ev22 = new Event(22, "Digital Step Stone", UtilDate.newDate(year, month, 2));
 
 			Event ev17 = new Event(17, "Málaga-Valencia", UtilDate.newDate(year, month, 28));
 			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month, 28));
 			Event ev23 = new Event(23, "Digital Step Stone", UtilDate.newDate(year, month, 28));
-			
+
 			Sport sport = new Sport("Football");
 			Sport sport2 = new Sport("Dance");
-			
-			
-			
 
 			User user = new User("Marion", "Bernard", 19, "111", "French", "marion.bernard@epita.fr", "MarionBer",
 					"123456789", "04-09-2000");
@@ -126,7 +123,7 @@ public class DataAccess {
 					"1232131", "25/04/2000");
 			Admin admin = new Admin("Mariusz", "Januszek", 24, "admin", "Polish", "mariusz.januszek955@gmail.com",
 					"admin", "987654321", "29-07-1995");
-			
+
 			Question q1;
 			Question q2;
 			Question q3;
@@ -151,8 +148,7 @@ public class DataAccess {
 				q5 = ev17.addQuestion("Who will win the match?", 1);
 				q6 = ev17.addQuestion("Will there be goals in the first half?", 2);
 				q7 = ev21.addQuestion("Which team will win the competition", 4);
-				
-				
+
 			} else {
 				q1 = ev1.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q2 = ev1.addQuestion("Zeinek sartuko du lehenengo gola?", 2);
@@ -163,13 +159,13 @@ public class DataAccess {
 				q7 = ev21.addQuestion("Zein taldek irabaziko du lehiaketa?", 4);
 
 			}
-			
+
 			BetChoice b1 = new BetChoice(q1, "Home", 1.2f);
 			BetChoice b2 = new BetChoice(q1, "Draw", 2);
 			BetChoice b3 = new BetChoice(q1, "Away", 1.8f);
-			
+
 			q1.setResult(b1);
-			
+
 			db.persist(q1);
 			db.persist(q2);
 			db.persist(q3);
@@ -206,16 +202,16 @@ public class DataAccess {
 			db.persist(user2);
 			db.persist(yanis);
 			db.persist(admin);
-			
+
 			db.persist(b1);
 			db.persist(b2);
 			db.persist(b3);
-			
+
 			db.persist(sport);
 			db.persist(sport2);
-			
+
 			yanis.addFriend(user2);
-			
+
 			sport.addEvent(ev1);
 			sport.addEvent(ev2);
 			sport.addEvent(ev3);
@@ -238,26 +234,21 @@ public class DataAccess {
 			sport2.addEvent(ev21);
 			sport2.addEvent(ev22);
 			sport2.addEvent(ev23);
-			
-			
-			
-			
 
-			
 			Date date = new Date();
 			date.setMinutes(date.getMinutes() + 1);
-			
-			Event e = new Event(35,"THIS IS A TEST", date);
+
+			Event e = new Event(35, "THIS IS A TEST", date);
 			Question q = e.addQuestion("Who will win the match?", 1);
-			Question q11 = e.addQuestion("Who will score first?", 2);			
-			
+			Question q11 = e.addQuestion("Who will score first?", 2);
+
 			BetChoice b4 = new BetChoice(q, "Home", 1.7f);
 			BetChoice b5 = new BetChoice(q, "Draw", 1);
 			BetChoice b6 = new BetChoice(q11, "Away", 2f);
-			
+
 			UserBet userBet = new UserBet(yanis, 10, b4);
 			q.setResult(b4);
-			
+
 			db.persist(e);
 			db.persist(q);
 			db.persist(q11);
@@ -266,8 +257,10 @@ public class DataAccess {
 			db.persist(b6);
 			db.persist(userBet);
 			
+			sport.addEvent(e);
+
 			db.getTransaction().commit();
-			
+
 			System.out.println("Db initialized");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -314,22 +307,23 @@ public class DataAccess {
 	public Vector<Event> getEvents(Date date) {
 		System.out.println(">> DataAccess: getEvents");
 		Vector<Event> res = new Vector<Event>();
-		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1", Event.class);
-		query.setParameter(1, date);
+		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate.getDay()=?1", Event.class);
+		int day = date.getDay();
+		query.setParameter(1, day);
 		List<Event> events = query.getResultList();
-		
+
 		Calendar cal1 = Calendar.getInstance();
 		cal1.setTime(date);
-		
+
 		for (Event ev : events) {
 			System.out.println(ev.toString());
-			
+
 			Calendar cal2 = Calendar.getInstance();
-			
+
 			cal2.setTime(ev.getEventDate());
-			boolean sameDay = cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
-			                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
-			
+			boolean sameDay = cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+					&& cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+
 			if (sameDay)
 				res.add(ev);
 		}
@@ -372,22 +366,24 @@ public class DataAccess {
 			return null;
 		}
 	}
-	
+
 	public User getUser(String username) {
 		try {
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"", User.class);
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"",
+					User.class);
 			return q2.getSingleResult();
 
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
-	public User updateUser(String email, String username, String password, String name, String familyName, String creditCard, float money, float budget) {
+
+	public User updateUser(String email, String username, String password, String name, String familyName,
+			String creditCard, float money, float budget) {
 		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
 		User user = q.getSingleResult();
 		db.getTransaction().begin();
-		
+
 		if (!username.equals(""))
 			user.setUsername(username);
 		if (!password.equals(""))
@@ -400,15 +396,15 @@ public class DataAccess {
 			user.setCreditCard(creditCard);
 		user.setMoney(money);
 		user.setBudget(budget);
-		
+
 		db.getTransaction().commit();
 		return user;
 	}
-	
+
 	public void deleteUser(User user) {
-		db.getTransaction().begin();		
+		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM User u WHERE u.email = \"" + user.getEmail() + "\"");
-		q.executeUpdate();		
+		q.executeUpdate();
 		db.getTransaction().commit();
 	}
 
@@ -417,12 +413,13 @@ public class DataAccess {
 		db.persist(user);
 		db.getTransaction().commit();
 	}
-	
+
 	public void addMoneyUser(User u, float money) {
 		try {
-			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"", User.class);
+			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"",
+					User.class);
 			User user = q.getSingleResult();
-			
+
 			db.getTransaction().begin();
 			user.updateMoney(money);
 			db.getTransaction().commit();
@@ -430,27 +427,29 @@ public class DataAccess {
 			System.out.println("Error to get the user");
 		}
 	}
-	
+
 	public User userBet(User u, int amount, BetChoice bet) {
 		try {
-			
-			TypedQuery<BetChoice> q = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+
+			TypedQuery<BetChoice> q = db.createQuery(
+					"SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
 			BetChoice b = q.getSingleResult();
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"", User.class);
+
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u WHERE u.email = \"" + u.getEmail() + "\"",
+					User.class);
 			User user = q2.getSingleResult();
-			
+
 			db.getTransaction().begin();
 			UserBet userBet = new UserBet(user, amount, b);
 			db.persist(userBet);
-			
+
 			user.updateMoney(-amount);
 			user.addMoneySpentPerMont(amount);
-			
-			db.getTransaction().commit();		
-			
+
+			db.getTransaction().commit();
+
 			updateOdds(b);
-			
+
 			return user;
 		} catch (Exception e) {
 			return null;
@@ -461,86 +460,88 @@ public class DataAccess {
 		db.close();
 		System.out.println("DataBase closed");
 	}
-	
-	public List<User> getUsers(){
+
+	public List<User> getUsers() {
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
 		return a.getResultList();
 	}
-	
-	
+
 	public Event createEvent(String description, Date eventDate) {
 		db.getTransaction().begin();
 		Event event = new Event(description, eventDate);
-		
+
 		db.persist(event);
 		db.getTransaction().commit();
 		return event;
 	}
-	
+
 	public BetChoice addBet(Question question, String response, float odds) {
-		TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+		TypedQuery<Question> q = db.createQuery(
+				"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
 		Question quest = q.getSingleResult();
-		
+
 		if (quest == null) {
 			System.out.println("DIDNT FIND " + question);
 			return null;
-		}			
-		
+		}
+
 		db.getTransaction().begin();
 		BetChoice bet = new BetChoice(quest, response, odds);
 		db.persist(bet);
 		db.getTransaction().commit();
 		return bet;
 	}
-	
+
 	public Event getEvent(Event event) {
 		try {
-			TypedQuery<Event> q = db.createQuery("SELECT e from Event e WHERE e.eventNumber = " + event.getEventNumber(), Event.class);
+			TypedQuery<Event> q = db
+					.createQuery("SELECT e from Event e WHERE e.eventNumber = " + event.getEventNumber(), Event.class);
 			return q.getSingleResult();
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
+
 	public void removeEvent(Event e) {
-		db.getTransaction().begin();		
-		
+		db.getTransaction().begin();
+
 		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
-		q.executeUpdate();		
+		q.executeUpdate();
 		db.getTransaction().commit();
-		
-		for (Question question: e.getQuestions()) {
+
+		for (Question question : e.getQuestions()) {
 			removeQuestion(question);
-			
-			for (BetChoice b: question.getChoices()) {
+
+			for (BetChoice b : question.getChoices()) {
 				removeBet(b);
 			}
 		}
 
 	}
-	
+
 	public void removeQuestion(Question question) {
-		db.getTransaction().begin();		
+		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
-		q.executeUpdate();		
+		q.executeUpdate();
 		db.getTransaction().commit();
-		
-		for (BetChoice b: question.getChoices()) {
+
+		for (BetChoice b : question.getChoices()) {
 			removeBet(b);
 		}
 	}
-	
+
 	public void removeBet(BetChoice b) {
-		db.getTransaction().begin();		
+		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
-		q.executeUpdate();		
+		q.executeUpdate();
 		db.getTransaction().commit();
 	}
-	
-	public Vector<User> getFriends(User user){
+
+	public Vector<User> getFriends(User user) {
 		try {
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q2 = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q2.getSingleResult();
 			System.out.println(u.getFriends());
 			return u.getFriends();
@@ -550,11 +551,12 @@ public class DataAccess {
 			return null;
 		}
 	}
-	
-	public Vector<UserBet> getUserBet(User user){
+
+	public Vector<UserBet> getUserBet(User user) {
 		try {
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q2 = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q2.getSingleResult();
 			System.out.println(u.getBets());
 			return u.getBets();
@@ -564,161 +566,177 @@ public class DataAccess {
 			return null;
 		}
 	}
-	
+
 	public void removeUserBet(UserBet bet) {
 		try {
-			db.getTransaction().begin();	
-			
-			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + bet.getUser().getUsername() + "\"", User.class);
+			db.getTransaction().begin();
+
+			TypedQuery<User> q = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + bet.getUser().getUsername() + "\"", User.class);
 			User u = q.getSingleResult();
-			
-			TypedQuery<BetChoice> q2 = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getBet().getChoiceNumber(), BetChoice.class);
+
+			TypedQuery<BetChoice> q2 = db.createQuery(
+					"SELECT b from BetChoice b WHERE b.choiceNumber = " + bet.getBet().getChoiceNumber(),
+					BetChoice.class);
 			BetChoice b = q2.getSingleResult();
-			
-			TypedQuery<UserBet> q4 = db.createQuery("SELECT b from UserBet b WHERE b.userBetNumber = " + bet.getUserBetNumber(), UserBet.class);
+
+			TypedQuery<UserBet> q4 = db.createQuery(
+					"SELECT b from UserBet b WHERE b.userBetNumber = " + bet.getUserBetNumber(), UserBet.class);
 			UserBet c = q4.getSingleResult();
-			
+
 			Query q3 = db.createQuery("DELETE FROM UserBet e WHERE e.userBetNumber = " + bet.getUserBetNumber());
 			q3.executeUpdate();
-			
+
 			u.removeUserBet(c);
 			b.removeUserBet(c);
-			
+
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
+
 	public void addFriend(User user, String friend) {
 		try {
 			db.getTransaction().begin();
-			
-			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q.getSingleResult();
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend + "\"", User.class);
+
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend + "\"",
+					User.class);
 			User f = q2.getSingleResult();
-			
+
 			if (!f.isAdmin() && !u.getFriends().contains(f))
 				u.addFriend(f);
-			
+
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	
+
 	public void removeFriend(User user, User friend) {
 		try {
 			db.getTransaction().begin();
-			
-			TypedQuery<User> q = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q.getSingleResult();
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + friend.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q2 = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + friend.getUsername() + "\"", User.class);
 			User f = q2.getSingleResult();
-			
+
 			u.removeFriend(f);
-			
+
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	
 
 	public void setResult(Question question, BetChoice choice) {
 		try {
 			db.getTransaction().begin();
-			
-			TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+
+			TypedQuery<Question> q = db.createQuery(
+					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
+					Question.class);
 			Question quest = q.getSingleResult();
-			
-			TypedQuery<BetChoice> q2 = db.createQuery("SELECT b from BetChoice b WHERE b.choiceNumber = " + choice.getChoiceNumber(), BetChoice.class);
+
+			TypedQuery<BetChoice> q2 = db.createQuery(
+					"SELECT b from BetChoice b WHERE b.choiceNumber = " + choice.getChoiceNumber(), BetChoice.class);
 			BetChoice b = q2.getSingleResult();
-			
+
 			quest.setResult(b);
-			
+
 			db.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	
+
 	private void updateOdds(BetChoice bet) {
 		try {
-			TypedQuery<BetChoice> q = db.createQuery("SELECT b FROM BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			TypedQuery<BetChoice> q = db.createQuery(
+					"SELECT b FROM BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
 			BetChoice b = q.getSingleResult();
-			
+
 			db.getTransaction().begin();
 			float users = b.getUserBets().size();
 			bet.setOdds(1 + 1 / users);
-			db.getTransaction().commit();			
-			
+			db.getTransaction().commit();
+
 		} catch (Exception e) {
 			return;
 		}
 
 	}
-	
+
 	public Question getQuestion(Question question) {
 		try {
-			TypedQuery<Question> q = db.createQuery("SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+			TypedQuery<Question> q = db.createQuery(
+					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
+					Question.class);
 			return q.getSingleResult();
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
-	public List<Sport> getSport(){
-			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
-			List<Sport> sports = query.getResultList();
-			for (Sport c: sports) {
-				System.out.println(c + " is a sport.");
-			}
-			return sports;
+
+	public List<Sport> getSport() {
+		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
+		List<Sport> sports = query.getResultList();
+		for (Sport c : sports) {
+			System.out.println(c + " is a sport.");
+		}
+		return sports;
 	}
-	
+
 	public void addSport(Sport sport) {
 		db.getTransaction().begin();
 		db.persist(sport);
-		db.getTransaction().commit();	
+		db.getTransaction().commit();
 	}
-	
+
 	public void removeSport(String sport) {
-		db.getTransaction().begin();	
-		TypedQuery<Sport> q1 = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName =  \"" + sport + "\"", Sport.class);
+		db.getTransaction().begin();
+		TypedQuery<Sport> q1 = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName =  \"" + sport + "\"",
+				Sport.class);
 		Sport sport2 = q1.getSingleResult();
 		db.remove(sport2);
-		db.getTransaction().commit();	
+		db.getTransaction().commit();
 	}
-	
 
 	public User addSportUser(Sport sport, User user) {
 		try {
-			TypedQuery<Sport> q = db.createQuery("SELECT s FROM Sport s WHERE s.sportNumber = "  + sport.getSportNumber(), Sport.class);
+			TypedQuery<Sport> q = db
+					.createQuery("SELECT s FROM Sport s WHERE s.sportNumber = " + sport.getSportNumber(), Sport.class);
 			Sport s = q.getSingleResult();
-			
-			TypedQuery<User> q2 = db.createQuery("SELECT u FROM User u WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+			TypedQuery<User> q2 = db
+					.createQuery("SELECT u FROM User u WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q2.getSingleResult();
-			
+
 			db.getTransaction().begin();
 			u.addPreference(s);
 			db.getTransaction().commit();
-			
+
 			return u;
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;
 		}
-	
+
 	}
-	
-	public Vector<Sport> getUserPreferences(User user){
-		try {	
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+
+	public Vector<Sport> getUserPreferences(User user) {
+		try {
+			TypedQuery<User> q2 = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
 			User u = q2.getSingleResult();
 			System.out.println(u.getPreferences());
 			return u.getPreferences();
@@ -727,9 +745,10 @@ public class DataAccess {
 			return null;
 		}
 	}
-	
-	public Sport getUniqueSport (String sportName) {
-		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"", Sport.class);
+
+	public Sport getUniqueSport(String sportName) {
+		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"",
+				Sport.class);
 		Sport sports = query.getSingleResult();
 		return sports;
 	}

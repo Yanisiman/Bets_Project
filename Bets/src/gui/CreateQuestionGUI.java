@@ -378,8 +378,7 @@ public class CreateQuestionGUI extends JFrame {
 		removeEventBtn.setBounds(535, 46, 89, 23);
 		getContentPane().add(removeEventBtn);
 
-		JButton resultBetBtn = new JButton(
-				ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton resultBetBtn = new JButton("As result");
 		resultBetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				BetChoice bet = (BetChoice) betsComboBox.getSelectedItem();
@@ -404,15 +403,16 @@ public class CreateQuestionGUI extends JFrame {
 				questionComboBox.setModel(new DefaultComboBoxModel<Question>());
 				betsComboBox.setModel(new DefaultComboBoxModel<BetChoice>());
 				DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
-
+				Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+				
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
 					calendarMio = (Calendar) propertychangeevent.getNewValue();
 					
 					jCalendar.setCalendar(calendarMio);
-					Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
-
+					
+					firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
 					eventDate = firstDay;
 
 					updateEvents(firstDay, dateformat1);
@@ -585,7 +585,7 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void updateEvents(Date firstDay, DateFormat dateformat1) {
 		try {
-			// Vector<domain.Event> events = businessLogic.getEvents(firstDay);
+			//Vector<domain.Event> events = businessLogic.getEvents(firstDay);
 			Vector<domain.Event> events = businessLogic.getSportEvents(firstDay, sport);
 
 			if (events.isEmpty())
