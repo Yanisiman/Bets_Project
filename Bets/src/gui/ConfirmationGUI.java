@@ -39,11 +39,11 @@ public class ConfirmationGUI extends JFrame {
 		contentPane.add(acceptBtn, BorderLayout.SOUTH);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setEnabled(false);
+		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
-		textArea.setEnabled(false);
-		textArea.setEditable(false);
 		contentPane.add(textArea, BorderLayout.CENTER);
 	}
 	
@@ -123,6 +123,13 @@ public class ConfirmationGUI extends JFrame {
 		
 		JButton acceptBtn = new JButton("Accept");
 		contentPane.add(acceptBtn, BorderLayout.SOUTH);
+		acceptBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEnabled(false);
@@ -142,6 +149,13 @@ public class ConfirmationGUI extends JFrame {
 		
 		JButton acceptBtn = new JButton("Accept");
 		contentPane.add(acceptBtn, BorderLayout.SOUTH);
+		acceptBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEnabled(false);

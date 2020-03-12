@@ -211,6 +211,7 @@ public class DataAccess {
 			db.persist(sport2);
 
 			yanis.addFriend(user2);
+			yanis.addPreference(sport);
 
 			sport.addEvent(ev1);
 			sport.addEvent(ev2);
@@ -747,10 +748,15 @@ public class DataAccess {
 	}
 
 	public Sport getUniqueSport(String sportName) {
-		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"",
-				Sport.class);
-		Sport sports = query.getSingleResult();
-		return sports;
+		try {
+			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"",
+					Sport.class);
+			Sport sports = query.getSingleResult();
+			return sports;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
