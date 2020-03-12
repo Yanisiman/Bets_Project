@@ -66,7 +66,7 @@ public class RegisterGUI extends JFrame {
 		nameField.setColumns(10);
 		emailField.setColumns(10);
 		setTitle("Bet & Ruin");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JPanel();
 		setContentPane(panel);
@@ -298,13 +298,10 @@ public class RegisterGUI extends JFrame {
 						errorArea.setText("The username or the email already exists");
 						return;
 					}
-					else {
-						self.setVisible(false);
-
-						RulesGUI rulesGUI = new RulesGUI();
-						rulesGUI.setUser(newUser);
-						rulesGUI.setBusinessLogic(businessLogic);
-						rulesGUI.setVisible(true);
+					else {					
+						String message = "Are you sure all your information are correct ?";
+						ConfirmationGUI confirmationGUI = new ConfirmationGUI(self, message, businessLogic, newUser);
+						confirmationGUI.setVisible(true);		
 						
 					}
 					
@@ -336,8 +333,7 @@ public class RegisterGUI extends JFrame {
 
 	public void setBusinessLogic(BLFacade bl) {
 		businessLogic = bl;
-	}
-	
+	}	
 
 
 }
