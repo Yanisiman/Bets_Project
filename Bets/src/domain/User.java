@@ -33,6 +33,7 @@ public class User implements Serializable {
 	
 	private float money;
 	private float budget;
+	private boolean budgetBool;
 	private float moneySpentPerMonth;	
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -70,6 +71,7 @@ public class User implements Serializable {
 		
 		this.money = 0;
 		this.budget = 0;
+		this.budgetBool = false;
 		this.moneySpentPerMonth = 0;
 		this.isAdmin = false;
 		
@@ -368,6 +370,22 @@ public class User implements Serializable {
 	
 	public void addMessage(Message message) {
 		this.messagesForum.add(message);
+	}
+
+
+	/**
+	 * @return the budgetBool
+	 */
+	public boolean isBudgetBool() {
+		return budgetBool;
+	}
+
+
+	/**
+	 * @param budgetBool the budgetBool to set
+	 */
+	public void setBudgetBool(boolean budgetBool) {
+		this.budgetBool = budgetBool;
 	}
 
 

@@ -268,6 +268,11 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 	}
+	
+	public void close() {
+		db.close();
+		System.out.println("DataBase closed");
+	}
 
 	/**
 	 * This method creates a question for an event, with a question text and the
@@ -396,7 +401,13 @@ public class DataAccess {
 			user.setFamilyName(familyName);
 		if (!creditCard.equals(""))
 			user.setCreditCard(creditCard);
+		
 		user.setMoney(money);
+		
+		if (budget == 0)
+			user.setBudgetBool(false);
+		else
+			user.setBudgetBool(true);
 		user.setBudget(budget);
 
 		db.getTransaction().commit();
@@ -458,10 +469,7 @@ public class DataAccess {
 		}
 	}
 
-	public void close() {
-		db.close();
-		System.out.println("DataBase closed");
-	}
+	
 
 	public List<User> getUsers() {
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);

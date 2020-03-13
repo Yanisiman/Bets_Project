@@ -272,13 +272,13 @@ public class FindQuestionsGUI extends JFrame {
 					if (currentUser.getMoney() < amount)
 					{
 						textArea.setVisible(true);
-						textArea.setText("You don't have enough money to bet. You can money to your account in your edit profile tab");
+						textArea.setText("You don't have enough money to bet. \nYou can money to your account in your edit profile tab");
 						return;
 					}
-					if (currentUser.getMoneySpentPerMonth() + amount > currentUser.getBudget())
+					if (currentUser.isBudgetBool() && currentUser.getMoneySpentPerMonth() + amount > currentUser.getBudget())
 					{
-						message = "Are you sure you want to bet " + amount + "€ ? You already bet more than your budget allows you. "
-								+ "To remember you have a budget of " + currentUser.getBudget() + "€ per month!";
+						message = "Are you sure you want to bet " + amount + "€ ? \nYou already bet more than your budget allows you. "
+								+ "\nTo remember you have a budget of " + currentUser.getBudget() + "€ per month!";
 					}					
 					
 					ConfirmationGUI confirmationGUI = new ConfirmationGUI(self, message, businessLogic, currentUser, bet, amount);

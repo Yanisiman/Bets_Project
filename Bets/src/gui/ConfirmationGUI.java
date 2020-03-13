@@ -14,6 +14,9 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.BLFacade;
 import domain.BetChoice;
 import domain.User;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class ConfirmationGUI extends JFrame {
 
@@ -26,17 +29,19 @@ public class ConfirmationGUI extends JFrame {
 	
 	public ConfirmationGUI() {
 		super();
-		setResizable(false);
-		this.setSize(300, 200);
+		
+		this.setSize(600, 200);
 		this.self = this;
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JButton acceptBtn = new JButton("Accept");
-		contentPane.add(acceptBtn, BorderLayout.SOUTH);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{276, 0};
+		gbl_contentPane.rowHeights = new int[]{83, 23, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEnabled(false);
@@ -44,12 +49,25 @@ public class ConfirmationGUI extends JFrame {
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
-		contentPane.add(textArea, BorderLayout.CENTER);
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.insets = new Insets(0, 0, 5, 0);
+		gbc_textArea.gridx = 0;
+		gbc_textArea.gridy = 0;
+		contentPane.add(textArea, gbc_textArea);
+		
+		JButton acceptBtn = new JButton("Accept");
+		GridBagConstraints gbc_acceptBtn = new GridBagConstraints();
+		gbc_acceptBtn.anchor = GridBagConstraints.NORTH;
+		gbc_acceptBtn.fill = GridBagConstraints.HORIZONTAL;
+		gbc_acceptBtn.gridx = 0;
+		gbc_acceptBtn.gridy = 1;
+		contentPane.add(acceptBtn, gbc_acceptBtn);
 	}
 	
 	public ConfirmationGUI(RegisterGUI register, String message, BLFacade businessLogic, User newUser) {
-		setResizable(false);
-		this.setSize(300, 200);
+		
+		this.setSize(600, 200);
 		this.self = this;
 		
 		contentPane = new JPanel();
@@ -81,8 +99,8 @@ public class ConfirmationGUI extends JFrame {
 	}
 	
 	public ConfirmationGUI(FindQuestionsGUI findQuestionsGUI, String message, BLFacade businessLogic, User currentUser, BetChoice bet, int amount) {
-		setResizable(false);
-		this.setSize(300, 200);
+		
+		this.setSize(600, 200);
 		this.self = this;
 		
 		contentPane = new JPanel();
@@ -112,8 +130,8 @@ public class ConfirmationGUI extends JFrame {
 	}
 	
 	public ConfirmationGUI(CreateQuestionGUI createQuestionGUI, String message) {
-		setResizable(false);
-		this.setSize(300, 200);
+		
+		this.setSize(600, 200);
 		this.self = this;
 		
 		contentPane = new JPanel();
@@ -138,8 +156,7 @@ public class ConfirmationGUI extends JFrame {
 	}
 	
 	public ConfirmationGUI(UserEditInfoGUI userEditInfoGUI, String message) {
-		setResizable(false);
-		this.setSize(300, 200);
+		this.setSize(600, 200);
 		this.self = this;
 		
 		contentPane = new JPanel();

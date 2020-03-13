@@ -37,6 +37,8 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.JToggleButton;
+import javax.swing.JCheckBox;
 
 public class UserInformationGUI extends JFrame {
 
@@ -83,10 +85,10 @@ public class UserInformationGUI extends JFrame {
 	private final JTextField sportField = new JTextField();
 	private final JLabel sportLbl = new JLabel("New favorite sport");
 	private final JButton sportBtn = new JButton("Add");
-	private final JLabel budgetLbl = new JLabel("Budget :");
 	private final JLabel budgetField = new JLabel("");
 	private final JLabel moneySpentLbl = new JLabel("Money spent :");
 	private final JLabel moneySpentField = new JLabel("");
+	private final JCheckBox budgetCheckBox = new JCheckBox(" Budget");
 
 	/**
 	 * Create the frame.
@@ -462,13 +464,14 @@ public class UserInformationGUI extends JFrame {
 			}
 		});
 		
-		GridBagConstraints gbc_budgetLbl = new GridBagConstraints();
-		gbc_budgetLbl.anchor = GridBagConstraints.EAST;
-		gbc_budgetLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_budgetLbl.gridx = 1;
-		gbc_budgetLbl.gridy = 12;
-		budgetLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		panel.add(budgetLbl, gbc_budgetLbl);
+		GridBagConstraints gbc_budgetCheckBox = new GridBagConstraints();
+		gbc_budgetCheckBox.anchor = GridBagConstraints.EAST;
+		gbc_budgetCheckBox.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetCheckBox.gridx = 1;
+		gbc_budgetCheckBox.gridy = 12;
+		budgetCheckBox.setFont(new Font("Tahoma", Font.BOLD, 11));
+		budgetCheckBox.setEnabled(false);
+		panel.add(budgetCheckBox, gbc_budgetCheckBox);
 		
 		GridBagConstraints gbc_budgetField = new GridBagConstraints();
 		gbc_budgetField.gridwidth = 2;
@@ -524,16 +527,24 @@ public class UserInformationGUI extends JFrame {
 		}
 		creditCardField.setText(credit);
 		moneyField.setText(String.valueOf(currentUser.getMoney()));
+		
+		if (currentUser.isBudgetBool())
+			budgetCheckBox.setSelected(true);
+		else 
+			budgetCheckBox.setSelected(false);
+		
 		budgetField.setText(String.valueOf(currentUser.getBudget()));
 		moneySpentField.setText(String.valueOf(currentUser.getMoneySpentPerMonth()));
 
+		/*
 		Vector<User> friends = businessLogic.getFriends(currentUser);
 		Vector<UserBet> bets = businessLogic.getUserBets(currentUser);
 		Vector<Sport> sports = businessLogic.getUserPreferences(currentUser);
-
-		friendComboBox.setModel(new DefaultComboBoxModel<User>(friends));
-		betsComboBox.setModel(new DefaultComboBoxModel<UserBet>(bets));
-		sportsComboBox.setModel(new DefaultComboBoxModel<Sport>(sports));
+		*/
+		
+		friendComboBox.setModel(new DefaultComboBoxModel<User>(currentUser.getFriends()));
+		betsComboBox.setModel(new DefaultComboBoxModel<UserBet>(currentUser.getBets()));
+		sportsComboBox.setModel(new DefaultComboBoxModel<Sport>(currentUser.getPreferences()));
 	}
 
 	public void setBusinessLogic(BLFacade businessLogic) {

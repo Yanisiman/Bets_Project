@@ -18,6 +18,7 @@ import businessLogic.BLFacade;
 import domain.User;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class UserEditInfoGUI extends JFrame {
 
@@ -53,14 +54,15 @@ public class UserEditInfoGUI extends JFrame {
 	private User currentUser;
 	private UserInformationGUI info;
 	private final JTextField budgetField = new JTextField();
-	private final JLabel budgetLbl = new JLabel("Budget :");
 	private final JLabel addMoneyLbl = new JLabel("Add Money :");
+	private final JCheckBox budgetCheckBox = new JCheckBox(" Budget :");
 
 
 	/**
 	 * Create the frame.
 	 */
 	public UserEditInfoGUI(User user, UserInformationGUI uInfo) {
+		budgetField.setEnabled(false);
 		budgetField.setColumns(10);
 		
 		currentUser = user;
@@ -254,7 +256,7 @@ public class UserEditInfoGUI extends JFrame {
 				}
 				
 				int budget = 0;
-				if (!budgetField.getText().equals("")) {
+				if (budgetCheckBox.isSelected() && !budgetField.getText().equals("")) {
 					try {
 						budget = Integer.parseInt(budgetField.getText());
 					} catch (Exception e) {
@@ -269,14 +271,21 @@ public class UserEditInfoGUI extends JFrame {
 			}
 		});
 		
-		GridBagConstraints gbc_budgetLbl = new GridBagConstraints();
-		gbc_budgetLbl.gridwidth = 2;
-		gbc_budgetLbl.insets = new Insets(0, 0, 5, 5);
-		gbc_budgetLbl.anchor = GridBagConstraints.EAST;
-		gbc_budgetLbl.gridx = 1;
-		gbc_budgetLbl.gridy = 10;
-		budgetLbl.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		panel.add(budgetLbl, gbc_budgetLbl);
+		GridBagConstraints gbc_budgetCheckBox = new GridBagConstraints();
+		gbc_budgetCheckBox.anchor = GridBagConstraints.EAST;
+		gbc_budgetCheckBox.gridwidth = 2;
+		gbc_budgetCheckBox.insets = new Insets(0, 0, 5, 5);
+		gbc_budgetCheckBox.gridx = 1;
+		gbc_budgetCheckBox.gridy = 10;
+		budgetCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (budgetCheckBox.isSelected())
+					budgetField.setEnabled(true);
+				else
+					budgetField.setEnabled(false);
+			}
+		});
+		panel.add(budgetCheckBox, gbc_budgetCheckBox);
 		
 		
 		GridBagConstraints gbc_budgetField = new GridBagConstraints();
