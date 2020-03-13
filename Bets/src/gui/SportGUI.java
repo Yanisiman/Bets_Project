@@ -218,13 +218,16 @@ public class SportGUI extends JFrame {
 	
 	private void displaySports() {
 		user = businessLogic.checkLogin(user.getUsername(), "");
-		comboBox.addItem("Favorite sports");
-		Vector<Sport> preferences = businessLogic.getUserPreferences(user);
-		for (Sport sport: preferences)
-			comboBox.addItem(sport.getSportName());
-			
-		comboBox.addItem("-----------------");
-		comboBox.addItem("All Sports");
+		if (!user.isAdmin()) {
+			comboBox.addItem("Favorite sports");
+			Vector<Sport> preferences = businessLogic.getUserPreferences(user);
+			for (Sport sport: preferences)
+				comboBox.addItem(sport.getSportName());
+				
+			comboBox.addItem("-----------------");
+			comboBox.addItem("All Sports");
+		}		
+		
 		List<Sport> allSport = businessLogic.getAllSport();
 		for(Sport s : allSport) {
 				comboBox.addItem(s.getSportName());

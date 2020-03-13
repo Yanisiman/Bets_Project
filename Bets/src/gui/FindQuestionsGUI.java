@@ -334,6 +334,7 @@ public class FindQuestionsGUI extends JFrame {
 			editAccountBtn.setVisible(false);
 			logoutBtn.setVisible(false);
 			moneyField.setVisible(false);
+			forumBtn.setVisible(false);
 		}
 		else 
 			moneyField.setText("Money : " + currentUser.getMoney() + " €");
