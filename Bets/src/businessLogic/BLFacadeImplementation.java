@@ -176,14 +176,14 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public Event createEvent(String description, Date eventDate) throws EventFinished {
+	public Event createEvent(String description, Date eventDate, Sport sport) throws EventFinished {
 		DataAccess dBManager=new DataAccess();
 		Event event = null;
 		
 		if(new Date().compareTo(eventDate)>0)
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
-		event = dBManager.createEvent(description, eventDate);
+		event = dBManager.createEvent(description, eventDate, sport);
 
 		dBManager.close();
 		
@@ -209,9 +209,9 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	@Override
-	public void removeEvent(Event event) {
+	public void removeEvent(Event event, Sport sport) {
 		DataAccess dBManager = new DataAccess();
-		dBManager.removeEvent(event);
+		dBManager.removeEvent(event, sport);
 		dBManager.close();
 	}
 

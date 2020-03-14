@@ -236,6 +236,32 @@ public class DataAccess {
 			sport2.addEvent(ev21);
 			sport2.addEvent(ev22);
 			sport2.addEvent(ev23);
+			
+			ev1.setSport(sport);
+			ev2.setSport(sport);
+			ev3.setSport(sport);
+			ev4.setSport(sport);
+			ev5.setSport(sport);
+			ev6.setSport(sport);
+			ev7.setSport(sport);
+			ev8.setSport(sport);
+			ev9.setSport(sport);
+			ev10.setSport(sport);
+			ev11.setSport(sport);
+			ev12.setSport(sport);
+			ev13.setSport(sport);
+			ev14.setSport(sport);
+			ev15.setSport(sport);
+			ev16.setSport(sport);
+			ev17.setSport(sport);
+			ev18.setSport(sport);
+			ev19.setSport(sport);
+			ev20.setSport(sport);
+			ev21.setSport(sport2);
+			ev22.setSport(sport2);
+			ev23.setSport(sport2);
+			
+			
 
 			Date date = new Date();
 			date.setMinutes(date.getMinutes() + 1);
@@ -260,6 +286,7 @@ public class DataAccess {
 			db.persist(userBet);
 			
 			sport.addEvent(e);
+			e.setSport(sport);
 
 			db.getTransaction().commit();
 
@@ -292,7 +319,8 @@ public class DataAccess {
 		db.getTransaction().begin();
 		Question q = ev.addQuestion(question, betMinimum);
 		// db.persist(q);
-		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
+		db.persist(ev);
+		db.persist(q); // db.persist(q) not required when CascadeType.PERSIST is added in questions
 						// property of Event class
 						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
@@ -468,12 +496,15 @@ public class DataAccess {
 		return a.getResultList();
 	}
 
-	public Event createEvent(String description, Date eventDate) {
+	public Event createEvent(String description, Date eventDate, Sport sport) {
+		Sport s = db.find(Sport.class, sport);
 		db.getTransaction().begin();
 		Event event = new Event(description, eventDate);
-
-		db.persist(event);
+		event.setSport(s);
+		s.addEvent(event);
+		db.persist(s);
 		db.getTransaction().commit();
+		
 		return event;
 	}
 
@@ -504,13 +535,14 @@ public class DataAccess {
 		}
 	}
 
-	public void removeEvent(Event e) {
+	public void removeEvent(Event e, Sport sport) {
 		db.getTransaction().begin();
 
 		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
 		q.executeUpdate();
+		Sport sport2 = db.find(Sport.class,sport);
+		sport2.removeEvent(e);
 		db.getTransaction().commit();
-
 		for (Question question : e.getQuestions()) {
 			removeQuestion(question);
 
@@ -518,6 +550,7 @@ public class DataAccess {
 				removeBet(b);
 			}
 		}
+		
 
 	}
 
@@ -710,6 +743,8 @@ public class DataAccess {
 		Sport sport2 = q1.getSingleResult();
 		db.remove(sport2);
 		db.getTransaction().commit();
+		for(Event e: sport2.getSportEvent())
+			removeEvent(e, sport2);
 	}
 
 	public User addSportUser(Sport sport, User user) {

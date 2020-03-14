@@ -1,5 +1,6 @@
 package domain;
 
+import java.lang.annotation.Repeatable;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Sport {
 	private Integer sportNumber;
 	private String sportName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) 
 	private Vector<Event> sportEvent = new Vector<Event>();
 	
 
@@ -59,6 +60,10 @@ public class Sport {
 	
 	public void addEvent(Event event) {
 		sportEvent.add(event);
+	}
+	
+	public void removeEvent(Event event) {
+		sportEvent.remove(event);
 	}
 
 

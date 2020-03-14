@@ -188,6 +188,7 @@ public class RulesGUI extends JFrame {
 				//findQuestionsGUI.setVisible(true);
 				sportGUI.setBusinessLogic(businessLogic);
 				sportGUI.setUser(user);
+				sportGUI.setB(false);
 				sportGUI.setVisible(true);
 
 			}
