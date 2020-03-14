@@ -1,0 +1,1755 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:17:01 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1274@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:17:01 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:17:01 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:17:01 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:17:01 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:17:01 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:17:01 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:17:01 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:17:01 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:17:01 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:17:01 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:17:01 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:17:01 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:17:01 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:17:01 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:17:01 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:17:01 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:17:01 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:17:01 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:17:01 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:17:01 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:25:19 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1293@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:25:19 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:25:19 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:25:19 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:25:19 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:25:19 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:25:19 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:25:19 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:25:19 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:25:19 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:25:19 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:25:19 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:25:19 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:25:19 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:25:19 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:25:19 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:25:19 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:25:19 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:25:19 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:25:19 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:25:19 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:26:03 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1303@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:26:03 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:26:03 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:26:03 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:26:03 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:26:03 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:26:03 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:26:03 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:26:03 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:26:03 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:26:03 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:26:03 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:26:03 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:26:03 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:26:03 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:26:03 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:26:03 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:26:03 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:26:03 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:26:03 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:26:03 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:27:21 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1304@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:27:21 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:27:21 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:27:21 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:27:21 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:27:21 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:27:21 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:27:21 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:27:21 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:27:21 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:27:21 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:27:21 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:27:21 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:27:21 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:27:21 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:27:21 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:27:21 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:27:21 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:27:21 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:27:21 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:27:21 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:28:07 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1313@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:28:08 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:28:08 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:28:08 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:28:08 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:28:08 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:28:08 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:28:08 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:28:08 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:28:08 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:28:08 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:28:08 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:28:08 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:28:08 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:28:08 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:28:08 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:28:08 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:28:08 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:28:08 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:28:08 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:28:08 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:29:17 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1318@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:29:17 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:29:17 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:29:17 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:29:17 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:29:17 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:29:17 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:29:17 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:29:17 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:29:17 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:29:17 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:29:17 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:29:17 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:29:17 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:29:17 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:29:17 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:29:17 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:29:17 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:29:17 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:29:17 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:29:17 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:30:17 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1320@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:30:17 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:30:17 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:30:17 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:30:17 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:30:17 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:30:17 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:30:17 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:30:17 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:30:17 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:30:17 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:30:17 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:30:17 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:30:17 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:30:17 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:30:17 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:30:17 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:30:17 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:30:17 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:30:17 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:30:17 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:30:43 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1321@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:30:43 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:30:43 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:30:43 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:30:43 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:30:43 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:30:43 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:30:43 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:30:43 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:30:43 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:30:43 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:30:43 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:30:43 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:30:43 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:30:43 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:30:44 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:30:44 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:30:44 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:30:44 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:30:44 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:30:44 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:32:39 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1322@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:32:39 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:32:39 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:32:39 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:32:39 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:32:39 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:32:39 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:32:39 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:32:39 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:32:39 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:32:39 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:32:39 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:32:39 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:32:39 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:32:39 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:32:39 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:32:39 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:32:39 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:32:39 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:32:39 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:32:39 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:37:25 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1336@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:37:26 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:37:26 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:37:26 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:37:26 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:37:26 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:37:26 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:37:26 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:37:26 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:37:26 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:37:26 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:37:26 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:37:26 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:37:26 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:37:26 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:37:26 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:37:26 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:37:26 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:37:26 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:37:26 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:37:26 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 14:38:26 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1341@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 14:38:27 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 14:38:27 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 14:38:27 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 14:38:27 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 14:38:27 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 14:38:27 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 14:38:27 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 14:38:27 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 14:38:27 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 14:38:27 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 14:38:27 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 14:38:27 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 14:38:27 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 14:38:27 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 14:38:27 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 14:38:27 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 14:38:27 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 14:38:27 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 14:38:27 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 14:38:27 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:00:24 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1389@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:00:24 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:00:24 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:00:24 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:00:24 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:00:24 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:00:24 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:00:24 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:00:24 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:00:24 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:00:24 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:00:24 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:00:24 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:00:24 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:00:24 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:00:24 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:00:24 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:00:24 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:00:24 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:00:24 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:00:24 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:12:07 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1430@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:12:07 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:12:07 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:12:07 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:12:07 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:12:07 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:12:07 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:12:07 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:12:07 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:12:07 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:12:07 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:12:07 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:12:07 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:12:07 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:12:07 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:12:07 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:12:07 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:12:07 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:12:07 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:12:07 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:12:07 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:13:03 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1431@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:13:03 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:13:03 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:13:03 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:13:03 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:13:03 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:13:03 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:13:03 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:13:03 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:13:03 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:13:03 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:13:03 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:13:03 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:13:03 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:13:03 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:13:03 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:13:03 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:13:03 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:13:03 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:13:03 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:13:03 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:14:14 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1435@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:14:14 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:14:14 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:14:14 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:14:14 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:14:14 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:14:14 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:14:14 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:14:14 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:14:14 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:14:14 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:14:14 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:14:14 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:14:14 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:14:14 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:14:14 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:14:14 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:14:14 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:14:14 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:14:14 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:14:14 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:16:01 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1445@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:16:02 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:16:02 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:16:02 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:16:02 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:16:02 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:16:02 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:16:02 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:16:02 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:16:02 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:16:02 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:16:02 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:16:02 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:16:02 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:16:02 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:16:02 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:16:02 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:16:02 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:16:02 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:16:02 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:16:02 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:41:11 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1516@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:41:11 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:41:11 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:41:11 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:41:11 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:41:11 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:41:11 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:41:11 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:41:11 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:41:11 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:41:11 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:41:11 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:41:11 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:41:11 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:41:11 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:41:11 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:41:11 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:41:11 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:41:11 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:41:11 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:41:11 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:41:41 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1517@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:41:41 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:41:41 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:41:41 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:41:41 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:41:41 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:41:41 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:41:41 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:41:41 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:41:41 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:41:41 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:41:41 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:41:41 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:41:41 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:41:41 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:41:41 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:41:41 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:41:41 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:41:41 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:41:41 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:41:41 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:44:48 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1518@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:44:48 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:44:48 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:44:48 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:44:48 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:44:48 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:44:48 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:44:48 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:44:48 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:44:48 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:44:48 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:44:48 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:44:48 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:44:48 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:44:48 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:44:48 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:44:48 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:44:48 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:44:48 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:44:48 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:44:48 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:46:18 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1519@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:46:18 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:46:18 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:46:18 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:46:18 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:46:18 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:46:18 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:46:18 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:46:18 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:46:18 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:46:18 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:46:18 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:46:18 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:46:18 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:46:18 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:46:18 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:46:18 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:46:18 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:46:18 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:46:18 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:46:18 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:47:56 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1520@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:47:56 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:47:56 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:47:56 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:47:56 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:47:56 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:47:56 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:47:56 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:47:56 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:47:56 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:47:56 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:47:56 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:47:56 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:47:56 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:47:56 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:47:56 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:47:56 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:47:56 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:47:56 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:47:56 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:47:56 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 15:59:17 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1550@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 15:59:17 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 15:59:17 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 15:59:17 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 15:59:17 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 15:59:17 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 15:59:17 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 15:59:17 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 15:59:17 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 15:59:17 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 15:59:17 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 15:59:17 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 15:59:17 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 15:59:17 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 15:59:17 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 15:59:17 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 15:59:17 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 15:59:17 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 15:59:17 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 15:59:17 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 15:59:17 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 16:00:04 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1551@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 16:00:04 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 16:00:04 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 16:00:04 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 16:00:04 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 16:00:04 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 16:00:04 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 16:00:04 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 16:00:04 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 16:00:04 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 16:00:04 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 16:00:04 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 16:00:04 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 16:00:04 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 16:00:04 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 16:00:04 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 16:00:04 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 16:00:04 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 16:00:04 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 16:00:04 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 16:00:04 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 16:01:27 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1552@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 16:01:28 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 16:01:28 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 16:01:28 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 16:01:28 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 16:01:28 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 16:01:28 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 16:01:28 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 16:01:28 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 16:01:28 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 16:01:28 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 16:01:28 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 16:01:28 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 16:01:28 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 16:01:28 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 16:01:28 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 16:01:28 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 16:01:28 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 16:01:28 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 16:01:28 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 16:01:28 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 16:02:55 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1553@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 16:02:55 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 16:02:55 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 16:02:55 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 16:02:55 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 16:02:55 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 16:02:55 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 16:02:55 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 16:02:55 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 16:02:55 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 16:02:55 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 16:02:55 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 16:02:55 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 16:02:55 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 16:02:55 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 16:02:55 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 16:02:55 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 16:02:55 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 16:02:55 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 16:02:55 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 16:02:55 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 16:21:42 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1596@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 16:21:42 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 16:21:42 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 16:21:42 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 16:21:42 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 16:21:42 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 16:21:42 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 16:21:42 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 16:21:42 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 16:21:42 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 16:21:42 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 16:21:42 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 16:21:42 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 16:21:42 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 16:21:42 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 16:21:42 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 16:21:42 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 16:21:42 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 16:21:42 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 16:21:42 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 16:21:42 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-10 16:23:47 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 1606@MacBook-Air-de-Marion-3.local
+
+[2020-03-10 16:23:48 #2 type.registry] 
+New type domain.Question
+
+[2020-03-10 16:23:48 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-10 16:23:48 #4 type.registry] 
+New type domain.Event
+
+[2020-03-10 16:23:48 #5 type.registry] 
+New type domain.BetChoice
+
+[2020-03-10 16:23:48 #6 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-10 16:23:48 #7 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-10 16:23:48 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-10 16:23:48 #9 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-10 16:23:48 #10 type.registry] 
+New type domain.UserBet
+
+[2020-03-10 16:23:48 #11 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-10 16:23:48 #12 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-10 16:23:48 #13 type.registry] 
+New type domain.User
+
+[2020-03-10 16:23:48 #14 type] 
+Type domain.User is not enhanced.
+
+[2020-03-10 16:23:48 #15 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-10 16:23:48 #16 type.registry] 
+New type domain.Admin
+
+[2020-03-10 16:23:48 #17 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-10 16:23:48 #18 type.registry] 
+New type domain.Sport
+
+[2020-03-10 16:23:48 #19 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-10 16:23:48 #20 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-10 16:23:48 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

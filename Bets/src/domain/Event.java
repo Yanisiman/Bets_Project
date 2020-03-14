@@ -28,9 +28,12 @@ public class Event implements Serializable {
 	private String description;
 	private Date eventDate;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) //Before .PERSIST
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
 	private Vector<Question> questions = new Vector<Question>();
 
+	//@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Sport sport;
+	
 	public Event() {
 		super();
 	}
@@ -94,6 +97,14 @@ public class Event implements Serializable {
 
 	public void setQuestions(Vector<Question> questions) {
 		this.questions = questions;
+	}
+	
+	public void setSport(Sport sport) {
+		this.sport = sport;
+	}
+	
+	public Sport getSport() {
+		return sport;
 	}
 
 
