@@ -234,7 +234,10 @@ public class CreateQuestionGUI extends JFrame {
 					ev.setHours(t.getHours());
 					ev.setMinutes(t.getMinutes());
 
-					Event event = businessLogic.createEvent(description, ev);
+					Event event = businessLogic.createEvent(description, ev, sport);
+					jComboBoxEvents.addItem(event); //Not ok
+					updateEvents(ev, parser);
+					System.out.print(sport.getSportEvent());
 
 					Timer timer = new Timer();
 					TimerTask timerTask = new TimerTask() {
@@ -371,7 +374,8 @@ public class CreateQuestionGUI extends JFrame {
 				Event event = (Event) jComboBoxEvents.getSelectedItem();
 				if (event == null)
 					return;
-				businessLogic.removeEvent(event);
+				businessLogic.removeEvent(event, sport);
+				jComboBoxEvents.removeItem(event);
 			}
 		});
 
@@ -614,7 +618,12 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
-		System.exit(0); // Close the process
+		SportGUI sportGUI = new SportGUI(businessLogic, currentUser);
+		sportGUI.setBusinessLogic(businessLogic);
+		sportGUI.setUser(currentUser);
+		sportGUI.setVisible(true);
+		sportGUI.setB(true);
+		
 	}
 
 	public void setBusinessogic(BLFacade bl) {

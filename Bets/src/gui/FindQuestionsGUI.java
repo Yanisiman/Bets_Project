@@ -82,6 +82,7 @@ public class FindQuestionsGUI extends JFrame {
 	private User currentUser;
 	private FindQuestionsGUI self;
 	private final JButton registerBtn = new JButton("Register");
+	private final JButton closeBttn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public FindQuestionsGUI(User currentUser, BLFacade bl, Sport sport) {
 		this.currentUser = currentUser;
@@ -359,8 +360,7 @@ public class FindQuestionsGUI extends JFrame {
 		getContentPane().add(textArea);
 
 		moneyField.setBounds(263, 2, 103, 23);
-		getContentPane().add(moneyField);
-		
+		getContentPane().add(moneyField);	
 		
 		forumBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -373,6 +373,21 @@ public class FindQuestionsGUI extends JFrame {
 		forumBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		forumBtn.setBounds(367, 1, 87, 25);
 		getContentPane().add(forumBtn);
+
+		closeBttn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				self.setVisible(false);
+				SportGUI sportGUI = new SportGUI(businessLogic, currentUser);
+				sportGUI.setBusinessLogic(businessLogic);
+				sportGUI.setUser(currentUser);
+				sportGUI.setVisible(true);
+				sportGUI.setB(false);
+			}
+		});
+		closeBttn.setBounds(291, 443, 117, 29);
+		
+		getContentPane().add(closeBttn);
+
 	}
 
 	public void setBusinessLogic(BLFacade bl) {
