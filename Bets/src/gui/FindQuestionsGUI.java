@@ -354,7 +354,6 @@ public class FindQuestionsGUI extends JFrame {
 		
 		textArea.setBounds(147, 415, 406, 25);
 		textArea.setText("");
-		textArea.setEnabled(false);
 		textArea.setEditable(false);
 		textArea.setVisible(false);
 		getContentPane().add(textArea);
@@ -425,7 +424,7 @@ public class FindQuestionsGUI extends JFrame {
 			// the empty days before day 1 of month, and all the days previous to each day.
 			// That number of components is calculated with "offset" and is different in
 			// English and Spanish
-//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
+			// Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
 			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(Color.CYAN);
@@ -438,7 +437,8 @@ public class FindQuestionsGUI extends JFrame {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
-		moneyField.setText("Money : " + currentUser.getMoney() + " €");
+		if (currentUser != null)
+			moneyField.setText("Money : " + currentUser.getMoney() + " €");
 	}
 	
 

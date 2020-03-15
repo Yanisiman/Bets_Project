@@ -74,7 +74,7 @@ public class Event implements Serializable {
 	}
 
 	public String toString() {
-		return eventNumber + ";" + description;
+		return description;
 	}
 	
 	/**

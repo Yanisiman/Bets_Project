@@ -22,6 +22,7 @@ public class ConfirmationGUI extends JFrame {
 
 	private JPanel contentPane;
 	private ConfirmationGUI self;
+	private JTextArea textArea = new JTextArea();
 	
 	/**
 	 * Create the frame.
@@ -39,15 +40,11 @@ public class ConfirmationGUI extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{276, 0};
 		gbl_contentPane.rowHeights = new int[]{83, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
 		textArea.setEditable(false);
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.fill = GridBagConstraints.BOTH;
@@ -90,9 +87,7 @@ public class ConfirmationGUI extends JFrame {
 				rulesGUI.setVisible(true);
 			}
 		});
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
+
 		textArea.setEditable(false);
 		contentPane.add(textArea, BorderLayout.CENTER);
 		textArea.setText(message);
@@ -122,38 +117,13 @@ public class ConfirmationGUI extends JFrame {
 			}
 		});
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
-		textArea.setEditable(false);
+		textArea.setEditable(false);		
 		contentPane.add(textArea, BorderLayout.CENTER);
+		textArea.setAlignmentX(CENTER_ALIGNMENT);
 		textArea.setText(message);
-	}
-	
-	public ConfirmationGUI(CreateQuestionGUI createQuestionGUI, String message) {
 		
-		this.setSize(600, 200);
-		this.self = this;
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JButton acceptBtn = new JButton("Accept");
-		contentPane.add(acceptBtn, BorderLayout.SOUTH);
-		acceptBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
-		textArea.setEditable(false);
-		contentPane.add(textArea, BorderLayout.CENTER);
-	}
+	}		
 	
 	public ConfirmationGUI(UserEditInfoGUI userEditInfoGUI, String message) {
 		this.setSize(600, 200);
@@ -174,12 +144,8 @@ public class ConfirmationGUI extends JFrame {
 			}
 		});
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
 		textArea.setEditable(false);
 		contentPane.add(textArea, BorderLayout.CENTER);
 	}
 	
-	
-
 }

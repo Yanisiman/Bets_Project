@@ -52,8 +52,6 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 
 		panel = new JPanel();
 		setContentPane(panel);
@@ -61,8 +59,6 @@ public class LoginGUI extends JFrame {
 
 		self = this;
 		
-		
-
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 20, 50, 80, 55, 150, 78, 35, 30, 50, 20 };
 		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 54, 34, 34, 35, 0, 67, 0, 35, 20 };

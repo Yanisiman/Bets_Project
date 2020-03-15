@@ -179,7 +179,7 @@ public class Question implements Serializable {
 	}
 
 	public String toString(){
-		return questionNumber+" ; "+ question + " ; Min bet : "+Float.toString(betMinimum) + " ";
+		return question + " ; Min bet : " + Float.toString(betMinimum) + " ";
 	}
 
 

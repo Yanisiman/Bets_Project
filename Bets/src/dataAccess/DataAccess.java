@@ -213,6 +213,7 @@ public class DataAccess {
 
 			yanis.addFriend(user2);
 			yanis.addPreference(sport);
+			yanis.setMoney(500);
 
 			sport.addEvent(ev1);
 			sport.addEvent(ev2);
