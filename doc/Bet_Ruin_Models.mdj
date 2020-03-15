@@ -15272,7 +15272,239 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Logic Model"
+			"name": "Logic Model",
+			"ownedElements": [
+				{
+					"_type": "UMLPackage",
+					"_id": "AAAAAAFw391kCsIXWyg=",
+					"_parent": {
+						"$ref": "AAAAAAFw3toAaipOqvs="
+					},
+					"name": "Domain",
+					"ownedElements": [
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw392JmcLVybo=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Admin"
+						},
+						{
+							"_type": "UMLClassDiagram",
+							"_id": "AAAAAAFw394O8cVpUxc=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "ClassDiagram"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw39549cYnVvE=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "BetChoice"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+AHKcY0LSc=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Event"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+A0jcZHNow=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Forum"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+A4tMZLryA=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Message"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+BA5sZPOyE=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Question"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+BD/cZTGow=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "User"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+BHk8ZXFWw=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "Sport"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+Dpj8ZhQcU=",
+							"_parent": {
+								"$ref": "AAAAAAFw391kCsIXWyg="
+							},
+							"name": "UserBet"
+						}
+					]
+				},
+				{
+					"_type": "UMLPackage",
+					"_id": "AAAAAAFw397ejsYqqRU=",
+					"_parent": {
+						"$ref": "AAAAAAFw3toAaipOqvs="
+					},
+					"name": "Design",
+					"ownedElements": [
+						{
+							"_type": "UMLInterface",
+							"_id": "AAAAAAFw3+Gs/cZo+1s=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "BLFacade",
+							"ownedElements": [
+								{
+									"_type": "UMLClass",
+									"_id": "AAAAAAFw398VfsYvNgA=",
+									"_parent": {
+										"$ref": "AAAAAAFw3+Gs/cZo+1s="
+									},
+									"name": "BLFacadeImplementation"
+								}
+							]
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+IpfsZtejs=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "LoginGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+Izt8Zxr3Q=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "RegisterGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+I+28Z1jsw=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "RulesGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+JEpsZ5grs=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "DataAccess"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+LCfcaBaqs=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "ApplicationLauncher"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+LH5saFQ60=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "ConfirmationWindowGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+LL98aJI8g=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "CreateQuestionGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+LQJ8aNpUk=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "DeleteUserGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+LUaMaRGCU=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "FindQuestionsGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+QgQ8adbhg=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "ForumGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+QkjsahzKw=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "RulesGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+QsccalFrs=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "SportGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+QwpcapdtA=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "UserEditInfoGUI"
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFw3+SoKcaw69E=",
+							"_parent": {
+								"$ref": "AAAAAAFw397ejsYqqRU="
+							},
+							"name": "UserInformationGUI"
+						}
+					]
+				}
+			]
 		}
 	],
 	"company": "MYM"
