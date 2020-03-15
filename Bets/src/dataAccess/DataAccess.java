@@ -505,15 +505,19 @@ public class DataAccess {
 	}
 
 	public Event createEvent(String description, Date eventDate, Sport sport) {
-		Sport s = db.find(Sport.class, sport);
-		db.getTransaction().begin();
-		Event event = new Event(description, eventDate);
-		event.setSport(s);
-		s.addEvent(event);
-		db.persist(s);
-		db.getTransaction().commit();
-		
-		return event;
+		try {
+			Sport s = db.find(Sport.class, sport);
+			db.getTransaction().begin();
+			Event event = new Event(description, eventDate);
+			event.setSport(s);
+			s.addEvent(event);
+			db.persist(event);
+			db.getTransaction().commit();
+			
+			return event;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public BetChoice addBet(Question question, String response, float odds) {
@@ -776,6 +780,16 @@ public class DataAccess {
 			return null;
 		}
 
+	}
+	
+	public Vector<Event> getSportEvents(Sport sport) {
+		try {
+			Sport s = db.find(Sport.class, sport);
+			return s.getSportEvent();
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	public Vector<Sport> getUserPreferences(User user) {

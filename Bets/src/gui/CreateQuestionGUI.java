@@ -121,8 +121,8 @@ public class CreateQuestionGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 
 		jComboBoxEvents.setModel(modelEvents);
-		jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
-		jLabelListOfEvents.setBounds(new Rectangle(275, 21, 277, 20));
+		jComboBoxEvents.setBounds(new Rectangle(275, 67, 250, 20));
+		jLabelListOfEvents.setBounds(new Rectangle(275, 41, 277, 20));
 		jLabelQuery.setBounds(new Rectangle(25, 254, 90, 20));
 		jTextFieldQuery.setBounds(new Rectangle(115, 254, 350, 20));
 		jLabelMinBet.setBounds(new Rectangle(480, 254, 75, 20));
@@ -235,9 +235,9 @@ public class CreateQuestionGUI extends JFrame {
 					ev.setMinutes(t.getMinutes());
 
 					Event event = businessLogic.createEvent(description, ev, sport);
-					jComboBoxEvents.addItem(event); //Not ok
-					updateEvents(ev, parser);
-					System.out.print(sport.getSportEvent());
+					//jComboBoxEvents.addItem(event); //Not ok
+					
+					System.out.print(event.getSport().getSportEvent());
 
 					Timer timer = new Timer();
 					TimerTask timerTask = new TimerTask() {
@@ -379,7 +379,7 @@ public class CreateQuestionGUI extends JFrame {
 			}
 		});
 
-		removeEventBtn.setBounds(535, 46, 89, 23);
+		removeEventBtn.setBounds(535, 66, 89, 23);
 		getContentPane().add(removeEventBtn);
 
 		JButton resultBetBtn = new JButton("As result");

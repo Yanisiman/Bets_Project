@@ -31,7 +31,7 @@ public class Event implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
 	private Vector<Question> questions = new Vector<Question>();
 
-	//@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Sport sport;
 	
 	public Event() {
