@@ -217,7 +217,6 @@ public class SportGUI extends JFrame {
 	}
 	
 	
-	
 	private void displaySports() {
 		if (user != null) {
 			user = businessLogic.checkLogin(user.getUsername(), "");
