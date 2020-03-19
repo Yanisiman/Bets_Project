@@ -402,6 +402,32 @@ public class DataAccess {
 		}
 		return res;
 	}
+	
+	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+		try {
+			System.out.println(">> DataAccess: getEventsMonth");
+			Vector<Date> res = new Vector<Date>();
+
+			Date firstDayMonthDate = UtilDate.firstDayMonth(date);
+			Date lastDayMonthDate = UtilDate.lastDayMonth(date);
+			
+			Sport s = db.find(Sport.class, sport);
+
+			TypedQuery<Date> query = db.createQuery(
+					"SELECT DISTINCT ev.eventDate FROM Event ev WHERE (ev.eventDate BETWEEN ?1 and ?2) AND ev.sport.sportNumber =" + s.getSportNumber(), Date.class);
+			query.setParameter(1, firstDayMonthDate);
+			query.setParameter(2, lastDayMonthDate);
+			List<Date> dates = query.getResultList();
+			for (Date d : dates) {
+				System.out.println(d.toString());
+				res.add(d);
+			}
+			return res;
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public User getUser(String username, String password) {
 		try {

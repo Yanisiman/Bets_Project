@@ -89,6 +89,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.businessLogic = bl;
 		this.sport = sport;
 		this.self = this;
+		
 		try {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jbInit();
@@ -397,7 +398,12 @@ public class FindQuestionsGUI extends JFrame {
 		// For each day in current month, it is checked if there are events, and in that
 		// case, the background color for that day is changed.
 
-		Vector<Date> dates = businessLogic.getEventsMonth(jCalendar.getDate());
+		Vector<Date> dates = businessLogic.getEventsMonth(jCalendar.getDate(), sport);
+		if (dates == null) {
+			System.out.println("No events");
+			return;
+		}
+			
 
 		Calendar calendar = jCalendar.getCalendar();
 

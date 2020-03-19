@@ -96,6 +96,14 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return dates;
 	}
+	
+	@WebMethod
+	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+		DataAccess dbManager = new DataAccess();
+		Vector<Date> dates = dbManager.getEventsMonth(date, sport);
+		dbManager.close();
+		return dates;
+	}
 
 	/**
 	 * This method invokes the data access to initialize the database with some

@@ -54,6 +54,8 @@ public interface BLFacade  {
 	 */
 	@WebMethod public Vector<Date> getEventsMonth(Date date);
 	
+	@WebMethod public Vector<Date> getEventsMonth(Date date, Sport sport);
+	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
