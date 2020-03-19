@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
-import domain.Forum;
 import domain.Message;
 import domain.User;
 

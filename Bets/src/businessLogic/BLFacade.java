@@ -11,7 +11,6 @@ import domain.User;
 import domain.UserBet;
 import domain.BetChoice;
 import domain.Event;
-import domain.Forum;
 import domain.Message;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
