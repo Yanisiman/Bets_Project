@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -115,6 +116,16 @@ public class DataAccess {
 
 			Sport sport = new Sport("Football");
 			Sport sport2 = new Sport("Dance");
+			
+			String sports[] = new String[] {"Basketball", "Handball", "Gymnastics", "Badminton", "Table tennis", 
+					"Volleyball", "Tennis", "Baseball", "Cricket", "Dodgeball", "Frisbee", "Quidditch", "BMX", "Cycling", 
+					"Judo", "Wrestling", "Boxing", "Taekwondo", "Equitation", "Golf", "Curling", "Sprint", "Biathlon"};
+			
+			for (String s: sports)
+			{
+				Sport nS = new Sport(s);
+				db.persist(nS);
+			}			
 
 			User user = new User("Marion", "Bernard", 19, "111", "French", "marion.bernard@epita.fr", "MarionBer",
 					"123456789", "04-09-2000");

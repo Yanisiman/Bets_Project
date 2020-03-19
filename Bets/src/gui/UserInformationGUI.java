@@ -121,24 +121,24 @@ public class UserInformationGUI extends JFrame {
 		gbc_betAndRuinLbl.gridx = 3;
 		gbc_betAndRuinLbl.gridy = 0;
 		panel.add(betAndRuinLbl, gbc_betAndRuinLbl);
-		
-				GridBagConstraints gbc_deleteAccountBtn = new GridBagConstraints();
-				gbc_deleteAccountBtn.fill = GridBagConstraints.BOTH;
-				gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 0);
-				gbc_deleteAccountBtn.gridx = 9;
-				gbc_deleteAccountBtn.gridy = 0;
-				deleteAccountBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						businessLogic.deleteUser(currentUser);
-						self.setVisible(false);
-						LoginGUI loginGUI = new LoginGUI();
-						loginGUI.setBusinessLogic(businessLogic);
-						loginGUI.setVisible(true);
-					}
-				});
-				
-						deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
+
+		GridBagConstraints gbc_deleteAccountBtn = new GridBagConstraints();
+		gbc_deleteAccountBtn.fill = GridBagConstraints.BOTH;
+		gbc_deleteAccountBtn.insets = new Insets(0, 0, 5, 0);
+		gbc_deleteAccountBtn.gridx = 9;
+		gbc_deleteAccountBtn.gridy = 0;
+		deleteAccountBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				businessLogic.deleteUser(currentUser);
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setBusinessLogic(businessLogic);
+				loginGUI.setVisible(true);
+			}
+		});
+
+		deleteAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		panel.add(deleteAccountBtn, gbc_deleteAccountBtn);
 
 		GridBagConstraints gbc_registrationLbl = new GridBagConstraints();
 		gbc_registrationLbl.gridwidth = 5;
@@ -163,7 +163,7 @@ public class UserInformationGUI extends JFrame {
 		});
 		editButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(editButton, gbc_editButton);
-		
+
 		GridBagConstraints gbc_favoriteSportsLbl = new GridBagConstraints();
 		gbc_favoriteSportsLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_favoriteSportsLbl.gridx = 5;
@@ -194,7 +194,7 @@ public class UserInformationGUI extends JFrame {
 		gbc_usernameField.gridy = 3;
 		usernameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(usernameField, gbc_usernameField);
-		
+
 		GridBagConstraints gbc_sportsComboBox = new GridBagConstraints();
 		gbc_sportsComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_sportsComboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -282,7 +282,7 @@ public class UserInformationGUI extends JFrame {
 				friendComboBox.repaint();
 			}
 		});
-		
+
 		GridBagConstraints gbc_sportLbl = new GridBagConstraints();
 		gbc_sportLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_sportLbl.gridx = 5;
@@ -306,7 +306,7 @@ public class UserInformationGUI extends JFrame {
 		gbc_nameField.gridy = 6;
 		nameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nameField, gbc_nameField);
-		
+
 		GridBagConstraints gbc_sportField = new GridBagConstraints();
 		gbc_sportField.insets = new Insets(0, 0, 5, 5);
 		gbc_sportField.fill = GridBagConstraints.HORIZONTAL;
@@ -329,7 +329,7 @@ public class UserInformationGUI extends JFrame {
 		gbc_familyNameField.gridy = 7;
 		familyNameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(familyNameField, gbc_familyNameField);
-		
+
 		GridBagConstraints gbc_sportBtn = new GridBagConstraints();
 		gbc_sportBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_sportBtn.gridx = 5;
@@ -340,7 +340,7 @@ public class UserInformationGUI extends JFrame {
 					return;
 				String newSport = sportField.getText();
 				List<Sport> sports = businessLogic.getAllSport();
-				for (Sport s: sports) {
+				for (Sport s : sports) {
 					if (s.getSportName().equals(newSport)) {
 						businessLogic.addUserSport(s, currentUser);
 						break;
@@ -463,7 +463,7 @@ public class UserInformationGUI extends JFrame {
 				mainWindow.setCurrentUser(currentUser);
 			}
 		});
-		
+
 		GridBagConstraints gbc_budgetCheckBox = new GridBagConstraints();
 		gbc_budgetCheckBox.anchor = GridBagConstraints.EAST;
 		gbc_budgetCheckBox.insets = new Insets(0, 0, 5, 5);
@@ -472,14 +472,14 @@ public class UserInformationGUI extends JFrame {
 		budgetCheckBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		budgetCheckBox.setEnabled(false);
 		panel.add(budgetCheckBox, gbc_budgetCheckBox);
-		
+
 		GridBagConstraints gbc_budgetField = new GridBagConstraints();
 		gbc_budgetField.gridwidth = 2;
 		gbc_budgetField.insets = new Insets(0, 0, 5, 5);
 		gbc_budgetField.gridx = 2;
 		gbc_budgetField.gridy = 12;
 		panel.add(budgetField, gbc_budgetField);
-		
+
 		GridBagConstraints gbc_moneySpentLbl = new GridBagConstraints();
 		gbc_moneySpentLbl.anchor = GridBagConstraints.EAST;
 		gbc_moneySpentLbl.insets = new Insets(0, 0, 5, 5);
@@ -487,7 +487,7 @@ public class UserInformationGUI extends JFrame {
 		gbc_moneySpentLbl.gridy = 13;
 		moneySpentLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel.add(moneySpentLbl, gbc_moneySpentLbl);
-		
+
 		GridBagConstraints gbc_moneySpentField = new GridBagConstraints();
 		gbc_moneySpentField.gridwidth = 2;
 		gbc_moneySpentField.insets = new Insets(0, 0, 5, 5);
@@ -500,7 +500,7 @@ public class UserInformationGUI extends JFrame {
 	}
 
 	public void refresh(User currentUser) {
-		
+
 		currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
 
 		usernameField.setText(currentUser.getUsername());
@@ -527,21 +527,21 @@ public class UserInformationGUI extends JFrame {
 		}
 		creditCardField.setText(credit);
 		moneyField.setText(String.valueOf(currentUser.getMoney()));
-		
+
 		if (currentUser.isBudgetBool())
 			budgetCheckBox.setSelected(true);
-		else 
+		else
 			budgetCheckBox.setSelected(false);
-		
+
 		budgetField.setText(String.valueOf(currentUser.getBudget()));
 		moneySpentField.setText(String.valueOf(currentUser.getMoneySpentPerMonth()));
 
 		/*
-		Vector<User> friends = businessLogic.getFriends(currentUser);
-		Vector<UserBet> bets = businessLogic.getUserBets(currentUser);
-		Vector<Sport> sports = businessLogic.getUserPreferences(currentUser);
-		*/
-		
+		 * Vector<User> friends = businessLogic.getFriends(currentUser); Vector<UserBet>
+		 * bets = businessLogic.getUserBets(currentUser); Vector<Sport> sports =
+		 * businessLogic.getUserPreferences(currentUser);
+		 */
+
 		friendComboBox.setModel(new DefaultComboBoxModel<User>(currentUser.getFriends()));
 		betsComboBox.setModel(new DefaultComboBoxModel<UserBet>(currentUser.getBets()));
 		sportsComboBox.setModel(new DefaultComboBoxModel<Sport>(currentUser.getPreferences()));
