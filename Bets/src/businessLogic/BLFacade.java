@@ -102,7 +102,7 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean addFriend(User user, String friend);
 	
-	@WebMethod public void setResult(Question question, BetChoice choice);
+	@WebMethod public Question setResult(Question question, BetChoice choice);
 
 	@WebMethod public List<Sport> getAllSport();
 	

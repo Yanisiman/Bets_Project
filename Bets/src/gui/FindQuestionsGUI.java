@@ -455,7 +455,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		int i = tableQueries.getSelectedRow();
 		Question q = businessLogic.getQuestion((Question) tableModelQueries.getValueAt(i, 2)); // obtain ev object
-		if (new Date().compareTo(q.getEvent().getEventDate()) > 0) {
+		if (new Date().compareTo(q.getEvent().getEndDate()) > 0) {
 			BetChoice result = q.getResult();
 			if (result != null)
 				textArea.setText(result.getResponse());
@@ -466,6 +466,12 @@ public class FindQuestionsGUI extends JFrame {
 		else {
 			BetChoice[] bets = new BetChoice[q.getChoices().size()];
 			q.getChoices().toArray(bets);
+			
+			if (new Date().compareTo(q.getEvent().getEventDate()) > 0
+					) {
+				bets = new BetChoice[q.getDuringEvent().size()];
+				q.getDuringEvent().toArray(bets);
+			}			
 
 			choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 

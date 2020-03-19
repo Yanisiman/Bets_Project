@@ -724,7 +724,7 @@ public class DataAccess {
 		}
 	}
 
-	public void setResult(Question question, BetChoice choice) {
+	public Question setResult(Question question, BetChoice choice) {
 		try {
 			db.getTransaction().begin();
 
@@ -740,8 +740,10 @@ public class DataAccess {
 			quest.setResult(b);
 
 			db.getTransaction().commit();
+			
+			return quest;
 		} catch (Exception e) {
-			// TODO: handle exception
+			return null;
 		}
 	}
 

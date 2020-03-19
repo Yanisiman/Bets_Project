@@ -310,10 +310,11 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@Override
-	public void setResult(Question question, BetChoice choice) {
+	public Question setResult(Question question, BetChoice choice) {
 		DataAccess dBManager = new DataAccess();
-		dBManager.setResult(question, choice);
+		Question q = dBManager.setResult(question, choice);
 		dBManager.close();
+		return q;
 	}
 
 	@Override

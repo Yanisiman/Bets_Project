@@ -17,6 +17,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -244,11 +245,21 @@ public class CreateQuestionGUI extends JFrame {
 
 						@Override
 						public void run() {
+														
 							System.out.println("Event Closed");
 							Event e = businessLogic.getEvent(event);
+							
 							for (Question q : e.getQuestions()) {
+								
+								if (q.getResult() == null) {
+									Random rand = new Random();
+									int n = rand.nextInt(q.getChoices().size());
+									q = businessLogic.setResult(q, q.getChoices().get(n));
+								}
+								
 								for (BetChoice b : q.getChoices()) {
 									for (UserBet userBet : b.getUserBets()) {
+										
 										if (q.getResult().equals(b)) {
 											int amount = userBet.getAmountBet();
 											float odds = userBet.getOdds();
