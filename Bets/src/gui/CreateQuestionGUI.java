@@ -538,7 +538,7 @@ public class CreateQuestionGUI extends JFrame {
 			o.setBackground(Color.CYAN);
 		}
 
-		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.DAY_OF_MONTH, today);
 		calendar.set(Calendar.MONTH, month);
 	}
 
