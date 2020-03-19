@@ -269,10 +269,11 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@Override
-	public void addFriend(User user, String friend) {
+	public boolean addFriend(User user, String friend) {
 		DataAccess dBManager = new DataAccess();
-		dBManager.addFriend(user, friend);
+		boolean added = dBManager.addFriend(user, friend);
 		dBManager.close();
+		return added;
 	}
 
 	@Override

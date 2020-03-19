@@ -99,7 +99,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void removeFriend(User user, User friend);
 	
-	@WebMethod public void addFriend(User user, String friend);
+	@WebMethod public boolean addFriend(User user, String friend);
 	
 	@WebMethod public void setResult(Question question, BetChoice choice);
 

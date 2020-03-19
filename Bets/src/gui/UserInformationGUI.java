@@ -89,6 +89,8 @@ public class UserInformationGUI extends JFrame {
 	private final JLabel moneySpentLbl = new JLabel("Money spent :");
 	private final JLabel moneySpentField = new JLabel("");
 	private final JCheckBox budgetCheckBox = new JCheckBox(" Budget");
+	private final JTextArea textArea = new JTextArea();
+	private final JTextArea textAreaFriend = new JTextArea();
 
 	/**
 	 * Create the frame.
@@ -110,7 +112,7 @@ public class UserInformationGUI extends JFrame {
 		gbl_panel.columnWidths = new int[] { 87, 20, 50, 80, 72, 194, 52, 91, 50, 78 };
 		gbl_panel.rowHeights = new int[] { 20, 35, 0, 35, 35, 35, 35, 36, 35, 49, 43, 35, 36, 34, 20 };
 		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.5, 1.0, 0.0, 1.0, 0.0, 1.0, 0.5, 0.0 };
-		gbl_panel.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.5, 0.5, 0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.0,
+		gbl_panel.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.5, 0.5, 1.0, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.0,
 				1.0 };
 		panel.setLayout(gbl_panel);
 
@@ -131,6 +133,7 @@ public class UserInformationGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				businessLogic.deleteUser(currentUser);
 				self.setVisible(false);
+				mainWindow.setVisible(false);
 				LoginGUI loginGUI = new LoginGUI();
 				loginGUI.setBusinessLogic(businessLogic);
 				loginGUI.setVisible(true);
@@ -217,7 +220,10 @@ public class UserInformationGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (addFriendField.getText().equals(""))
 					return;
-				businessLogic.addFriend(currentUser, addFriendField.getText());
+				if (businessLogic.addFriend(currentUser, addFriendField.getText()))
+					textAreaFriend.setText("Added");
+				else
+					textAreaFriend.setText("No user found");
 
 				Vector<User> friends = businessLogic.getFriends(currentUser);
 				friendComboBox.setModel(new DefaultComboBoxModel<User>(friends));
@@ -313,6 +319,15 @@ public class UserInformationGUI extends JFrame {
 		gbc_sportField.gridx = 5;
 		gbc_sportField.gridy = 6;
 		panel.add(sportField, gbc_sportField);
+		
+		GridBagConstraints gbc_textAreaFriend = new GridBagConstraints();
+		gbc_textAreaFriend.gridwidth = 2;
+		gbc_textAreaFriend.insets = new Insets(0, 0, 5, 5);
+		gbc_textAreaFriend.fill = GridBagConstraints.BOTH;
+		gbc_textAreaFriend.gridx = 7;
+		gbc_textAreaFriend.gridy = 6;
+		textAreaFriend.setEditable(false);
+		panel.add(textAreaFriend, gbc_textAreaFriend);
 
 		GridBagConstraints gbc_familyNameLbl = new GridBagConstraints();
 		gbc_familyNameLbl.anchor = GridBagConstraints.EAST;
@@ -338,14 +353,18 @@ public class UserInformationGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (sportField.getText().equals(""))
 					return;
+				
+				String text = "No sport found";
 				String newSport = sportField.getText();
 				List<Sport> sports = businessLogic.getAllSport();
 				for (Sport s : sports) {
 					if (s.getSportName().equals(newSport)) {
-						businessLogic.addUserSport(s, currentUser);
+						currentUser = businessLogic.addUserSport(s, currentUser);
+						text = "Added " + newSport;
 						break;
 					}
 				}
+				textArea.setText(text);
 				refresh(currentUser);
 			}
 		});
@@ -366,6 +385,14 @@ public class UserInformationGUI extends JFrame {
 		gbc_nationalityField.gridy = 8;
 		nationalityField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		panel.add(nationalityField, gbc_nationalityField);
+		
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 5;
+		gbc_textArea.gridy = 8;
+		textArea.setEditable(false);
+		panel.add(textArea, gbc_textArea);
 
 		GridBagConstraints gbc_betsLbl = new GridBagConstraints();
 		gbc_betsLbl.gridwidth = 2;

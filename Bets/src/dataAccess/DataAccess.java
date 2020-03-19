@@ -655,7 +655,7 @@ public class DataAccess {
 		}
 	}
 
-	public void addFriend(User user, String friend) {
+	public boolean addFriend(User user, String friend) {
 		try {
 			db.getTransaction().begin();
 
@@ -667,12 +667,16 @@ public class DataAccess {
 					User.class);
 			User f = q2.getSingleResult();
 
-			if (!f.isAdmin() && !u.getFriends().contains(f))
-				u.addFriend(f);
-
+			if (f.isAdmin() || u.getFriends().contains(f))				
+				return false;
+			
+			u.addFriend(f);
 			db.getTransaction().commit();
+			return true;
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			return false;
 		}
 	}
 
