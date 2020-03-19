@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
@@ -54,6 +56,7 @@ public class RegisterGUI extends JFrame {
 	private RegisterGUI self;
 	private BLFacade businessLogic;
 	private User user;
+	private final JButton closeBtn = new JButton("Close");
 
 	/**
 	 * Create the frame.
@@ -66,7 +69,7 @@ public class RegisterGUI extends JFrame {
 		nameField.setColumns(10);
 		emailField.setColumns(10);
 		setTitle("Bet & Ruin");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JPanel();
 		setContentPane(panel);
@@ -289,6 +292,11 @@ public class RegisterGUI extends JFrame {
 					Period p = Period.between(d, now);
 					String age_string = String.valueOf(p.getYears()).substring(2);
 					int age = Integer.parseInt(age_string);
+					
+					if (age < 18) {
+						errorArea.setText("You must be 18 years old or older to use this bet application");
+						return;
+					}
 
 
 					User newUser = new User(name, familyName, age, password, nationality, email, username, creditCard,
@@ -328,6 +336,20 @@ public class RegisterGUI extends JFrame {
 		gbc_errorArea.gridy = 13;
 		errorArea.setEditable(false);
 		panel.add(errorArea, gbc_errorArea);
+		
+		GridBagConstraints gbc_closeBtn = new GridBagConstraints();
+		gbc_closeBtn.fill = GridBagConstraints.HORIZONTAL;
+		gbc_closeBtn.insets = new Insets(0, 0, 0, 5);
+		gbc_closeBtn.gridx = 4;
+		gbc_closeBtn.gridy = 14;
+		closeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setVisible(true);
+			}
+		});
+		panel.add(closeBtn, gbc_closeBtn);
 
 	}
 

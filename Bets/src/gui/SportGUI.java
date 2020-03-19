@@ -50,6 +50,7 @@ public class SportGUI extends JFrame {
 	private boolean b;
 	private int n = 0;
 	private String string = "";
+	private final JButton closeBtn = new JButton("Close");
 	
 
 	
@@ -72,9 +73,9 @@ public class SportGUI extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{69, 58, 130, 137, 76, 69, 0};
-		gbl_panel.rowHeights = new int[]{30, 14, 35, 22, 65, 23, 22, 35, 0, 23, 0, 0};
+		gbl_panel.rowHeights = new int[]{30, 14, 35, 22, 41, 23, 22, 0, 23, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -196,7 +197,7 @@ public class SportGUI extends JFrame {
 		GridBagConstraints gbc_newSportLabel = new GridBagConstraints();
 		gbc_newSportLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_newSportLabel.gridx = 1;
-		gbc_newSportLabel.gridy = 9;
+		gbc_newSportLabel.gridy = 8;
 		panel.add(newSportLabel, gbc_newSportLabel);
 		
 		GridBagConstraints gbc_textField = new GridBagConstraints();
@@ -204,15 +205,30 @@ public class SportGUI extends JFrame {
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.gridwidth = 2;
 		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 9;
+		gbc_textField.gridy = 8;
 		panel.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
 		gbc_addButton.insets = new Insets(0, 0, 5, 5);
 		gbc_addButton.gridx = 4;	
-		gbc_addButton.gridy = 9;
+		gbc_addButton.gridy = 8;
 		panel.add(addButton, gbc_addButton);
+		
+		GridBagConstraints gbc_closeBtn = new GridBagConstraints();
+		gbc_closeBtn.fill = GridBagConstraints.HORIZONTAL;
+		gbc_closeBtn.gridwidth = 2;
+		gbc_closeBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_closeBtn.gridx = 2;
+		gbc_closeBtn.gridy = 10;
+		closeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				self.setVisible(false);
+				LoginGUI loginGUI = new LoginGUI();
+				loginGUI.setVisible(true);
+			}
+		});
+		panel.add(closeBtn, gbc_closeBtn);
 
 	}
 	

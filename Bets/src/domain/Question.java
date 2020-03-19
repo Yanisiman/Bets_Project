@@ -21,10 +21,15 @@ public class Question implements Serializable {
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
+	
+	@OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private BetChoice result;  
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<BetChoice> choices;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Vector<BetChoice> duringEvent;
 	
 	@XmlIDREF
 	private Event event;
@@ -40,6 +45,8 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.event = event;
 		this.choices = new Vector<BetChoice>();
+		this.duringEvent = new Vector<BetChoice>();
+		this.result = null;
 	}
 	
 	public Question(String query, float betMinimum,  Event event) {
@@ -48,6 +55,8 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.event = event;
 		this.choices = new Vector<BetChoice>();
+		this.duringEvent = new Vector<BetChoice>();
+		this.result = null;
 	}
 
 	/**
@@ -176,6 +185,20 @@ public class Question implements Serializable {
 	
 	public void addChoice(BetChoice choice) {
 		choices.add(choice);
+	}
+
+	/**
+	 * @return the duringEvent
+	 */
+	public Vector<BetChoice> getDuringEvent() {
+		return duringEvent;
+	}
+
+	/**
+	 * @param duringEvent the duringEvent to set
+	 */
+	public void setDuringEvent(Vector<BetChoice> duringEvent) {
+		this.duringEvent = duringEvent;
 	}
 
 	public String toString(){

@@ -308,7 +308,7 @@ public class FindQuestionsGUI extends JFrame {
 			}
 		});
 		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		logoutBtn.setBounds(578, 0, 108, 26);
+		logoutBtn.setBounds(578, -1, 108, 26);
 
 		getContentPane().add(logoutBtn);
 		registerBtn.addActionListener(new ActionListener() {
@@ -320,7 +320,7 @@ public class FindQuestionsGUI extends JFrame {
 				registerGui.setVisible(true);
 			}
 		});
-		registerBtn.setBounds(40, 415, 97, 25);
+		registerBtn.setBounds(589, 1, 97, 25);
 
 		getContentPane().add(registerBtn);
 		betBtn.setVisible(false);
@@ -353,7 +353,7 @@ public class FindQuestionsGUI extends JFrame {
 			}
 		});
 		
-		textArea.setBounds(147, 415, 406, 25);
+		textArea.setBounds(138, 415, 408, 25);
 		textArea.setText("");
 		textArea.setEditable(false);
 		textArea.setVisible(false);
@@ -449,21 +449,32 @@ public class FindQuestionsGUI extends JFrame {
 	
 
 	public void displayBetChoices() {
+		textArea.setVisible(false);
 		if (currentUser == null)
 			return;
 
 		int i = tableQueries.getSelectedRow();
 		Question q = businessLogic.getQuestion((Question) tableModelQueries.getValueAt(i, 2)); // obtain ev object
+		if (new Date().compareTo(q.getEvent().getEventDate()) > 0) {
+			BetChoice result = q.getResult();
+			if (result != null)
+				textArea.setText(result.getResponse());
+			else 
+				textArea.setText("No result");
+			textArea.setVisible(true);
+		}
+		else {
+			BetChoice[] bets = new BetChoice[q.getChoices().size()];
+			q.getChoices().toArray(bets);
 
-		BetChoice[] bets = new BetChoice[q.getChoices().size()];
-		q.getChoices().toArray(bets);
+			choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
 
-		choiceBetComboBox.setModel(new DefaultComboBoxModel<BetChoice>(bets));
-
-		choiceBetComboBox.setVisible(true);
-		amountBetField.setVisible(true);
-		betBtn.setVisible(true);
-		amountBetLbl.setVisible(true);
+			choiceBetComboBox.setVisible(true);
+			amountBetField.setVisible(true);
+			betBtn.setVisible(true);
+			amountBetLbl.setVisible(true);
+		}
+		
 	}
 
 	public void setSport(Sport sport) {

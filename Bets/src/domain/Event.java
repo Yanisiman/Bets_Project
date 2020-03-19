@@ -27,6 +27,7 @@ public class Event implements Serializable {
 	private Integer eventNumber;
 	private String description;
 	private Date eventDate;
+	private Date endDate;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
 	private Vector<Question> questions = new Vector<Question>();
@@ -42,11 +43,15 @@ public class Event implements Serializable {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
+		this.endDate = eventDate;
+		this.endDate.setHours(eventDate.getHours() + 2);
 	}
 
 	public Event(String description, Date eventDate) {
 		this.description = description;
 		this.eventDate = eventDate;
+		this.endDate = eventDate;
+		this.endDate.setHours(eventDate.getHours() + 2);
 	}
 
 	public Integer getEventNumber() {
@@ -107,6 +112,20 @@ public class Event implements Serializable {
 		return sport;
 	}
 
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
 	/**
 	 * This method checks if the question already exists for that event

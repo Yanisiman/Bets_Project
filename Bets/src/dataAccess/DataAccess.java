@@ -273,10 +273,8 @@ public class DataAccess {
 			ev22.setSport(sport2);
 			ev23.setSport(sport2);
 			
-			
-
 			Date date = new Date();
-			date.setMinutes(date.getMinutes() + 1);
+			date.setDate(date.getDate() - 2);
 
 			Event e = new Event(35, "THIS IS A TEST", date);
 			Question q = e.addQuestion("Who will win the match?", 1);
