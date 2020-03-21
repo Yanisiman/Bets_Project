@@ -72,18 +72,20 @@ public class FindQuestionsGUI extends JFrame {
 	private JLabel amountBetLbl = new JLabel();
 	private JButton betBtn = new JButton();
 	private JButton editAccountBtn = new JButton("Account");
-	private final JButton logoutBtn = new JButton("Log out");
+	private JButton logoutBtn = new JButton("Log out");
 	private JTextArea textArea = new JTextArea();
 	private JLabel moneyField = new JLabel("Money :");
 	private JButton forumBtn = new JButton("Forum");
+	private JButton registerBtn = new JButton("Register");
+	private JButton closeBttn = new JButton("Close");
+	private JButton tutorialBtn = new JButton("Tutorial");
+
 
 	private Sport sport;
 	private BLFacade businessLogic;
 	private User currentUser;
 	private FindQuestionsGUI self;
-	private final JButton registerBtn = new JButton("Register");
-	private final JButton closeBttn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-
+	
 	public FindQuestionsGUI(User currentUser, BLFacade bl, Sport sport) {
 		this.currentUser = currentUser;
 		this.businessLogic = bl;
@@ -107,18 +109,18 @@ public class FindQuestionsGUI extends JFrame {
 	private void jbInit() throws Exception {
 
 		this.getContentPane().setLayout(null);
-		this.setSize(700, 550);
+		this.setSize(800, 600);
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
-		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabelQueries.setBounds(138, 221, 406, 14);
-		jLabelEvents.setBounds(297, 44, 259, 16);
+		jLabelEventDate.setBounds(new Rectangle(41, 64, 140, 25));
+		jLabelQueries.setBounds(138, 275, 406, 14);
+		jLabelEvents.setBounds(300, 68, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
 
-		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
+		jCalendar1.setBounds(new Rectangle(43, 100, 225, 150));
 
 		// Code for JCalendar
 		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener() {
@@ -186,8 +188,8 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(jCalendar1, null);
 
-		scrollPaneEvents.setBounds(new Rectangle(297, 60, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(138, 236, 406, 116));
+		scrollPaneEvents.setBounds(new Rectangle(297, 100, 346, 150));
+		scrollPaneQueries.setBounds(new Rectangle(138, 290, 406, 116));
 		
 		tableEvents.setDefaultEditor(Object.class, null);
 		tableQueries.setDefaultEditor(Object.class, null);
@@ -247,18 +249,18 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
 
-		choiceBetComboBox.setBounds(52, 377, 316, 16);
+		choiceBetComboBox.setBounds(52, 431, 316, 16);
 		getContentPane().add(choiceBetComboBox);
 		choiceBetComboBox.setVisible(false);
 
-		amountBetField.setBounds(448, 375, 96, 20);
+		amountBetField.setBounds(448, 429, 96, 20);
 		getContentPane().add(amountBetField);
 		amountBetField.setColumns(10);
 		amountBetField.setVisible(false);
 
 		amountBetLbl.setText("Amount :");
 		amountBetLbl.setHorizontalAlignment(SwingConstants.RIGHT);
-		amountBetLbl.setBounds(378, 378, 63, 14);
+		amountBetLbl.setBounds(378, 432, 63, 14);
 		getContentPane().add(amountBetLbl);
 		amountBetLbl.setVisible(false);
 		betBtn.addActionListener(new ActionListener() {
@@ -293,10 +295,10 @@ public class FindQuestionsGUI extends JFrame {
 		});
 
 		betBtn.setText("Bet");
-		betBtn.setBounds(554, 374, 89, 23);
+		betBtn.setBounds(554, 428, 89, 23);
 		getContentPane().add(betBtn);
-		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		editAccountBtn.setBounds(464, 0, 108, 25);
+		editAccountBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		editAccountBtn.setBounds(421, 14, 108, 25);
 
 		getContentPane().add(editAccountBtn);
 		logoutBtn.addActionListener(new ActionListener() {
@@ -307,8 +309,8 @@ public class FindQuestionsGUI extends JFrame {
 				loginGUI.setVisible(true);
 			}
 		});
-		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		logoutBtn.setBounds(578, -1, 108, 26);
+		logoutBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		logoutBtn.setBounds(657, 13, 108, 26);
 
 		getContentPane().add(logoutBtn);
 		registerBtn.addActionListener(new ActionListener() {
@@ -320,7 +322,7 @@ public class FindQuestionsGUI extends JFrame {
 				registerGui.setVisible(true);
 			}
 		});
-		registerBtn.setBounds(589, 1, 97, 25);
+		registerBtn.setBounds(657, 15, 107, 24);
 
 		getContentPane().add(registerBtn);
 		betBtn.setVisible(false);
@@ -353,13 +355,14 @@ public class FindQuestionsGUI extends JFrame {
 			}
 		});
 		
-		textArea.setBounds(138, 415, 408, 25);
+		textArea.setBounds(138, 462, 408, 25);
 		textArea.setText("");
 		textArea.setEditable(false);
 		textArea.setVisible(false);
 		getContentPane().add(textArea);
+		moneyField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		moneyField.setBounds(263, 2, 103, 23);
+		moneyField.setBounds(10, 16, 103, 23);
 		getContentPane().add(moneyField);	
 		
 		forumBtn.addActionListener(new ActionListener() {
@@ -371,7 +374,7 @@ public class FindQuestionsGUI extends JFrame {
 		});
 		
 		forumBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		forumBtn.setBounds(367, 1, 87, 25);
+		forumBtn.setBounds(324, 14, 87, 25);
 		getContentPane().add(forumBtn);
 
 		closeBttn.addActionListener(new ActionListener() {
@@ -384,12 +387,21 @@ public class FindQuestionsGUI extends JFrame {
 				sportGUI.setB(false);
 			}
 		});
-		closeBttn.setBounds(291, 443, 117, 29);
+		closeBttn.setBounds(324, 498, 117, 29);
 		
 		getContentPane().add(closeBttn);
+		tutorialBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TutorialGUI tutorialGUI = new TutorialGUI();
+				tutorialGUI.setVisible(true);
+			}
+		});
+				tutorialBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tutorialBtn.setBounds(539, 15, 104, 23);
+		tutorialBtn.setVisible(currentUser == null);
+		getContentPane().add(tutorialBtn);
 
-	}
-
+	}
 	public void setBusinessLogic(BLFacade bl) {
 		businessLogic = bl;
 	}
@@ -485,5 +497,9 @@ public class FindQuestionsGUI extends JFrame {
 
 	public void setSport(Sport sport) {
 		this.sport = sport;
+	}
+	
+	public void tutorial() {
+		tutorialBtn.setVisible(true);
 	}
 }

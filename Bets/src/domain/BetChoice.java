@@ -47,6 +47,7 @@ public class BetChoice implements Serializable{
 		super();
 		this.question = question;
 		this.question.addChoice(this);
+		this.question.addDuringChoice(this);
 		this.response = response;
 		this.userBets = new Vector<UserBet>();
 		this.odds = odd;

@@ -200,6 +200,10 @@ public class Question implements Serializable {
 	public void setDuringEvent(Vector<BetChoice> duringEvent) {
 		this.duringEvent = duringEvent;
 	}
+	
+	public void addDuringChoice(BetChoice choice) {
+		this.duringEvent.add(choice);
+	}
 
 	public String toString(){
 		return question + " ; Min bet : " + Float.toString(betMinimum) + " ";
