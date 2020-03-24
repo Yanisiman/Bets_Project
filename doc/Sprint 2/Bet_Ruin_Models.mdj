@@ -1197,7 +1197,7 @@
 									"font": "Arial;13;0",
 									"left": 177.5,
 									"top": 124.5,
-									"width": 122.70263671875,
+									"width": 122,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uB/bCubmAU="
@@ -1407,7 +1407,7 @@
 									"font": "Arial;13;0",
 									"left": 240,
 									"top": 180.5,
-									"width": 114.7490234375,
+									"width": 114,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uEw8yvKL+A="
@@ -1617,7 +1617,7 @@
 									"font": "Arial;13;0",
 									"left": 766.5,
 									"top": 116.5,
-									"width": 106.82080078125,
+									"width": 106,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uFIkyv4ed8="
@@ -1827,7 +1827,7 @@
 									"font": "Arial;13;0",
 									"left": 681,
 									"top": 148.5,
-									"width": 119.08447265625,
+									"width": 118,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uFibywmLGY="
@@ -2037,7 +2037,7 @@
 									"font": "Arial;13;0",
 									"left": 611,
 									"top": 188.5,
-									"width": 129.21533203125,
+									"width": 128,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uGAryxUlU0="
@@ -2247,7 +2247,7 @@
 									"font": "Arial;13;0",
 									"left": 665.5,
 									"top": 572.5,
-									"width": 121.25537109375,
+									"width": 120,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uG4wCyGTy8="
@@ -2457,7 +2457,7 @@
 									"font": "Arial;13;0",
 									"left": 315,
 									"top": 236.5,
-									"width": 167.45361328125,
+									"width": 166,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uHatiy18ks="
@@ -2667,7 +2667,7 @@
 									"font": "Arial;13;0",
 									"left": 378.5,
 									"top": 292.5,
-									"width": 166.03173828125,
+									"width": 165,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uH4HSzj+zs="
@@ -2877,7 +2877,7 @@
 									"font": "Arial;13;0",
 									"left": 416.5,
 									"top": 644.5,
-									"width": 155.18994140625,
+									"width": 154,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uKRyi0cieo="
@@ -3087,7 +3087,7 @@
 									"font": "Arial;13;0",
 									"left": 349,
 									"top": 812.5,
-									"width": 215.82275390625,
+									"width": 215,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uMJyC1K6U4="
@@ -3297,7 +3297,7 @@
 									"font": "Arial;13;0",
 									"left": 322.5,
 									"top": 860.5,
-									"width": 127.04443359375,
+									"width": 126,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uNejS2mc58="
@@ -3331,6 +3331,7 @@
 											"model": {
 												"$ref": "AAAAAAFxDL0b2S3dUds="
 											},
+											"fillColor": "#a2d5ee",
 											"font": "Arial;13;0",
 											"left": 117,
 											"top": 221,
@@ -3348,6 +3349,7 @@
 											"model": {
 												"$ref": "AAAAAAFxDL/8RS397gA="
 											},
+											"fillColor": "#a2d5ee",
 											"font": "Arial;13;0",
 											"left": 117,
 											"top": 236,
@@ -3365,6 +3367,7 @@
 											"model": {
 												"$ref": "AAAAAAFxDMDyES4+6h8="
 											},
+											"fillColor": "#a2d5ee",
 											"font": "Arial;13;0",
 											"left": 117,
 											"top": 251,
@@ -3382,6 +3385,7 @@
 											"model": {
 												"$ref": "AAAAAAFxDMEmfS5dq+s="
 											},
+											"fillColor": "#a2d5ee",
 											"font": "Arial;13;0",
 											"left": 117,
 											"top": 266,
@@ -4145,7 +4149,7 @@
 									"font": "Arial;13;0",
 									"left": 681,
 									"top": 628.5,
-									"width": 82.2236328125,
+									"width": 82,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uQ/tS4yUjI="
@@ -4429,7 +4433,7 @@
 									"font": "Arial;13;0",
 									"left": 436,
 									"top": 348.5,
-									"width": 95.25537109375,
+									"width": 94,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uSN0y5gBaQ="
@@ -4597,6 +4601,40 @@
 											"height": 13,
 											"text": "+Role8: SportGUI",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFxDTklW3N2/w4=",
+											"_parent": {
+												"$ref": "AAAAAAFw3uSN0y5ktn8="
+											},
+											"model": {
+												"$ref": "AAAAAAFxDPijCk6uu8A="
+											},
+											"font": "Arial;13;0",
+											"left": -27,
+											"top": -315,
+											"width": 196.92333984375,
+											"height": 13,
+											"text": "+Role9: FindQuestionsGUI",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFxDTklXXN5qDE=",
+											"_parent": {
+												"$ref": "AAAAAAFw3uSN0y5ktn8="
+											},
+											"model": {
+												"$ref": "AAAAAAFxDPsxck8rfJo="
+											},
+											"font": "Arial;13;0",
+											"left": -27,
+											"top": -300,
+											"width": 196.92333984375,
+											"height": 13,
+											"text": "+Role10: CreateQuestionGUI",
+											"horizontalAlignment": 0
 										}
 									],
 									"visible": false,
@@ -4605,7 +4643,7 @@
 									"left": -32,
 									"top": -440,
 									"width": 206.92333984375,
-									"height": 128
+									"height": 158
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -4785,7 +4823,7 @@
 									"font": "Arial;13;0",
 									"left": 676,
 									"top": 676.5,
-									"width": 95.97265625,
+									"width": 95,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uSgXS6OLvY="
@@ -5069,7 +5107,7 @@
 									"font": "Arial;13;0",
 									"left": 568,
 									"top": 236.5,
-									"width": 153.74267578125,
+									"width": 153,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uS0zC68z2I="
@@ -5353,7 +5391,7 @@
 									"font": "Arial;13;0",
 									"left": 176,
 									"top": 956.5,
-									"width": 114.0126953125,
+									"width": 113,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uTTxC7qyxU="
@@ -5563,7 +5601,7 @@
 									"font": "Arial;13;0",
 									"left": 408,
 									"top": 492.5,
-									"width": 154.47265625,
+									"width": 154,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3uauDC8pjmw="
@@ -5773,7 +5811,7 @@
 									"font": "Arial;13;0",
 									"left": 401,
 									"top": 596.5,
-									"width": 119.05908203125,
+									"width": 118,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3ubUdi9XoUE="
@@ -13871,7 +13909,7 @@
 									"font": "Arial;13;0",
 									"left": 372,
 									"top": 540.5,
-									"width": 173.22998046875,
+									"width": 172,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw3vDjdHkMjZQ="
@@ -14353,7 +14391,7 @@
 									"font": "Arial;13;0",
 									"left": 485.5,
 									"top": 708.5,
-									"width": 179.05712890625,
+									"width": 178,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFw8oS3Q1Ahs5A="
@@ -29490,7 +29528,7 @@
 													"top": 150,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+addUserSport(sport, user)",
+													"text": "+addUserSport(sportName: String, user: User)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29508,7 +29546,7 @@
 													"top": 165,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+createMessage(user, message: String)",
+													"text": "+createMessage(user: User, message: String)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29562,7 +29600,7 @@
 													"top": 210,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+addSport(sport)",
+													"text": "+addSport(sport: Sport)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29616,7 +29654,7 @@
 													"top": 255,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+setResult(question, bet)",
+													"text": "+setResult(question: Question, bet: BetChoice)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29642,7 +29680,7 @@
 											"font": "Arial;13;0",
 											"left": 512,
 											"top": 130,
-											"width": 240.85791015625,
+											"width": 255.62890625,
 											"height": 158
 										},
 										{
@@ -29853,7 +29891,7 @@
 													"top": 303,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+AddSportUser(sport, user)",
+													"text": "+addSportUser(sportName: String, user: User)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29871,7 +29909,7 @@
 													"top": 318,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+createMessage(user, message: String)",
+													"text": "+createMessage(user: User, message: String)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29925,7 +29963,7 @@
 													"top": 363,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+addSport(sport)",
+													"text": "+addSport(sport: Sport)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -29979,7 +30017,7 @@
 													"top": 408,
 													"width": 230.85791015625,
 													"height": 13,
-													"text": "+setResult(question, bet)",
+													"text": "+setResult(question: Question, bet: BetChoice)",
 													"horizontalAlignment": 0
 												},
 												{
@@ -30005,7 +30043,7 @@
 											"font": "Arial;13;0",
 											"left": 919,
 											"top": 283,
-											"width": 240.85791015625,
+											"width": 255.62890625,
 											"height": 158
 										},
 										{
@@ -31113,12 +31151,31 @@
 											"model": {
 												"$ref": "AAAAAAFw3+LL98aJI8g="
 											},
+											"subViews": [
+												{
+													"_type": "UMLOperationView",
+													"_id": "AAAAAAFxDTkl6XPcf/Y=",
+													"_parent": {
+														"$ref": "AAAAAAFxDNGM8DGWjhQ="
+													},
+													"model": {
+														"$ref": "AAAAAAFxDPuMHU9pttU="
+													},
+													"font": "Arial;13;0",
+													"left": 53,
+													"top": 592,
+													"width": 119.91357421875,
+													"height": 13,
+													"text": "+setSport(sport: Sport)",
+													"horizontalAlignment": 0
+												}
+											],
 											"fillColor": "#ffffd8",
 											"font": "Arial;13;0",
 											"left": 48,
 											"top": 587,
 											"width": 129.91357421875,
-											"height": 10
+											"height": 23
 										},
 										{
 											"_type": "UMLReceptionCompartmentView",
@@ -31485,12 +31542,31 @@
 											"model": {
 												"$ref": "AAAAAAFw3+LUaMaRGCU="
 											},
+											"subViews": [
+												{
+													"_type": "UMLOperationView",
+													"_id": "AAAAAAFxDTkl7HPf0so=",
+													"_parent": {
+														"$ref": "AAAAAAFxDNGnyTHkZ80="
+													},
+													"model": {
+														"$ref": "AAAAAAFxDPoK7U8E9k8="
+													},
+													"font": "Arial;13;0",
+													"left": 229,
+													"top": 592,
+													"width": 114.11181640625,
+													"height": 13,
+													"text": "+setSport(sport: sport)",
+													"horizontalAlignment": 0
+												}
+											],
 											"fillColor": "#ffffd8",
 											"font": "Arial;13;0",
 											"left": 224,
 											"top": 587,
-											"width": 124.11181640625,
-											"height": 10
+											"width": 127.46337890625,
+											"height": 23
 										},
 										{
 											"_type": "UMLReceptionCompartmentView",
@@ -39677,7 +39753,7 @@
 													"top": 540,
 													"width": 165.8515625,
 													"height": 13,
-													"text": "+Attribute3",
+													"text": "+sportName: String",
 													"horizontalAlignment": 0
 												}
 											],
@@ -41784,8 +41860,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFw8zsebR2IqYA="
 									},
-									"name": "Attribute3",
-									"type": ""
+									"name": "sportName",
+									"type": "String"
 								}
 							]
 						},
