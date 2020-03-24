@@ -15961,7 +15961,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Log in"
+					"name": "Log in",
+					"documentation": "**Log in Flow of events**\n\n**Basic flow**\n\n1. User and admin indicate their username and password to log in. \n\n\n**Alternative flow**\n\n1. User/Admin did not put his username or/and  password. Access denied.\n2. User/Admin did not put the right username or/and password. Access denied. \n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -15969,7 +15970,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Log out"
+					"name": "Log out",
+					"documentation": "**Log out Flow of event**\n\n**Basic flow**\n\n1. System log out the user/admin\n\n\n**Alternative flow**\n\n1. /\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -15977,7 +15979,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Create an account"
+					"name": "Create an account",
+					"documentation": "**Create an account Flow of events**\n\n**Basic flow**\n\n1. Spectator registers his account by indicating his personnal data : username, email, password, name, family name, nationalité, birth date, and credit card.\n2. The future user must accept the general rules of the platform by selecting « I agree with the general rules ». \n\n\n**Alternative flow**\n\n1. Spectator did not record all his data. The account cannot be registered\n2. The username or the email already exists. The account cannot be registered\n3. Spectator does not accept the general rules of the platform. The account  cannot be added. \n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -15985,7 +15988,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Query Questions"
+					"name": "Query Questions",
+					"documentation": "**Query question Flow of events**\n\n**Basic flow**\n\n1. System shows a calendar where days with events are highlighted\n2. Admin, user, or spectator view selects a Date in a calendar \n3. System displays the events of this date \n4. Admin, user, or spectator  selects an event\n5. System displays the questions associated to the selected event.\n\n**Alternative flow **\n\n1. There are no events on this date. Events cannot be shown\n2. There are no questions associated to the event. Question cannot be shown. \n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -16025,7 +16029,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Edit personal information"
+					"name": "Edit personal information",
+					"documentation": "**Edit personal informations Flow of events**\n\n**Basic flow**\n\n1. User or admin writes to the correct place and rename the personal data he wants.\n2. System renames and update the personal data.\n\n**Alternative flow**\n\n1.\tUser cannot change his username if it’s already taken by another user.\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -16033,7 +16038,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "See personal information"
+					"name": "See personal information",
+					"documentation": "**See personal informations Flow of events**\n\n**Basic flow**\n\n1.\tUser/Admin goes to the « Account » section.\n2.\tUser/Admin can see personal informations \n\n**Alternative flow**\n\n1. /\n2. /\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -16041,7 +16047,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Add users to be friends"
+					"name": "Add users to be friends",
+					"documentation": "**Add user to be friends Flow of events**\n\n**Basic flow**\n\n1.\tUser writes the username of an user to add as friend.\n2.\tUser clicks on « Add Friend »\n\n**Alternative flow**\n\n1.\tUser wrote a username that does not exist : user cannot be found and added as a friend.\n2.\tUser did not write a username.\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -18355,6 +18362,7 @@
 							]
 						}
 					],
+					"documentation": "**Send messages to other users Flow of events**\n\n**Basic flow**\n\n1.\tUser writes the message to send.\n2.\tUser clicks on « Send message : »\n3.\tThe message is sent to other users.\n\n**Alternative flow**\n\n1.\tUser did not write a message : nothing can be sent.\n",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -21551,6 +21559,7 @@
 							]
 						}
 					],
+					"documentation": "**Select a sport Flow of events**\n\n**Basic flow**\n\n1. Admin/Spectator/User select a sport from the proposed list.\n\n\n**Alternative flow**\n\n1.\tAdmin/Spectator/User did not select a sport : A sport cannot be selected.\n",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -23595,7 +23604,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Delete his own account"
+					"name": "Delete his own account",
+					"documentation": "**Delete his own account Flow of events**\n\n**Basic flow**\n\n1. System deletes the user/admin account from the platform.\n\n\n**Alternative flow**\n\n1. /\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23603,7 +23613,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Bet on a question"
+					"name": "Bet on a question",
+					"documentation": "**Bet on a question Flow of events**\n\n**Basic flow**\n\n1. User selects an event\n2. According to the event, the user chooses the question to bet. \n3. User selects the bet among the proposed list.\n4. He puts the amount he bet.\n\n**Alternative flow**\n\n1. User did not select a event and/or a question related to his bet. The user cannot bet.\n2. User did not select a bet. The user cannot bet.\n3. User did not put his amount. The user cannot bet.\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23611,7 +23622,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFw3tk1LCpGOT0="
 					},
-					"name": "Add money to the account"
+					"name": "Add money to the account",
+					"documentation": "**Add money to the account Flow of events**\n\n**Basic flow**\n\n1.\tUser indicates the money to add in the « Add money » section.\n2.\tUser clicks on « Edit button ».\n\n\n**Alternative flow**\n\n1.\tUser did not indicate the amount to add : No currency is added.\n2.\tUser did not specify number : No currency is added.\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -24425,6 +24437,7 @@
 							]
 						}
 					],
+					"documentation": "**See messages of the forum Flow of events**\n\n**Basic flow**\n\n1.\tUser clicks on « Forum ».\n2.\tUser can see messages of the forum.\n\n**Alternative flow**\n\n1. /\n2. /",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -24528,7 +24541,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8nxC70tVHZo="
 													},
-													"name": "sport"
+													"name": "sport",
+													"type": ""
 												},
 												{
 													"_type": "UMLParameter",
@@ -24536,7 +24550,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8nxC70tVHZo="
 													},
-													"name": "user"
+													"name": "user",
+													"type": ""
 												}
 											]
 										},
@@ -24554,7 +24569,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8oFFgExM2GE="
 													},
-													"name": "user"
+													"name": "user",
+													"type": ""
 												},
 												{
 													"_type": "UMLParameter",
@@ -24608,7 +24624,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8pPFb2DoJ2Y="
 													},
-													"name": "sport"
+													"name": "sport",
+													"type": ""
 												}
 											]
 										},
@@ -24664,7 +24681,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8uh22gcDbnI="
 													},
-													"name": "question"
+													"name": "question",
+													"type": ""
 												},
 												{
 													"_type": "UMLParameter",
@@ -24672,7 +24690,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFw8uh22gcDbnI="
 													},
-													"name": "bet"
+													"name": "bet",
+													"type": ""
 												}
 											]
 										}
@@ -24734,7 +24753,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8n1fTkt3kkI="
 											},
-											"name": "sport"
+											"name": "sport",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -24742,7 +24762,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8n1fTkt3kkI="
 											},
-											"name": "user"
+											"name": "user",
+											"type": ""
 										}
 									]
 								},
@@ -24760,7 +24781,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8oJfdUxxWsA="
 											},
-											"name": "user"
+											"name": "user",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -24803,7 +24825,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8pQrD2EFXyA="
 											},
-											"name": "sport"
+											"name": "sport",
+											"type": ""
 										}
 									]
 								},
@@ -24859,7 +24882,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8unbNgcmooI="
 											},
-											"name": "question"
+											"name": "question",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -24867,7 +24891,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFw8unbNgcmooI="
 											},
-											"name": "bet"
+											"name": "bet",
+											"type": ""
 										}
 									]
 								}
