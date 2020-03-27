@@ -268,6 +268,8 @@ public class FindQuestionsGUI extends JFrame {
 				textArea.setVisible(false);
 				try {
 					currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
+					if (currentUser == null)
+						return;
 					int amount = Integer.parseInt(amountBetField.getText());
 					BetChoice bet = (BetChoice) choiceBetComboBox.getSelectedItem();
 					
