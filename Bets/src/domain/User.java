@@ -44,6 +44,8 @@ public class User implements Serializable {
 	private Vector<Sport> preferences;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Message> messagesForum;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Vector<Report> reports;
 	
 	/**
 	 * @param name
@@ -370,6 +372,26 @@ public class User implements Serializable {
 	
 	public void addMessage(Message message) {
 		this.messagesForum.add(message);
+	}
+
+
+	/**
+	 * @return the reports
+	 */
+	public Vector<Report> getReports() {
+		return reports;
+	}
+
+
+	/**
+	 * @param reports the reports to set
+	 */
+	public void setReports(Vector<Report> reports) {
+		this.reports = reports;
+	}
+	
+	public void addReport(Report report) {
+		this.reports.add(report);
 	}
 
 

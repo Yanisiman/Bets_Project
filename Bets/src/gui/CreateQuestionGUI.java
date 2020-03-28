@@ -188,7 +188,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		deleteUserBtn.setBounds(375, -2, 111, 28);
+		deleteUserBtn.setBounds(365, 4, 112, 26);
 		getContentPane().add(deleteUserBtn);
 
 		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -200,7 +200,7 @@ public class CreateQuestionGUI extends JFrame {
 				loginGUI.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(589, 0, 97, 25);
+		btnLogOut.setBounds(579, 4, 97, 25);
 		getContentPane().add(btnLogOut);
 		accountBtn.addActionListener(new ActionListener() {
 			@Override
@@ -213,7 +213,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		accountBtn.setBounds(489, 0, 97, 25);
+		accountBtn.setBounds(479, 4, 97, 25);
 
 		getContentPane().add(accountBtn);
 
@@ -410,6 +410,17 @@ public class CreateQuestionGUI extends JFrame {
 		});
 		resultBetBtn.setBounds(589, 331, 89, 23);
 		getContentPane().add(resultBetBtn);
+		
+		JButton problemsBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		problemsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
+				ForumGUI forumGUI = new ForumGUI(businessLogic, currentUser);
+				forumGUI.setVisible(true);
+			}
+		});
+		problemsBtn.setBounds(264, 4, 100, 26);
+		getContentPane().add(problemsBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {

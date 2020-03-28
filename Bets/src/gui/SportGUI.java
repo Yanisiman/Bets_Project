@@ -226,6 +226,7 @@ public class SportGUI extends JFrame {
 				self.setVisible(false);
 				LoginGUI loginGUI = new LoginGUI();
 				loginGUI.setVisible(true);
+				loginGUI.setBusinessLogic(businessLogic);
 			}
 		});
 		panel.add(closeBtn, gbc_closeBtn);
