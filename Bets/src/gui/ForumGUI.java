@@ -97,10 +97,11 @@ public class ForumGUI extends JFrame {
 		gbc_toggleBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_toggleBtn.gridx = 0;
 		gbc_toggleBtn.gridy = 0;
-		toggleBtn.setSelected(true);
 		toggleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				displayForumOrReports(toggleBtn.isSelected());
+				if (toggleBtn.isSelected())
+					timer.cancel();
 			}
 		});
 		contentPane.add(toggleBtn, gbc_toggleBtn);
@@ -126,6 +127,9 @@ public class ForumGUI extends JFrame {
 		gbc_deleteMessageBtn.gridy = 0;
 		deleteMessageBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Message message = (Message) messageList.getSelectedValue();
+				businessLogic.deleteMessage(message);
+				messageList.setListData(businessLogic.getAllMessages());
 			}
 		});
 		contentPane.add(deleteMessageBtn, gbc_deleteMessageBtn);
@@ -182,12 +186,12 @@ public class ForumGUI extends JFrame {
 			reportTypecomboBox.setVisible(false);
 			toggleBtn.setVisible(false);
 			deleteMessageBtn.setVisible(false);
-			reportProblemBtn.setVisible(false);
 			
 			displayMessages();
 		}
 		else {
-			displayForumOrReports(true);
+			reportProblemBtn.setVisible(false);
+			displayForumOrReports(false);
 		}
 		
 	}
@@ -216,9 +220,12 @@ public class ForumGUI extends JFrame {
 	private void displayForumOrReports(boolean forum) {
 		if (forum) {
 			displayMessages();
+			reportTypecomboBox.setVisible(false);
+			deleteMessageBtn.setVisible(true);
 		}
 		else {
-			timer.cancel();
+			reportTypecomboBox.setVisible(true);
+			deleteMessageBtn.setVisible(false);
 			
 			Vector<ReportType> tReportTypes = new Vector<ReportType>();
 			tReportTypes.add(ReportType.USER_BEHAVIOR);

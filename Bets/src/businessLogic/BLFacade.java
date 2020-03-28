@@ -157,6 +157,8 @@ public interface BLFacade  {
 	
 	@WebMethod public Message createMessage(User user, String message);
 	
+	@WebMethod public boolean deleteMessage(Message message);
+	
 	@WebMethod public Vector<Message> getMessagesOfUser(User user);
 	
 	@WebMethod public User getUserOfMessage(Message message);

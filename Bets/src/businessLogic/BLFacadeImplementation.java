@@ -427,6 +427,14 @@ public class BLFacadeImplementation implements BLFacade {
 		dBManager.close();
 		return m;
 	}
+	
+	@WebMethod
+	public boolean deleteMessage(Message message) {
+		DataAccess dBManager = new DataAccess();
+		boolean b = dBManager.deleteMessage(message);
+		dBManager.close();
+		return b;
+	}
 
 	@WebMethod
 	public Vector<Message> getMessagesOfUser(User user) {
@@ -458,8 +466,8 @@ public class BLFacadeImplementation implements BLFacade {
 	@WebMethod
 	public Vector<Report> getReportByType(ReportType type) {
 		DataAccess dBManager = new DataAccess();
-		Vector<Report> reports = new Vector<Report>(dBManager.getReportByType(type));
+		List<Report> reports = dBManager.getReportByType(type);
 		dBManager.close();
-		return reports;
+		return reports == null ? new Vector<Report>(): new Vector<Report>(reports);
 	}
 }

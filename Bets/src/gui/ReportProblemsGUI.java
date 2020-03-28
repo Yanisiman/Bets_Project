@@ -105,6 +105,9 @@ public class ReportProblemsGUI extends JFrame {
 					return;
 				ReportType type = (ReportType) problemTypecomboBox.getSelectedItem();
 				Report report = bl.sendReport(currentUser, message, type);
+				if (report == null)
+					return;
+				textArea.setText("");	
 			}
 		});
 		contentPane.add(sendBtn, gbc_sendBtn);

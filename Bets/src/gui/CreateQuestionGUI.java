@@ -67,6 +67,8 @@ public class CreateQuestionGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	
+	private JButton btnLogOut = new JButton("Log out");
 
 	private JButton deleteUserBtn = new JButton("Delete user");
 
@@ -188,10 +190,10 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		deleteUserBtn.setBounds(365, 4, 112, 26);
+		deleteUserBtn.setBounds(362, 4, 112, 26);
 		getContentPane().add(deleteUserBtn);
 
-		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
+		
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				self.setVisible(false);
@@ -200,7 +202,7 @@ public class CreateQuestionGUI extends JFrame {
 				loginGUI.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(579, 4, 97, 25);
+		btnLogOut.setBounds(579, 4, 99, 26);
 		getContentPane().add(btnLogOut);
 		accountBtn.addActionListener(new ActionListener() {
 			@Override
@@ -213,7 +215,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		accountBtn.setBounds(479, 4, 97, 25);
+		accountBtn.setBounds(478, 4, 100, 26);
 
 		getContentPane().add(accountBtn);
 
@@ -419,7 +421,7 @@ public class CreateQuestionGUI extends JFrame {
 				forumGUI.setVisible(true);
 			}
 		});
-		problemsBtn.setBounds(264, 4, 100, 26);
+		problemsBtn.setBounds(251, 4, 100, 26);
 		getContentPane().add(problemsBtn);
 
 		// Code for JCalendar
@@ -443,13 +445,6 @@ public class CreateQuestionGUI extends JFrame {
 
 					updateEvents(firstDay, dateformat1);
 
-				}
-				else if (propertychangeevent.getPropertyName().equals("day")) {
-					int day = (int) propertychangeevent.getNewValue();
-					Date d = eventDate;
-					d.setDate(day);
-					
-					updateEvents(d, dateformat1);
 				}
 				paintDaysWithEvents(jCalendar);
 			}

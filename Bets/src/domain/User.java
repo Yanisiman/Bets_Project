@@ -81,6 +81,7 @@ public class User implements Serializable {
 		this.friends = new Vector<User>();		
 		this.preferences = new Vector<Sport>();
 		this.messagesForum = new Vector<Message>();
+		this.reports = new Vector<Report>();
 	}
 
 

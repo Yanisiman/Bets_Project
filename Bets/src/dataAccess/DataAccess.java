@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -912,11 +914,16 @@ public class DataAccess {
 		return m;
 	}
 	
-	public void deleteMessage(Message message) {
-		db.getTransaction().begin();
-		Query q = db.createQuery("DELETE FROM Message m WHERE m.messageNumber = " + message.getMessageNumber());
-		q.executeUpdate();
-		db.getTransaction().commit();
+	public boolean deleteMessage(Message message) {
+		try {
+			db.getTransaction().begin();
+			Query q = db.createQuery("DELETE FROM Message m WHERE m.messageNumber = " + message.getMessageNumber());
+			q.executeUpdate();
+			db.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	public List<Message> getAllMessages(){
@@ -965,9 +972,9 @@ public class DataAccess {
 	
 	public List<Report> getReportByType(ReportType type) {
 		try {
-			TypedQuery<Report> q = db.createQuery("SELECT r FROM Report m WHERE r.type = " + type, Report.class);
-			List<Report> reports = q.getResultList();
-			return reports;
+			TypedQuery<Report> q = db.createQuery("SELECT r FROM Report r", Report.class);
+			List<Report> reports = q.getResultList().stream().filter(t -> t.getType() == type).collect(Collectors.toList());			
+			return (List<Report>) reports;
 		} catch (Exception e) {
 			return null;
 		}
