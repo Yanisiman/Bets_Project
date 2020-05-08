@@ -19,6 +19,7 @@ public class User implements Serializable {
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
 	private Integer uid;
+	
 	private String name;
 	private String familyName;
 	private int age;
@@ -38,7 +39,7 @@ public class User implements Serializable {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<UserBet> bets;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<User> friends;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Sport> preferences;

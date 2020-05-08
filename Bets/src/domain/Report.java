@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,9 +20,14 @@ public class Report{
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
 	private Integer messageNumber;
-	private User user;
+	
 	private String message;
 	private Date date;
+	
+	@XmlIDREF
+	private User user;
+	
+	@XmlIDREF
 	private ReportType type;
 	
 	public Report (User user, String message, ReportType type) {

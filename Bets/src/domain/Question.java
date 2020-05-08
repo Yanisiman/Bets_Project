@@ -22,7 +22,7 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	
-	@OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@XmlIDREF @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private BetChoice result;  
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

@@ -357,7 +357,7 @@ public class FindQuestionsGUI extends JFrame {
 			}
 		});
 		
-		textArea.setBounds(138, 462, 408, 25);
+		textArea.setBounds(138, 462, 408, 38);
 		textArea.setText("");
 		textArea.setEditable(false);
 		textArea.setVisible(false);
@@ -389,7 +389,7 @@ public class FindQuestionsGUI extends JFrame {
 				sportGUI.setB(false);
 			}
 		});
-		closeBttn.setBounds(324, 498, 117, 29);
+		closeBttn.setBounds(324, 511, 117, 29);
 		
 		getContentPane().add(closeBttn);
 		tutorialBtn.addActionListener(new ActionListener() {
