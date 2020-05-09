@@ -7,6 +7,8 @@ import java.util.Vector;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
@@ -107,6 +109,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 * @param date of the month for which days with events want to be retrieved
 	 * @return collection of dates
 	 */
+	
 	@WebMethod
 	public Vector<Date> getEventsMonth(Date date) {
 		DataAccess dbManager = new DataAccess();

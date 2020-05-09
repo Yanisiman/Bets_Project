@@ -27,8 +27,11 @@ public class Report{
 	@XmlIDREF
 	private User user;
 	
-	@XmlIDREF
 	private ReportType type;
+	
+	public Report() {
+		super();
+	}
 	
 	public Report (User user, String message, ReportType type) {
 		this.user = user;

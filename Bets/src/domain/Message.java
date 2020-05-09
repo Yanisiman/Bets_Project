@@ -26,6 +26,10 @@ public class Message {
 	@XmlIDREF
 	private User user;
 	
+	public Message() {
+		super();
+	}
+	
 	public Message(User user, String message) {
 		this.user = user;
 		this.message = message;

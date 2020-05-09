@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
@@ -37,16 +39,23 @@ public class User implements Serializable {
 	private boolean budgetBool;
 	private float moneySpentPerMonth;	
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@XmlIDREF @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<UserBet> bets;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	
+	@XmlIDREF @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<User> friends;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Sport> preferences;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Message> messagesForum;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Report> reports;
+	
+	public User() {
+		super();
+	}
+	
 	
 	/**
 	 * @param name

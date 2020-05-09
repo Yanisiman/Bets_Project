@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 @Entity
 public class Admin extends User {
 	
+	public Admin() {
+		super();
+	}
+	
 	public Admin(String name, String familyName, int age, String password, String nationality, String email, String username,
 			String creditCard, String birthDate) {
 		super(name, familyName, age, password, nationality, email, username, creditCard, birthDate);

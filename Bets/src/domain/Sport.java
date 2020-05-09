@@ -33,6 +33,10 @@ public class Sport {
 	 * @param sportEvent
 	 */
 	
+	public Sport() {
+		super();
+	}
+	
 	public Sport(String sportName) {
 		this.sportName = sportName;
 		this.sportEvent = new Vector<Event>();
