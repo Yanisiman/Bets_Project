@@ -17,7 +17,7 @@ import domain.Event;
 import domain.Message;
 import domain.Question;
 import domain.Report;
-//import domain.ReportType;
+import domain.ReportType;
 import domain.Sport;
 import domain.User;
 import domain.UserBet;
@@ -457,7 +457,7 @@ public class BLFacadeImplementation implements BLFacade {
 	
 	
 	/** *** ** Reports ** *** **/
-	/*
+	
 	@WebMethod
 	public Report sendReport(User user, String message, ReportType type) {
 		DataAccess dBManager = new DataAccess();
@@ -473,5 +473,5 @@ public class BLFacadeImplementation implements BLFacade {
 		dBManager.close();
 		return reports == null ? new Vector<Report>(): new Vector<Report>(reports);
 	}
-	*/
+	
 }

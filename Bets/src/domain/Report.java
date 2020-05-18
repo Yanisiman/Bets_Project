@@ -28,20 +28,20 @@ public class Report implements Serializable{
 	@XmlIDREF
 	private User user;
 	
-	//private ReportType type;
+	private ReportType type;
 	
 	public Report() {
 		super();
 	}
 	
-	/*public Report (User user, String message, ReportType type) {
+	public Report (User user, String message, ReportType type) {
 		this.user = user;
 		this.message = message;
 		this.type = type;
 		this.date = new Date();
 		
 		this.user.addReport(this);
-	}*/
+	}
 	
 	public Report (User user, String message) {
 		this.user = user;
@@ -97,16 +97,16 @@ public class Report implements Serializable{
 	/**
 	 * @return the type
 	 */
-	/*public ReportType getType() {
+	public ReportType getType() {
 		return type;
-	}*/
+	}
 
 	/**
 	 * @param type the type to set
 	 */
-	/*public void setType(ReportType type) {
+	public void setType(ReportType type) {
 		this.type = type;
-	}*/
+	}
 
 	@Override
 	public String toString() {

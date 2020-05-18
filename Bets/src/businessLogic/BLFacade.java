@@ -4,10 +4,9 @@ import java.util.Vector;
 import java.util.Date;
 import java.util.List;
 
-//import domain.Booking;
 import domain.Question;
 import domain.Report;
-//import domain.ReportType;
+import domain.ReportType;
 import domain.Sport;
 import domain.User;
 import domain.UserBet;
@@ -167,9 +166,9 @@ public interface BLFacade  {
 	
 	
 	/** *** ** Reports ** *** **/
-	/*
+	
 	@WebMethod public Report sendReport(User user, String message, ReportType type);
 	
 	@WebMethod public Vector<Report> getReportByType(ReportType type);
-	*/
+	
 }

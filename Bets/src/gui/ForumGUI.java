@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.BLFacade;
 import domain.Message;
 import domain.Report;
-//import domain.ReportType;
+import domain.ReportType;
 import domain.User;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -40,7 +40,7 @@ public class ForumGUI extends JFrame {
 	
 	private JScrollPane scrollPane = new JScrollPane();
 	
-	//private JComboBox<ReportType> reportTypecomboBox = new JComboBox<ReportType>();
+	private JComboBox<ReportType> reportTypecomboBox = new JComboBox<ReportType>();
 	private final JButton deleteMessageBtn = new JButton("Delete message");
 	private final JCheckBox toggleBtn = new JCheckBox("Forum");
 	
@@ -84,14 +84,14 @@ public class ForumGUI extends JFrame {
 		gbc_reportTypecomboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_reportTypecomboBox.gridx = 1;
 		gbc_reportTypecomboBox.gridy = 0;
-		/*reportTypecomboBox.addActionListener(new ActionListener() {
+		reportTypecomboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReportType type = (ReportType) reportTypecomboBox.getSelectedItem();
 				if (type == null)
 					return;
 				messageList.setListData(businessLogic.getReportByType(type));
 			}
-		});*/
+		});
 		
 		GridBagConstraints gbc_toggleBtn = new GridBagConstraints();
 		gbc_toggleBtn.insets = new Insets(0, 0, 5, 5);
@@ -105,7 +105,7 @@ public class ForumGUI extends JFrame {
 			}
 		});
 		contentPane.add(toggleBtn, gbc_toggleBtn);
-		//contentPane.add(reportTypecomboBox, gbc_reportTypecomboBox);
+		contentPane.add(reportTypecomboBox, gbc_reportTypecomboBox);
 		
 		
 		GridBagConstraints gbc_reportProblemBtn = new GridBagConstraints();
@@ -183,7 +183,7 @@ public class ForumGUI extends JFrame {
 		contentPane.add(closeBtn, gbc_closeBtn);
 		
 		if (!currentUser.isAdmin()) {
-			//reportTypecomboBox.setVisible(false);
+			reportTypecomboBox.setVisible(false);
 			toggleBtn.setVisible(false);
 			deleteMessageBtn.setVisible(false);
 			
@@ -220,13 +220,13 @@ public class ForumGUI extends JFrame {
 	private void displayForumOrReports(boolean forum) {
 		if (forum) {
 			displayMessages();
-			//reportTypecomboBox.setVisible(false);
+			reportTypecomboBox.setVisible(false);
 			deleteMessageBtn.setVisible(true);
 		}
 		else {
-			//reportTypecomboBox.setVisible(true);
+			reportTypecomboBox.setVisible(true);
 			deleteMessageBtn.setVisible(false);
-			/*
+			
 			Vector<ReportType> tReportTypes = new Vector<ReportType>();
 			tReportTypes.add(ReportType.USER_BEHAVIOR);
 			tReportTypes.add(ReportType.MALFUNCTION);
@@ -234,7 +234,7 @@ public class ForumGUI extends JFrame {
 			reportTypecomboBox.setModel(new DefaultComboBoxModel<ReportType>(tReportTypes));
 			
 			messageList.setListData(businessLogic.getReportByType(ReportType.USER_BEHAVIOR));	
-			*/		
+				
 		}
 	}
 	
