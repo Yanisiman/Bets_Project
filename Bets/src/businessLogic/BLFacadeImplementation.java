@@ -17,7 +17,7 @@ import domain.Event;
 import domain.Message;
 import domain.Question;
 import domain.Report;
-import domain.ReportType;
+//import domain.ReportType;
 import domain.Sport;
 import domain.User;
 import domain.UserBet;
@@ -88,7 +88,7 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@WebMethod
-	public Vector<Event> getEvents(String sportname) {
+	public Vector<Event> getEvents2(String sportname) {
 		DataAccess dBManager = new DataAccess();
 		List<Sport> sports = dBManager.getSport();
 		Vector<Event> events = null;
@@ -119,9 +119,9 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 	
 	@WebMethod
-	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+	public Vector<Date> getEventsMonth2(Date date, Sport sport) {
 		DataAccess dbManager = new DataAccess();
-		Vector<Date> dates = dbManager.getEventsMonth(date, sport);
+		Vector<Date> dates = dbManager.getEventsMonth2(date, sport);
 		dbManager.close();
 		return dates;
 	}
@@ -457,7 +457,7 @@ public class BLFacadeImplementation implements BLFacade {
 	
 	
 	/** *** ** Reports ** *** **/
-	
+	/*
 	@WebMethod
 	public Report sendReport(User user, String message, ReportType type) {
 		DataAccess dBManager = new DataAccess();
@@ -473,4 +473,5 @@ public class BLFacadeImplementation implements BLFacade {
 		dBManager.close();
 		return reports == null ? new Vector<Report>(): new Vector<Report>(reports);
 	}
+	*/
 }

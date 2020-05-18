@@ -1,13 +1,16 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Admin extends User {
+public class Admin extends User implements Serializable{
 	
 	public Admin() {
 		super();
@@ -27,5 +30,9 @@ public class Admin extends User {
 
 	public void accessUserAccount() {
 		
+	}
+	
+	public String toString() {
+		return this.getName();
 	}
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.lang.annotation.Repeatable;
 import java.util.Vector;
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Sport {
+public class Sport implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id 

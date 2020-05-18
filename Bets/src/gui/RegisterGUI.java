@@ -345,7 +345,7 @@ public class RegisterGUI extends JFrame {
 		closeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setVisible(true);
 			}
 		});

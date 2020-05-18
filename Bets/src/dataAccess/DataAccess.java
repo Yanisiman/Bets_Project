@@ -28,7 +28,7 @@ import domain.Event;
 import domain.Message;
 import domain.Question;
 import domain.Report;
-import domain.ReportType;
+//import domain.ReportType;
 import domain.Sport;
 import domain.User;
 import domain.UserBet;
@@ -403,7 +403,7 @@ public class DataAccess {
 	}
 	
 	@WebMethod
-	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+	public Vector<Date> getEventsMonth2(Date date, Sport sport) {
 		try {
 			System.out.println(">> DataAccess: getEventsMonth");
 			Vector<Date> res = new Vector<Date>();
@@ -1002,7 +1002,7 @@ public class DataAccess {
 	
 	
 	/** *** ** Reports ** *** **/
-	
+	/*
 	@WebMethod
 	public Report sendReport(User user, String message, ReportType type) {
 		user = db.find(User.class, user);
@@ -1022,6 +1022,6 @@ public class DataAccess {
 		} catch (Exception e) {
 			return null;
 		}
-	}
+	}*/
 
 }

@@ -197,7 +197,7 @@ public class CreateQuestionGUI extends JFrame {
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				self.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setBusinessLogic(businessLogic);
 				loginGUI.setVisible(true);
 			}

@@ -134,7 +134,7 @@ public class UserInformationGUI extends JFrame {
 				businessLogic.deleteUser(currentUser);
 				self.setVisible(false);
 				mainWindow.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setBusinessLogic(businessLogic);
 				loginGUI.setVisible(true);
 			}

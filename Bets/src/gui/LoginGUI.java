@@ -49,7 +49,8 @@ public class LoginGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginGUI() {
+	public LoginGUI(BLFacade businessLogic) {
+		this.businessLogic = businessLogic;
 		setTitle("Bet & Ruin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

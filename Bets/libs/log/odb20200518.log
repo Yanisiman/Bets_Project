@@ -1,0 +1,83 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-18 10:46:08 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-18 10:46:08 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-18 10:46:08 #3 type.registry] 
+New type domain.Event
+
+[2020-05-18 10:46:08 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-18 10:46:08 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-18 10:46:08 #6 type.registry] 
+New type domain.Question
+
+[2020-05-18 10:46:08 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-18 10:46:08 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-18 10:46:08 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-18 10:46:08 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-18 10:46:08 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-18 10:46:08 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-18 10:46:08 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-18 10:46:08 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-18 10:46:08 #15 type.registry] 
+New type domain.User
+
+[2020-05-18 10:46:08 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-18 10:46:08 #17 type.registry] 
+New type domain.Report
+
+[2020-05-18 10:46:08 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-18 10:46:08 #19 type.registry] 
+New type domain.Message
+
+[2020-05-18 10:46:08 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-18 10:46:08 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-18 10:46:08 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-18 10:46:08 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-18 10:46:08 #24 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-18 10:46:08 #25 type.registry] 
+New type domain.Admin
+
+[2020-05-18 10:46:08 #26 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-18 10:46:08 #27 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

@@ -21,14 +21,14 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Report;
-import domain.ReportType;
+//import domain.ReportType;
 import domain.User;
 
 public class ReportProblemsGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel title = new JLabel("Report problems");
-	private JComboBox<ReportType> problemTypecomboBox = new JComboBox<ReportType>();
+	//private JComboBox<ReportType> problemTypecomboBox = new JComboBox<ReportType>();
 	private JScrollPane scrollPane = new JScrollPane();
 	private JTextArea textArea = new JTextArea();
 	private JButton sendBtn = new JButton("Report");
@@ -75,13 +75,13 @@ public class ReportProblemsGUI extends JFrame {
 		gbc_problemTypecomboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_problemTypecomboBox.gridx = 1;
 		gbc_problemTypecomboBox.gridy = 2;
-		contentPane.add(problemTypecomboBox, gbc_problemTypecomboBox);
+		/*contentPane.add(problemTypecomboBox, gbc_problemTypecomboBox);
 		Vector<ReportType> tReportTypes = new Vector<ReportType>();
 		tReportTypes.add(ReportType.USER_BEHAVIOR);
 		tReportTypes.add(ReportType.MALFUNCTION);
 		tReportTypes.add(ReportType.OTHER);
 		problemTypecomboBox.setModel(new DefaultComboBoxModel<ReportType>(tReportTypes));
-		
+		*/
 		
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 2;
@@ -103,10 +103,10 @@ public class ReportProblemsGUI extends JFrame {
 				String message = textArea.getText();
 				if (message.equals(""))
 					return;
-				ReportType type = (ReportType) problemTypecomboBox.getSelectedItem();
-				Report report = bl.sendReport(currentUser, message, type);
-				if (report == null)
-					return;
+				//ReportType type = (ReportType) problemTypecomboBox.getSelectedItem();
+				//Report report = bl.sendReport(currentUser, message, type);
+				//if (report == null)
+				//	return;
 				textArea.setText("");	
 			}
 		});
