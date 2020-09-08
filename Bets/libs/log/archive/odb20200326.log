@@ -1,0 +1,77 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-26 17:32:11 #1 store] 
+Database '/Users/Marion_brnrd/git/Bets_Project/Bets/resources/bets.temp' is opened by 7282@macbook-air-de-marion-3.home
+
+[2020-03-26 17:32:11 #2 type.registry] 
+New type domain.Sport
+
+[2020-03-26 17:32:11 #3 type] 
+Type domain.Sport is not enhanced.
+
+[2020-03-26 17:32:11 #4 type.registry] 
+New type domain.Event
+
+[2020-03-26 17:32:11 #5 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-03-26 17:32:11 #6 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-26 17:32:11 #7 type.registry] 
+New type domain.Question
+
+[2020-03-26 17:32:11 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-26 17:32:11 #9 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-26 17:32:11 #10 type.registry] 
+New type domain.BetChoice
+
+[2020-03-26 17:32:11 #11 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-03-26 17:32:11 #12 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-03-26 17:32:11 #13 type.registry] 
+New type domain.UserBet
+
+[2020-03-26 17:32:11 #14 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-03-26 17:32:11 #15 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-03-26 17:32:11 #16 type.registry] 
+New type domain.User
+
+[2020-03-26 17:32:11 #17 type] 
+Type domain.User is not enhanced.
+
+[2020-03-26 17:32:12 #18 type.registry] 
+New type domain.Message
+
+[2020-03-26 17:32:12 #19 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-03-26 17:32:12 #20 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-03-26 17:32:12 #21 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-03-26 17:32:12 #22 type] 
+Type domain.Message is not enhanced.
+
+[2020-03-26 17:32:12 #23 type.registry] 
+New type domain.Admin
+
+[2020-03-26 17:32:12 #24 type] 
+Type domain.Admin is not enhanced.
+
+[2020-03-26 17:32:12 #25 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Question implements Serializable {
-	
+	@XmlID
 	@Id 
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
@@ -22,7 +23,7 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	
-	@OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@XmlIDREF @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private BetChoice result;  
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

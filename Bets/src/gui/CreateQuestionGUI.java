@@ -67,6 +67,8 @@ public class CreateQuestionGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	
+	private JButton btnLogOut = new JButton("Log out");
 
 	private JButton deleteUserBtn = new JButton("Delete user");
 
@@ -188,19 +190,19 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		deleteUserBtn.setBounds(375, -2, 111, 28);
+		deleteUserBtn.setBounds(362, 4, 112, 26);
 		getContentPane().add(deleteUserBtn);
 
-		JButton btnLogOut = new JButton("Log out"); //$NON-NLS-1$ //$NON-NLS-2$
+		
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				self.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setBusinessLogic(businessLogic);
 				loginGUI.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(589, 0, 97, 25);
+		btnLogOut.setBounds(579, 4, 99, 26);
 		getContentPane().add(btnLogOut);
 		accountBtn.addActionListener(new ActionListener() {
 			@Override
@@ -213,7 +215,7 @@ public class CreateQuestionGUI extends JFrame {
 
 			}
 		});
-		accountBtn.setBounds(489, 0, 97, 25);
+		accountBtn.setBounds(478, 4, 100, 26);
 
 		getContentPane().add(accountBtn);
 
@@ -410,6 +412,17 @@ public class CreateQuestionGUI extends JFrame {
 		});
 		resultBetBtn.setBounds(589, 331, 89, 23);
 		getContentPane().add(resultBetBtn);
+		
+		JButton problemsBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		problemsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser = businessLogic.checkLogin(currentUser.getUsername(), "");
+				ForumGUI forumGUI = new ForumGUI(businessLogic, currentUser);
+				forumGUI.setVisible(true);
+			}
+		});
+		problemsBtn.setBounds(251, 4, 100, 26);
+		getContentPane().add(problemsBtn);
 
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
@@ -432,13 +445,6 @@ public class CreateQuestionGUI extends JFrame {
 
 					updateEvents(firstDay, dateformat1);
 
-				}
-				else if (propertychangeevent.getPropertyName().equals("day")) {
-					int day = (int) propertychangeevent.getNewValue();
-					Date d = eventDate;
-					d.setDate(day);
-					
-					updateEvents(d, dateformat1);
 				}
 				paintDaysWithEvents(jCalendar);
 			}

@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
@@ -19,6 +21,7 @@ public class User implements Serializable {
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
 	private Integer uid;
+	
 	private String name;
 	private String familyName;
 	private int age;
@@ -36,14 +39,23 @@ public class User implements Serializable {
 	private boolean budgetBool;
 	private float moneySpentPerMonth;	
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@XmlIDREF @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<UserBet> bets;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	
+	@XmlIDREF @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<User> friends;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Sport> preferences;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Vector<Message> messagesForum;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Vector<Report> reports;
+	
+	public User() {
+		super();
+	}
+	
 	
 	/**
 	 * @param name
@@ -79,6 +91,7 @@ public class User implements Serializable {
 		this.friends = new Vector<User>();		
 		this.preferences = new Vector<Sport>();
 		this.messagesForum = new Vector<Message>();
+		this.reports = new Vector<Report>();
 	}
 
 
@@ -370,6 +383,26 @@ public class User implements Serializable {
 	
 	public void addMessage(Message message) {
 		this.messagesForum.add(message);
+	}
+
+
+	/**
+	 * @return the reports
+	 */
+	public Vector<Report> getReports() {
+		return reports;
+	}
+
+
+	/**
+	 * @param reports the reports to set
+	 */
+	public void setReports(Vector<Report> reports) {
+		this.reports = reports;
+	}
+	
+	public void addReport(Report report) {
+		this.reports.add(report);
 	}
 
 

@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,18 +10,26 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Message {
+public class Message implements Serializable{
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
 	private Integer messageNumber;
-	private User user;
+	
 	private String message;
 	private Date date;
+	
+	@XmlIDREF
+	private User user;
+	
+	public Message() {
+		super();
+	}
 	
 	public Message(User user, String message) {
 		this.user = user;

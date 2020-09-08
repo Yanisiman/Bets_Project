@@ -224,14 +224,14 @@ public class SportGUI extends JFrame {
 		closeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				self.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setVisible(true);
+				loginGUI.setBusinessLogic(businessLogic);
 			}
 		});
 		panel.add(closeBtn, gbc_closeBtn);
 
 	}
-	
 	
 	
 	private void displaySports() {

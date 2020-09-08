@@ -9,7 +9,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,6 +27,8 @@ import domain.BetChoice;
 import domain.Event;
 import domain.Message;
 import domain.Question;
+import domain.Report;
+import domain.ReportType;
 import domain.Sport;
 import domain.User;
 import domain.UserBet;
@@ -31,6 +37,7 @@ import exceptions.QuestionAlreadyExist;
 /**
  * It implements the data access to the objectDb database
  */
+@WebService(endpointInterface = "dataAccess.DataAccess")
 public class DataAccess {
 	protected static EntityManager db;
 	protected static EntityManagerFactory emf;
@@ -73,6 +80,7 @@ public class DataAccess {
 	 * BLFacadeImplementation) when the option "initialize" is declared in the tag
 	 * dataBaseOpenMode of resources/config.xml file
 	 */
+	@WebMethod
 	public void initializeDB() {
 
 		db.getTransaction().begin();
@@ -305,50 +313,42 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@WebMethod
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");
 	}
 
-	/**
-	 * This method creates a question for an event, with a question text and the
-	 * minimum bet
-	 * 
-	 * @param event      to which question is added
-	 * @param question   text of the question
-	 * @param betMinimum minimum quantity of the bet
-	 * @return the created question, or null, or an exception
-	 * @throws QuestionAlreadyExist if the same question already exists for the
-	 *                              event
-	 */
-	public Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist {
-		System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
-				+ betMinimum);
-
-		Event ev = db.find(Event.class, event.getEventNumber());
-
-		if (ev.DoesQuestionExists(question))
-			throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
-
-		db.getTransaction().begin();
-		Question q = ev.addQuestion(question, betMinimum);
-		// db.persist(q);
-		db.persist(ev);
-		db.persist(q); // db.persist(q) not required when CascadeType.PERSIST is added in questions
-						// property of Event class
-						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-		db.getTransaction().commit();
-		return q;
-
+	
+	
+	
+	/** *** ** Events ** *** **/
+	
+	@WebMethod
+	public Event createEvent(String description, Date eventDate, Sport sport) {
+		try {
+			Sport s = db.find(Sport.class, sport);
+			db.getTransaction().begin();
+			Event event = new Event(description, eventDate);
+			event.setSport(s);
+			s.addEvent(event);
+			db.persist(event);
+			db.getTransaction().commit();
+			
+			return event;
+		} catch (Exception e) {
+			return null;
+		}
 	}
-
+	
 	/**
 	 * This method retrieves from the database the events of a given date
 	 * 
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
+	@WebMethod
 	public Vector<Event> getEvents(Date date) {
 		System.out.println(">> DataAccess: getEvents");
 		Vector<Event> res = new Vector<Event>();
@@ -382,6 +382,7 @@ public class DataAccess {
 	 * @param date of the month for which days with events want to be retrieved
 	 * @return collection of dates
 	 */
+	@WebMethod
 	public Vector<Date> getEventsMonth(Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
 		Vector<Date> res = new Vector<Date>();
@@ -401,7 +402,8 @@ public class DataAccess {
 		return res;
 	}
 	
-	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+	@WebMethod
+	public Vector<Date> getEventsMonth2(Date date, Sport sport) {
 		try {
 			System.out.println(">> DataAccess: getEventsMonth");
 			Vector<Date> res = new Vector<Date>();
@@ -426,85 +428,181 @@ public class DataAccess {
 			return null;
 		}
 	}
-
-	public User getUser(String username, String password) {
+	
+	@WebMethod
+	public Event getEvent(Event event) {
 		try {
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE (u.username = \"" + username
-					+ "\" OR u.email = \"" + username + "\") AND u.password = \"" + password + "\"", User.class);
-			return q2.getSingleResult();
-
+			TypedQuery<Event> q = db
+					.createQuery("SELECT e from Event e WHERE e.eventNumber = " + event.getEventNumber(), Event.class);
+			return q.getSingleResult();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public User getUser(String username) {
-		try {
-			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"",
-					User.class);
-			return q2.getSingleResult();
-
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public User updateUser(String email, String username, String password, String name, String familyName,
-			String creditCard, float money, float budget) {
-		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
-		User user = q.getSingleResult();
+	@WebMethod
+	public void removeEvent(Event e, Sport sport) {
 		db.getTransaction().begin();
 
-		if (!username.equals(""))
-			user.setUsername(username);
-		if (!password.equals(""))
-			user.setPassword(password);
-		if (!name.equals(""))
-			user.setName(name);
-		if (!familyName.equals(""))
-			user.setFamilyName(familyName);
-		if (!creditCard.equals(""))
-			user.setCreditCard(creditCard);
-		
-		user.setMoney(money);
-		
-		if (budget == 0)
-			user.setBudgetBool(false);
-		else
-			user.setBudgetBool(true);
-		user.setBudget(budget);
-
+		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
+		q.executeUpdate();
+		Sport sport2 = db.find(Sport.class,sport);
+		sport2.removeEvent(e);
 		db.getTransaction().commit();
-		return user;
-	}
+		for (Question question : e.getQuestions()) {
+			removeQuestion(question);
 
-	public void deleteUser(User user) {
+			for (BetChoice b : question.getChoices()) {
+				removeBet(b);
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	/** *** ** Questions ** *** **/
+	
+	
+	/**
+	 * This method creates a question for an event, with a question text and the
+	 * minimum bet
+	 * 
+	 * @param event      to which question is added
+	 * @param question   text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @return the created question, or null, or an exception
+	 * @throws QuestionAlreadyExist if the same question already exists for the
+	 *                              event
+	 */
+	@WebMethod
+	public Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist {
+		System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
+				+ betMinimum);
+
+		Event ev = db.find(Event.class, event.getEventNumber());
+
+		if (ev.DoesQuestionExists(question))
+			throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
+
 		db.getTransaction().begin();
-		Query q = db.createQuery("DELETE FROM User u WHERE u.email = \"" + user.getEmail() + "\"");
+		Question q = ev.addQuestion(question, betMinimum);
+		// db.persist(q);
+		db.persist(ev);
+		db.persist(q); // db.persist(q) not required when CascadeType.PERSIST is added in questions
+						// property of Event class
+						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+		db.getTransaction().commit();
+		return q;
+
+	}
+	
+	@WebMethod
+	public Question getQuestion(Question question) {
+		try {
+			TypedQuery<Question> q = db.createQuery(
+					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
+					Question.class);
+			return q.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@WebMethod
+	public void removeQuestion(Question question) {
+		db.getTransaction().begin();
+		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
+		q.executeUpdate();
+		db.getTransaction().commit();
+
+		for (BetChoice b : question.getChoices()) {
+			removeBet(b);
+		}
+	}
+	
+	@WebMethod
+	public Question setResult(Question question, BetChoice choice) {
+		try {
+			db.getTransaction().begin();
+
+			TypedQuery<Question> q = db.createQuery(
+					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
+					Question.class);
+			Question quest = q.getSingleResult();
+
+			TypedQuery<BetChoice> q2 = db.createQuery(
+					"SELECT b from BetChoice b WHERE b.choiceNumber = " + choice.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q2.getSingleResult();
+
+			quest.setResult(b);
+
+			db.getTransaction().commit();
+			
+			return quest;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+
+	
+	
+	
+	/** *** ** BetChoices ** *** **/
+	@WebMethod
+	public BetChoice addBet(Question question, String response, float odds) {
+		TypedQuery<Question> q = db.createQuery(
+				"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
+		Question quest = q.getSingleResult();
+
+		if (quest == null) {
+			System.out.println("DIDNT FIND " + question);
+			return null;
+		}
+
+		db.getTransaction().begin();
+		BetChoice bet = new BetChoice(quest, response, odds);
+		db.persist(bet);
+		db.getTransaction().commit();
+		return bet;
+	}
+	
+	@WebMethod
+	public void removeBet(BetChoice b) {
+		db.getTransaction().begin();
+		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
 		q.executeUpdate();
 		db.getTransaction().commit();
 	}
-
-	public void storeUser(User user) {
-		db.getTransaction().begin();
-		db.persist(user);
-		db.getTransaction().commit();
-	}
-
-	public void addMoneyUser(User u, float money) {
+	
+	@WebMethod
+	private void updateOdds(BetChoice bet) {
 		try {
-			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"",
-					User.class);
-			User user = q.getSingleResult();
+			TypedQuery<BetChoice> q = db.createQuery(
+					"SELECT b FROM BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
+			BetChoice b = q.getSingleResult();
 
 			db.getTransaction().begin();
-			user.updateMoney(money);
+			float users = b.getUserBets().size();
+			bet.setOdds(1 + 1 / users);
 			db.getTransaction().commit();
-		} catch (Exception e) {
-			System.out.println("Error to get the user");
-		}
-	}
 
+		} catch (Exception e) {
+			return;
+		}
+
+	}
+	
+	
+	
+	
+	
+	/** *** ** UserBet ** *** **/
+	
+	@WebMethod
 	public User userBet(User u, int amount, BetChoice bet) {
 		try {
 
@@ -532,109 +630,8 @@ public class DataAccess {
 			return null;
 		}
 	}
-
 	
-
-	public List<User> getUsers() {
-		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
-		return a.getResultList();
-	}
-
-	public Event createEvent(String description, Date eventDate, Sport sport) {
-		try {
-			Sport s = db.find(Sport.class, sport);
-			db.getTransaction().begin();
-			Event event = new Event(description, eventDate);
-			event.setSport(s);
-			s.addEvent(event);
-			db.persist(event);
-			db.getTransaction().commit();
-			
-			return event;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public BetChoice addBet(Question question, String response, float odds) {
-		TypedQuery<Question> q = db.createQuery(
-				"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
-		Question quest = q.getSingleResult();
-
-		if (quest == null) {
-			System.out.println("DIDNT FIND " + question);
-			return null;
-		}
-
-		db.getTransaction().begin();
-		BetChoice bet = new BetChoice(quest, response, odds);
-		db.persist(bet);
-		db.getTransaction().commit();
-		return bet;
-	}
-
-	public Event getEvent(Event event) {
-		try {
-			TypedQuery<Event> q = db
-					.createQuery("SELECT e from Event e WHERE e.eventNumber = " + event.getEventNumber(), Event.class);
-			return q.getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public void removeEvent(Event e, Sport sport) {
-		db.getTransaction().begin();
-
-		Query q = db.createQuery("DELETE FROM Event e WHERE e.eventNumber = " + e.getEventNumber());
-		q.executeUpdate();
-		Sport sport2 = db.find(Sport.class,sport);
-		sport2.removeEvent(e);
-		db.getTransaction().commit();
-		for (Question question : e.getQuestions()) {
-			removeQuestion(question);
-
-			for (BetChoice b : question.getChoices()) {
-				removeBet(b);
-			}
-		}
-		
-
-	}
-
-	public void removeQuestion(Question question) {
-		db.getTransaction().begin();
-		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
-		q.executeUpdate();
-		db.getTransaction().commit();
-
-		for (BetChoice b : question.getChoices()) {
-			removeBet(b);
-		}
-	}
-
-	public void removeBet(BetChoice b) {
-		db.getTransaction().begin();
-		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
-		q.executeUpdate();
-		db.getTransaction().commit();
-	}
-
-	public Vector<User> getFriends(User user) {
-		try {
-
-			TypedQuery<User> q2 = db.createQuery(
-					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
-			User u = q2.getSingleResult();
-			System.out.println(u.getFriends());
-			return u.getFriends();
-
-		} catch (Exception e) {
-			System.out.println("Error with friends");
-			return null;
-		}
-	}
-
+	@WebMethod
 	public Vector<UserBet> getUserBet(User user) {
 		try {
 
@@ -649,7 +646,8 @@ public class DataAccess {
 			return null;
 		}
 	}
-
+	
+	@WebMethod
 	public void removeUserBet(UserBet bet) {
 		try {
 			db.getTransaction().begin();
@@ -678,7 +676,121 @@ public class DataAccess {
 			System.out.println(e);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	/** *** ** Users ** *** **/
+	
+	@WebMethod
+	public User getUser(String username, String password) {
+		try {
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE (u.username = \"" + username
+					+ "\" OR u.email = \"" + username + "\") AND u.password = \"" + password + "\"", User.class);
+			return q2.getSingleResult();
 
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@WebMethod
+	public User getUser(String username) {
+		try {
+			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"",
+					User.class);
+			return q2.getSingleResult();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@WebMethod
+	public void storeUser(User user) {
+		db.getTransaction().begin();
+		db.persist(user);
+		db.getTransaction().commit();
+	}
+
+	@WebMethod
+	public void deleteUser(User user) {
+		db.getTransaction().begin();
+		Query q = db.createQuery("DELETE FROM User u WHERE u.email = \"" + user.getEmail() + "\"");
+		q.executeUpdate();
+		db.getTransaction().commit();
+	}
+
+	@WebMethod
+	public User updateUser(String email, String username, String password, String name, String familyName,
+			String creditCard, float money, float budget) {
+		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
+		User user = q.getSingleResult();
+		db.getTransaction().begin();
+
+		if (!username.equals(""))
+			user.setUsername(username);
+		if (!password.equals(""))
+			user.setPassword(password);
+		if (!name.equals(""))
+			user.setName(name);
+		if (!familyName.equals(""))
+			user.setFamilyName(familyName);
+		if (!creditCard.equals(""))
+			user.setCreditCard(creditCard);
+		
+		user.setMoney(money);
+		
+		if (budget == 0)
+			user.setBudgetBool(false);
+		else
+			user.setBudgetBool(true);
+		user.setBudget(budget);
+
+		db.getTransaction().commit();
+		return user;
+	}
+	
+	@WebMethod
+	public void addMoneyUser(User u, float money) {
+		try {
+			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"",
+					User.class);
+			User user = q.getSingleResult();
+
+			db.getTransaction().begin();
+			user.updateMoney(money);
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error to get the user");
+		}
+	}
+	
+	@WebMethod
+	public List<User> getUsers() {
+		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
+		return a.getResultList();
+	}
+	
+	@WebMethod
+	public Vector<User> getFriends(User user) {
+		try {
+
+			TypedQuery<User> q2 = db.createQuery(
+					"SELECT u from User u " + "WHERE u.username = \"" + user.getUsername() + "\"", User.class);
+			User u = q2.getSingleResult();
+			System.out.println(u.getFriends());
+			return u.getFriends();
+
+		} catch (Exception e) {
+			System.out.println("Error with friends");
+			return null;
+		}
+	}
+	
+	@WebMethod
 	public boolean addFriend(User user, String friend) {
 		try {
 			db.getTransaction().begin();
@@ -704,6 +816,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public void removeFriend(User user, User friend) {
 		try {
 			db.getTransaction().begin();
@@ -723,58 +836,15 @@ public class DataAccess {
 			// TODO: handle exception
 		}
 	}
-
-	public Question setResult(Question question, BetChoice choice) {
-		try {
-			db.getTransaction().begin();
-
-			TypedQuery<Question> q = db.createQuery(
-					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
-					Question.class);
-			Question quest = q.getSingleResult();
-
-			TypedQuery<BetChoice> q2 = db.createQuery(
-					"SELECT b from BetChoice b WHERE b.choiceNumber = " + choice.getChoiceNumber(), BetChoice.class);
-			BetChoice b = q2.getSingleResult();
-
-			quest.setResult(b);
-
-			db.getTransaction().commit();
-			
-			return quest;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	private void updateOdds(BetChoice bet) {
-		try {
-			TypedQuery<BetChoice> q = db.createQuery(
-					"SELECT b FROM BetChoice b WHERE b.choiceNumber = " + bet.getChoiceNumber(), BetChoice.class);
-			BetChoice b = q.getSingleResult();
-
-			db.getTransaction().begin();
-			float users = b.getUserBets().size();
-			bet.setOdds(1 + 1 / users);
-			db.getTransaction().commit();
-
-		} catch (Exception e) {
-			return;
-		}
-
-	}
-
-	public Question getQuestion(Question question) {
-		try {
-			TypedQuery<Question> q = db.createQuery(
-					"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(),
-					Question.class);
-			return q.getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
+	
+	
+	
+	
+	
+	
+	/** *** ** Sports ** *** **/
+	
+	@WebMethod
 	public List<Sport> getSport() {
 		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
 		List<Sport> sports = query.getResultList();
@@ -784,12 +854,14 @@ public class DataAccess {
 		return sports;
 	}
 
+	@WebMethod
 	public void addSport(Sport sport) {
 		db.getTransaction().begin();
 		db.persist(sport);
 		db.getTransaction().commit();
 	}
 
+	@WebMethod
 	public void removeSport(String sport) {
 		db.getTransaction().begin();
 		TypedQuery<Sport> q1 = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName =  \"" + sport + "\"",
@@ -801,6 +873,7 @@ public class DataAccess {
 			removeEvent(e, sport2);
 	}
 
+	@WebMethod
 	public User addSportUser(Sport sport, User user) {
 		try {
 			TypedQuery<Sport> q = db
@@ -824,6 +897,7 @@ public class DataAccess {
 
 	}
 	
+	@WebMethod
 	public Vector<Event> getSportEvents(Sport sport) {
 		try {
 			Sport s = db.find(Sport.class, sport);
@@ -834,6 +908,7 @@ public class DataAccess {
 		
 	}
 
+	@WebMethod
 	public Vector<Sport> getUserPreferences(User user) {
 		try {
 			TypedQuery<User> q2 = db.createQuery(
@@ -847,6 +922,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public Sport getUniqueSport(String sportName) {
 		try {
 			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"",
@@ -859,7 +935,16 @@ public class DataAccess {
 		}
 	}
 	
+	
+	
+	
+	
+	/** *** ** Messages ** *** **/
+	
+	@WebMethod
 	public Message createMessage(User user, String message) {
+		user = getUser(user.getUsername());
+		
 		db.getTransaction().begin();
 		Message m = new Message(user, message);
 		db.persist(m);
@@ -867,13 +952,20 @@ public class DataAccess {
 		return m;
 	}
 	
-	public void deleteMessage(Message message) {
-		db.getTransaction().begin();
-		Query q = db.createQuery("DELETE FROM Message m WHERE m.messageNumber = " + message.getMessageNumber());
-		q.executeUpdate();
-		db.getTransaction().commit();
+	@WebMethod
+	public boolean deleteMessage(Message message) {
+		try {
+			db.getTransaction().begin();
+			Query q = db.createQuery("DELETE FROM Message m WHERE m.messageNumber = " + message.getMessageNumber());
+			q.executeUpdate();
+			db.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
+	@WebMethod
 	public List<Message> getAllMessages(){
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
@@ -884,6 +976,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public List<Message> getMessagesOfUser(User user){
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m WHERE m.user.uid = " + user.getUid(), Message.class);
@@ -894,11 +987,38 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public User getUserOfMessage(Message message) {
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
 			Message m = q.getSingleResult();
 			return m.getUser();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
+	
+	
+	/** *** ** Reports ** *** **/
+	
+	@WebMethod
+	public Report sendReport(User user, String message, ReportType type) {
+		user = db.find(User.class, user);
+		db.getTransaction().begin();
+		Report report = new Report(user, message, type);
+		db.persist(report);
+		db.getTransaction().commit();
+		return report;
+	}
+	
+	@WebMethod
+	public List<Report> getReportByType(ReportType type) {
+		try {
+			TypedQuery<Report> q = db.createQuery("SELECT r FROM Report r", Report.class);
+			List<Report> reports = q.getResultList().stream().filter(t -> t.getType() == type).collect(Collectors.toList());			
+			return (List<Report>) reports;
 		} catch (Exception e) {
 			return null;
 		}
