@@ -306,7 +306,7 @@ public class FindQuestionsGUI extends JFrame {
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				self.setVisible(false);
-				LoginGUI loginGUI = new LoginGUI();
+				LoginGUI loginGUI = new LoginGUI(businessLogic);
 				loginGUI.setBusinessLogic(businessLogic);
 				loginGUI.setVisible(true);
 			}
@@ -398,12 +398,14 @@ public class FindQuestionsGUI extends JFrame {
 				tutorialGUI.setVisible(true);
 			}
 		});
-				tutorialBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		tutorialBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tutorialBtn.setBounds(539, 15, 104, 23);
 		tutorialBtn.setVisible(currentUser == null);
 		getContentPane().add(tutorialBtn);
 
-	}
+	}
+
 	public void setBusinessLogic(BLFacade bl) {
 		businessLogic = bl;
 	}
@@ -412,7 +414,7 @@ public class FindQuestionsGUI extends JFrame {
 		// For each day in current month, it is checked if there are events, and in that
 		// case, the background color for that day is changed.
 
-		Vector<Date> dates = businessLogic.getEventsMonth(jCalendar.getDate(), sport);
+		Vector<Date> dates = businessLogic.getEventsMonth2(jCalendar.getDate(), sport);
 		if (dates == null) {
 			System.out.println("No events");
 			return;

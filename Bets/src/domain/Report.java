@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,25 +10,42 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Report{
+public class Report implements Serializable{
 	
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
 	private Integer messageNumber;
-	private User user;
+	
 	private String message;
 	private Date date;
+	
+	@XmlIDREF
+	private User user;
+	
 	private ReportType type;
+	
+	public Report() {
+		super();
+	}
 	
 	public Report (User user, String message, ReportType type) {
 		this.user = user;
 		this.message = message;
 		this.type = type;
+		this.date = new Date();
+		
+		this.user.addReport(this);
+	}
+	
+	public Report (User user, String message) {
+		this.user = user;
+		this.message = message;
 		this.date = new Date();
 		
 		this.user.addReport(this);
@@ -74,6 +92,7 @@ public class Report{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	
 	/**
 	 * @return the type

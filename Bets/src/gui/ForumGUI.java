@@ -233,7 +233,8 @@ public class ForumGUI extends JFrame {
 			tReportTypes.add(ReportType.OTHER);
 			reportTypecomboBox.setModel(new DefaultComboBoxModel<ReportType>(tReportTypes));
 			
-			messageList.setListData(businessLogic.getReportByType(ReportType.USER_BEHAVIOR));			
+			messageList.setListData(businessLogic.getReportByType(ReportType.USER_BEHAVIOR));	
+				
 		}
 	}
 	

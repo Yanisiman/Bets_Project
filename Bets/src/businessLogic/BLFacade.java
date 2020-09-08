@@ -4,7 +4,6 @@ import java.util.Vector;
 import java.util.Date;
 import java.util.List;
 
-//import domain.Booking;
 import domain.Question;
 import domain.Report;
 import domain.ReportType;
@@ -46,7 +45,7 @@ public interface BLFacade  {
 	 */
 	@WebMethod public Vector<Event> getEvents(Date date);
 	
-	@WebMethod public Vector<Event> getEvents (String sportname);
+	@WebMethod public Vector<Event> getEvents2(String sportname);
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
@@ -56,7 +55,7 @@ public interface BLFacade  {
 	 */
 	@WebMethod public Vector<Date> getEventsMonth(Date date);
 	
-	@WebMethod public Vector<Date> getEventsMonth(Date date, Sport sport);
+	@WebMethod public Vector<Date> getEventsMonth2(Date date, Sport sport);
 	
 	@WebMethod public Event getEvent(Event event);
 	
@@ -171,4 +170,5 @@ public interface BLFacade  {
 	@WebMethod public Report sendReport(User user, String message, ReportType type);
 	
 	@WebMethod public Vector<Report> getReportByType(ReportType type);
+	
 }

@@ -82,7 +82,6 @@ public class ReportProblemsGUI extends JFrame {
 		tReportTypes.add(ReportType.OTHER);
 		problemTypecomboBox.setModel(new DefaultComboBoxModel<ReportType>(tReportTypes));
 		
-		
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);

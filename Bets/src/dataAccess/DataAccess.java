@@ -12,6 +12,8 @@ import java.util.Vector;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,6 +37,7 @@ import exceptions.QuestionAlreadyExist;
 /**
  * It implements the data access to the objectDb database
  */
+@WebService(endpointInterface = "dataAccess.DataAccess")
 public class DataAccess {
 	protected static EntityManager db;
 	protected static EntityManagerFactory emf;
@@ -77,6 +80,7 @@ public class DataAccess {
 	 * BLFacadeImplementation) when the option "initialize" is declared in the tag
 	 * dataBaseOpenMode of resources/config.xml file
 	 */
+	@WebMethod
 	public void initializeDB() {
 
 		db.getTransaction().begin();
@@ -309,7 +313,8 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@WebMethod
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");
@@ -320,6 +325,7 @@ public class DataAccess {
 	
 	/** *** ** Events ** *** **/
 	
+	@WebMethod
 	public Event createEvent(String description, Date eventDate, Sport sport) {
 		try {
 			Sport s = db.find(Sport.class, sport);
@@ -342,6 +348,7 @@ public class DataAccess {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
+	@WebMethod
 	public Vector<Event> getEvents(Date date) {
 		System.out.println(">> DataAccess: getEvents");
 		Vector<Event> res = new Vector<Event>();
@@ -375,6 +382,7 @@ public class DataAccess {
 	 * @param date of the month for which days with events want to be retrieved
 	 * @return collection of dates
 	 */
+	@WebMethod
 	public Vector<Date> getEventsMonth(Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
 		Vector<Date> res = new Vector<Date>();
@@ -394,7 +402,8 @@ public class DataAccess {
 		return res;
 	}
 	
-	public Vector<Date> getEventsMonth(Date date, Sport sport) {
+	@WebMethod
+	public Vector<Date> getEventsMonth2(Date date, Sport sport) {
 		try {
 			System.out.println(">> DataAccess: getEventsMonth");
 			Vector<Date> res = new Vector<Date>();
@@ -420,6 +429,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public Event getEvent(Event event) {
 		try {
 			TypedQuery<Event> q = db
@@ -430,6 +440,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public void removeEvent(Event e, Sport sport) {
 		db.getTransaction().begin();
 
@@ -466,6 +477,7 @@ public class DataAccess {
 	 * @throws QuestionAlreadyExist if the same question already exists for the
 	 *                              event
 	 */
+	@WebMethod
 	public Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist {
 		System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
 				+ betMinimum);
@@ -487,6 +499,7 @@ public class DataAccess {
 
 	}
 	
+	@WebMethod
 	public Question getQuestion(Question question) {
 		try {
 			TypedQuery<Question> q = db.createQuery(
@@ -498,6 +511,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public void removeQuestion(Question question) {
 		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM Question e WHERE e.questionNumber = " + question.getQuestionNumber());
@@ -509,6 +523,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public Question setResult(Question question, BetChoice choice) {
 		try {
 			db.getTransaction().begin();
@@ -537,7 +552,7 @@ public class DataAccess {
 	
 	
 	/** *** ** BetChoices ** *** **/
-	
+	@WebMethod
 	public BetChoice addBet(Question question, String response, float odds) {
 		TypedQuery<Question> q = db.createQuery(
 				"SELECT q from Question q WHERE q.questionNumber = " + question.getQuestionNumber(), Question.class);
@@ -555,6 +570,7 @@ public class DataAccess {
 		return bet;
 	}
 	
+	@WebMethod
 	public void removeBet(BetChoice b) {
 		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM BetChoice e WHERE e.choiceNumber = " + b.getChoiceNumber());
@@ -562,6 +578,7 @@ public class DataAccess {
 		db.getTransaction().commit();
 	}
 	
+	@WebMethod
 	private void updateOdds(BetChoice bet) {
 		try {
 			TypedQuery<BetChoice> q = db.createQuery(
@@ -585,6 +602,7 @@ public class DataAccess {
 	
 	/** *** ** UserBet ** *** **/
 	
+	@WebMethod
 	public User userBet(User u, int amount, BetChoice bet) {
 		try {
 
@@ -613,6 +631,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public Vector<UserBet> getUserBet(User user) {
 		try {
 
@@ -628,6 +647,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public void removeUserBet(UserBet bet) {
 		try {
 			db.getTransaction().begin();
@@ -664,6 +684,7 @@ public class DataAccess {
 	
 	/** *** ** Users ** *** **/
 	
+	@WebMethod
 	public User getUser(String username, String password) {
 		try {
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE (u.username = \"" + username
@@ -675,6 +696,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public User getUser(String username) {
 		try {
 			TypedQuery<User> q2 = db.createQuery("SELECT u from User u " + "WHERE u.username = \"" + username + "\"",
@@ -686,12 +708,14 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public void storeUser(User user) {
 		db.getTransaction().begin();
 		db.persist(user);
 		db.getTransaction().commit();
 	}
 
+	@WebMethod
 	public void deleteUser(User user) {
 		db.getTransaction().begin();
 		Query q = db.createQuery("DELETE FROM User u WHERE u.email = \"" + user.getEmail() + "\"");
@@ -699,6 +723,7 @@ public class DataAccess {
 		db.getTransaction().commit();
 	}
 
+	@WebMethod
 	public User updateUser(String email, String username, String password, String name, String familyName,
 			String creditCard, float money, float budget) {
 		TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.email = \"" + email + "\"", User.class);
@@ -728,6 +753,7 @@ public class DataAccess {
 		return user;
 	}
 	
+	@WebMethod
 	public void addMoneyUser(User u, float money) {
 		try {
 			TypedQuery<User> q = db.createQuery("SELECT u from User u WHERE u.username = \"" + u.getUsername() + "\"",
@@ -742,11 +768,13 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public List<User> getUsers() {
 		TypedQuery<User> a = db.createQuery("SELECT u from User u", User.class);
 		return a.getResultList();
 	}
 	
+	@WebMethod
 	public Vector<User> getFriends(User user) {
 		try {
 
@@ -762,6 +790,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public boolean addFriend(User user, String friend) {
 		try {
 			db.getTransaction().begin();
@@ -787,6 +816,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public void removeFriend(User user, User friend) {
 		try {
 			db.getTransaction().begin();
@@ -814,6 +844,7 @@ public class DataAccess {
 	
 	/** *** ** Sports ** *** **/
 	
+	@WebMethod
 	public List<Sport> getSport() {
 		TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s ", Sport.class);
 		List<Sport> sports = query.getResultList();
@@ -823,12 +854,14 @@ public class DataAccess {
 		return sports;
 	}
 
+	@WebMethod
 	public void addSport(Sport sport) {
 		db.getTransaction().begin();
 		db.persist(sport);
 		db.getTransaction().commit();
 	}
 
+	@WebMethod
 	public void removeSport(String sport) {
 		db.getTransaction().begin();
 		TypedQuery<Sport> q1 = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName =  \"" + sport + "\"",
@@ -840,6 +873,7 @@ public class DataAccess {
 			removeEvent(e, sport2);
 	}
 
+	@WebMethod
 	public User addSportUser(Sport sport, User user) {
 		try {
 			TypedQuery<Sport> q = db
@@ -863,6 +897,7 @@ public class DataAccess {
 
 	}
 	
+	@WebMethod
 	public Vector<Event> getSportEvents(Sport sport) {
 		try {
 			Sport s = db.find(Sport.class, sport);
@@ -873,6 +908,7 @@ public class DataAccess {
 		
 	}
 
+	@WebMethod
 	public Vector<Sport> getUserPreferences(User user) {
 		try {
 			TypedQuery<User> q2 = db.createQuery(
@@ -886,6 +922,7 @@ public class DataAccess {
 		}
 	}
 
+	@WebMethod
 	public Sport getUniqueSport(String sportName) {
 		try {
 			TypedQuery<Sport> query = db.createQuery("SELECT s FROM Sport s " + "WHERE s.sportName = \"" + sportName + "\"",
@@ -904,6 +941,7 @@ public class DataAccess {
 	
 	/** *** ** Messages ** *** **/
 	
+	@WebMethod
 	public Message createMessage(User user, String message) {
 		user = getUser(user.getUsername());
 		
@@ -914,6 +952,7 @@ public class DataAccess {
 		return m;
 	}
 	
+	@WebMethod
 	public boolean deleteMessage(Message message) {
 		try {
 			db.getTransaction().begin();
@@ -926,6 +965,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public List<Message> getAllMessages(){
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
@@ -936,6 +976,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public List<Message> getMessagesOfUser(User user){
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m WHERE m.user.uid = " + user.getUid(), Message.class);
@@ -946,6 +987,7 @@ public class DataAccess {
 		}
 	}
 	
+	@WebMethod
 	public User getUserOfMessage(Message message) {
 		try {
 			TypedQuery<Message> q = db.createQuery("SELECT m FROM Message m" , Message.class);
@@ -961,6 +1003,7 @@ public class DataAccess {
 	
 	/** *** ** Reports ** *** **/
 	
+	@WebMethod
 	public Report sendReport(User user, String message, ReportType type) {
 		user = db.find(User.class, user);
 		db.getTransaction().begin();
@@ -970,6 +1013,7 @@ public class DataAccess {
 		return report;
 	}
 	
+	@WebMethod
 	public List<Report> getReportByType(ReportType type) {
 		try {
 			TypedQuery<Report> q = db.createQuery("SELECT r FROM Report r", Report.class);

@@ -1,0 +1,1752 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 18:19:35 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 18:19:35 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 18:19:35 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 18:19:35 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 18:19:35 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 18:19:35 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 18:19:35 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 18:19:35 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 18:19:35 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 18:19:35 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 18:19:35 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 18:19:35 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 18:19:35 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 18:19:35 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 18:19:35 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 18:19:35 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 18:19:35 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 18:19:35 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 18:19:35 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 18:19:35 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 18:19:35 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 18:19:35 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 18:19:35 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 18:19:35 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 18:19:35 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 18:19:35 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 18:19:35 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 18:19:35 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:37:10 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:37:10 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:37:10 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:37:10 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:37:10 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:37:10 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:37:10 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:37:10 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:37:10 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:37:10 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:37:10 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:37:10 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:37:10 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:37:10 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:37:10 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:37:10 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:37:10 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:37:10 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:37:10 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:37:10 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:37:10 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:37:10 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:37:10 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:37:10 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:37:10 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:37:10 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:37:10 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:37:10 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:37:40 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:37:40 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:37:40 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:37:40 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:37:40 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:37:40 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:37:40 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:37:40 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:37:40 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:37:40 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:37:40 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:37:40 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:37:40 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:37:40 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:37:40 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:37:40 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:37:40 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:37:40 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:37:40 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:37:40 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:37:40 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:37:40 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:37:40 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:37:40 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:37:40 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:37:40 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:37:40 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:37:40 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:37:51 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:37:51 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:37:51 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:37:51 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:37:51 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:37:51 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:37:51 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:37:51 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:37:51 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:37:51 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:37:51 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:37:51 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:37:51 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:37:51 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:37:51 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:37:51 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:37:51 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:37:51 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:37:51 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:37:51 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:37:51 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:37:51 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:37:51 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:37:51 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:37:51 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:37:51 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:37:51 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:37:51 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:39:50 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:39:50 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:39:50 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:39:50 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:39:50 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:39:50 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:39:50 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:39:50 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:39:50 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:39:50 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:39:50 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:39:50 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:39:50 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:39:50 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:39:50 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:39:50 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:39:50 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:39:50 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:39:50 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:39:50 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:39:50 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:39:50 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:39:50 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:39:50 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:39:50 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:39:50 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:39:50 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:39:50 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:41:36 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:41:36 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:41:36 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:41:36 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:41:36 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:41:36 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:41:36 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:41:36 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:41:36 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:41:36 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:41:36 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:41:36 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:41:36 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:41:36 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:41:36 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:41:36 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:41:36 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:41:36 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:41:36 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:41:36 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:41:36 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:41:36 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:41:36 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:41:36 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:41:36 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:41:36 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:41:36 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:41:36 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:42:57 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:42:57 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:42:57 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:42:57 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:42:57 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:42:57 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:42:57 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:42:57 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:42:57 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:42:57 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:42:57 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:42:57 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:42:57 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:42:57 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:42:57 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:42:57 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:42:57 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:42:57 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:42:57 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:42:57 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:42:57 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:42:57 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:42:57 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:42:57 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:42:57 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:42:57 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:42:57 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:42:57 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:44:17 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:44:17 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:44:17 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:44:17 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:44:17 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:44:17 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:44:17 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:44:17 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:44:17 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:44:17 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:44:17 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:44:17 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:44:17 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:44:17 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:44:17 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:44:17 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:44:17 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:44:17 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:44:17 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:44:17 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:44:17 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:44:17 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:44:17 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:44:17 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:44:17 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:44:17 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:44:17 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:44:17 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:45:35 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:45:35 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:45:35 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:45:35 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:45:35 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:45:35 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:45:35 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:45:35 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:45:35 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:45:35 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:45:35 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:45:35 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:45:35 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:45:35 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:45:35 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:45:35 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:45:35 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:45:35 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:45:35 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:45:35 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:45:35 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:45:35 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:45:35 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:45:35 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:45:35 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:45:35 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:45:35 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:45:35 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:47:00 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:47:00 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:47:00 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:47:00 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:47:00 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:47:00 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:47:00 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:47:00 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:47:00 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:47:00 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:47:00 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:47:00 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:47:00 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:47:00 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:47:00 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:47:00 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:47:00 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:47:00 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:47:00 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:47:00 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:47:00 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:47:00 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:47:00 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:47:00 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:47:00 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:47:00 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:47:00 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:47:00 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:57:46 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:57:46 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:57:46 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:57:46 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:57:46 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:57:46 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:57:46 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:57:46 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:57:46 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:57:46 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:57:46 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:57:46 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:57:46 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:57:46 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:57:46 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:57:46 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:57:46 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:57:46 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:57:46 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:57:46 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:57:46 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:57:46 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:57:46 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:57:46 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:57:46 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:57:46 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:57:46 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:57:46 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:58:19 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:58:19 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:58:19 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:58:19 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:58:19 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:58:19 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:58:19 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:58:19 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:58:19 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:58:19 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:58:19 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:58:19 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:58:19 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:58:19 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:58:19 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:58:19 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:58:19 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:58:19 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:58:19 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:58:19 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:58:19 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:58:19 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:58:19 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:58:19 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:58:19 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:58:19 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:58:19 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:58:19 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:58:31 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:58:31 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:58:31 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:58:31 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:58:31 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:58:31 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:58:31 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:58:31 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:58:31 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:58:31 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:58:31 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:58:31 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:58:31 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:58:31 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:58:31 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:58:31 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:58:31 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:58:31 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:58:31 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:58:31 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:58:31 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:58:31 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:58:31 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:58:31 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:58:31 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:58:31 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:58:31 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:58:31 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 20:59:25 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 20:59:25 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 20:59:25 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 20:59:26 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 20:59:26 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 20:59:26 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 20:59:26 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 20:59:26 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 20:59:26 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 20:59:26 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 20:59:26 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 20:59:26 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 20:59:26 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 20:59:26 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 20:59:26 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 20:59:26 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 20:59:26 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 20:59:26 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 20:59:26 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 20:59:26 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 20:59:26 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 20:59:26 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 20:59:26 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 20:59:26 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 20:59:26 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 20:59:26 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 20:59:26 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 20:59:26 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:03:52 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 21:03:52 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:03:52 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 21:03:52 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 21:03:52 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:03:52 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 21:03:52 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 21:03:52 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:03:52 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 21:03:52 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 21:03:52 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:03:52 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 21:03:52 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 21:03:52 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:03:52 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 21:03:52 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:03:52 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 21:03:52 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 21:03:52 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 21:03:52 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 21:03:52 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 21:03:52 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 21:03:52 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:03:52 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 21:03:52 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:03:52 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 21:03:52 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 21:03:52 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:04:31 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 21:04:31 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:04:31 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 21:04:31 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 21:04:31 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:04:31 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 21:04:31 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 21:04:31 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:04:31 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 21:04:31 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 21:04:31 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:04:31 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 21:04:31 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 21:04:31 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:04:31 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 21:04:31 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:04:31 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 21:04:31 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 21:04:31 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 21:04:31 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 21:04:31 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 21:04:31 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 21:04:31 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:04:31 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 21:04:31 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:04:31 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 21:04:31 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 21:04:31 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:06:18 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 21:06:18 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:06:18 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 21:06:18 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 21:06:18 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:06:18 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 21:06:18 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 21:06:18 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:06:18 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 21:06:18 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 21:06:18 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:06:18 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 21:06:18 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 21:06:18 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:06:18 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 21:06:18 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:06:18 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 21:06:18 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 21:06:18 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 21:06:18 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 21:06:18 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 21:06:18 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 21:06:18 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:06:18 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 21:06:18 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:06:18 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 21:06:18 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 21:06:18 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:07:09 #1 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:07:09 #2 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:07:09 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:07:09 #4 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:07:09 #5 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:07:09 #6 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:07:09 #7 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:07:09 #8 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:07:09 #9 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:08:47 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 21:08:47 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:08:47 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 21:08:47 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 21:08:47 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:08:47 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 21:08:47 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 21:08:47 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:08:47 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 21:08:47 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 21:08:47 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:08:47 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 21:08:47 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 21:08:47 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:08:47 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 21:08:47 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:08:47 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 21:08:47 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 21:08:47 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 21:08:47 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 21:08:47 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 21:08:47 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 21:08:47 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:08:47 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 21:08:47 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:08:47 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 21:08:47 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 21:08:47 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 21:11:41 #1 type.registry] 
+New type domain.Sport
+
+[2020-05-08 21:11:41 #2 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 21:11:41 #3 type.registry] 
+New type domain.Event
+
+[2020-05-08 21:11:41 #4 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 21:11:41 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 21:11:41 #6 type.registry] 
+New type domain.Question
+
+[2020-05-08 21:11:41 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 21:11:41 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 21:11:41 #9 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 21:11:41 #10 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 21:11:41 #11 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 21:11:41 #12 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 21:11:41 #13 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 21:11:41 #14 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 21:11:41 #15 type.registry] 
+New type domain.User
+
+[2020-05-08 21:11:41 #16 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 21:11:41 #17 type.registry] 
+New type domain.Report
+
+[2020-05-08 21:11:41 #18 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 21:11:41 #19 type.registry] 
+New type domain.Message
+
+[2020-05-08 21:11:41 #20 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 21:11:41 #21 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 21:11:41 #22 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 21:11:41 #23 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 21:11:41 #24 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 21:11:41 #25 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 21:11:41 #26 type.registry] 
+New type domain.Admin
+
+[2020-05-08 21:11:41 #27 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 21:11:41 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-05-08 23:43:07 #1 store] 
+Database 'C:\Users\Yanis\Desktop\Yanis\Espagne\Cours\Software Engineering\Project\Bets_Project\Bets\resources\bets.temp' is opened by 1796@LAPTOP-FG5SJG3N
+
+[2020-05-08 23:43:07 #2 type.registry] 
+New type domain.Sport
+
+[2020-05-08 23:43:07 #3 type] 
+Type domain.Sport is not enhanced.
+
+[2020-05-08 23:43:07 #4 type.registry] 
+New type domain.Event
+
+[2020-05-08 23:43:07 #5 type.registry] 
+New type java.util.Vector<domain.Event>
+
+[2020-05-08 23:43:07 #6 type] 
+Type domain.Event is not enhanced.
+
+[2020-05-08 23:43:07 #7 type.registry] 
+New type domain.Question
+
+[2020-05-08 23:43:07 #8 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-05-08 23:43:07 #9 type] 
+Type domain.Question is not enhanced.
+
+[2020-05-08 23:43:07 #10 type.registry] 
+New type domain.BetChoice
+
+[2020-05-08 23:43:07 #11 type.registry] 
+New type java.util.Vector<domain.BetChoice>
+
+[2020-05-08 23:43:07 #12 type] 
+Type domain.BetChoice is not enhanced.
+
+[2020-05-08 23:43:08 #13 type.registry] 
+New type domain.UserBet
+
+[2020-05-08 23:43:08 #14 type.registry] 
+New type java.util.Vector<domain.UserBet>
+
+[2020-05-08 23:43:08 #15 type] 
+Type domain.UserBet is not enhanced.
+
+[2020-05-08 23:43:08 #16 type.registry] 
+New type domain.User
+
+[2020-05-08 23:43:08 #17 type] 
+Type domain.User is not enhanced.
+
+[2020-05-08 23:43:08 #18 type.registry] 
+New type domain.Report
+
+[2020-05-08 23:43:08 #19 type.registry] 
+New type java.util.Vector<domain.Report>
+
+[2020-05-08 23:43:08 #20 type.registry] 
+New type domain.Message
+
+[2020-05-08 23:43:08 #21 type.registry] 
+New type java.util.Vector<domain.Message>
+
+[2020-05-08 23:43:08 #22 type.registry] 
+New type java.util.Vector<domain.Sport>
+
+[2020-05-08 23:43:08 #23 type.registry] 
+New type java.util.Vector<domain.User>
+
+[2020-05-08 23:43:08 #24 type] 
+Type domain.Report is not enhanced.
+
+[2020-05-08 23:43:08 #25 type.registry] 
+New type domain.ReportType
+
+[2020-05-08 23:43:08 #26 type] 
+Type domain.Message is not enhanced.
+
+[2020-05-08 23:43:08 #27 type.registry] 
+New type domain.Admin
+
+[2020-05-08 23:43:08 #28 type] 
+Type domain.Admin is not enhanced.
+
+[2020-05-08 23:43:08 #29 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
